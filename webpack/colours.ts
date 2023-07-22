@@ -17,19 +17,20 @@ const getColours = (): ColourMap => {
     const parsedCss = parseCss.parse(compiledCss)
     return new Map(
         (
-            parsedCss.stylesheet?.rules.filter((rule: Rule) =>
-                rule.selectors?.[0].startsWith(".colour-palette ")
+            parsedCss.stylesheet?.rules.filter(
+                (rule: Rule) => rule.selectors?.[0].startsWith(".colour-palette "),
             ) as Rule[]
         )
-            .filter((rule: Rule) =>
-                rule?.declarations?.find((declaration: Declaration) => declaration.property === "background-color")
+            .filter(
+                (rule: Rule) =>
+                    rule?.declarations?.find((declaration: Declaration) => declaration.property === "background-color"),
             )
             .map((rule: Rule) => {
                 const d = rule?.declarations?.find(
-                    (declaration: Declaration) => declaration.property === "background-color"
+                    (declaration: Declaration) => declaration.property === "background-color",
                 ) as Declaration
                 return [rule.selectors?.[0].replace(".colour-palette .", "") ?? "", d.value ?? ""]
-            })
+            }),
     )
 }
 

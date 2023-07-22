@@ -1,5 +1,5 @@
 declare module "list-loot" {
-    import { LootAmount, LootChestsEntity, LootLootEntity } from "common/gen-json"
+    import type { LootAmount, LootChestsEntity, LootLootEntity } from "js/@types/na-map-data/loot.js"
 
     interface SourceDetail {
         id: number

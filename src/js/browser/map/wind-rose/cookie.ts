@@ -9,7 +9,7 @@
  */
 
 import Cookie from "util/cookie"
-import dayjs from "dayjs"
+import dayjs from "da"
 import utc from "dayjs/plugin/utc"
 dayjs.extend(utc)
 

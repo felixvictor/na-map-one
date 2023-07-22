@@ -9,6 +9,7 @@ declare module "d3-tile" {
         scale: number
     }
 
+    // eslint-disable-next-line @typescript-eslint/ban-types
     export interface TileFn extends Function {
         tile(scale?: number, translate?: ZoomTransform): Tiles
 

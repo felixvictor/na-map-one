@@ -10,7 +10,7 @@
 
 import Cookies from "js-cookie"
 import { appName } from "common/common-browser"
-import dayjs from "dayjs"
+import dayjs from "da"
 
 const yearInDays = 365
 

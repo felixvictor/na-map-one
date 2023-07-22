@@ -3,7 +3,6 @@ import TerserPlugin from "terser-webpack-plugin"
 
 export const minimiser = [
     new CssMinimizerPlugin({
-        // @ts-ignore
         minimizerOptions: { comments: false },
         minify: CssMinimizerPlugin.cssoMinify,
     }),

@@ -16,7 +16,7 @@ import { timer as d3Timer } from "d3-timer"
 import { zoomIdentity as d3ZoomIdentity, ZoomTransform } from "d3-zoom"
 
 import loadImage from "image-promise"
-import dayjs from "dayjs"
+import dayjs from "da"
 import customParseFormat from "dayjs/plugin/customParseFormat"
 dayjs.extend(customParseFormat)
 

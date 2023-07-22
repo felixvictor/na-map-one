@@ -1,17 +1,24 @@
 {
+    "ts-node": {
+        "moduleTypes": {
+            "src/**/*": "esm"
+        }
+    },
     "compilerOptions": {
-        "allowSyntheticDefaultImports": true,
-        "baseUrl": "./src",
-        "esModuleInterop": true,
-        "forceConsistentCasingInFileNames": true,
-        "module": "ESNext",
-        "moduleResolution": "Node16",
-        "noEmit": true,
-        "removeComments": true,
-        "resolveJsonModule": true,
-        "sourceMap": true,
-        "strict": true,
         "target": "ESNext",
+        "module": "ESNext",
+        "lib": ["DOM", "DOM.Iterable", "ESNext"],
+        "sourceMap": true,
+        "removeComments": true,
+        "strict": true,
+        "moduleResolution": "node",
+        "baseUrl": "./src",
+        "noEmit": true,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "allowUmdGlobalAccess": true,
+        "forceConsistentCasingInFileNames": true,
+        "resolveJsonModule": true,
         "paths": {
             "common/*": ["js/common/*"],
             "icons/*": ["icons/*"],

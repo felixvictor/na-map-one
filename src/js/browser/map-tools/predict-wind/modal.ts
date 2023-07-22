@@ -8,7 +8,7 @@
  * @license   http://www.gnu.org/licenses/gpl.html
  */
 
-import dayjs from "dayjs"
+import dayjs from "da"
 import customParseFormat from "dayjs/plugin/customParseFormat"
 import utc from "dayjs/plugin/utc"
 dayjs.extend(customParseFormat)

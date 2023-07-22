@@ -1,13 +1,16 @@
-// noinspection ES6PreferShortImport
-
-import { readJson } from "../src/js/common/common-file"
-import { dirGenGeneric } from "./dir"
+import { naMapData } from "../src/js/common/constants"
 
 interface Repair {
     percent: number
     time: number
     volume: number
 }
-type RepairList = Record<string, Repair>
+export type RepairList = Record<string, Repair>
 
-export const repairs: RepairList = readJson(`${dirGenGeneric}/repairs.json`)
+export const getRepairList = async (): Promise<RepairList | undefined> => {
+    const res = await fetch(`${naMapData.href}/repairs.json`)
+    if (res.ok) {
+        return await res.json()
+    }
+    return undefined
+}

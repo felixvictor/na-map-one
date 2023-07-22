@@ -5,6 +5,6 @@ declare module "object-merge-advanced" {
     export default function mergeAdvanced(
         input1orig: BaseType,
         input2orig: BaseType,
-        originalOpts?: Record<string, unknown>
+        originalOpts?: Record<string, unknown>,
     ): BaseType
 }

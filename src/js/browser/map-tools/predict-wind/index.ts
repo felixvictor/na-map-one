@@ -11,7 +11,7 @@
 import { select as d3Select, Selection } from "d3-selection"
 import { line as d3Line } from "d3-shape"
 
-import dayjs from "dayjs"
+import dayjs from "da"
 import customParseFormat from "dayjs/plugin/customParseFormat"
 import utc from "dayjs/plugin/utc"
 dayjs.extend(customParseFormat)

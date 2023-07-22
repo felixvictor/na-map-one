@@ -1,8 +1,7 @@
 declare module "compare-woods" {
-    import { WoodColumnType } from "js/browser/game-tools/compare-woods"
-    import { WoodTrimOrFrame } from "common/gen-json"
-    import { ArrayIndex } from "common/interface"
-    import { WoodType } from "common/types"
+    import type { WoodColumnType } from "js/browser/game-tools/compare-woods/index.js"
+    import type { WoodTrimOrFrame, WoodType } from "js/@types/na-map-data/woods.js"
+    import type { ArrayIndex } from "js/@types/na-map-data/index.js"
 
     type WoodTypeList<T> = {
         [K in WoodType]: T

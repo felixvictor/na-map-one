@@ -3,6 +3,7 @@ declare module "textures" {
 
     export type Textures = TexturesCircles | TexturesLines | TexturesPath
 
+    // eslint-disable-next-line @typescript-eslint/ban-types
     export interface TexturesBase extends Function {
         heavier(strokeWidth?: number): this
         lighter(strokeWidth?: number): this

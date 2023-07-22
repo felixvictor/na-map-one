@@ -19,7 +19,7 @@ import { HtmlString, MinMaxCoord } from "common/interface"
 import F11Modal from "./modal"
 import { NAMap } from "../na-map"
 
-import dayjs from "dayjs"
+import dayjs from "da"
 import customParseFormat from "dayjs/plugin/customParseFormat"
 import utc from "dayjs/plugin/utc"
 import { getIdFromBaseName } from "common/common-browser"

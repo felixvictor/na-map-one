@@ -1,6 +1,6 @@
 import MiniCssExtractPlugin from "mini-css-extract-plugin"
 import svgToMiniDataURI from "mini-svg-data-uri"
-import { DefaultPlugin, DefaultPlugins, optimize } from "svgo"
+import { type Config, optimize } from "svgo"
 
 import PACKAGE from "../package.json"
 import { dirFlags, dirFonts, dirIcons, dirJs, filePostcssDevConfig, filePostcssProdConfig } from "./dir"
@@ -58,10 +58,10 @@ const svgoOpt = {
                     removeViewBox: false,
                 },
             },
-        } as DefaultPlugins,
-        { name: "removeScriptElement" } as DefaultPlugin<"removeScriptElement">,
+        },
+        { name: "removeScriptElement" },
     ],
-}
+} as Config
 
 const MiniCssExtractPluginOpt = {
     esModule: true,

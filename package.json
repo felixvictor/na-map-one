@@ -1,6 +1,8 @@
 {
     "name": "na-map-one",
     "packageManager": "yarn@3.6.1",
+    "version": "0.0.0",
+    "description": "Naval Action map",
     "scripts": {
         "clean:src:js": "find ./src/js -name \"*.ts\" -type f -regextype posix-egrep -regex \".*/(browser|common|node)/.+\" -exec bash -c 'for file in \"${1%.ts}\".js \"${1%.ts}\".js.map; do [ -e \"$file\" ] && rm -f \"$file\"; done' - '{}' ';'",
         "docs": "run-p 'docs:*'",
@@ -14,14 +16,15 @@
         "lint:css": "stylelint --config .stylelintrc \"src/scss/*.scss\"",
         "lint:ejs": "ejslint src/ejs",
         "lint:js": "eslint -c .eslintrc.json --ext .ts,.tsx src/js",
-        "prod": "      TS_NODE_PROJECT='webpack/tsconfig-for-webpack-config.json'            webpack --config webpack/webpack.config.ts --mode=production --color",
-        "main:release": "    run-s build:load build:data:convert release deploy:netlify",
+        "main:release": "run-s build:load build:data:convert release deploy:netlify",
+        "prod": "TS_NODE_PROJECT='webpack/tsconfig-for-webpack-config.json' webpack --config webpack/webpack.config.ts --mode=production --color",
         "release": "standard-version",
-        "typecheck": "tsc --noEmit",
         "start": "TS_NODE_PROJECT='webpack/tsconfig-for-webpack-config.json' webpack serve --config webpack/webpack.config.ts --mode=development --color --hot --open",
+        "typecheck": "tsc --noEmit",
         "update": "yarn set version stable && yarn upgrade-interactive"
     },
-    "Dependencies": {
+    "sass": "src/scss/main.scss",
+    "dependencies": {
         "@d3fc/d3fc-label-layout": "^7.0.3",
         "@popperjs/core": "^2.11.8",
         "bootstrap": "^5.2.3",
@@ -91,13 +94,14 @@
         "@types/jquery": "^3.5.16",
         "@types/js-cookie": "^3.0.3",
         "@types/lzma-native": "^4.0.1",
-        "@types/node": "^20.4.3",
+        "@types/node": "^20.4.4",
         "@types/pngjs": "^6.0.1",
         "@types/polylabel": "^1.1.0",
         "@types/recursive-readdir": "^2.2.1",
         "@types/resize-observer-browser": "^0.1.7",
         "@types/seedrandom": "^3.0.5",
         "@types/webpack-env": "^1.18.1",
+        "@types/yargs": "^17.0.24",
         "@typescript-eslint/eslint-plugin": "^6.1.0",
         "@typescript-eslint/parser": "^6.1.0",
         "autoprefixer": "^10.4.14",
@@ -117,6 +121,8 @@
         "favicons-webpack-plugin": "^6.0.0",
         "html-webpack-plugin": "^5.5.3",
         "husky": "^8.0.3",
+        "mini-css-extract-plugin": "^2.7.6",
+        "mini-svg-data-uri": "^1.4.4",
         "netlify-cli": "^15.9.1",
         "postcss": "^8.4.27",
         "postcss-cli": "^10.1.0",
@@ -138,18 +144,19 @@
         "terser-webpack-plugin": "^5.3.9",
         "ts-node": "^10.9.1",
         "typescript": "^5.1.6",
+        "utility-types": "^3.10.0",
         "webpack": "^5.88.2",
         "webpack-bundle-analyzer": "^4.9.0",
         "webpack-cli": "^5.1.4",
         "webpack-dev-server": "^4.15.1",
-        "webpack-subresource-integrity": "^5.2.0-rc.1"
+        "webpack-subresource-integrity": "^5.2.0-rc.1",
+        "yargs": "^17.7.2"
     },
     "engines": {
         "node": ">= 18"
     },
-    "type": "module",
     "browserslist": [
-        "defaults and supports es6-module and last 3 versions, maintained node versions"
+        "defaults and supports es6-module and last 3 versions"
     ],
     "prettier": {
         "printWidth": 120,

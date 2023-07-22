@@ -8,10 +8,10 @@
  * @license   http://www.gnu.org/licenses/gpl.html
  */
 
-import dayjs from "dayjs"
+import dayjs from "da"
 import "dayjs/locale/en-gb"
-import relativeTime from "dayjs/plugin/relativeTime.js"
-import utc from "dayjs/plugin/utc.js"
+import relativeTime from "dayjs/plugin/relativeTime"
+import utc from "dayjs/plugin/utc"
 
 dayjs.extend(relativeTime)
 dayjs.extend(utc)

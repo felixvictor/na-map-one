@@ -12,8 +12,8 @@ import html2canvas from "html2canvas"
 
 import { select as d3Select } from "d3-selection"
 
-import dayjs from "dayjs"
-import utc from "dayjs/plugin/utc.js"
+import dayjs from "da"
+import utc from "dayjs/plugin/utc"
 dayjs.extend(utc)
 
 import { showCursorDefault, showCursorWait } from "common/common-browser"
