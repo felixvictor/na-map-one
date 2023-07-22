@@ -1,0 +1,32 @@
+////
+/// This file is part of na-map.
+/// FMixins.
+///
+/// @group    scss
+/// @author   iB aka Felix Victor
+/// copyright Felix Victor 2017 to 2021
+/// license   http://www.gnu.org/licenses/gpl.html
+////
+
+@mixin caps {
+    font-variant-caps: all-small-caps;
+    font-variant-numeric: oldstyle-nums proportional-nums;
+    letter-spacing: 0.08em;
+}
+
+@mixin des {
+    position: relative;
+    top: -0.2rem;
+    display: inline-flex;
+    font-size: small;
+    font-stretch: condensed;
+    line-height: 1;
+}
+
+/// Defines background colour and a contrasting text colour
+/// @param {color} $colour - Colour
+/// @output `color` and `background-color`
+@mixin colour($colour) {
+    color: color-contrast($colour);
+    background-color: $colour;
+}

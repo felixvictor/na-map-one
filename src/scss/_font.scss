@@ -1,0 +1,14 @@
+////
+/// This file is part of na-map.
+/// Font definitions.
+///
+/// @group    scss
+/// @author   iB aka Felix Victor
+/// copyright Felix Victor 2017 to 2021
+/// license   http://www.gnu.org/licenses/gpl.html
+////
+
+@import "junicode-twoVF";
+
+$font-family-serif: junicodetwoVF, big caslon, hoefler text, palatino, cambria, georgia, serif;
+$font-family-base: $font-family-serif;

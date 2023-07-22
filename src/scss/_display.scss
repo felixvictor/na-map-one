@@ -1,0 +1,354 @@
+////
+/// This file is part of na-map.
+/// Display.
+///
+/// @group    scss
+/// @author   iB aka Felix Victor
+/// copyright Felix Victor 2017 to 2021
+/// license   http://www.gnu.org/licenses/gpl.html
+////
+
+@use "sass:math";
+
+@import "~bootstrap/scss/mixins";
+@import "mixins";
+
+$dark-overlay-background-colour: $paper-800;
+$dark-overlay-background-colour-contrast: $paper-700;
+$dark-overlay-background: rgba($dark-overlay-background-colour, 0.8);
+$dark-overlay-background-contrast: rgba($dark-overlay-background-colour-contrast, 0.8);
+$dark-overlay-text-colour-contrast: $paper-200;
+$dark-overlay-text-colour: color-contrast($dark-overlay-background);
+
+$overlay-background-colour: $paper-200;
+$overlay-background-colour-contrast: $paper-050;
+$overlay-background: rgba($overlay-background-colour, 0.8);
+$overlay-background-contrast: rgba($overlay-background-colour-contrast, 0.8);
+$overlay-text-colour-contrast: $paper-700;
+$overlay-text-colour: color-contrast($overlay-background);
+
+.bg-map {
+    background-color: $primary;
+}
+
+text,
+.map-tiles {
+    cursor: default;
+    user-select: none;
+}
+
+.des {
+    @include des();
+}
+
+.caps,
+.des {
+    @include caps();
+}
+
+.condensed {
+    font-stretch: condensed;
+}
+
+.overlay-des {
+    @include caps();
+    @include des();
+    top: 0;
+    color: $overlay-text-colour-contrast;
+}
+
+.text-lighter {
+    color: $secondary-600;
+}
+
+.x-large {
+    font-size: x-large;
+}
+
+.large {
+    font-size: larger;
+}
+
+.x-small {
+    font-size: x-small;
+}
+
+.lnum {
+    font-variant-numeric: lining-nums proportional-nums;
+}
+
+.tooltip-block {
+    //max-width: 30rem;
+    text-align: left;
+}
+
+// Region capital ports
+.circle-highlight {
+    fill: none;
+    stroke: $white;
+    stroke-opacity: 0.8;
+    stroke-width: 0.4rem;
+}
+
+// Capital ports
+.circle-highlight-yellow {
+    fill: none;
+    stroke: $yellow;
+    stroke-opacity: 0.8;
+    stroke-width: 0.4rem;
+}
+
+.non-trading {
+    font-style: italic;
+}
+
+.bubble {
+    fill-opacity: 0.7;
+}
+
+.both {
+    opacity: 0.4;
+    fill: $blue;
+}
+
+.here {
+    opacity: 0.4;
+    fill: $white;
+}
+
+.neg {
+    opacity: 0.4;
+    fill: $red;
+}
+
+.pos {
+    opacity: 0.4;
+    fill: $green;
+}
+
+.cooldown {
+    fill: $green-800;
+}
+
+.raider {
+    fill: $orange-600;
+}
+
+.not-capturable {
+    opacity: 0.6;
+    fill: $gray-200;
+}
+
+.capital {
+    opacity: 0.9;
+}
+
+.non-capital {
+    opacity: 0.4;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.sub-title,
+.title {
+    font-weight: 300;
+    font-feature-settings: "c2sc", "smcp";
+    font-stretch: condensed;
+    text-anchor: middle;
+    text {
+        fill: $primary-900;
+    }
+}
+
+.title {
+    font-size: 160px;
+    letter-spacing: 0.5rem;
+}
+
+.sub-title {
+    font-size: 60px;
+    letter-spacing: 0.3rem;
+}
+
+.column-base .row-light {
+    background-color: $paper-200;
+}
+
+.column-comp .row-light {
+    background-color: $paper-300;
+}
+
+/////////////////////////////////////
+// modal
+
+.modal-content {
+    border-top: $paper-400 solid 1rem;
+}
+
+.modal-footer {
+    background-color: $paper-200;
+}
+
+/////////////////////////////////////
+// tooltip
+
+.tooltip {
+    box-shadow: 0 14px 28px rgba($paper-900, 0.25), 0 10px 10px rgba($paper-900, 0.22);
+
+    table {
+        margin-bottom: 0;
+    }
+}
+
+.tooltip-inner {
+    min-width: 30rem;
+    text-align: left;
+}
+
+.tooltip-inner-small {
+    /* stylelint-disable-next-line declaration-no-important */
+    min-width: 20rem !important;
+}
+
+.tooltip-inner-smaller {
+    /* stylelint-disable-next-line declaration-no-important */
+    min-width: 10rem !important;
+    p {
+        margin: 0;
+    }
+}
+
+/////////////////////////////////////
+// table
+
+.table-sort {
+    tr:not(.thead-group) th {
+        cursor: s-resize;
+    }
+}
+
+th {
+    font-style: italic;
+    font-weight: 400;
+}
+
+table thead {
+    border-bottom: 0.3rem solid $paper-600;
+}
+
+.table-sm thead {
+    border-bottom: 0.2rem solid $paper-600;
+}
+
+.table > thead {
+    vertical-align: top;
+}
+
+table {
+    text-align: end;
+}
+
+.text-table {
+    text-align: start;
+}
+
+/////////////////////////////////////
+// dropdown
+
+.bootstrap-select {
+    .dropdown-menu li a.opt {
+        /* stylelint-disable-line selector-no-qualifying-type */
+        padding-left: 1rem;
+    }
+}
+
+.dropdown-divider {
+    border: none;
+}
+
+.dropdown-menu-md {
+    min-width: 14rem;
+}
+
+.dropdown-menu-lg {
+    min-width: 20rem;
+}
+
+.dropdown-menu-xl {
+    min-width: 26rem;
+}
+
+.menu-item-text {
+    line-height: 1;
+    white-space: normal;
+}
+
+/////////////////////////////////////
+// bar
+
+.rate {
+    display: flex;
+
+    .bar {
+        position: relative;
+        top: 0;
+        float: left;
+        height: $spacer;
+    }
+
+    .basis {
+        @include colour($primary-600);
+    }
+
+    .pos {
+        @include colour($green-dark);
+    }
+
+    .neg {
+        @include colour($red-dark);
+    }
+
+    .diff {
+        opacity: 0.5;
+    }
+}
+
+/////////////////////////////////////7
+// ship compare
+
+.column-comp:not(:first-child) {
+    border-left: $paper-100 solid medium;
+}
+
+$padding-small: math.div($padding-third, 1.618);
+$padding-large: $padding-third;
+
+.compress {
+    line-height: 1;
+    .row {
+        --bs-gutter-x: 1rem;
+    }
+}
+
+.badge {
+    font-stretch: condensed;
+}
+
+.badge-highlight {
+    color: $text-muted;
+    background-color: $white;
+    box-shadow: $box-shadow-sm;
+}
+
+/////////////////////////////////////7
+// toggle button
+
+.btn-toggle {
+    @include button-outline-variant($paper-400);
+}
+
+.bs-actionsbox .btn-group button {
+    width: 100%;
+}

@@ -1,0 +1,157 @@
+////
+/// This file is part of na-map.
+/// Grid.
+///
+/// @group    scss
+/// @author   iB aka Felix Victor
+/// copyright Felix Victor 2017 to 2021
+/// license   http://www.gnu.org/licenses/gpl.html
+////
+
+.central {
+    width: 0;
+    height: 0;
+}
+
+.overlay {
+    display: grid;
+    pointer-events: none;
+}
+
+.overlay-grid {
+    grid-template-areas:
+        "x-axis x-axis x-axis x-axis"
+        "y-axis wind-predict toasts summary";
+    grid-template-rows: 3rem 1fr;
+    grid-template-columns: 4rem 1fr 4fr 1fr;
+}
+
+.overlay-no-grid {
+    grid-template-areas: "wind-predict toasts summary";
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 4fr 1fr;
+}
+
+.overlay-grid::before // acts as axis-rect-x
+{
+    grid-area: x-axis;
+    grid-row: 1;
+    grid-column: 1 / 5;
+    content: "";
+    background: rgba($primary-200, 0.4);
+}
+
+.overlay-grid::after // acts as axis-rect-y
+{
+    grid-area: y-axis;
+    grid-row: 1 / 3;
+    grid-column: 1 / 1;
+    content: "";
+    background: rgba($primary-200, 0.4);
+}
+
+.wind-predict-column {
+    grid-area: wind-predict;
+    margin-right: auto;
+}
+
+.toast-column {
+    display: grid;
+    grid-area: toasts;
+    grid-template-columns: repeat(2, 2fr);
+}
+
+.summary-column {
+    display: grid;
+    grid-area: summary;
+    grid-template-rows: 6rem 1fr;
+}
+
+.block {
+    justify-self: center;
+    padding: $padding-third;
+}
+
+.port-summary {
+    //grid-template-columns: 1fr 1fr 1fr;
+}
+
+.journey-summary {
+    //grid-template-columns: auto auto auto;
+}
+
+.port-summary,
+.journey-summary {
+    display: grid;
+    align-items: center;
+    padding: $padding-third;
+    line-height: 1;
+    color: $overlay-text-colour;
+    pointer-events: all;
+    background-color: $overlay-background;
+    button {
+        margin-bottom: map-get($spacers, 2);
+    }
+}
+
+.port-summary-no-wind,
+.journey-summary {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.port-summary-wind {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.inventory,
+.trade-details {
+    flex: 1 1 auto;
+    flex-direction: column;
+    overflow-y: scroll;
+    color: $dark-overlay-text-colour;
+    pointer-events: all;
+    background: $dark-overlay-background;
+
+    .card {
+        background: $dark-overlay-background;
+    }
+}
+
+.trade-list {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: $spacer;
+
+    .block:nth-of-type(odd) {
+        background: $dark-overlay-background-contrast;
+    }
+
+    .des {
+        color: $dark-overlay-text-colour-contrast;
+    }
+}
+
+.trade-list .block,
+.tooltip-block {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: flex-start;
+    white-space: nowrap;
+
+    /* stylelint-disable-next-line scss/selector-no-redundant-nesting-selector */
+    & > div {
+        padding: 0 $padding-half;
+        line-height: 1.1;
+    }
+}
+
+.block-block {
+    display: flex;
+    flex-direction: column;
+
+    span {
+        padding-bottom: $padding-third;
+        font-style: italic;
+    }
+}

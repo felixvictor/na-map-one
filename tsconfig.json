@@ -12,5 +12,11 @@
         "sourceMap": true,
         "strict": true,
         "target": "ESNext",
+        "paths": {
+            "common/*": ["js/common/*"],
+            "icons/*": ["icons/*"],
+            "scss/*": ["scss/*"],
+            "util/*": ["js/browser/util/*"]
+        }
     }
 }

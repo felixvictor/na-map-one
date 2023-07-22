@@ -1,0 +1,79 @@
+////
+/// This file is part of na-map.
+/// Colour palettes.
+///
+/// copyright 2017, 2018, 2019
+/// license   http://www.gnu.org/licenses/gpl.html
+/// @group    main
+/// @author   iB aka Felix Victor
+////
+
+.colour-palette {
+    margin-bottom: 1rem;
+
+    .colour-slab {
+        padding: 0.5rem 0.75rem;
+    }
+
+    .colour-slab-base {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        margin-bottom: 0.25rem;
+    }
+
+    @each $color, $value in $theme-colors {
+        .#{$color} {
+            color: color-contrast($value);
+            background-color: $value;
+        }
+    }
+
+    @each $color, $value in $colors {
+        .#{$color} {
+            color: color-contrast($value);
+            background-color: $value;
+        }
+    }
+
+    @each $color, $value in $primarys {
+        .primary-#{$color} {
+            color: color-contrast($value);
+            background-color: $value;
+        }
+    }
+
+    @each $color, $value in $secondarys {
+        .secondary-#{$color} {
+            color: color-contrast($value);
+            background-color: $value;
+        }
+    }
+
+    @each $color, $value in $papers {
+        .paper-#{$color} {
+            color: color-contrast($value);
+            background-color: $value;
+        }
+    }
+
+    @each $color, $value in $grays {
+        .gray-#{$color} {
+            color: color-contrast($value);
+            background-color: $value;
+        }
+    }
+
+    @each $color, $value in $blues {
+        .blue-#{$color} {
+            color: color-contrast($value);
+            background-color: $value;
+        }
+    }
+
+    @each $color, $value in $yellows {
+        .yellow-#{$color} {
+            color: color-contrast($value);
+            background-color: $value;
+        }
+    }
+}

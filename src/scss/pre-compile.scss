@@ -1,0 +1,19 @@
+////
+/// This file is part of na-map.
+/// Pre-compile (makes colours available for webpack).
+///
+/// copyright 2018, 2019
+/// license   http://www.gnu.org/licenses/gpl.html
+/// @group    main
+/// @author   iB aka Felix Victor
+////
+
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/maps";
+@import "node_modules/bootstrap/scss/mixins";
+@import "node_modules/bootstrap/scss/utilities";
+
+@import "colour";
+@import "variables";
+@import "palettes";
