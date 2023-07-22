@@ -1,0 +1,8 @@
+{
+    "cache": true,
+    "extends": [
+        "stylelint-config-standard-scss",
+        "stylelint-config-recommended-vue/scss",
+        "stylelint-prettier/recommended"
+    ]
+}

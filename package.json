@@ -1,0 +1,93 @@
+{
+    "name": "na-map-one",
+    "packageManager": "yarn@3.6.1",
+    "scripts": {
+        "clean:src:js": "find ./src/js -name \"*.ts\" -type f -regextype posix-egrep -regex \".*/(browser|common|node)/.+\" -exec bash -c 'for file in \"${1%.ts}\".js \"${1%.ts}\".js.map; do [ -e \"$file\" ] && rm -f \"$file\"; done' - '{}' ';'",
+        "docs": "run-p 'docs:*'",
+        "docs:js": "documentation build src/js/**.js build/**.mjs -f html -o ./doc-js",
+        "docs:sass": "sassdoc src/scss -d ./doc-sass",
+        "helper:loc": "npx cloc --by-file --not-match-f='.d.ts' --quiet ./src/js",
+        "helper:size:css": "find public/ -iname '*.css' -exec du -bc {} + | sort -k 2 | sed 's|public/||'",
+        "helper:size:js": "find public/ -iname '*.js' -not -iname 'data-*.js' -exec du -bc {} + | sort -k 2 | sed 's|public/||'",
+        "helper:size:largest": "du -a ~/ -BM | sort -n -r | head -n 15",
+        "lint": "run-s 'lint:*'",
+        "lint:js": "eslint -c .eslintrc.json --ext .ts,.tsx src/js",
+        "main:release": "    run-s build:load build:data:convert release deploy:netlify",
+        "release": "standard-version",
+        "typecheck": "tsc --noEmit",
+        "update": "yarn set version stable && yarn upgrade-interactive"
+    },
+    "devDependencies": {
+        "@commitlint/cli": "^17.6.7",
+        "@commitlint/config-conventional": "^17.6.7",
+        "@types/eslint": "^8.44.0",
+        "@types/node": "^20.4.3",
+        "@typescript-eslint/eslint-plugin": "^6.1.0",
+        "@typescript-eslint/parser": "^6.1.0",
+        "eslint": "^8.45.0",
+        "eslint-config-prettier": "^8.8.0",
+        "eslint-plugin-prettier": "^5.0.0",
+        "netlify-cli": "^15.9.1",
+        "prettier": "^3.0.0",
+        "prettier-package-json": "^2.8.0",
+        "standard-version": "^9.5.0",
+        "stylelint": "^15.10.1",
+        "stylelint-config-recommended-vue": "^1.5.0",
+        "stylelint-config-standard-scss": "^10.0.0",
+        "stylelint-order": "^6.0.3",
+        "stylelint-prettier": "^4.0.0",
+        "ts-node": "^10.9.1",
+        "typescript": "^5.1.6"
+    },
+    "engines": {
+        "node": ">= 18"
+    },
+    "type": "module",
+    "browserslist": [
+        "defaults and supports es6-module and last 3 versions, maintained node versions"
+    ],
+    "prettier": {
+        "printWidth": 120,
+        "semi": false,
+        "tabWidth": 4
+    },
+    "prettier-package-json": {
+        "tabWidth": 4
+    },
+    "commitlint": {
+        "extends": [
+            "@commitlint/config-conventional"
+        ],
+        "rules": {
+            "subject-case": [
+                2,
+                "never",
+                [
+                    "start-case",
+                    "pascal-case",
+                    "upper-case"
+                ]
+            ],
+            "type-enum": [
+                2,
+                "always",
+                [
+                    "build",
+                    "chore",
+                    "ci",
+                    "docs",
+                    "feat",
+                    "fix",
+                    "perf",
+                    "refactor",
+                    "revert",
+                    "style",
+                    "test"
+                ]
+            ]
+        }
+    },
+    "dependencies": {
+        "yarn-run-all": "^3.1.1"
+    }
+}
