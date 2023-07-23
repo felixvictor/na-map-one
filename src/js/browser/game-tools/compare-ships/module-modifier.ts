@@ -1,5 +1,5 @@
-import { ModifierName } from "common/interface"
-import { Property, PropertyWithCap } from "compare-ships"
+import type { Property, PropertyWithCap } from "compare-ships"
+import type { ModifierName } from "../../../@types/na-map-data/modules"
 
 export const moduleAndWoodChanges = new Map<ModifierName, Property>([
     ["Cannon horizontal dispersion", { properties: ["gunnery.dispersionHorizontal"], isBaseValueAbsolute: true }],

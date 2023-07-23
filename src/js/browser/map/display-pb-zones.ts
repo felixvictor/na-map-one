@@ -1,24 +1,12 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Display port battle zones.
- * @module    map/display-pb-zones
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
+import { select as d3Select, type Selection } from "d3-selection"
 
-import { select as d3Select, Selection } from "d3-selection"
-
-import { getServerType, ServerId, ServerType } from "common/servers"
 import { drawSvgCircle, drawSvgRect } from "../util"
 import Cookie from "util/cookie"
 import RadioButton from "util/radio-button"
-
 import DisplayPorts from "./display-ports"
-
-import { PbZone, PbZoneBasic, PbZoneDefence, PbZoneRaid } from "common/gen-json"
-import { Extent, Point } from "common/common-math"
+import { getServerType, type ServerId, type ServerType } from "common/na-map-data/servers"
+import type { Extent, Point } from "common/na-map-data/coordinates"
+import type { PbZone, PbZoneBasic, PbZoneDefence, PbZoneRaid } from "../../@types/na-map-data/ports"
 
 export default class DisplayPbZones {
     readonly #fortRangeRadius = 12
@@ -125,14 +113,14 @@ export default class DisplayPbZones {
                         "d",
                         (d) =>
                             drawSvgCircle(d.joinCircle[0], d.joinCircle[1], 28) +
-                            drawSvgCircle(d.joinCircle[0], d.joinCircle[1], 14)
+                            drawSvgCircle(d.joinCircle[0], d.joinCircle[1], 14),
                     )
 
                 // Port battle circles
                 g.append("path")
                     .attr("class", "fill-primary-dark")
                     .attr("d", (d) =>
-                        d.pbCircles.map((pbCircle) => drawSvgCircle(pbCircle[0], pbCircle[1], 3.5)).join("")
+                        d.pbCircles.map((pbCircle) => drawSvgCircle(pbCircle[0], pbCircle[1], 3.5)).join(""),
                     )
                 g.append("text")
                     .attr("class", "svg-text-center fill-white lnum")
@@ -145,7 +133,9 @@ export default class DisplayPbZones {
                     g.append("path")
                         .attr("class", "fill-primary-light")
                         .attr("d", (d) =>
-                            d.spawnPoints.map((spawnPoint) => drawSvgCircle(spawnPoint[0], spawnPoint[1], 3.5)).join("")
+                            d.spawnPoints
+                                .map((spawnPoint) => drawSvgCircle(spawnPoint[0], spawnPoint[1], 3.5))
+                                .join(""),
                         )
                     g.append("text")
                         .attr("class", "svg-text-center fill-text lnum")
@@ -172,7 +162,7 @@ export default class DisplayPbZones {
                         enter
                             .append("path")
                             .attr("class", "tower-range background-primary-light")
-                            .attr("d", (d) => drawSvgCircle(d[0], d[1], this.#towerRangeRadius))
+                            .attr("d", (d) => drawSvgCircle(d[0], d[1], this.#towerRangeRadius)),
                     )
                 g.selectAll<SVGPathElement, Point[]>("path.fort-range")
                     .data((d) => d.forts)
@@ -180,7 +170,7 @@ export default class DisplayPbZones {
                         enter
                             .append("path")
                             .attr("class", "fort-range background-red")
-                            .attr("d", (d) => drawSvgCircle(d[0], d[1], this.#fortRangeRadius))
+                            .attr("d", (d) => drawSvgCircle(d[0], d[1], this.#fortRangeRadius)),
                     )
 
                 // Forts
@@ -221,7 +211,7 @@ export default class DisplayPbZones {
                 g.append("path")
                     .attr("class", "fill-primary-dark")
                     .attr("d", (d) =>
-                        d.raidCircles.map((raidCircle) => drawSvgCircle(raidCircle[0], raidCircle[1], 4.5)).join("")
+                        d.raidCircles.map((raidCircle) => drawSvgCircle(raidCircle[0], raidCircle[1], 4.5)).join(""),
                     )
                 g.append("text")
                     .attr("class", "svg-text-center fill-white lnum")
@@ -233,7 +223,7 @@ export default class DisplayPbZones {
                 g.append("path")
                     .attr("class", "fill-primary-light")
                     .attr("d", (d) =>
-                        d.raidPoints.map((raidPoint) => drawSvgCircle(raidPoint[0], raidPoint[1], 1.5)).join("")
+                        d.raidPoints.map((raidPoint) => drawSvgCircle(raidPoint[0], raidPoint[1], 1.5)).join(""),
                     )
                 g.append("text")
                     .attr("class", "svg-text-center fill-text lnum")
@@ -275,7 +265,7 @@ export default class DisplayPbZones {
                     port.position[0] >= this.#lowerBound[0] &&
                     port.position[0] <= this.#upperBound[0] &&
                     port.position[1] >= this.#lowerBound[1] &&
-                    port.position[1] <= this.#upperBound[1]
+                    port.position[1] <= this.#upperBound[1],
             )
             .filter((d) => this._isPortIn(d))
 

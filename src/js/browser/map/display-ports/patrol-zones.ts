@@ -1,4 +1,5 @@
-import dayjs from "da"
+import { select as d3Select, type Selection } from "d3-selection"
+import dayjs from "dayjs"
 import "dayjs/locale/en-gb"
 import customParseFormat from "dayjs/plugin/customParseFormat"
 import relativeTime from "dayjs/plugin/relativeTime"
@@ -8,12 +9,12 @@ dayjs.extend(relativeTime)
 dayjs.extend(utc)
 dayjs.locale("en-gb")
 
-import { serverMaintenanceHour } from "common/common-var"
-import { PatrolZone, patrolZones } from "./map-data"
-import { defaultFontSize, getOrdinalSVG } from "common/common-math"
+import { getOrdinalSVG } from "common/na-map-data/format"
+import { type PatrolZone, patrolZones } from "./map-data"
 import { default as swordsIcon } from "icons/icon-swords.svg"
-import { select as d3Select, Selection } from "d3-selection"
-import { SVGGDatum, ZoomLevel } from "common/interface"
+import { defaultFontSize } from "common/na-map-data/constants"
+import { serverMaintenanceHour } from "common/na-map-data/time"
+import type { SVGGDatum, ZoomLevel } from "../../../@types/common"
 
 export default class PatrolZones {
     #gPZ = {} as Selection<SVGGElement, SVGGDatum, HTMLElement, unknown>
@@ -95,10 +96,10 @@ export default class PatrolZones {
                     : `${
                           patrolZone.shipClass
                               ? `${getOrdinalSVG(patrolZone.shipClass.min)} to ${getOrdinalSVG(
-                                    patrolZone.shipClass.max
+                                    patrolZone.shipClass.max,
                                 )} rate`
                               : "All"
-                      } ships`
+                      } ships`,
             )
     }
 

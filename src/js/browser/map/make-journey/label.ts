@@ -1,19 +1,9 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Journey labels.
- * @module    map-tools/make-journey/labels
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
 import { layoutAnnealing, layoutLabel, layoutTextLabel } from "@d3fc/d3fc-label-layout"
 import { zoomIdentity as d3ZoomIdentity } from "d3-zoom"
 import { select as d3Select, Selection } from "d3-selection"
 
-import { Point } from "common/common-math"
-import { Segment } from "./index"
+import type { Segment } from "./index"
+import type { Point } from "common/na-map-data/coordinates"
 
 export default class MakeJourneyLabel {
     #numberSegments = 0
@@ -31,7 +21,7 @@ export default class MakeJourneyLabel {
     constructor(
         g: Selection<SVGGElement, unknown, HTMLElement, unknown>,
         gJourneyPath: Selection<SVGPathElement, unknown, HTMLElement, unknown>,
-        fontSize: number
+        fontSize: number,
     ) {
         this.#g = g
         this.#gJourneyPath = gJourneyPath
@@ -75,7 +65,7 @@ export default class MakeJourneyLabel {
             .attr("r", i === 0 || i === this.#numberSegments ? this.#circleRadius * 4 : this.#circleRadius)
             .attr(
                 "class",
-                `click-circle svg-shadow ${i === 0 || i === this.#numberSegments ? "drag-hidden" : "drag-circle"}`
+                `click-circle svg-shadow ${i === 0 || i === this.#numberSegments ? "drag-hidden" : "drag-circle"}`,
             )
 
         // Move circles down and visually above text box
@@ -103,7 +93,6 @@ export default class MakeJourneyLabel {
             .value((d: Segment): string => {
                 const lines = d.label.split("|")
                 // Find longest line (number of characters)
-                // eslint-disable-next-line unicorn/no-array-reduce
                 const index = lines.reduce((p, c, i, a) => (a[p].length > c.length ? p : i), 0)
                 return lines[index]
             })
@@ -117,19 +106,19 @@ export default class MakeJourneyLabel {
                 (
                     d: Segment,
                     i: number,
-                    nodes: Array<SVGSVGElement | SVGGElement> | ArrayLike<SVGSVGElement | SVGGElement>
+                    nodes: Array<SVGSVGElement | SVGGElement> | ArrayLike<SVGSVGElement | SVGGElement>,
                 ): Point => {
                     // measure the label and add the required padding
                     const numberLines = d.label.split("|").length
                     const bbText = nodes[i].querySelectorAll("text")[0].getBBox()
                     return [bbText.width + this.#labelPadding * 2, bbText.height * numberLines + this.#labelPadding * 2]
-                }
+                },
             )
             .position((d: Segment) => d.position)
             .component(textLabel)
 
         // Render
-        // @ts-expect-error
+        // @ts-expect-error lala
         this.#g.datum(segments).call(labels)
         this.#numberSegments = segments.length - 1
         this._correctJourney()

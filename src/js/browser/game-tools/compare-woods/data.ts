@@ -1,21 +1,9 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Compare woods data class.
- * @module    game-tools/compare-woods/data
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
 import { max as d3Max, min as d3Min } from "d3-array"
 
-import { simpleStringSort, sortBy } from "common/common"
-
-import { WoodJsonData, WoodTrimOrFrame } from "common/gen-json"
-import { HtmlString } from "common/interface"
-import { MinMax, WoodDataMap, WoodTypeList } from "compare-woods"
-import { WoodType } from "common/types"
+import { simpleStringSort, sortBy } from "common/na-map-data/sort"
+import type { MinMax, WoodDataMap, WoodTypeList } from "compare-woods"
+import type { HtmlString } from "../../../@types/common"
+import type { WoodJsonData, WoodTrimOrFrame, WoodType } from "../../../@types/na-map-data/woods"
 
 export class WoodData {
     #baseId: HtmlString
@@ -76,7 +64,7 @@ export class WoodData {
             [
                 ...woodJsonData.frame.flatMap((frame) => frame.properties.map((property) => property.modifier)),
                 ...woodJsonData.trim.flatMap((trim) => trim.properties.map((property) => property.modifier)),
-            ].sort(simpleStringSort)
+            ].sort(simpleStringSort),
         )
 
         this.#woods = new Map<number, WoodTrimOrFrame>([
@@ -119,12 +107,12 @@ export class WoodData {
         for (const modifierName of this.#modifierNames) {
             const frames = [
                 ...woodJsonData.frame.map(
-                    (frame) => frame.properties.find((modifier) => modifier.modifier === modifierName)?.amount ?? 0
+                    (frame) => frame.properties.find((modifier) => modifier.modifier === modifierName)?.amount ?? 0,
                 ),
             ]
             const trims = [
                 ...woodJsonData.trim.map(
-                    (trim) => trim.properties.find((modifier) => modifier.modifier === modifierName)?.amount ?? 0
+                    (trim) => trim.properties.find((modifier) => modifier.modifier === modifierName)?.amount ?? 0,
                 ),
             ]
             const minFrames = d3Min(frames) ?? 0

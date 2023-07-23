@@ -1,20 +1,8 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Compare woods ColumnBase class.
- * @module    game-tools/compare-woods/wood-base
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
-import { formatFloat, formatPercentOldstyle } from "common/common-format"
-
-import { HtmlString } from "common/interface"
-import { Amount, SelectedWood, WoodBaseAmount } from "compare-woods"
-
 import { Column } from "./column"
 import { WoodData } from "./data"
+import { formatFloat, formatPercentOldstyle } from "common/format"
+import type { Amount, SelectedWood, WoodBaseAmount } from "compare-woods"
+import type { HtmlString } from "../../../@types/common"
 
 type PropertyMap = Map<string, WoodBaseAmount>
 

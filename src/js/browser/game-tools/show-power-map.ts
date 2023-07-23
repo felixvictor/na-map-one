@@ -1,13 +1,3 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Port ownership list.
- * @module    game-tools/list-port-ownerships
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
 import { max as d3Max, rollups as d3Rollups } from "d3-array"
 import { Delaunay, Delaunay as d3Delaunay, Voronoi } from "d3-delaunay"
 import { ScaleOrdinal, scaleOrdinal as d3ScaleOrdinal } from "d3-scale"
@@ -16,32 +6,32 @@ import { timer as d3Timer } from "d3-timer"
 import { zoomIdentity as d3ZoomIdentity, ZoomTransform } from "d3-zoom"
 
 import loadImage from "image-promise"
-import dayjs from "da"
+import dayjs from "dayjs"
 import customParseFormat from "dayjs/plugin/customParseFormat"
 dayjs.extend(customParseFormat)
 
 import { registerEvent } from "../analytics"
-import { findNationById, nations, sleep } from "common/common"
+import { NAMap } from "../map/na-map"
 import {
     getCanvasRenderingContext2D,
-    loadJsonFiles,
-    showCursorDefault,
-    showCursorWait,
-    colourWhite,
     getElementHeight,
     getElementWidth,
     getIdFromBaseName,
-    nationFlags,
-} from "common/common-browser"
-import { getContrastColour } from "common/common-game-tools"
-import { formatSiInt } from "common/common-format"
-import { ϕ } from "common/common-math"
-
-import { PortBasic } from "common/gen-json"
-import { DataSource, HtmlString, MinMaxCoord, PowerMapList } from "common/interface"
-import { ServerId } from "common/servers"
-
-import { NAMap } from "../map/na-map"
+    showCursorDefault,
+    showCursorWait,
+} from "common/DOM"
+import { nations } from "../../@types/na-map-data/constants"
+import type { PowerMapList } from "../../@types/na-map-data/power-map"
+import type { ServerId } from "common/na-map-data/servers"
+import type { DataSource, HtmlString, MinMaxCoord } from "../../@types/common"
+import type { PortBasic } from "../../@types/na-map-data/ports"
+import { nationFlags } from "common/flags"
+import { findNationById } from "common/na-map-data/nation"
+import { getContrastColour } from "common/game-tools"
+import { formatSiInt } from "common/format"
+import { colourWhite } from "common/constants"
+import { sleep } from "common/common"
+import { ϕ } from "common/na-map-data/constants"
 
 interface JsonData {
     power: PowerMapList
@@ -101,7 +91,11 @@ export default class PowerMap {
 
     readonly #speedFactor = 2
 
-    constructor(readonly map: NAMap, readonly serverId: ServerId, readonly coord: MinMaxCoord) {
+    constructor(
+        readonly map: NAMap,
+        readonly serverId: ServerId,
+        readonly coord: MinMaxCoord,
+    ) {
         this.#serverId = serverId
         this.#NAMap = map
 
@@ -325,7 +319,7 @@ export default class PowerMap {
         const nations = d3Rollups(
             ports,
             (d) => d.length,
-            (d) => d
+            (d) => d,
         ).sort((a, b) => b[1] - a[1] || a[0] - b[0])
         const totalPorts = ports.length
 
@@ -395,7 +389,7 @@ export default class PowerMap {
                     update.select("text.value").html((d) => formatSiInt(d[1], true))
 
                     return update
-                }
+                },
             )
 
         this.#legendNationIndexContainer
@@ -432,7 +426,13 @@ export default class PowerMap {
                 },
                 (update) => update,
                 (exit) =>
-                    exit.attr("opacity", 0.3).transition().duration(this.#delay).attr("opacity", 0).remove().selection()
+                    exit
+                        .attr("opacity", 0.3)
+                        .transition()
+                        .duration(this.#delay)
+                        .attr("opacity", 0)
+                        .remove()
+                        .selection(),
             )
 
         // Remember old indexes
@@ -531,7 +531,6 @@ export default class PowerMap {
     _initButtons(formRow: Selection<HTMLDivElement, unknown, HTMLElement, unknown>): void {
         const buttonBaseId = `menu-${this.#baseId}`
 
-        // eslint-disable-next-line unicorn/consistent-function-scoping
         const playButtonClicked = () => {
             this.#stopCommand = !this.#stopCommand
             this._togglePlayButton()
@@ -541,13 +540,11 @@ export default class PowerMap {
             }
         }
 
-        // eslint-disable-next-line unicorn/consistent-function-scoping
         const startButtonClicked = () => {
             this.#index = 0
             this._updateController()
         }
 
-        // eslint-disable-next-line unicorn/consistent-function-scoping
         const backButtonClicked = () => {
             let index = this.#index
             const currentYear = this._getYear(index)
@@ -561,7 +558,6 @@ export default class PowerMap {
             this._updateController()
         }
 
-        // eslint-disable-next-line unicorn/consistent-function-scoping
         const forwardButtonClicked = () => {
             let index = this.#index
             const currentYear = this._getYear(index)
@@ -575,28 +571,23 @@ export default class PowerMap {
             this._updateController()
         }
 
-        // eslint-disable-next-line unicorn/consistent-function-scoping
         const endButtonClicked = () => {
             this.#index = this.#lastIndex
             this._updateController()
         }
 
-        // eslint-disable-next-line unicorn/consistent-function-scoping
         const slowerButtonClicked = () => {
             this.#delay *= this.#speedFactor
         }
 
-        // eslint-disable-next-line unicorn/consistent-function-scoping
         const normalButtonClicked = () => {
             this.#delay = this.#delayDefault
         }
 
-        // eslint-disable-next-line unicorn/consistent-function-scoping
         const fasterButtonClicked = () => {
             this.#delay = Math.max(10, this.#delay / this.#speedFactor)
         }
 
-        // eslint-disable-next-line unicorn/consistent-function-scoping
         const closeButtonClicked = () => {
             this._drawEnd()
             this.#mainDiv.remove()

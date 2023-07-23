@@ -1,21 +1,20 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Select ports select ports.
- * @module    map/select-ports/ports
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
 import { registerEvent } from "../../analytics"
-import { NationShortName, sortBy, TupleKeyMap } from "common/common"
-import { Coordinate, Distance, getDistance, Point } from "common/common-math"
-import { Port, PortIntersection, PortWithTrades, TradeGoodProfit, TradeProfit } from "common/gen-json"
-import { HtmlString } from "common/interface"
 import Select from "util/select"
 import DisplayPorts from "../display-ports"
-import { getIdFromBaseName } from "common/common-browser"
+import { getIdFromBaseName } from "common/DOM"
+import { TupleKeyMap } from "common/common"
+import { sortBy } from "common/na-map-data/sort"
+import { getDistance } from "common/na-map-data/coordinates"
+import type {
+    Port,
+    PortIntersection,
+    PortWithTrades,
+    TradeGoodProfit,
+    TradeProfit,
+} from "../../../@types/na-map-data/ports"
+import type { Coordinate, Distance, Point } from "common/na-map-data/coordinates"
+import type { NationShortName } from "../../../@types/na-map-data/nations"
+import type { HtmlString } from "../../../@types/common"
 
 interface SelectPort {
     [index: string]: PortIntersection
@@ -54,7 +53,7 @@ export default class SelectPortsSelectPorts {
                         coord: [d.coordinates[0], d.coordinates[1]],
                         name: d.name,
                         nation: d.nation,
-                    } as SelectPort)
+                    }) as SelectPort,
             )
             .sort(sortBy(["name"]))
 
@@ -63,7 +62,7 @@ export default class SelectPortsSelectPorts {
                 (port: SelectPort): HtmlString =>
                     `<option data-icon="flag-icon-${port.nation} flag-icon-small" value="${port.coord.toString()}/${
                         port.id
-                    }">${port.name}</option>`
+                    }">${port.name}</option>`,
             )
             .join("")}`
     }
@@ -93,7 +92,7 @@ export default class SelectPortsSelectPorts {
             await import(/* webpackChunkName: "data-distances" */ "../../../../../lib/gen-generic/distances.json")
         ).default as Distance[]
         this.#distances = new Map(
-            distances.map(([fromPortId, toPortId, distance]) => [fromPortId * this.#numberPorts + toPortId, distance])
+            distances.map(([fromPortId, toPortId, distance]) => [fromPortId * this.#numberPorts + toPortId, distance]),
         )
     }
 
@@ -149,7 +148,7 @@ export default class SelectPortsSelectPorts {
         const sourcePortIds = new Set(
             this.#ports.portDataDefault
                 .filter((port) => port.dropsTrading?.includes(itemId) ?? port.dropsNonTrading?.includes(itemId))
-                .map((port) => port.id)
+                .map((port) => port.id),
         )
 
         for (const sourcePortId of sourcePortIds) {
@@ -236,7 +235,7 @@ export default class SelectPortsSelectPorts {
                 return port
             })
             .filter(
-                (port) => port.id === this.#ports.portIcons.tradePort.id || port.sellInTradePort || port.buyInTradePort
+                (port) => port.id === this.#ports.portIcons.tradePort.id || port.sellInTradePort || port.buyInTradePort,
             )
     }
 

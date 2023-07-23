@@ -1,24 +1,13 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Get position.
- * @module    get-position
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
 import { registerEvent } from "../../analytics"
-import { circleRadiusFactor, getIdFromBaseName } from "common/common-browser"
-import { convertInvCoordX, convertInvCoordY } from "common/common-math"
 import { copyF11ToClipboard } from "../../util"
-import { trilaterate, Vector } from "util/transliterate"
-
-import { HtmlString } from "common/interface"
-
+import { trilaterate, type Vector } from "util/transliterate"
 import GetPositionModal from "./modal"
 import DisplayPorts from "../display-ports"
 import Toast from "util/toast"
+import { getIdFromBaseName } from "common/DOM"
+import { convertInvCoordX, convertInvCoordY } from "common/na-map-data/coordinates"
+import { circleRadiusFactor } from "common/constants"
+import type { HtmlString } from "../../../@types/common"
 
 /**
  * Get position

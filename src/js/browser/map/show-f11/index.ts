@@ -1,30 +1,23 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Show F11 coordinates.
- * @module    map-tools/show-f11
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
-import { select as d3Select, Selection } from "d3-selection"
-
-import { registerEvent } from "../../analytics"
-import { formatF11 } from "common/common-format"
-import { between, convertCoordX, convertCoordY, convertInvCoordX, convertInvCoordY } from "common/common-math"
-
-import { HtmlString, MinMaxCoord } from "common/interface"
-
-import F11Modal from "./modal"
-import { NAMap } from "../na-map"
-
-import dayjs from "da"
+import { select as d3Select, type Selection } from "d3-selection"
+import dayjs from "dayjs"
 import customParseFormat from "dayjs/plugin/customParseFormat"
 import utc from "dayjs/plugin/utc"
-import { getIdFromBaseName } from "common/common-browser"
 dayjs.extend(customParseFormat)
 dayjs.extend(utc)
+
+import { registerEvent } from "../../analytics"
+import F11Modal from "./modal"
+import { NAMap } from "../na-map"
+import { getIdFromBaseName } from "common/DOM"
+import { formatF11 } from "common/format"
+import {
+    between,
+    convertCoordX,
+    convertCoordY,
+    convertInvCoordX,
+    convertInvCoordY,
+} from "common/na-map-data/coordinates"
+import type { HtmlString, MinMaxCoord } from "../../../@types/common"
 
 /**
  * ShowF11

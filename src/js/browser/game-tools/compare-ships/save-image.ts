@@ -1,26 +1,16 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Compare ships - save image.
- * @module    game-tools/compare-ships/compare-ships/save-image
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
 import html2canvas from "html2canvas"
 
 import { select as d3Select } from "d3-selection"
 
-import dayjs from "da"
+import dayjs from "dayjs"
 import utc from "dayjs/plugin/utc"
 dayjs.extend(utc)
 
-import { showCursorDefault, showCursorWait } from "common/common-browser"
-import { ShipColumnType } from "./index"
-import { ShipColumnTypeList, SelectedData } from "compare-ships"
-import { HtmlString } from "common/interface"
 import CompareShipsModal from "./modal"
+import { showCursorDefault, showCursorWait } from "common/DOM"
+import type { ShipColumnType } from "./index"
+import type { ShipColumnTypeList, SelectedData } from "compare-ships"
+import type { HtmlString } from "../../../@types/common"
 
 export default class SaveImage {
     #baseId: HtmlString

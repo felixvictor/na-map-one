@@ -1,16 +1,6 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Cookie.
- * @module    util/cookie
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
 import Cookies from "js-cookie"
-import { appName } from "common/common-browser"
-import dayjs from "da"
+import dayjs from "dayjs"
+import { appName } from "common/constants"
 
 const yearInDays = 365
 

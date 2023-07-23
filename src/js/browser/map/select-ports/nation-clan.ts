@@ -1,18 +1,11 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Select ports clan select.
- * @module    map/select-ports/clan
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
 import { registerEvent } from "../../analytics"
-import { Nation, nations, simpleStringSort, sortBy, validNationShortName } from "common/common"
-import { HtmlString } from "common/interface"
 import DisplayPorts from "../display-ports"
-import Select, { SelectOptions } from "util/select"
+import Select, { type SelectOptions } from "util/select"
+import { simpleStringSort, sortBy } from "common/na-map-data/sort"
+import { validNationShortName } from "common/nation"
+import { nations } from "../../../@types/na-map-data/constants"
+import type { HtmlString } from "../../../@types/common"
+import type { Nation } from "../../../@types/na-map-data/nations"
 
 export default class SelectPortsNationClan {
     #selectClan = {} as Select
@@ -44,7 +37,7 @@ export default class SelectPortsNationClan {
             .sort(sortBy(["name"]))
             .map(
                 (nation: Nation): string =>
-                    `<option data-icon="flag-icon-${nation.short} flag-icon-small" value="${nation.short}">${nation.name}</option>`
+                    `<option data-icon="flag-icon-${nation.short} flag-icon-small" value="${nation.short}">${nation.name}</option>`,
             )
             .join("")}`
 

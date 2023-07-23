@@ -1,17 +1,7 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Modal.
- * @module    util/modal
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
 import { default as BSModal } from "bootstrap/js/dist/modal"
-import { select as d3Select, Selection } from "d3-selection"
-import { HtmlString } from "common/interface"
-import { getIdFromBaseName } from "common/common-browser"
+import { select as d3Select, type Selection } from "d3-selection"
+import { getIdFromBaseName } from "common/DOM"
+import type { HtmlString } from "../../@types/common"
 
 export default class Modal {
     readonly #baseId: HtmlString

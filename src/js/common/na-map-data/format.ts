@@ -1,3 +1,5 @@
+import type { SVGString } from "../../@types/common"
+
 /**
  * {@link https://stackoverflow.com/questions/1026069/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript}
  * @param   string - String
@@ -31,4 +33,17 @@ export function getOrdinal(n: number, sup = true) {
     const v = n % 100
     const text = s[(v - 20) % 10] || s[v] || s[0]
     return String(n) + text
+}
+
+/**
+ * Format ordinal
+ * @param   n - Integer
+ * @param   sup - True if superscript tags needed
+ * @returns Formatted Ordinal (tspan for SVG)
+ */
+export function getOrdinalSVG(n: number, sup = true): SVGString {
+    const s = ["th", "st", "nd", "rd"]
+    const v = n % 100
+    const text = s[(v - 20) % 10] || s[v] || s[0]
+    return String(n) + (sup ? `<tspan class="super">${text}</tspan>` : `${text}`)
 }

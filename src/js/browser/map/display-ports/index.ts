@@ -1,21 +1,4 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Display ports.
- * @module    map/display-ports
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
-import { select as d3Select, Selection } from "d3-selection"
-
-import { loadJsonFiles } from "common/common-browser"
-import { Extent, Point } from "common/common-math"
-import { minMapScale } from "common/common-var"
-
-import { PortBattlePerServer, PortBasic, PortPerServer, PortWithTrades } from "common/gen-json"
-import { DataSource, PortJsonData, SVGGDatum, ZoomLevel } from "common/interface"
+import { select as d3Select, type Selection } from "d3-selection"
 
 import Cookie from "util/cookie"
 import RadioButton from "util/radio-button"
@@ -30,6 +13,10 @@ import PortIcons from "./port-icons"
 import PortNames, { CurrentPort } from "./port-names"
 import Regions from "./regions"
 import Summary from "./summary"
+import { minMapScale } from "common/na-map-data/constants"
+import type { PortBasic, PortBattlePerServer, PortPerServer, PortWithTrades } from "../../../@types/na-map-data/ports"
+import type { DataSource, PortJsonData, SVGGDatum, ZoomLevel } from "../../../@types/common"
+import type { Extent, Point } from "common/na-map-data/coordinates"
 
 interface ReadData {
     [index: string]: PortBasic[] | PortPerServer[] | PortBattlePerServer[]
@@ -207,7 +194,7 @@ export default class DisplayPorts {
                     port.coordinates[0] >= this.#lowerBound[0] &&
                     port.coordinates[0] <= this.#upperBound[0] &&
                     port.coordinates[1] >= this.#lowerBound[1] &&
-                    port.coordinates[1] <= this.#upperBound[1]
+                    port.coordinates[1] <= this.#upperBound[1],
             )
         }
     }

@@ -1,20 +1,9 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Compare woods Wood class.
- * @module    game-tools/compare-woods/wood
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
-import { select as d3Select, Selection } from "d3-selection"
-
-import { HtmlString } from "common/interface"
-import { Amount } from "compare-woods"
+import { select as d3Select, type Selection } from "d3-selection"
 
 import { WoodData } from "./data"
-import { WoodProperty, WoodTrimOrFrame } from "common/gen-json"
+import type { Amount } from "compare-woods"
+import type { HtmlString } from "../../../@types/common"
+import type { WoodProperty, WoodTrimOrFrame } from "../../../@types/na-map-data/woods"
 
 export class Column {
     #div: Selection<HTMLDivElement, unknown, HTMLElement, unknown>

@@ -1,18 +1,15 @@
 import { select as d3Select } from "d3-selection"
 
-import { loadJsonFile } from "common/common-browser"
-import { nations, PortBattleNationShortName } from "common/common"
-import { mapSize } from "common/common-var"
-
 import Cookie from "util/cookie"
 import RadioButton from "util/radio-button"
-
-import Select, { SelectOptions } from "util/select"
-import { PortBasic, PortBattlePerServer, PortWithTrades, Trade, TradeItem } from "common/gen-json"
-import { Extent, Point } from "common/common-math"
-import { HtmlString } from "common/interface"
-
-import { getProfitPerDistance, getProfitPerWeight, headId, NodeData } from "./common"
+import Select, { type SelectOptions } from "util/select"
+import { getProfitPerDistance, getProfitPerWeight, headId, type NodeData } from "./common"
+import { mapSize } from "common/na-map-data/constants"
+import { nations } from "../../../@types/na-map-data/constants"
+import type { PortWithTrades } from "../../../@types/na-map-data/ports"
+import type { Trade } from "../../../@types/na-map-data/trade"
+import type { Point } from "common/na-map-data/coordinates"
+import type { HtmlString } from "../../../@types/common"
 
 export default class TradeData {
     #dataDefault = [] as Trade[]
@@ -50,7 +47,7 @@ export default class TradeData {
         return `${nations
             .map(
                 (nation) =>
-                    `<option data-icon="flag-icon-${nation.short} flag-icon-small" value="${nation.short}" selected></option>`
+                    `<option data-icon="flag-icon-${nation.short} flag-icon-small" value="${nation.short}" selected></option>`,
             )
             .join("")}`
     }
@@ -201,7 +198,7 @@ export default class TradeData {
                     x: port.coordinates[0],
                     y: port.coordinates[1],
                 } as NodeData,
-            ])
+            ]),
         )
 
         this.#filterPortsByVisiblePorts()
@@ -238,14 +235,15 @@ export default class TradeData {
     #filterTradesBySelectedNations(): void {
         this.#dataFiltered = this.#dataFiltered.filter(
             (trade) =>
-                this.#portIdBySelectedNations.has(trade.source.id) && this.#portIdBySelectedNations.has(trade.target.id)
+                this.#portIdBySelectedNations.has(trade.source.id) &&
+                this.#portIdBySelectedNations.has(trade.target.id),
         )
     }
 
     #filterPortsBySelectedNations(): void {
         const selectedNations = new Set((this.#selectNation.getValues() as PortBattleNationShortName[]) ?? [])
         this.#portIdBySelectedNations = new Set(
-            this.#portData.filter((port) => selectedNations.has(port.nation)).map((port) => port.id)
+            this.#portData.filter((port) => selectedNations.has(port.nation)).map((port) => port.id),
         )
     }
 
@@ -257,15 +255,15 @@ export default class TradeData {
                         port.coordinates[0] >= this.#lowerBound[0] &&
                         port.coordinates[0] <= this.#upperBound[0] &&
                         port.coordinates[1] >= this.#lowerBound[1] &&
-                        port.coordinates[1] <= this.#upperBound[1]
+                        port.coordinates[1] <= this.#upperBound[1],
                 )
-                .map((port) => port.id)
+                .map((port) => port.id),
         )
     }
 
     filterTradesByVisiblePorts(): void {
         this.#dataFiltered = this.#dataFiltered.filter(
-            (trade) => this.#portIdVisiblePorts.has(trade.source.id) || this.#portIdVisiblePorts.has(trade.target.id)
+            (trade) => this.#portIdVisiblePorts.has(trade.source.id) || this.#portIdVisiblePorts.has(trade.target.id),
         )
     }
 

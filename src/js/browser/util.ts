@@ -8,19 +8,11 @@
  * @license   http://www.gnu.org/licenses/gpl.html
  */
 
-import { scaleBand as d3ScaleBand, ScaleLinear } from "d3-scale"
-
-import { numberSegments } from "common/common-browser"
-import {
-    compassToDegrees,
-    Coordinate,
-    degreesFullCircle,
-    degreesQuarterCircle,
-    degreesToCompass,
-    radiansToDegrees,
-} from "common/common-math"
-
-import { Selection } from "d3-selection"
+import { scaleBand as d3ScaleBand, type ScaleLinear } from "d3-scale"
+import type { Selection } from "d3-selection"
+import { compassToDegrees, type Coordinate, degreesToCompass, radiansToDegrees } from "common/na-map-data/coordinates"
+import { degreesFullCircle, degreesQuarterCircle } from "common/na-map-data/constants"
+import { numberSegments } from "common/constants"
 
 /**
  * Display formatted compass
@@ -31,7 +23,6 @@ import { Selection } from "d3-selection"
 export const displayCompass = (wind: string, svg = false): string => {
     let compass: string
 
-    // eslint-disable-next-line unicorn/prefer-ternary
     if (Number.isNaN(Number(wind))) {
         compass = wind
     } else {
@@ -71,7 +62,6 @@ export const getUserWind = (sliderId: string): number => {
     const currentUserWind = degreesToCompass(Number($(`#${sliderId}`).roundSlider("getValue")))
     let windDegrees: number
 
-    // eslint-disable-next-line unicorn/prefer-ternary
     if (Number.isNaN(Number(currentUserWind))) {
         windDegrees = compassToDegrees(currentUserWind)
     } else {
@@ -185,9 +175,9 @@ export const printCompassRose = ({
                     "transform",
                     (d) =>
                         `rotate(${Math.round(
-                            (xScale(d) ?? 0) + xScale.bandwidth() / 2 - degreesQuarterCircle
-                        )})translate(${innerRadius},0)`
-                )
+                            (xScale(d) ?? 0) + xScale.bandwidth() / 2 - degreesQuarterCircle,
+                        )})translate(${innerRadius},0)`,
+                ),
         )
 
     label
@@ -274,8 +264,9 @@ export const printSmallCompassRose = ({
                 })
                 .attr(
                     "transform",
-                    (d) => `rotate(${Math.round((xScale(d) ?? 0) + xScale.bandwidth() / 2)})translate(${innerRadius},0)`
-                )
+                    (d) =>
+                        `rotate(${Math.round((xScale(d) ?? 0) + xScale.bandwidth() / 2)})translate(${innerRadius},0)`,
+                ),
         )
 }
 
@@ -377,13 +368,13 @@ export const copyF11ToClipboard = (x: number, z: number, modalSel: HTMLDivElemen
 export const colourRamp = (
     element: Selection<SVGElement | HTMLElement, unknown, HTMLElement, unknown>,
     colourScale: ScaleLinear<string | CanvasGradient | CanvasPattern, string | CanvasGradient | CanvasPattern>,
-    steps = 512
+    steps = 512,
 ): void => {
     const height = 200
     const width = 1000
     const canvas = element.insert("canvas").attr("width", width).attr("height", height)
     const context = canvas.node()?.getContext("2d")
-    // @ts-expect-error
+    // @ts-expect-error lala
     canvas.style.imageRendering = "pixelated"
     const min = colourScale.domain()[0]
 

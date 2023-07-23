@@ -1,18 +1,8 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Select port battle time window.
- * @module    map/select-ports/pb-time
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
 import { registerEvent } from "../../analytics"
-import { getPortBattleTime } from "common/common-browser"
-import { HtmlString } from "common/interface"
 import DisplayPorts from "../display-ports"
-import Select, { SelectOptions } from "util/select"
+import Select, { type SelectOptions } from "util/select"
+import { getPortBattleTime } from "common/time"
+import type { HtmlString } from "../../../@types/common"
 
 export default class SelectPBTimeWindow {
     #select = {} as Select
@@ -31,7 +21,7 @@ export default class SelectPBTimeWindow {
             this.#ports.portData
                 .filter((port) => port.capturable)
                 .map((port): number => port.portBattleStartTime)
-                .sort((a, b) => a - b)
+                .sort((a, b) => a - b),
         )
 
         return `${[...data]
@@ -53,7 +43,7 @@ export default class SelectPBTimeWindow {
         const timeSelected = String(this.#select.getValues())
 
         this.#ports.portData = this.#ports.portDataDefault.filter(
-            (port) => port.capturable && port.portBattleStartTime === Number(timeSelected)
+            (port) => port.capturable && port.portBattleStartTime === Number(timeSelected),
         )
         this.#ports.showRadius = ""
         this.#ports.update()

@@ -1,15 +1,11 @@
 import "bootstrap/js/dist/collapse"
-
-import { select as d3Select, Selection } from "d3-selection"
-
-import { formatInt, formatSiCurrency, formatSiInt } from "common/common-format"
+import { select as d3Select, type Selection } from "d3-selection"
 
 import { addDes, addInfo, baseId, getId, headId, hideElem, numTrades, showElem } from "./common"
-
-import { Trade } from "common/gen-json"
-import { HtmlString } from "common/interface"
-
+import { formatInt, formatSiCurrency, formatSiInt } from "common/format"
 import TradeData from "./trade-data"
+import type { HtmlString } from "../../../@types/common"
+import type { Trade } from "../../../@types/na-map-data/trade"
 
 export default class List {
     #cardId = `${baseId}-card`
@@ -87,7 +83,7 @@ export default class List {
                     "Data is limited as buy and sell prices at a certain port are " +
                     "only known when this port has this good in its inventory or " +
                     "a buy/sell contract. " +
-                    "Better sell ports may be found using the in-game trader tool."
+                    "Better sell ports may be found using the in-game trader tool.",
             )
 
         this.#listDiv = this.#tradeDetailsDiv.append("div").attr("class", "trade-list small")
@@ -111,14 +107,14 @@ export default class List {
         h +=
             addInfo(
                 `${this.#tradeData.getPortName(trade.source.id)} <span class="flag-icon-${this.#tradeData.getPortNation(
-                    trade.source.id
-                )} flag-icon-small me-1" role="img"></span>`
+                    trade.source.id,
+                )} flag-icon-small me-1" role="img"></span>`,
             ) + addDes(`from ${this.#tradeData.getPortDepth(trade.source.id)}`)
         h +=
             addInfo(
                 `${this.#tradeData.getPortName(trade.target.id)} <span class="flag-icon-${this.#tradeData.getPortNation(
-                    trade.target.id
-                )} flag-icon-small me-1" role="img"></span>`
+                    trade.target.id,
+                )} flag-icon-small me-1" role="img"></span>`,
             ) + addDes(`to ${this.#tradeData.getPortDepth(trade.target.id)}`)
         h += addInfo(`${formatSiInt(trade.distance)}`) + addDes("sail distance")
 
@@ -153,7 +149,7 @@ export default class List {
                     })
                     .on("mouseleave", function (this: HTMLDivElement) {
                         highlightOff(this)
-                    })
+                    }),
             )
             .html((d) => this.#getTradeLimitedData(d))
     }

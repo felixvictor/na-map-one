@@ -1,39 +1,27 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Make a journey.
- * @module    map-tools/make-journey
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
 import { range as d3Range } from "d3-array"
-import { drag as d3Drag, DragBehavior, SubjectPosition } from "d3-drag"
-import { ScaleLinear, scaleLinear as d3ScaleLinear } from "d3-scale"
-import { select as d3Select, Selection } from "d3-selection"
-import { Line, line as d3Line } from "d3-shape"
+import { drag as d3Drag, type DragBehavior, type SubjectPosition } from "d3-drag"
+import { type ScaleLinear, scaleLinear as d3ScaleLinear } from "d3-scale"
+import { select as d3Select, type Selection } from "d3-selection"
+import { type Line, line as d3Line } from "d3-shape"
 
 import { registerEvent } from "../../analytics"
-import { degreesPerSecond, getIdFromBaseName, pluralise } from "common/common-browser"
-import { formatF11 } from "common/common-format"
-import {
-    convertInvCoordX,
-    convertInvCoordY,
-    Coordinate,
-    degreesFullCircle,
-    degreesToCompass,
-    getDistance,
-    Point,
-    speedFactor,
-} from "common/common-math"
 import { displayCompassAndDegrees, printCompassRose, rotationAngleInDegrees } from "../../util"
-
-import { HtmlString } from "common/interface"
-
 import MakeJourneyModal from "./modal"
 import MakeJourneySummary from "./summary"
 import MakeJourneyLabelPrinter from "./label"
+import {
+    convertInvCoordX,
+    convertInvCoordY,
+    type Coordinate,
+    degreesToCompass,
+    getDistance,
+    type Point,
+} from "common/na-map-data/coordinates"
+import { degreesPerSecond } from "common/constants"
+import { getIdFromBaseName } from "common/DOM"
+import { degreesFullCircle, speedFactor } from "common/na-map-data/constants"
+import { formatF11, pluralise } from "common/format"
+import type { HtmlString } from "../../../@types/common"
 
 export interface Journey {
     shipName: string
@@ -127,9 +115,9 @@ export default class MakeJourney {
 
         const dragged = (self: SVGCircleElement, event: DragEvent, d: Segment): void => {
             // Set compass position
-            // @ts-expect-error
+            // @ts-expect-error lala
             const newX = d.position[0] + Number(event.dx)
-            // @ts-expect-error
+            // @ts-expect-error lala
             const newY = d.position[1] + Number(event.dy)
             if (d.index === 0) {
                 this.#compass.attr("x", newX).attr("y", newY)
@@ -149,7 +137,7 @@ export default class MakeJourney {
             .on("start", function (this) {
                 dragStart(this)
             })
-            // @ts-expect-error
+            // @ts-expect-error lala
             .on("drag", function (this: SVGCircleElement, event: DragEvent, d: Segment) {
                 dragged(this, event, d)
             })
@@ -333,7 +321,7 @@ export default class MakeJourney {
                 .datum(
                     this.#journey.segments.length > 1
                         ? this.#journey.segments.map((segment) => segment.position)
-                        : [[0, 0] as Point]
+                        : [[0, 0] as Point],
                 )
                 .attr("marker-end", "url(#journey-arrow)")
                 .attr("class", "svg-shadow")
@@ -343,7 +331,7 @@ export default class MakeJourney {
 
     _getTextDirection(courseCompass: string, courseDegrees: number, pt1: Coordinate): string {
         return `${displayCompassAndDegrees(courseCompass, true)} \u2056 F11: ${formatF11(
-            convertInvCoordX(pt1.x, pt1.y)
+            convertInvCoordX(pt1.x, pt1.y),
         )}\u202F/\u202F${formatF11(convertInvCoordY(pt1.x, pt1.y))}`
     }
 
@@ -352,7 +340,7 @@ export default class MakeJourney {
 
         if (addTotal) {
             textDistance += `\u2056 total ${Math.round(
-                this.#journey.totalDistance
+                this.#journey.totalDistance,
             )}\u2009k ${MakeJourney._getHumanisedDuration(this.#journey.totalMinutes)}`
         }
 
@@ -373,7 +361,7 @@ export default class MakeJourney {
         const minutes = this._calculateMinutesForSegment(
             courseDegrees,
             this.#journey.currentWindDegrees,
-            distanceK * 1000
+            distanceK * 1000,
         )
         // console.log("*** start", this.#journey.currentWindDegrees, { distanceK }, { courseCompass });
         this.#journey.totalDistance += distanceK

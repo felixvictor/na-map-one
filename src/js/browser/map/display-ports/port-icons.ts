@@ -1,28 +1,28 @@
 import { default as BSTooltip } from "bootstrap/js/dist/tooltip"
 
-import { select as d3Select, Selection } from "d3-selection"
-import { ScaleLinear, scaleLinear as d3ScaleLinear } from "d3-scale"
+import { select as d3Select, type Selection } from "d3-selection"
+import { type ScaleLinear, scaleLinear as d3ScaleLinear } from "d3-scale"
 import render from "preact-render-to-string"
 import htm from "htm"
-import { h, VNode } from "preact"
-
-import { formatInt, formatPercentHtml, formatSiCurrency, formatSiIntHtml } from "common/common-format"
-import { capitalizeFirstLetter, findNationByNationShortName, NationShortName, simpleStringSort } from "common/common"
-import { getPortBattleTimeHtml, loadJsonFile } from "common/common-browser"
-import { displayClanLitHtml } from "common/common-game-tools"
-import { defaultCircleSize } from "common/common-math"
-import { maxScale, maxTileScale, minScale } from "common/common-var"
-
-import { GoodList, PortWithTrades, TradeGoodProfit, TradeItem } from "common/gen-json"
-import { HtmlResult, HtmlString, SVGGDatum } from "common/interface"
+import { h, type VNode } from "preact"
 
 import ShowTrades from "../show-trades"
 
-import dayjs from "da"
+import dayjs from "dayjs"
 import "dayjs/locale/en-gb"
 import customParseFormat from "dayjs/plugin/customParseFormat"
 import relativeTime from "dayjs/plugin/relativeTime"
 import utc from "dayjs/plugin/utc"
+import type { HtmlResult, SVGGDatum } from "../../../@types/common"
+import type { NationShortName } from "../../../@types/na-map-data/nations"
+import type { TradeItem } from "../../../@types/na-map-data/trade"
+import type { GoodList, PortWithTrades, TradeGoodProfit } from "../../../@types/na-map-data/ports"
+import { defaultCircleSize } from "common/na-map-data/constants"
+import { maxScale, maxTileScale, minScale } from "common/constants"
+import { simpleStringSort } from "common/na-map-data/sort"
+import { formatPercentHtml, formatSiIntHtml } from "common/format"
+import { findNationByNationShortName } from "common/nation"
+import { displayClanLitHtml } from "common/game-tools"
 
 dayjs.extend(customParseFormat)
 dayjs.extend(relativeTime)
@@ -154,7 +154,7 @@ export default class PortIcons {
             ?.map(
                 (good, index) =>
                     html`<span style="white-space: nowrap;">${good.name} (${formatSiIntHtml(good.profit.profit)})</span
-                        >${index === profits.length - 1 ? html`` : html`, `}`
+                        >${index === profits.length - 1 ? html`` : html`, `}`,
             )}`
     }
 
@@ -165,7 +165,7 @@ export default class PortIcons {
                 (good, index) =>
                     html`<span style="white-space: nowrap;"
                             >${good.name} (${formatSiIntHtml(good.profit.profitPerTon)})</span
-                        >${index === profits.length - 1 ? html`` : html`, `}`
+                        >${index === profits.length - 1 ? html`` : html`, `}`,
             )}`
     }
 
@@ -248,7 +248,7 @@ export default class PortIcons {
 
         if (portProperties.cooldownTime) {
             port.cooldownTime = html`${cooldownTimeST.fromNow()} at <em>approximately</em> ${cooldownTimeST.format(
-                    "H.mm"
+                    "H.mm",
                 )}${cooldownTimeLocal}`
         }
 
@@ -366,7 +366,7 @@ export default class PortIcons {
                 ? html`${this.#showProfits(port.goodsToSellInTradePort, port.tradePortName, "buy")}${this.#showProfits(
                       port.goodsToBuyInTradePort,
                       port.tradePortName,
-                      "sell"
+                      "sell",
                   )}`
                 : html` ${port.producesNonTrading.length > 0
                       ? html`<p class="mb-2">
@@ -401,7 +401,7 @@ export default class PortIcons {
             .sort((a, b) => this.#getItemName(a.id).localeCompare(this.#getItemName(b.id)))
             .map((good) => {
                 return `${formatInt(good.buyQuantity)} ${this.#getItemName(good.id)} @ ${formatSiCurrency(
-                    good.buyPrice
+                    good.buyPrice,
                 )}`
             })
             .join("<br>")
@@ -410,7 +410,7 @@ export default class PortIcons {
             .sort((a, b) => this.#getItemName(a.id).localeCompare(this.#getItemName(b.id)))
             .map((good) => {
                 return `${formatInt(good.sellQuantity)} ${this.#getItemName(good.id)} @ ${formatSiCurrency(
-                    good.sellPrice
+                    good.sellPrice,
                 )}`
             })
             .join("<br>")
@@ -480,7 +480,7 @@ export default class PortIcons {
                     })
                     .on("mouseleave", () => {
                         this.#hideDetails()
-                    })
+                    }),
             )
             .attr("r", circleSize)
     }

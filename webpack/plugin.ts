@@ -27,7 +27,7 @@ import {
 } from "./colours"
 import { dirEjs, dirMap, dirOutput, dirPrefixIcons, dirSrc, fileLogo } from "./dir"
 import { isProduction, TARGET } from "./env"
-import { RepairList } from "./repairs"
+import type { RepairList } from "./repairs"
 
 const libraryName = PACKAGE.name
 const descriptionLong =
@@ -95,7 +95,7 @@ const faviconsOpt: FaviconWebpackPlugionOptions = {
     },
 }
 
-export const getPluginConfig = (repairs: RepairList|undefined) => {
+export const getPluginConfig = (repairs: RepairList | undefined) => {
     return [
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({

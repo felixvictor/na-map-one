@@ -1,14 +1,4 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Predict wind modal.
- * @module    map-tools/predict-wind/modal
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
-import dayjs from "da"
+import dayjs from "dayjs"
 import customParseFormat from "dayjs/plugin/customParseFormat"
 import utc from "dayjs/plugin/utc"
 dayjs.extend(customParseFormat)
@@ -17,8 +7,7 @@ dayjs.locale("en-gb")
 
 import Modal from "util/modal"
 import WindInput from "util/wind-input"
-
-import { HtmlString } from "common/interface"
+import type { HtmlString } from "../../../@types/common"
 
 export default class PredictWindModal extends Modal {
     #timeGroupId: HtmlString

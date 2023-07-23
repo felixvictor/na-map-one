@@ -1,16 +1,5 @@
-/*
- * This file is part of na-map.
- *
- * @file      Show trades.
- * @module    map-tools/show-trades
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
 import { ZoomTransform } from "d3-zoom"
 
-import { Extent } from "common/common-math"
 import { hideElem, showElem } from "./common"
 
 import Cookie from "util/cookie"
@@ -21,6 +10,7 @@ import SelectPortsSelectInventory from "../select-ports/inventory"
 import Graphs from "./graphs"
 import List from "./list"
 import TradeData from "./trade-data"
+import type { Extent } from "common/na-map-data/coordinates"
 
 /**
  * Show trades

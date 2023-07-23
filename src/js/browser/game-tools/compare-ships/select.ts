@@ -1,12 +1,13 @@
-import { isEmpty } from "common/common"
-import { WoodType, woodType } from "common/types"
-import { HtmlString } from "common/interface"
-import { ShipColumnTypeList, ModuleType, ModuleTypeList } from "compare-ships"
-import { ShipColumnType } from "./index"
-import { WoodColumnTypeList, WoodTypeList } from "compare-woods"
 import Select, { SelectOptions } from "util/select"
 import CompareShipsModal from "./modal"
 import { WoodData } from "../compare-woods/data"
+import { woodType } from "../../../@types/na-map-data/constants"
+import { isEmpty } from "common/na-map-data/common"
+import type { ShipColumnTypeList, ModuleType, ModuleTypeList } from "compare-ships"
+import type { ShipColumnType } from "./index"
+import type { WoodColumnTypeList, WoodTypeList } from "compare-woods"
+import type { HtmlString } from "../../../@types/common"
+import type { WoodType } from "../../../@types/na-map-data/woods"
 
 export class CompareShipsSelect {
     #columnsCompare: ShipColumnType[]
@@ -139,7 +140,7 @@ export class CompareShipsSelect {
             this.#modal.getBaseIdSelects(columnId),
             selectOptions,
             options,
-            true
+            true,
         )
     }
 
@@ -150,7 +151,7 @@ export class CompareShipsSelect {
             `${divBaseId}-ship`,
             divSelectsShipId,
             { placeholder: "Ship" },
-            shipOptions
+            shipOptions,
         )
         if (columnId !== "base") {
             this.#selectShip[columnId].disable()
@@ -166,7 +167,7 @@ export class CompareShipsSelect {
                 `${divBaseId}-${type}`,
                 divSelectsWoodsId,
                 { placeholder: `Wood ${type}`, width: "170px" },
-                woodData.getOptions(type)
+                woodData.getOptions(type),
             )
             this.#selectWood[columnId][type].disable()
         }

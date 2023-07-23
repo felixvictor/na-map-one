@@ -1,19 +1,11 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Compare ships file - module and wood this.#data.
- * @module    game-tools/compare-ships/compare-ships/module-wood-this.#data
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
-import { ModuleEntity, ModulePropertiesEntity, ShipData, WoodTrimOrFrame } from "common/gen-json"
-import { ShipColumnType } from "./index"
-import { HtmlString, ModifierName } from "common/interface"
-import { AbsoluteAndPercentageAmount, Amount } from "compare-ships"
 import { moduleAndWoodCaps, moduleAndWoodChanges } from "./module-modifier"
-import { WoodTypeList } from "compare-woods"
+import type { ShipColumnType } from "./index"
+import type { AbsoluteAndPercentageAmount, Amount } from "compare-ships"
+import type { WoodTypeList } from "compare-woods"
+import type { ShipData } from "../../../@types/na-map-data/ships"
+import type { HtmlString } from "../../../@types/common"
+import type { ModifierName, ModuleEntity, ModulePropertiesEntity } from "../../../@types/na-map-data/modules"
+import type { WoodTrimOrFrame } from "../../../@types/na-map-data/woods"
 
 export default class ModulesAndWoodData {
     #baseData = {} as ShipData
@@ -157,7 +149,7 @@ export default class ModulesAndWoodData {
                         this.#data[index[0]][index[1]] = this._adjustValue(
                             this.#data[index[0]][index[1]],
                             key,
-                            isBaseValueAbsolute
+                            isBaseValueAbsolute,
                         )
                     } else {
                         this.#data[index[0]] = this._adjustValue(this.#data[index[0]], key, isBaseValueAbsolute)
@@ -174,11 +166,11 @@ export default class ModulesAndWoodData {
             modifier: ModifierName,
             valueUncapped: number,
             valueBase: number,
-            { amount: capAmount, isPercentage }: Amount
+            { amount: capAmount, isPercentage }: Amount,
         ): number => {
             const valueRespectingCap = Math.min(
                 valueUncapped,
-                isPercentage ? this._roundPropertyValue(valueBase, valueBase * (1 + capAmount)) : capAmount
+                isPercentage ? this._roundPropertyValue(valueBase, valueBase * (1 + capAmount)) : capAmount,
             )
             if (valueUncapped > valueRespectingCap) {
                 valueCapped.isCapped = true
@@ -200,7 +192,7 @@ export default class ModulesAndWoodData {
                                 modifier,
                                 this.#data[index[0]][index[1]],
                                 this.#baseData[index[0]][index[1]],
-                                cap
+                                cap,
                             )
                         }
                     } else if (this.#data[index[0]]) {
@@ -208,7 +200,7 @@ export default class ModulesAndWoodData {
                             modifier,
                             this.#data[index[0]],
                             this.#baseData[index[0]],
-                            cap
+                            cap,
                         )
                     }
                 }
@@ -238,7 +230,7 @@ export default class ModulesAndWoodData {
         shipDataUpdated: ShipData,
         columnId: ShipColumnType,
         woodData: WoodTypeList<WoodTrimOrFrame>,
-        moduleData: ModuleEntity[]
+        moduleData: ModuleEntity[],
     ): ShipData {
         this.#baseData = shipDataBase
         this.#data = JSON.parse(JSON.stringify(shipDataUpdated)) as ShipData

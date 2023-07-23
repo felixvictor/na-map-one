@@ -1,33 +1,24 @@
-/*!
- * This file is part of na-map.
- *
- * @file      List port battles.
- * @module    game-tools/list-pb
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
 import { Selection } from "d3-selection"
-import dayjs from "da"
+import dayjs from "dayjs"
 import "dayjs/locale/en-gb"
 import customParseFormat from "dayjs/plugin/customParseFormat"
 import relativeTime from "dayjs/plugin/relativeTime"
 import utc from "dayjs/plugin/utc"
 
-import { registerEvent } from "../../analytics"
-import { capitalizeFirstLetter, findNationByNationShortName } from "common/common"
-import { getIdFromBaseName, loadJsonFile } from "common/common-browser"
-import { displayClan } from "../../util"
-import { PortBattlePerServer } from "common/gen-json"
-import { HtmlString } from "common/interface"
-import { ServerId } from "common/servers"
-import Modal from "util/modal"
-
 dayjs.extend(customParseFormat)
 dayjs.extend(relativeTime)
 dayjs.extend(utc)
 dayjs.locale("en-gb")
+
+import { registerEvent } from "../../analytics"
+import { displayClan } from "../../util"
+import Modal from "util/modal"
+import { getIdFromBaseName } from "common/DOM"
+import type { HtmlString } from "../../../@types/common"
+import type { ServerId } from "common/na-map-data/servers"
+import { PortBattlePerServer } from "../../../@types/na-map-data/ports"
+import { capitalizeFirstLetter } from "common/na-map-data/format"
+import { findNationByNationShortName } from "common/nation"
 
 type RowData = string[]
 interface RowSortData {
@@ -84,7 +75,7 @@ export default class ListPortBattles {
                     sort: port.portBattle ?? "",
                     data: [
                         `${capitalizeFirstLetter(portBattleST.fromNow())} at ${portBattleST.format(
-                            "H.mm"
+                            "H.mm",
                         )} ${localTime}`,
                         port.name,
                         iconAttackerNation + attackerClan,
@@ -189,7 +180,7 @@ export default class ListPortBattles {
     _pbListSelected(): void {
         this.#table = this.#modal!.outputSel.append("table").attr(
             "class",
-            "table table-sm table-striped table-hover text-table table-sort"
+            "table table-sm table-striped table-hover text-table table-sort",
         )
         this._initTable()
         this._updateTable()

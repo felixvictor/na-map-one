@@ -1,19 +1,9 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Select ports select goods.
- * @module    map/select-ports/goods
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
 import { registerEvent } from "../../analytics"
-import { GoodList, PortPerServer, PortWithTrades } from "common/gen-json"
 import DisplayPorts from "../display-ports"
-import { HtmlString } from "common/interface"
 import Select from "util/select"
-import { getIdFromBaseName } from "common/common-browser"
+import { getIdFromBaseName } from "common/DOM"
+import type { HtmlString } from "../../../@types/common"
+import type { GoodList, PortPerServer, PortWithTrades } from "../../../@types/na-map-data/ports"
 
 export default class SelectPortsSelectGoods {
     #baseName = "Show goods’ relations"
@@ -81,9 +71,9 @@ export default class SelectPortsSelectGoods {
                             port.dropsTrading?.includes(goodSelectedId) ||
                             // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
                             port.dropsNonTrading?.includes(goodSelectedId) ||
-                            port.producesNonTrading?.includes(goodSelectedId)
-                    )
-                )
+                            port.producesNonTrading?.includes(goodSelectedId),
+                    ),
+                ),
             ) as PortWithTrades[]
         ).map((port) => {
             port.isSource = true
@@ -92,8 +82,8 @@ export default class SelectPortsSelectGoods {
         const consumingPorts = (
             JSON.parse(
                 JSON.stringify(
-                    this.#ports.portDataDefault.filter((port) => port.consumesTrading?.includes(goodSelectedId))
-                )
+                    this.#ports.portDataDefault.filter((port) => port.consumesTrading?.includes(goodSelectedId)),
+                ),
             ) as PortWithTrades[]
         ).map((port) => {
             port.isSource = false

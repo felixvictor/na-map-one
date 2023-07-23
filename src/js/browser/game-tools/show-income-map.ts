@@ -11,24 +11,21 @@
 import { default as BSTooltip } from "bootstrap/js/dist/tooltip"
 
 import { max as d3Max, min as d3Min } from "d3-array"
-import { hierarchy as d3Hierarchy, HierarchyNode, stratify as d3Stratify } from "d3-hierarchy"
-import { ScaleLinear, scaleLinear as d3ScaleLinear, ScaleOrdinal, scaleOrdinal as d3ScaleOrdinal } from "d3-scale"
-import { Selection } from "d3-selection"
-import { Point, voronoiTreemap as d3VoronoiTreemap } from "d3-voronoi-treemap"
+import { hierarchy as d3Hierarchy, type HierarchyNode, stratify as d3Stratify } from "d3-hierarchy"
+import { ScaleLinear, scaleLinear as d3ScaleLinear, type ScaleOrdinal, scaleOrdinal as d3ScaleOrdinal } from "d3-scale"
+import { type Point, voronoiTreemap as d3VoronoiTreemap } from "d3-voronoi-treemap"
+import type { Selection } from "d3-selection"
+import type { Vertex } from "d3-weighted-voronoi"
 import seedrandom from "seedrandom"
 
 import { registerEvent } from "../analytics"
-import { nations } from "common/common"
-import { getIdFromBaseName, loadJsonFiles, showCursorDefault, showCursorWait } from "common/common-browser"
-import { formatPercentSig, formatSiCurrency, formatSiInt } from "common/common-format"
-import { getContrastColour } from "common/common-game-tools"
-
-import { Vertex } from "d3-weighted-voronoi"
 import Modal from "util/modal"
-import { PortBasic, PortBattlePerServer, PortPerServer } from "common/gen-json"
-import { DataSource, HtmlString, PortIncome, PortJsonData } from "common/interface"
-import { ϕ } from "common/common-math"
-import { ServerId } from "common/servers"
+import { getIdFromBaseName, showCursorDefault, showCursorWait } from "common/DOM"
+import { formatPercentSig, formatSiInt } from "common/format"
+import { nations } from "../../@types/na-map-data/constants"
+import type { DataSource, HtmlString, PortIncome, PortJsonData } from "../../@types/common"
+import type { ServerId } from "common/na-map-data/servers"
+import type { PortBasic, PortBattlePerServer, PortPerServer } from "../../@types/na-map-data/ports"
 
 interface TreeMapPolygon extends Array<Point> {
     0: Point
@@ -142,7 +139,7 @@ export default class ShowIncomeMap {
 
         this.#nestedData = d3Stratify<PortHierarchy>()(flatData)
         this.#tree = d3Hierarchy(this.#nestedData).sum(
-            (d: HierarchyNode<PortHierarchy>) => d.data.value
+            (d: HierarchyNode<PortHierarchy>) => d.data.value,
         ) as TreeMapHierarchyNode<HierarchyNode<PortHierarchy>>
     }
 
@@ -322,7 +319,7 @@ export default class ShowIncomeMap {
                     .append("path")
                     .attr("class", "cell")
                     .attr("d", (d) => `M${d.polygon.join(",")}z`)
-                    .style("fill", (d) => this.#colourScale(d.parent?.data.id ?? ""))
+                    .style("fill", (d) => this.#colourScale(d.parent?.data.id ?? "")),
             )
     }
 
@@ -338,7 +335,7 @@ export default class ShowIncomeMap {
                     .attr("class", "label")
                     .attr("transform", (d) => `translate(${d.polygon.site.x},${d.polygon.site.y})`)
                     .style("font-size", (d) => `${this.#fontScale(d.data.data.value)}px`)
-                    .style("fill", (d) => getContrastColour(this.#colourScale(d.parent?.data.id ?? "")))
+                    .style("fill", (d) => getContrastColour(this.#colourScale(d.parent?.data.id ?? ""))),
             )
         labels
             .append("text")
@@ -367,7 +364,7 @@ export default class ShowIncomeMap {
                     })
                     .on("mouseleave", () => {
                         this._hideDetails()
-                    })
+                    }),
             )
     }
 

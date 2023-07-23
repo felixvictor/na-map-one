@@ -1,18 +1,7 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Predict wind modal.
- * @module    map-tools/wind-rose/modal
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
 import Modal from "util/modal"
-
-import { PortWithTrades } from "common/gen-json"
-import { HtmlString } from "common/interface"
-import { sortBy } from "common/common"
+import { sortBy } from "common/na-map-data/sort"
+import type { PortWithTrades } from "../../../@types/na-map-data/ports"
+import type { HtmlString } from "../../../@types/common"
 
 export default class GetPositionModal extends Modal {
     readonly #ids: number[]

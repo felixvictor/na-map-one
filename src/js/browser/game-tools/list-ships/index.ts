@@ -1,23 +1,14 @@
-/*!
- * This file is part of na-map.
- *
- * @file      ship list.
- * @module    ship-list
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
+import type { Selection } from "d3-selection"
 
 import { registerEvent } from "../../analytics"
-import { maxShallowWaterBR, sortBy } from "common/common"
-import { getIdFromBaseName } from "common/common-browser"
-import { formatFloatFixed, formatInt } from "common/common-format"
-import { beautifyShipName } from "common/common-game-tools"
-
-import { Selection } from "d3-selection"
-import { ShipData } from "common/gen-json"
-import { HeaderMap, HtmlString } from "common/interface"
 import Modal from "util/modal"
+import { getIdFromBaseName } from "common/DOM"
+import { sortBy } from "common/na-map-data/sort"
+import { beautifyShipName } from "common/game-tools"
+import { maxShallowWaterBR } from "common/na-map-data/constants"
+import { formatFloatFixed, formatInt } from "common/format"
+import type { HeaderMap, HtmlString } from "../../../@types/common"
+import type { ShipData } from "../../../@types/na-map-data/ships"
 
 type ShipListData = Array<[number | string, string]>
 
@@ -46,8 +37,8 @@ export default class ShipList {
         const shipData = (
             await import(/* webpackChunkName: "data-ships" */ "../../../../../lib/gen-generic/ships.json")
         ).default.sort(
-            // @ts-expect-error
-            sortBy(["class", "-battleRating", "name"])
+            // @ts-expect-error lala
+            sortBy(["class", "-battleRating", "name"]),
         ) as ShipData[]
 
         this.#shipListData = shipData.map(
@@ -81,7 +72,7 @@ export default class ShipList {
                         ship.sides.thickness
                     }</span>`,
                 ],
-            ]
+            ],
         )
     }
 
@@ -187,14 +178,14 @@ export default class ShipList {
                     .append("td")
                     .classed("pe-1", (d, i) => i !== 1)
                     .classed("text-start", (d, i) => i === 1)
-                    .html((d) => d[1])
+                    .html((d) => d[1]),
             )
     }
 
     _shipListSelected(): void {
         this.#table = this.#modal!.outputSel.append("table").attr(
             "class",
-            "table table-sm table-striped table-hover table-sort"
+            "table table-sm table-striped table-hover table-sort",
         )
 
         this._initTable()

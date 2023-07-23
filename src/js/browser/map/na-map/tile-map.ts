@@ -1,10 +1,9 @@
-import { select as d3Select, Selection } from "d3-selection"
-import { tile as d3Tile, TileFn, Tiles } from "d3-tile"
+import { select as d3Select, type Selection } from "d3-selection"
+import { tile as d3Tile, type TileFn, type Tiles } from "d3-tile"
 import { zoomIdentity as d3ZoomIdentity, ZoomTransform } from "d3-zoom"
 
-import { maxTileScale, tileSize } from "common/common-var"
-
-import { Point } from "common/common-math"
+import { maxTileScale, tileSize } from "common/constants"
+import type { Point } from "common/na-map-data/coordinates"
 
 type TileKey = string
 
@@ -45,7 +44,7 @@ export default class TileMap {
                     .attr("x", ([, [x]]) => x)
                     .attr("y", ([, [, y]]) => y)
                     .attr("width", 1)
-                    .attr("height", 1)
+                    .attr("height", 1),
             )
     }
 

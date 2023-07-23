@@ -1,7 +1,7 @@
-import { distancePoints, Point } from "common/common-math"
 import { scaleOrdinal as d3ScaleOrdinal } from "d3-scale"
-import { colourList } from "common/common-browser"
-import { mapSize } from "common/common-var"
+import { distancePoints, type Point } from "common/na-map-data/coordinates"
+import { mapSize } from "common/na-map-data/constants"
+import { colourList } from "common/colours"
 
 export interface Area {
     name: string

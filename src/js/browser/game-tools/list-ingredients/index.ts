@@ -1,25 +1,14 @@
-/*!
- * This file is part of na-map.
- *
- * @file      List ingredients.
- * @module    game-tools/list-ingredients
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
 import { default as BSTooltip } from "bootstrap/js/dist/tooltip"
 
 import { registerEvent } from "../../analytics"
-import { sortBy } from "common/common"
-import { getIdFromBaseName } from "common/common-browser"
-import { formatSignInt, formatSignPercentOldstyle } from "common/common-format"
 import { chunkify } from "../../util"
-
-import { Module, RecipeIngredientEntity } from "common/gen-json"
-import { HtmlString } from "common/interface"
-
 import Modal from "util/modal"
+import { getIdFromBaseName } from "common/DOM"
+import { sortBy } from "common/na-map-data/sort"
+import { formatSignInt, formatSignPercentOldstyle } from "common/format"
+import type { HtmlString } from "../../../@types/common"
+import type { Module } from "../../../@types/na-map-data/modules"
+import type { RecipeIngredientEntity } from "../../../@types/na-map-data/recipes"
 
 export default class ListIngredients {
     #ingredientData = [] as RecipeIngredientEntity[]
@@ -73,7 +62,7 @@ export default class ListIngredients {
                 moduleType = type[0]
 
                 properties = `${module.properties
-                    .map((property) => {
+                    ?.map((property) => {
                         const amount = property.isPercentage
                             ? formatSignPercentOldstyle(property.amount / 100).replace(/"/g, "'")
                             : formatSignInt(property.amount)
@@ -100,7 +89,7 @@ export default class ListIngredients {
                             ? `<a data-bs-toggle="tooltip" title="${properties}">${recipeName}</a>`
                             : recipeName
                     })
-                    .join("<br>")}</td></tr>`
+                    .join("<br>")}</td></tr>`,
         )
     }
 

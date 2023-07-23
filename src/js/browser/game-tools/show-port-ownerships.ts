@@ -1,13 +1,3 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Port ownership list.
- * @module    game-tools/show-port-ownerships
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
 import { areaLabel as d3AreaLabel } from "d3-area-label"
 import { extent as d3Extent, max as d3Max, min as d3Min } from "d3-array"
 import { axisBottom as d3AxisBottom } from "d3-axis"
@@ -17,40 +7,29 @@ import {
     scaleOrdinal as d3ScaleOrdinal,
     scaleTime as d3ScaleTime,
 } from "d3-scale"
-import { Selection } from "d3-selection"
 import {
-    Area,
+    type Area,
     area as d3Area,
     curveBasis as d3CurveBasis,
     stack as d3Stack,
     stackOffsetNone as d3StackOffsetNone,
 } from "d3-shape"
+import type { Selection } from "d3-selection"
 import textures, { Textures } from "textures"
+import type { Group } from "timelines-chart"
 
 import { registerEvent } from "../analytics"
-import {
-    findNationByNationShortName,
-    NationFullName,
-    nations,
-    NationShortName,
-    NationShortNameList,
-} from "common/common"
-import {
-    colourList,
-    getIdFromBaseName,
-    loadJsonFile,
-    primary300,
-    showCursorDefault,
-    showCursorWait,
-} from "common/common-browser"
-
-import { getContrastColour } from "common/common-game-tools"
-import { Group } from "timelines-chart"
-import { Ownership, OwnershipNation } from "common/gen-json"
-import { ServerId } from "common/servers"
-import { HtmlString } from "common/interface"
 import Modal from "util/modal"
-import Select, { SelectOptions } from "util/select"
+import Select, { type SelectOptions } from "util/select"
+import { getIdFromBaseName, showCursorDefault, showCursorWait } from "common/DOM"
+import type { ServerId } from "common/na-map-data/servers"
+import type { NationShortName, NationShortNameList, OwnershipNation } from "../../@types/na-map-data/nations"
+import type { HtmlString } from "../../@types/common"
+import type { Ownership } from "../../@types/na-map-data/ownership"
+import { nations } from "../../@types/na-map-data/constants"
+import { primary300 } from "../../../../webpack/colours"
+import { getContrastColour } from "common/game-tools"
+import { findNationByNationShortName } from "common/nation"
 
 /**
  *
@@ -165,7 +144,7 @@ export default class ShowPortOwnerships {
                     .id(`texture-${nationShortName}`)
             }
 
-            // @ts-expect-error
+            // @ts-expect-error lala
             this.#svg.call(this.#textures[nationShortName])
         }
     }
@@ -203,7 +182,7 @@ export default class ShowPortOwnerships {
 
         const keys = nations.filter((nation) => nation.id !== 9).map((nation) => nation.short)
         const nationData = this._nationData
-        // @ts-expect-error
+        // @ts-expect-error lala
         nationData.keys = keys
 
         const stacked = d3Stack<
@@ -223,10 +202,10 @@ export default class ShowPortOwnerships {
                 .domain(d3Extent(nationData, (d) => new Date(d.date)) as [Date, Date])
                 .range([margin.left, width - margin.right])
             g.attr("transform", `translate(0,${height - margin.bottom})`).call(
-                // @ts-expect-error
+                // @ts-expect-error lala
                 d3AxisBottom<Date>(xTimeScale)
                     .ticks(width / 80)
-                    .tickSizeOuter(0)
+                    .tickSizeOuter(0),
             )
             g.attr("font-size", ".8rem").attr("font-family", "")
         }
@@ -243,7 +222,7 @@ export default class ShowPortOwnerships {
             const yScale = d3ScaleLinear<number, number>()
                 .domain([d3Min(stacked[0], (d) => d[0]), d3Max(stacked[stacked.length - 1], (d) => d[1])] as [
                     number,
-                    number
+                    number,
                 ])
                 .range([height - margin.bottom, 0])
 
@@ -262,7 +241,7 @@ export default class ShowPortOwnerships {
         const render = (): void => {
             const area = getArea()
             const labelNames = new Map<NationShortName, NationFullName>(
-                nations.map((nation) => [nation.short, nation.name])
+                nations.map((nation) => [nation.short, nation.name]),
             )
             this._colourScale.domain(keys)
 
@@ -277,8 +256,8 @@ export default class ShowPortOwnerships {
                         .attr("fill", (d) => this.#textures[d.key].url())
                         .attr("stroke", primary300)
                         .attr("stroke-width", "3px")
-                        // @ts-expect-error
-                        .attr("d", area)
+                        // @ts-expect-error lala
+                        .attr("d", area),
                 )
 
             // Labels
@@ -291,7 +270,7 @@ export default class ShowPortOwnerships {
                         .attr("class", "area-label text-shadow")
                         .text((d) => labelNames.get(d.key) ?? "")
                         .attr("fill", (d) => getContrastColour(findNationByNationShortName(d.key)?.colours[0] ?? ""))
-                        .attr("transform", d3AreaLabel(area))
+                        .attr("transform", d3AreaLabel(area)),
                 )
         }
 

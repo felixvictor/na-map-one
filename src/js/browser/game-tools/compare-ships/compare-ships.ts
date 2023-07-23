@@ -1,42 +1,33 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Compare ships file.
- * @module    game-tools/compare-ships/compare-ships
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
 import { default as BSTooltip } from "bootstrap/js/dist/tooltip"
 
 import { group as d3Group, max as d3Max, min as d3Min } from "d3-array"
 import { interpolateHcl as d3InterpolateHcl } from "d3-interpolate"
-import { ScaleLinear, scaleLinear as d3ScaleLinear } from "d3-scale"
+import { type ScaleLinear, scaleLinear as d3ScaleLinear } from "d3-scale"
 
 import { registerEvent } from "../../analytics"
-import { sortBy } from "common/common"
-import { colourGreenDark, colourRedDark, colourWhite, getElementWidth } from "common/common-browser"
-import { formatPP, formatSignFloat, formatSignPercentOldstyle } from "common/common-format"
-import { hullRepairsPercent, isImported, repairTime, rigRepairsPercent, stripShipName } from "common/common-game-tools"
-import { getOrdinal } from "common/common-math"
 import { moduleAndWoodCaps, moduleAndWoodChanges } from "./module-modifier"
-
-import { Module, ModuleEntity, ModulePropertiesEntity, ShipData, ShipRepairTime } from "common/gen-json"
-import { HtmlString } from "common/interface"
-import { WoodType, woodType } from "common/types"
-import { ShipColumnTypeList, ModuleType, SelectedData, SelectedId, ShipSelectData } from "compare-ships"
-import { ShipColumnType } from "./index"
-import { WoodColumnType } from "../compare-woods"
-
 import CompareShipsModal from "./modal"
+import ModulesAndWoodData from "./module-wood-data"
 import SaveImage from "./save-image"
 import { copyDataClicked } from "./copy-to-clipboard"
 import { WoodData } from "../compare-woods/data"
 import { CompareShipsSelect } from "./select"
 import { ColumnBase } from "./column-base"
 import { ColumnCompare } from "./column-compare"
-import ModulesAndWoodData from "./module-wood-data"
+import { sortBy } from "common/na-map-data/sort"
+import { colourGreenDark, colourRedDark, colourWhite } from "common/constants"
+import { formatPP, formatSignFloat, formatSignPercentOldstyle } from "common/format"
+import { hullRepairsPercent, isImported, repairTime, rigRepairsPercent, stripShipName } from "common/game-tools"
+import { getElementWidth } from "common/DOM"
+import { getOrdinal } from "common/na-map-data/format"
+import { woodType } from "../../../@types/na-map-data/constants"
+import type { Module, ModuleEntity, ModulePropertiesEntity } from "../../../@types/na-map-data/modules"
+import type { ShipData, ShipRepairTime } from "../../../@types/na-map-data/ships"
+import type { HtmlString } from "../../../@types/common"
+import type { WoodType } from "../../../@types/na-map-data/woods"
+import type { ShipColumnTypeList, ModuleType, SelectedData, SelectedId, ShipSelectData } from "compare-ships"
+import type { ShipColumnType } from "./index"
+import type { WoodColumnType } from "../compare-woods"
 
 type CompareShipsBaseId = "compare-ship" | "ship-journey"
 type ModuleOptionType = [number, ModuleEntity]
@@ -276,7 +267,7 @@ export class CompareShips {
         return [...this.#moduleProperties].filter(
             (module) =>
                 module[1].type.replace(/\s–\s[\s/A-Za-z\u25CB]+/, "") === moduleType &&
-                (module[1].moduleLevel === "U" || module[1].moduleLevel === CompareShips._getModuleLevel(shipClass))
+                (module[1].moduleLevel === "U" || module[1].moduleLevel === CompareShips._getModuleLevel(shipClass)),
         )
     }
 
@@ -304,7 +295,6 @@ export class CompareShips {
         let options: string
         const moduleTypeWithSingleOption = new Set(["Permanent", "Ship trim"])
 
-        // eslint-disable-next-line unicorn/prefer-ternary
         if (modulesGrouped.length > 1) {
             // Get options with sub types as optgroups
             options = modulesGrouped
@@ -312,8 +302,8 @@ export class CompareShips {
                     (group) =>
                         `<optgroup label="${group.key}" data-max-options="${this._getMaxOptions(
                             moduleTypeWithSingleOption,
-                            moduleType
-                        )}">${this._getOption(group.values)}</optgroup>`
+                            moduleType,
+                        )}">${this._getOption(group.values)}</optgroup>`,
                 )
                 .join("")
         } else {
@@ -437,13 +427,14 @@ export class CompareShips {
         new Map(
             this.#moduleDataDefault.flatMap((type) =>
                 type[1]
-                    .filter((module) =>
-                        module.properties?.some((property) => {
-                            return this.#moduleAndWoodChanges.has(property.modifier)
-                        })
+                    .filter(
+                        (module) =>
+                            module.properties?.some((property) => {
+                                return this.#moduleAndWoodChanges.has(property.modifier)
+                            }),
                     )
-                    .map((module) => [module.id, module])
-            )
+                    .map((module) => [module.id, module]),
+            ),
         )
 
     /**
@@ -451,7 +442,7 @@ export class CompareShips {
      */
     _getModuleTypes = (): Set<ModuleType> =>
         new Set<ModuleType>(
-            [...this.#moduleProperties].map((module) => module[1].type.replace(/\s\u2013\s[\s/A-Za-z\u25CB]+/, ""))
+            [...this.#moduleProperties].map((module) => module[1].type.replace(/\s\u2013\s[\s/A-Za-z\u25CB]+/, "")),
         )
 
     _setupModuleData(): void {
@@ -520,7 +511,7 @@ export class CompareShips {
             shipDataUpdated,
             columnId,
             this.#woodData.getSelectedWoodData(this.#selects.getSelectedWoodIds(columnId)),
-            this._getSelectedModuleData(columnId)
+            this._getSelectedModuleData(columnId),
         )
 
         return shipDataUpdated
@@ -565,7 +556,7 @@ export class CompareShips {
                                 class: ship.class,
                                 battleRating: ship.battleRating,
                                 guns: ship.guns.total,
-                            } as ShipSelectData)
+                            }) as ShipSelectData,
                     )
                     .sort(sortBy(["name"])),
             }))
@@ -579,9 +570,9 @@ export class CompareShips {
                             (ship) =>
                                 `<option data-subtext="${ship.battleRating}${
                                     isImported(ship.name) ? " Imported" : ""
-                                }" value="${ship.id}">${stripShipName(ship.name)} (${ship.guns})</option>`
+                                }" value="${ship.id}">${stripShipName(ship.name)} (${ship.guns})</option>`,
                         )
-                        .join("")}</optgroup>`
+                        .join("")}</optgroup>`,
             )
             .join("")
     }
@@ -671,7 +662,7 @@ export class CompareShips {
             this.#modal = new CompareShipsModal(
                 this.#baseName,
                 this.#columnIds,
-                this.columnsCompare[this.columnsCompare.length - 1]
+                this.columnsCompare[this.columnsCompare.length - 1],
             )
 
             this.#selects = new CompareShipsSelect(this.#baseId, this.#columnIds, this.#modal)
@@ -711,7 +702,7 @@ export class CompareShips {
             if (columnId === "base") {
                 this._setSelectedShip(
                     columnId,
-                    new ColumnBase(this.#modal!.getBaseIdOutput(columnId), singleShipData, this)
+                    new ColumnBase(this.#modal!.getBaseIdOutput(columnId), singleShipData, this),
                 )
                 for (const otherCompareId of this.columnsCompare) {
                     this.#selects.enableShipSelect(otherCompareId)
@@ -722,8 +713,8 @@ export class CompareShips {
                                 this.#modal!.getBaseIdOutput(otherCompareId),
                                 singleShipData,
                                 (this.activeColumns[otherCompareId] as ColumnCompare).shipCompareData,
-                                this
-                            )
+                                this,
+                            ),
                         )
                     }
                 }
@@ -734,8 +725,8 @@ export class CompareShips {
                         this.#modal!.getBaseIdOutput(columnId),
                         (this.activeColumns.base as ColumnBase).shipData,
                         singleShipData,
-                        this
-                    )
+                        this,
+                    ),
                 )
             }
 

@@ -1,5 +1,5 @@
-import { nationMap } from "../@types/constants.js"
-import type { Nation } from "../@types/nations.js"
+import { nationMap } from "../../@types/na-map-data/constants"
+import type { Nation } from "../../@types/na-map-data/nations"
 
 /**
  * Find Nation object based on nation id

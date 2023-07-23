@@ -1,35 +1,27 @@
-/*!
- * This file is part of na-map.
- *
- * @file      List loot and chests.
- * @module    game-tools/list-loot
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
+// eslint-disable no-irregular-whitespace
 
 import { h, render } from "preact"
 import htm from "htm"
 
 import { registerEvent } from "../../analytics"
-import { sortBy } from "common/common"
-import { getIdFromBaseName } from "common/common-browser"
-import { formatInt } from "common/common-format"
-import {
+import type { LootItemMap, SourceDetail } from "list-loot"
+import Select, { type SelectOptions } from "util/select"
+import Modal from "util/modal"
+import type {
     Loot,
     LootAmount,
-    LootChestsEntity,
-    LootLootItemsEntity,
-    LootLootEntity,
-    LootTypeList,
     LootChestItemsEntity,
-} from "common/gen-json"
-import { lootType, LootType } from "common/types"
-import { HtmlResult, HtmlString } from "common/interface"
-import { LootItemMap, SourceDetail } from "list-loot"
-
-import Select, { SelectOptions } from "util/select"
-import Modal from "util/modal"
+    LootChestsEntity,
+    LootLootEntity,
+    LootLootItemsEntity,
+    LootType,
+    LootTypeList,
+} from "../../../@types/na-map-data/loot"
+import type { HtmlResult, HtmlString } from "../../../@types/common"
+import { lootType } from "../../../@types/na-map-data/constants"
+import { getIdFromBaseName } from "common/DOM"
+import { formatInt } from "common/format"
+import { sortBy } from "common/na-map-data/sort"
 
 const html = htm.bind(h)
 
@@ -103,7 +95,7 @@ export default class ListLoot {
     _setOptionItems(
         source: LootLootEntity | LootChestsEntity,
         item: LootLootItemsEntity | LootChestItemsEntity,
-        chance: number
+        chance: number,
     ): void {
         const sourceDetail = new Map<number, SourceDetail>([
             [source.id, { id: source.id, name: source.name, chance, amount: item.amount }],
@@ -174,7 +166,7 @@ export default class ListLoot {
                 `${this.#baseId}-${type}`,
                 this.#modal!.baseIdSelects,
                 selectOptions,
-                this._getOptions(type)
+                this._getOptions(type),
             )
         }
     }
@@ -191,7 +183,7 @@ export default class ListLoot {
     _getLootItemsText(
         items: Array<LootLootItemsEntity | LootChestItemsEntity>,
         title: string,
-        chance = true
+        chance = true,
     ): HtmlResult {
         return html`
             <table class="table table-sm table-striped table-hover">
@@ -204,16 +196,15 @@ export default class ListLoot {
                 </thead>
                 <tbody>
                     ${items.map(
-                        (item) =>
-                            html`
-                                <tr>
-                                    <td class="text-start">${item.name}</td>
-                                    ${chance
-                                        ? html` <td>${ListLoot._printChance((item as LootLootItemsEntity).chance)}</td>`
-                                        : ""}
-                                    <td>${ListLoot._printAmount(item.amount)}</td>
-                                </tr>
-                            `
+                        (item) => html`
+                            <tr>
+                                <td class="text-start">${item.name}</td>
+                                ${chance
+                                    ? html` <td>${ListLoot._printChance((item as LootLootItemsEntity).chance)}</td>`
+                                    : ""}
+                                <td>${ListLoot._printAmount(item.amount)}</td>
+                            </tr>
+                        `,
                     )}
                 </tbody>
             </table>
@@ -239,12 +230,13 @@ export default class ListLoot {
             return html`
                 <p>
                     Weight ${formatInt(currentChest.weight)} tons<br />Lifetime ${formatInt(
-                        currentChest.lifetime
+                        currentChest.lifetime,
                     )} hours
                 </p>
                 ${currentChest.itemGroup.map(
-                    (group) => html`<h5>Group chance: ${ListLoot._printChance(group.chance)}</h5>
-                        ${this._getLootItemsText(group.items.sort(sortBy(["name"])), "Item", false)}`
+                    (group) =>
+                        html`<h5>Group chance: ${ListLoot._printChance(group.chance)}</h5>
+                            ${this._getLootItemsText(group.items.sort(sortBy(["name"])), "Item", false)}`,
                 )}
             `
         }
@@ -254,7 +246,7 @@ export default class ListLoot {
 
     _getLootText(): HtmlResult {
         const currentItem = (this.#data[this.#selectedType] as LootLootEntity[]).find(
-            (item) => item.id === this.#selectedItemId
+            (item) => item.id === this.#selectedItemId,
         )
 
         if (currentItem) {

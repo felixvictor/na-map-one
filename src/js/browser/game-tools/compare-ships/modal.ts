@@ -8,12 +8,11 @@
  * @license   http://www.gnu.org/licenses/gpl.html
  */
 
-import { Selection } from "d3-selection"
-
-import { HtmlString } from "common/interface"
-import { ShipColumnType } from "./index"
+import type { Selection } from "d3-selection"
 
 import Modal from "util/modal"
+import type { ShipColumnType } from "./index"
+import type { HtmlString } from "../../../@types/common"
 
 export default class CompareShipsModal extends Modal {
     #buttonMakeImage = {} as Selection<HTMLButtonElement, unknown, HTMLElement, unknown>

@@ -1,15 +1,14 @@
 import { max as d3Max, min as d3Min } from "d3-array"
 import { interpolateHcl as d3InterpolateHcl } from "d3-interpolate"
-import { ScaleLinear, scaleLinear as d3ScaleLinear } from "d3-scale"
-import { select as d3Select, Selection } from "d3-selection"
+import { type ScaleLinear, scaleLinear as d3ScaleLinear } from "d3-scale"
+import { select as d3Select, type Selection } from "d3-selection"
 
-import { colourGreenDark, colourLight, colourRedDark } from "common/common-browser"
-import { defaultCircleSize, roundToThousands, ϕ } from "common/common-math"
 import { colourScaleCounty } from "./map-data"
-
-import { PortWithTrades } from "common/gen-json"
-import { SVGGDatum } from "common/interface"
-import { maxScale, maxTileScale, minScale } from "common/common-var"
+import { colourGreenDark, colourLight, colourRedDark, maxScale, maxTileScale, minScale } from "common/constants"
+import { defaultCircleSize, ϕ } from "common/na-map-data/constants"
+import { roundToThousands } from "common/na-map-data/format"
+import type { SVGGDatum } from "../../../@types/common"
+import type { PortWithTrades } from "../../../@types/na-map-data/ports"
 
 type PortCircleStringF = (d: PortWithTrades) => string
 type PortCircleNumberF = (d: PortWithTrades) => number
@@ -128,11 +127,8 @@ export default class PortCircles {
         const rMax = roundToThousands(scaledCircleSize * this.#maxRadiusFactor)
 
         let data = this.#portData
-        // eslint-disable-next-line unicorn/consistent-function-scoping
         let cssClass: PortCircleStringF = () => ""
-        // eslint-disable-next-line unicorn/consistent-function-scoping
         let r: PortCircleNumberF = () => 0
-        // eslint-disable-next-line unicorn/consistent-function-scoping
         let fill: PortCircleStringF = () => ""
 
         // noinspection IfStatementWithTooManyBranchesJS
@@ -235,7 +231,7 @@ export default class PortCircles {
                 enter
                     .append("circle")
                     .attr("cx", (d) => d.coordinates[0])
-                    .attr("cy", (d) => d.coordinates[1])
+                    .attr("cy", (d) => d.coordinates[1]),
             )
             .attr("class", (d) => cssClass(d))
             .attr("r", (d) => r(d))

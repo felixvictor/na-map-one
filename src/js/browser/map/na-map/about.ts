@@ -1,6 +1,6 @@
 import Modal from "util/modal"
 import { displayClan } from "../../util"
-import { appDescription, appTitle, appVersion } from "common/common-browser"
+import { appDescription, appTitle, appVersion } from "common/constants"
 
 export default class About {
     #modal: Modal | undefined = undefined

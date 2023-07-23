@@ -1,14 +1,4 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Select ports.
- * @module    map/select-ports
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
-import dayjs, { Dayjs } from "da"
+import dayjs, { type Dayjs } from "dayjs"
 import customParseFormat from "dayjs/plugin/customParseFormat"
 import isBetween from "dayjs/plugin/isBetween"
 import utc from "dayjs/plugin/utc"
@@ -18,15 +8,13 @@ dayjs.extend(isBetween)
 dayjs.extend(utc)
 dayjs.locale("en-gb")
 
-import { initMultiDropdownNavbar } from "common/common-browser"
-import { serverMaintenanceHour } from "common/common-var"
-
 import DisplayPorts from "../display-ports"
-import SelectPBTimeWindow from "./pb-time"
 import SelectPortsSelectGoods from "./goods"
 import SelectPortsSelectPorts from "./ports"
 import SelectPortsNationClan from "./nation-clan"
 import Select from "util/select"
+import { serverMaintenanceHour } from "common/na-map-data/time"
+import { initMultiDropdownNavbar } from "common/DOM"
 
 type PortDepth = "deep" | "shallow"
 
@@ -108,7 +96,7 @@ export default class SelectPorts {
     _filterCaptured(begin: Dayjs, end: Dayjs): void {
         // console.log("Between %s and %s", begin.format("dddd D MMMM YYYY H:mm"), end.format("dddd D MMMM YYYY H:mm"));
         const portData = this.#ports.portDataDefault.filter((port) =>
-            dayjs(port.captured, "YYYY-MM-DD HH:mm").isBetween(begin, end, "hour", "(]")
+            dayjs(port.captured, "YYYY-MM-DD HH:mm").isBetween(begin, end, "hour", "(]"),
         )
 
         this.#ports.portData = portData

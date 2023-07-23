@@ -1,34 +1,21 @@
-/*!
- * This file is part of na-map.
- *
- * @file      List conquest flags.
- * @module    game-tools/list-flags
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
-import dayjs from "da"
+import dayjs from "dayjs"
 import "dayjs/locale/en-gb"
 import relativeTime from "dayjs/plugin/relativeTime"
+import type { Selection } from "d3-selection"
 import utc from "dayjs/plugin/utc"
-
 dayjs.extend(relativeTime)
 dayjs.extend(utc)
 dayjs.locale("en-gb")
 
 import { registerEvent } from "../../analytics"
-import { nations } from "common/common"
-import { getIdFromBaseName, loadJsonFile } from "common/common-browser"
-
-import { Selection } from "d3-selection"
-import { HtmlString } from "common/interface"
-import { ServerId } from "common/servers"
-import { FlagsPerNation } from "common/types"
-
 import Modal from "util/modal"
 import RadioButton from "util/radio-button"
 import Cookie from "util/cookie"
+import { getIdFromBaseName } from "common/DOM"
+import type { HtmlString } from "../../../@types/common"
+import type { ServerId } from "common/na-map-data/servers"
+import type { FlagsPerNation } from "../../../@types/flag"
+import { nations } from "../../../@types/na-map-data/constants"
 
 type TableRow = [string, number, string, string, string, number]
 type TableRowDisplay = [string, string, string, number]
@@ -193,7 +180,7 @@ export default class ListFlags {
                 enter
                     .append("td")
                     .classed("text-start", (d, i) => i <= 1)
-                    .text((d) => d)
+                    .text((d) => d),
             )
     }
 
@@ -249,7 +236,7 @@ export default class ListFlags {
     _listSelected(): void {
         this.#table = this.#modal!.outputSel.append("table").attr(
             "class",
-            "table table-sm table-striped table-hover table-sort text-table mt-3"
+            "table table-sm table-striped table-hover table-sort text-table mt-3",
         )
 
         this._initTable()

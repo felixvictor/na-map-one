@@ -1,20 +1,8 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Compare woods ColumnCompare class.
- * @module    game-tools/compare-woods/wood-comparison
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
-import { formatFloat, formatPercentOldstyle, formatSignFloat } from "common/common-format"
-
-import { HtmlString } from "common/interface"
-import { Amount, SelectedWood, WoodCompareAmount } from "compare-woods"
-
 import { Column } from "./column"
 import { WoodData } from "./data"
+import { formatFloat, formatPercentOldstyle, formatSignFloat } from "common/format"
+import type { Amount, SelectedWood, WoodCompareAmount } from "compare-woods"
+import type { HtmlString } from "../../../@types/common"
 
 type PropertyMap = Map<string, WoodCompareAmount>
 

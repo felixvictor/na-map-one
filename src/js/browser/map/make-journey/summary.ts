@@ -1,18 +1,8 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Journey summary.
- * @module    map-tools/make-journey/summary
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
 import { select as d3Select, Selection } from "d3-selection"
 import { displayCompassAndDegrees } from "../../util"
 
-import { Journey } from "./index"
-import { HtmlString } from "common/interface"
+import type { Journey } from "./index"
+import type { HtmlString } from "../../../@types/common"
 
 export default class MakeJourneySummary {
     #divJourneySummary = {} as Selection<HTMLDivElement, unknown, HTMLElement, unknown>

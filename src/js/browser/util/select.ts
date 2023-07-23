@@ -1,17 +1,7 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Compare ships file - select.
- * @module    game-tools/compare-ships/compare-ships/select-wood
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
 import "bootstrap-select/js/bootstrap-select"
 
-import { select as d3Select, Selection } from "d3-selection"
-import { HtmlString } from "common/interface"
+import { select as d3Select, type Selection } from "d3-selection"
+import type { HtmlString } from "../../@types/common"
 
 export interface SelectOptions {
     actionsBox: boolean
@@ -69,7 +59,7 @@ export default class Select {
         selectsDivId: HtmlString | undefined,
         selectOptions: Partial<SelectOptions>,
         options: HtmlString,
-        isMultiple = false
+        isMultiple = false,
     ) {
         this.id = `${id}-select`
         this.selectsDiv = selectsDivId ? d3Select(`#${selectsDivId}`) : undefined
@@ -100,6 +90,12 @@ export default class Select {
 
     public static resetElement(element$ = $(".selectpicker") as JQuery<HTMLSelectElement>): void {
         element$.val("default").selectpicker("refresh")
+    }
+
+    public static resetAll(): void {
+        $(".selectpicker").each((index, element) => {
+            Select.resetElement($(element as HTMLSelectElement))
+        })
     }
 
     public static resetAllExcept(selectWhiteList$: JQuery<HTMLSelectElement>[]): void {

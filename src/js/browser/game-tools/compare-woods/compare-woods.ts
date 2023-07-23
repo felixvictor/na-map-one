@@ -1,25 +1,14 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Compare woods CompareWoods class.
- * @module    game-tools/compare-woods/compare-woods
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
 import { registerEvent } from "../../analytics"
-
-import { HtmlString } from "common/interface"
-import { SelectedWood, WoodColumnTypeList, WoodTypeList } from "compare-woods"
-import { WoodColumnType } from "./index"
-
 import CompareWoodsModal from "./modal"
 import { ColumnBase } from "./column-base"
 import { ColumnCompare } from "./column-compare"
 import { WoodData } from "./data"
-import { woodType, WoodType } from "common/types"
 import Select from "util/select"
+import { woodType } from "../../../@types/na-map-data/constants"
+import type { SelectedWood, WoodColumnTypeList, WoodTypeList } from "compare-woods"
+import type { WoodColumnType } from "./index"
+import type { HtmlString } from "../../../@types/common"
+import type { WoodType } from "../../../@types/na-map-data/woods"
 
 type CompareWoodsBaseId = "compare-wood" | "compare-ship" | "ship-journey"
 
@@ -66,7 +55,7 @@ export class CompareWoods {
                 `${this.#baseId}-${columnId}-${type}`,
                 divOutputId,
                 { placeholder: `Select ${type}` },
-                this.#woodData.getOptions(type)
+                this.#woodData.getOptions(type),
             )
         }
     }
@@ -134,7 +123,7 @@ export class CompareWoods {
                         this.#modal!.getBaseIdOutput(columnId),
                         this.#woodData,
                         this._getWoodData("base"),
-                        this._getWoodData(columnId)
+                        this._getWoodData(columnId),
                     )
                 }
             }
@@ -144,7 +133,7 @@ export class CompareWoods {
                 this.#modal!.getBaseIdOutput(compareId),
                 this.#woodData,
                 this._getWoodData("base"),
-                this._getWoodData(compareId)
+                this._getWoodData(compareId),
             )
         }
     }

@@ -1,31 +1,22 @@
-/*!
- * This file is part of na-map.
- *
- * @file      List cannons.
- * @module    game-tools/list-cannons
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
 import { default as BSTab } from "bootstrap/js/dist/tab"
-
+import type { Selection } from "d3-selection"
 import { registerEvent } from "../../analytics"
-import {
-    CannonFamily,
-    cannonFamilyList,
-    CannonType,
-    cannonType,
-    CannonTypeList,
-    capitalizeFirstLetter,
-} from "common/common"
-import { getIdFromBaseName } from "common/common-browser"
-import { formatFloatFixed } from "common/common-format"
-
-import { Selection } from "d3-selection"
-import { Cannon, CannonDamage, CannonEntity, CannonGeneric, CannonPenetration } from "common/gen-json"
-import { HeaderMap, HtmlResult, HtmlString, Key } from "common/interface"
 import Modal from "util/modal"
+import { getIdFromBaseName } from "common/DOM"
+import { capitalizeFirstLetter } from "common/na-map-data/format"
+import { cannonFamilyList, cannonType } from "../../../@types/na-map-data/constants"
+import { formatFloatFixed } from "common/format"
+import type { HeaderMap, HtmlResult, HtmlString, Key } from "../../../@types/common"
+import type {
+    Cannon,
+    CannonDamage,
+    CannonEntity,
+    CannonFamily,
+    CannonGeneric,
+    CannonPenetration,
+    CannonType,
+    CannonTypeList,
+} from "../../../@types/na-map-data/cannons"
 
 interface FamilyRowData {
     family: CannonFamily
@@ -86,7 +77,7 @@ export default class ListCannons {
     _setupData(cannonData: Cannon): void {
         // Get group and element header from first long cannon, sort by groupOrder
         const cannon = Object.entries(cannonData.long[0]).sort(
-            (a, b) => this.#groupOrder.indexOf(a[0]) - this.#groupOrder.indexOf(b[0])
+            (a, b) => this.#groupOrder.indexOf(a[0]) - this.#groupOrder.indexOf(b[0]),
         )
         for (const [groupKey, groupValue] of cannon) {
             if (groupKey === "name") {
@@ -105,14 +96,14 @@ export default class ListCannons {
             this.#cannonDataDefault[type] = cannonData[type].map((cannon: CannonEntity): FamilyRowData => {
                 const elements = [] as RowData[]
                 const cannonSorted = Object.entries(cannon).sort(
-                    (a, b) => this.#groupOrder.indexOf(a[0]) - this.#groupOrder.indexOf(b[0])
+                    (a, b) => this.#groupOrder.indexOf(a[0]) - this.#groupOrder.indexOf(b[0]),
                 )
                 for (const [groupKey, groupValue] of cannonSorted) {
                     if (groupKey === "name") {
                         elements.push(this._getFormattedName(groupValue as string))
                     } else if (groupKey !== "family") {
                         for (const [, elementValue] of Object.entries(
-                            groupValue as CannonDamage | CannonGeneric | CannonPenetration
+                            groupValue as CannonDamage | CannonGeneric | CannonPenetration,
                         )) {
                             if (elementValue) {
                                 elements.push({
@@ -232,7 +223,7 @@ export default class ListCannons {
 
     _injectTableStructure(
         tabContent: Selection<HTMLDivElement, unknown, HTMLElement, unknown>,
-        type: CannonType
+        type: CannonType,
     ): void {
         this.#sortAscending[type] = true
         this.#tables[type] = tabContent
@@ -267,7 +258,7 @@ export default class ListCannons {
     _insertTabContent(
         tab: Selection<HTMLDivElement, unknown, HTMLElement, unknown>,
         type: CannonType,
-        index: number
+        index: number,
     ): void {
         this.#sortAscending[type] = true
 
@@ -315,7 +306,7 @@ export default class ListCannons {
             .join((enter) =>
                 enter.append("td").html((d) => {
                     return d.formattedValue
-                })
+                }),
             )
     }
 

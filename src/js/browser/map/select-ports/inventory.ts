@@ -1,24 +1,14 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Select ports inventory select.
- * @module    map/select-ports/inventory
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
 import { registerEvent } from "../../analytics"
-import { getIdFromBaseName } from "common/common-browser"
-import { formatInt, formatSiCurrency } from "common/common-format"
-import { NationShortName, sortBy } from "common/common"
 
-import { HtmlString } from "common/interface"
-import { InventoryEntity } from "common/gen-json"
-
-import Select, { SelectOptions } from "util/select"
+import Select, { type SelectOptions } from "util/select"
 import DisplayPorts from "../display-ports"
 import ShowTrades from "../show-trades"
+import { getIdFromBaseName } from "common/DOM"
+import { formatInt, formatSiCurrency } from "common/format"
+import { sortBy } from "common/na-map-data/sort"
+import type { NationShortName } from "../../../@types/na-map-data/nations"
+import type { InventoryEntity } from "../../../@types/na-map-data/ports"
+import type { HtmlString } from "../../../@types/common"
 
 type GoodMap = Map<string, { name: string; nation: NationShortName; good: InventoryEntity }>
 
@@ -101,7 +91,7 @@ export default class SelectPortsSelectInventory {
                 h += `${value.name} <span class="flag-icon-${
                     value.nation
                 } flag-icon-small me-1" role="img"></span>: ${formatInt(value.good.buyQuantity)} @ ${formatSiCurrency(
-                    value.good.buyPrice
+                    value.good.buyPrice,
                 )}<br>`
             }
         }
@@ -116,7 +106,7 @@ export default class SelectPortsSelectInventory {
                 h += `${value.name} <span class="flag-icon-${
                     value.nation
                 } flag-icon-small me-1" role="img"></span>: ${formatInt(value.good.sellQuantity)} @ ${formatSiCurrency(
-                    value.good.sellPrice
+                    value.good.sellPrice,
                 )}<br>`
             }
         }

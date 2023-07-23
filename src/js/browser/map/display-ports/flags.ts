@@ -1,5 +1,7 @@
-import { nations, NationShortName } from "common/common"
-import { nationFlags, primary300 } from "common/common-browser"
+import { nationFlags } from "common/flags"
+import { nations } from "../../../@types/na-map-data/constants"
+import type { NationShortName } from "../../../@types/na-map-data/nations"
+import { colourPrimary300 } from "common/constants"
 
 export default class Flags {
     readonly #iconSize = 48
@@ -52,7 +54,7 @@ export default class Flags {
         const rectAvail = document.createElementNS("http://www.w3.org/2000/svg", "rect")
         rectAvail.setAttribute("height", "480")
         rectAvail.setAttribute("width", "640")
-        rectAvail.setAttribute("fill", primary300)
+        rectAvail.setAttribute("fill", colourPrimary300)
         rectAvail.setAttribute("fill-opacity", "0.7")
 
         return rectAvail
@@ -92,7 +94,6 @@ export default class Flags {
         for (const nation of nations.map((d) => d.short)) {
             const patternElement = this.#getPattern(nation)
             patternElement.append(this.#getImage(nation))
-            // eslint-disable-next-line unicorn/prefer-dom-node-append
             const patternNode = this.#svgDefNode.appendChild(patternElement)
 
             if (nation !== "FT") {

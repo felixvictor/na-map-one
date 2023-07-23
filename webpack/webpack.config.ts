@@ -91,4 +91,5 @@ const doAsync = async () => {
     config.plugins = getPluginConfig(repairs)
     return config
 }
+
 module.exports = doAsync

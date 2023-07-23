@@ -1,7 +1,8 @@
-import { Area, regionPolygon } from "./map-data"
-import { SVGGDatum, ZoomLevel } from "common/interface"
-import { select as d3Select, Selection } from "d3-selection"
-import { Point } from "common/common-math"
+import { select as d3Select, type Selection } from "d3-selection"
+
+import { type Area, regionPolygon } from "./map-data"
+import type { SVGGDatum, ZoomLevel } from "../../../@types/common"
+import type { Point } from "common/na-map-data/coordinates"
 
 export default class Regions {
     #gRegion = {} as Selection<SVGGElement, SVGGDatum, HTMLElement, unknown>
@@ -24,7 +25,7 @@ export default class Regions {
                 region.centroid[0] >= lowerBound[0] &&
                 region.centroid[0] <= upperBound[0] &&
                 region.centroid[1] >= lowerBound[1] &&
-                region.centroid[1] <= upperBound[1]
+                region.centroid[1] <= upperBound[1],
         )
 
         this.#gRegion
@@ -35,7 +36,7 @@ export default class Regions {
                     .append("text")
                     .attr("class", "svg-text-center")
                     .attr("transform", (d) => `translate(${d.centroid[0]},${d.centroid[1]})rotate(${d.angle})`)
-                    .text((d) => d.name)
+                    .text((d) => d.name),
             )
 
         /* Show polygon for test purposes

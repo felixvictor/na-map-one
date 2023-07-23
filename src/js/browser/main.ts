@@ -1,18 +1,8 @@
-/*!
- * This file is part of na-map.
- *
- * @file Main file.
- * @author iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
 import { initAnalytics, registerPage } from "./analytics"
-import { ServerId, serverIds } from "common/servers"
-
 import Cookie from "util/cookie"
 import RadioButton from "util/radio-button"
 import { ShipCompareSearchParamsRead } from "./game-tools/compare-ships/search-params-read"
+import { type ServerId, serverIds } from "common/na-map-data/servers"
 
 import "scss/main.scss"
 
@@ -26,7 +16,7 @@ declare global {
     }
 }
 SVGAnimatedString.prototype.indexOf = function (this: SVGAnimatedString): number {
-    // @ts-expect-error
+    // @ts-expect-error lala
     return this.baseVal.indexOf.apply(this.baseVal, arguments) // eslint-disable-line prefer-spread,prefer-rest-params
 }
 
@@ -145,14 +135,14 @@ const load = async (): Promise<void> => {
         ;(document.querySelector("#game-tools-dropdown") as HTMLElement).addEventListener(
             "show.bs.dropdown",
             async () => loadGameTools(serverId, undefined),
-            { once: true }
+            { once: true },
         )
     }
 
     ;(document.querySelector("#map-tools-dropdown") as HTMLElement).addEventListener(
         "show.bs.dropdown",
         async () => loadMapTools(),
-        { once: true }
+        { once: true },
     )
 }
 

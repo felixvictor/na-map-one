@@ -1,25 +1,21 @@
-/*!
- * This file is part of na-map.
- *
- * @file      List woods.
- * @module    game-tools/list-woods
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
-import { Selection } from "d3-selection"
+import type { Selection } from "d3-selection"
 
 import { registerEvent } from "../../analytics"
-import { capitalizeFirstLetter, simpleStringSort } from "common/common"
-import { getIdFromBaseName } from "common/common-browser"
-import { formatFloatFixed, formatPP } from "common/common-format"
-
-import { WoodJsonData, WoodProperty, WoodTrimOrFrame } from "common/gen-json"
-import { HtmlString } from "common/interface"
-import { WoodTypeList } from "compare-woods"
-import { woodFamily, WoodFamily, woodType, WoodType } from "common/types"
+import type { WoodTypeList } from "compare-woods"
 import Modal from "util/modal"
+import { getIdFromBaseName } from "common/DOM"
+import { simpleStringSort } from "common/na-map-data/sort"
+import { woodFamily, woodType } from "../../../@types/na-map-data/constants"
+import { capitalizeFirstLetter } from "common/na-map-data/format"
+import { formatFloatFixed, formatPP } from "common/format"
+import type { HtmlString } from "../../../@types/common"
+import type {
+    WoodFamily,
+    WoodJsonData,
+    WoodProperty,
+    WoodTrimOrFrame,
+    WoodType,
+} from "../../../@types/na-map-data/woods"
 
 /**
  *
@@ -77,7 +73,7 @@ export default class ListWoods {
 
         for (const wood of this._woodDataDefault[type]) {
             for (const property of wood.properties.filter(
-                (property) => !this._modifiersNotUsed.has(property.modifier)
+                (property) => !this._modifiersNotUsed.has(property.modifier),
             )) {
                 modifiers.add(property.modifier)
             }
@@ -230,7 +226,7 @@ export default class ListWoods {
                     .classed("text-start", (d, i) => i === 0)
                     .html((d) => {
                         return d
-                    })
+                    }),
             )
     }
 

@@ -1,21 +1,11 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Compare ships ship file.
- * @module    game-tools/compare-ships/ship
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
 import { select as d3Select, Selection } from "d3-selection"
 import { arc as d3Arc, pie as d3Pie } from "d3-shape"
 
-import { numberSegments } from "common/common-browser"
 import { CompareShips } from "./compare-ships"
-import { ShipGunDeck, ShipGuns } from "common/gen-json"
-import { HtmlString } from "common/interface"
-import { ShipDisplayData } from "compare-ships"
+import { numberSegments } from "common/constants"
+import type { ShipDisplayData } from "compare-ships"
+import type { HtmlString } from "../../../@types/common"
+import type { ShipGunDeck, ShipGuns } from "../../../@types/na-map-data/ships"
 
 type TextColumnSize = 4 | 6
 
@@ -121,7 +111,7 @@ export class Column {
         function displayColumn(
             element: keyof ShipDisplayData,
             description: string,
-            col: TextColumnSize = 6
+            col: TextColumnSize = 6,
         ): HtmlString {
             let elementText: string
             let br = ""

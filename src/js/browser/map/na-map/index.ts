@@ -1,31 +1,14 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Display map.
- * @module    map/map
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
-import { pointer as d3Pointer, select as d3Select, Selection } from "d3-selection"
+import { pointer as d3Pointer, select as d3Select, type Selection } from "d3-selection"
 import { scaleLinear as d3ScaleLinear } from "d3-scale"
-import { D3ZoomEvent, zoom as d3Zoom, ZoomBehavior, zoomIdentity as d3ZoomIdentity, ZoomTransform } from "d3-zoom"
+import {
+    type D3ZoomEvent,
+    zoom as d3Zoom,
+    type ZoomBehavior,
+    zoomIdentity as d3ZoomIdentity,
+    ZoomTransform,
+} from "d3-zoom"
 
 import { registerEvent } from "../../analytics"
-import { defaultFontSize, Extent, nearestPow2, Point } from "common/common-math"
-import {
-    initScale,
-    labelScaleThreshold,
-    mapSize,
-    maxScale,
-    minScale,
-    pbZoneScaleThreshold,
-    zoomAndPanScale,
-} from "common/common-var"
-
-import { MinMaxCoord, ZoomLevel } from "common/interface"
-import { ServerId } from "common/servers"
 
 import Cookie from "util/cookie"
 import RadioButton from "util/radio-button"
@@ -43,6 +26,18 @@ import WindRose from "../wind-rose"
 
 import About from "./about"
 import TileMap from "./tile-map"
+import { defaultFontSize, mapSize } from "common/na-map-data/constants"
+import { type Extent, nearestPow2, type Point } from "common/na-map-data/coordinates"
+import {
+    initScale,
+    labelScaleThreshold,
+    maxScale,
+    minScale,
+    pbZoneScaleThreshold,
+    zoomAndPanScale,
+} from "common/constants"
+import type { MinMaxCoord, ZoomLevel } from "../../../@types/common"
+import type { ServerId } from "common/na-map-data/servers"
 
 /**
  * Display naval action map
@@ -322,7 +317,7 @@ class NAMap {
         // Limit coordinates to [0, 0] and [mapSize, mapSize]
         const topLeft = this.#getWorldCoordinate(0, 0).map((coord) => Math.max(0, coord)) as Point
         const bottomRight = this.#getWorldCoordinate(this.width, this.height).map((coord) =>
-            Math.min(coord, mapSize)
+            Math.min(coord, mapSize),
         ) as Point
 
         return [topLeft, bottomRight]

@@ -1,22 +1,11 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Predict wind cookies.
- * @module    map-tools/wind-rose/cookie
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
-import Cookie from "util/cookie"
-import dayjs from "da"
+import dayjs from "dayjs"
 import utc from "dayjs/plugin/utc"
 dayjs.extend(utc)
 
-import { getNextServerStart } from "common/common"
-import { degreesPerSecond } from "common/common-browser"
-
-import { HtmlString } from "common/interface"
+import Cookie from "util/cookie"
+import { getNextServerStart } from "common/na-map-data/time"
+import { degreesPerSecond } from "common/constants"
+import type { HtmlString } from "../../../@types/common"
 
 export default class WindRoseCookie {
     readonly #baseId: HtmlString

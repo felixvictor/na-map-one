@@ -1,25 +1,13 @@
-/*!
- * This file is part of na-map.
- *
- * @file      List modules.
- * @module    game-tools/list-modules
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
 import { registerEvent } from "../../analytics"
-import { formatPP, formatSignInt, formatSignPercentOldstyle } from "common/common-format"
-import { getOrdinal } from "common/common-math"
 import { chunkify } from "../../util"
-
-import { sortBy } from "common/common"
-import { getIdFromBaseName } from "common/common-browser"
 import Modal from "util/modal"
-import Select, { SelectOptions } from "util/select"
-
-import { HtmlString } from "common/interface"
-import { Module, ModuleEntity } from "common/gen-json"
+import Select, { type SelectOptions } from "util/select"
+import { getIdFromBaseName } from "common/DOM"
+import { getOrdinal } from "common/na-map-data/format"
+import { sortBy } from "common/na-map-data/sort"
+import { formatPP, formatSignInt, formatSignPercentOldstyle } from "common/format"
+import type { Module, ModuleEntity } from "../../../@types/na-map-data/modules"
+import type { HtmlString } from "../../../@types/common"
 
 export default class ListModules {
     readonly #baseId: HtmlString
@@ -154,7 +142,7 @@ export default class ListModules {
                                                     </tr>`
                                         })
                                         .join("")}</tbody></table></td>
-                            </tr>`
+                            </tr>`,
                         )
                     }
                 }

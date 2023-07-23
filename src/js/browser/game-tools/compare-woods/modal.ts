@@ -1,16 +1,6 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Wood compare modal.
- * @module    map-tools/compare-woods/modal
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
-import { WoodColumnType } from "../compare-woods"
 import Modal from "util/modal"
-import { HtmlString } from "common/interface"
+import type { WoodColumnType } from "./index"
+import type { HtmlString } from "../../../@types/common"
 
 export default class CompareWoodsModal extends Modal {
     readonly #columnIds: WoodColumnType[]

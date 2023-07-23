@@ -1,29 +1,17 @@
-/*!
- * This file is part of na-map.
- *
- * @file      List ship blueprints.
- * @module    game-tools/list-ship-blueprints
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
-import { Selection } from "d3-selection"
+import type { Selection } from "d3-selection"
 
 import { registerEvent } from "../../analytics"
-import { sortBy } from "common/common"
-import { getIdFromBaseName } from "common/common-browser"
-import { formatInt } from "common/common-format"
-
-import { Price, ShipBlueprint } from "common/gen-json"
-import { HtmlString } from "common/interface"
-import { WoodColumnTypeList, WoodTypeList } from "compare-woods"
-
-import { woodType } from "common/types"
-
 import { WoodData } from "../compare-woods/data"
 import Modal from "util/modal"
-import Select, { SelectOptions } from "util/select"
+import Select, { type SelectOptions } from "util/select"
+import { getIdFromBaseName } from "common/DOM"
+import { sortBy } from "common/na-map-data/sort"
+import { woodType } from "../../../@types/na-map-data/constants"
+import { formatInt } from "common/format"
+import type { WoodColumnTypeList, WoodTypeList } from "compare-woods"
+import type { HtmlString } from "../../../@types/common"
+import type { ShipBlueprint } from "../../../@types/na-map-data/ships"
+import type { Price } from "../../../@types/na-map-data/prices"
 
 interface ItemNeeded {
     // item
@@ -40,7 +28,7 @@ interface SeasonedCost extends StandardCost {
     tool: number
 }
 const tableType = ["Resources", "Extra", "Materials"]!
-type TableType = typeof tableType[number]
+type TableType = (typeof tableType)[number]
 type TableTypeList<T> = {
     [K in TableType]: T
 }
@@ -88,13 +76,13 @@ export default class ListShipBlueprints {
             await import(/* webpackChunkName: "data-ship-blueprints" */ "../../../../../lib/gen-generic/prices.json")
         ).default as Price
         this.#extractionCosts = new Map<string, StandardCost>(
-            costs.standard.map((cost) => [cost.name, { reales: cost.reales, labour: cost?.labour ?? 0 }])
+            costs.standard.map((cost) => [cost.name, { reales: cost.reales, labour: cost?.labour ?? 0 }]),
         )
         this.#craftingCosts = new Map<string, SeasonedCost>(
             costs.seasoned.map((cost) => [
                 cost.name,
                 { reales: cost.reales, labour: cost.labour, doubloon: cost.doubloon, tool: cost.tool },
-            ])
+            ]),
         )
 
         await this._setupWoodData()
@@ -140,7 +128,7 @@ export default class ListShipBlueprints {
                 `${this.#baseId}-wood-${type}`,
                 this.#modal!.baseIdSelects,
                 selectOptions,
-                this.#woodData.getOptions(type)
+                this.#woodData.getOptions(type),
             )
             this.#selectWood[type].disable()
         }
@@ -224,7 +212,7 @@ export default class ListShipBlueprints {
          * Default resources
          */
         let defaultResources = this.#currentBlueprint.resources.map(
-            (resource) => [resource.name, resource.amount] as ItemNeeded
+            (resource) => [resource.name, resource.amount] as ItemNeeded,
         )
 
         const getIndex = (resourceName: string): number =>
@@ -301,7 +289,7 @@ export default class ListShipBlueprints {
             ["Craft level", this.#currentBlueprint.craftLevel],
             ["Shipyard level", this.#currentBlueprint.shipyardLevel],
             ["Labour hours", this.#currentBlueprint.labourHours],
-            ["Craft experience", this.#currentBlueprint.craftXP]
+            ["Craft experience", this.#currentBlueprint.craftXP],
         )
 
         // Add extraction price and labour

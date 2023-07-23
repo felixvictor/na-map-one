@@ -6,7 +6,7 @@ import { ShipCompareSearchParamsWrite } from "./search-params-write"
 export const copyDataClicked = (
     selectedIds: ShipColumnTypeList<SelectedId>,
     moduleTypes: Set<ModuleType>,
-    modalNode: HTMLDivElement
+    modalNode: HTMLDivElement,
 ): void => {
     registerEvent("Menu", "Copy ship compare")
 

@@ -1,7 +1,7 @@
-import { woodType } from "common/types"
 import { shipColumnType } from "./index"
-import { ModuleType, SelectedId, ShipColumnTypeList } from "compare-ships"
 import { ShipCompareSearchParams } from "./search-params"
+import { woodType } from "../../../@types/na-map-data/constants"
+import type { ModuleType, SelectedId, ShipColumnTypeList } from "compare-ships"
 
 export class ShipCompareSearchParamsRead extends ShipCompareSearchParams {
     #selectedIds = {} as ShipColumnTypeList<SelectedId>

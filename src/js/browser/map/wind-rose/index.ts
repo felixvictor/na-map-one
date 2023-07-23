@@ -1,27 +1,14 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Show wind rose continuously.
- * @module    map-tools/wind-rose
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
-import { select as d3Select, Selection } from "d3-selection"
-import { Line, line as d3Line } from "d3-shape"
+import { select as d3Select, type Selection } from "d3-selection"
+import { type Line, line as d3Line } from "d3-shape"
 
 import { registerEvent } from "../../analytics"
-import { degreesPerSecond, getIdFromBaseName } from "common/common-browser"
-import { degreesToRadians } from "common/common-math"
-
 import { printSmallCompassRose } from "../../util"
-
-import { HtmlString } from "common/interface"
-
 import WindRoseModal from "./modal"
 import WindRoseCookie from "./cookie"
-import Toast from "util/toast"
+import { getIdFromBaseName } from "common/DOM"
+import { degreesPerSecond } from "common/constants"
+import { degreesToRadians } from "common/na-map-data/coordinates"
+import type { HtmlString } from "../../../@types/common"
 
 export default class WindRose {
     #div!: Selection<HTMLDivElement, unknown, HTMLElement, unknown>

@@ -1,6 +1,6 @@
-import { hashids } from "common/common-game-tools"
-import { appVersion } from "common/common-browser"
-import { ModuleType } from "compare-ships"
+import { hashids } from "common/game-tools"
+import { appVersion } from "common/constants"
+import type { ModuleType } from "compare-ships"
 
 export class ShipCompareSearchParams {
     #VERSION = "v"

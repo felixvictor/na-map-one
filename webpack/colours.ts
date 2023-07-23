@@ -1,5 +1,3 @@
-// noinspection ES6PreferShortImport
-
 import sass from "sass"
 import parseCss, { Declaration, Rule } from "css"
 import path from "path"
@@ -9,11 +7,7 @@ const fileScssPreCompile = path.resolve(dirSrc, "scss", "pre-compile.scss")
 type ColourMap = Map<string, string>
 
 const getColours = (): ColourMap => {
-    const compiledCss = sass
-        .renderSync({
-            file: fileScssPreCompile,
-        })
-        .css.toString()
+    const compiledCss = sass.compile(fileScssPreCompile).css.toString()
     const parsedCss = parseCss.parse(compiledCss)
     return new Map(
         (

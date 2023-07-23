@@ -1,19 +1,8 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Predict wind modal.
- * @module    map-tools/wind-rose/modal
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
 import { copyF11ToClipboard } from "../../util"
 import { registerEvent } from "../../analytics"
 
 import Modal from "util/modal"
-
-import { HtmlString } from "common/interface"
+import type { HtmlString } from "../../../@types/common"
 
 export default class F11Modal extends Modal {
     readonly #copyButtonId: HtmlString

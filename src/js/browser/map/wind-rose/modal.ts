@@ -1,17 +1,6 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Predict wind modal.
- * @module    map-tools/wind-rose/modal
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
 import Modal from "util/modal"
 import WindInput from "util/wind-input"
-
-import { HtmlString } from "common/interface"
+import { HtmlString } from "../../../@types/common"
 
 export default class WindRoseModal extends Modal {
     #timeGroupId: HtmlString

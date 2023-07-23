@@ -1,17 +1,7 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Predict wind.
- * @module    map-tools/predict-wind
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
-import { select as d3Select, Selection } from "d3-selection"
+import { select as d3Select, type Selection } from "d3-selection"
 import { line as d3Line } from "d3-shape"
 
-import dayjs from "da"
+import dayjs from "dayjs"
 import customParseFormat from "dayjs/plugin/customParseFormat"
 import utc from "dayjs/plugin/utc"
 dayjs.extend(customParseFormat)
@@ -19,13 +9,12 @@ dayjs.extend(utc)
 dayjs.locale("en-gb")
 
 import { registerEvent } from "../../analytics"
-import { degreesPerSecond, getIdFromBaseName } from "common/common-browser"
-import { compassToDegrees, degreesToCompass, degreesToRadians } from "common/common-math"
 import { displayCompassAndDegrees, printCompassRose } from "../../util"
-
-import { HtmlString } from "common/interface"
-
 import PredictWindModal from "./modal"
+import { getIdFromBaseName } from "common/DOM"
+import { compassToDegrees, degreesToCompass, degreesToRadians } from "common/na-map-data/coordinates"
+import { degreesPerSecond } from "common/constants"
+import type { HtmlString } from "../../../@types/common"
 
 export default class PredictWind {
     #modal: PredictWindModal | undefined = undefined
@@ -86,7 +75,6 @@ export default class PredictWind {
         const predictMinutes = Number.parseInt(match![2], 10)
 
         // Set current wind in correctionValueDegrees
-        // eslint-disable-next-line unicorn/prefer-ternary
         if (Number.isNaN(Number(currentUserWind))) {
             currentWindDegrees = compassToDegrees(String(currentUserWind))
         } else {
@@ -106,7 +94,7 @@ export default class PredictWind {
             predictedWindDegrees,
             predictTime.format(timeFormat),
             degreesToCompass(currentUserWind),
-            currentTime.format(timeFormat)
+            currentTime.format(timeFormat),
         )
     }
 
@@ -143,7 +131,7 @@ export default class PredictWind {
         const compass = degreesToCompass(predictedWindDegrees)
         const lineHeight = Number.parseInt(
             window.getComputedStyle(document.querySelector("#wind")!).getPropertyValue("line-height"),
-            10
+            10,
         )
         const textSvg = this.#svg.append("svg")
 
@@ -185,7 +173,7 @@ export default class PredictWind {
         predictedWindDegrees: number,
         predictTime: string,
         currentWind: string,
-        currentTime: string
+        currentTime: string,
     ): void {
         this.clearMap()
         this.#svg.classed("d-none", false)

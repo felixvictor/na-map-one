@@ -2,11 +2,7 @@ import { default as BSTooltip } from "bootstrap/js/dist/tooltip"
 
 import { extent as d3Extent } from "d3-array"
 import { scaleLinear as d3ScaleLinear, scalePoint as d3ScalePoint } from "d3-scale"
-import { select as d3Select, Selection } from "d3-selection"
-
-import { formatInt, formatSiCurrency, formatSiInt } from "common/common-format"
-import { minMapScale } from "common/common-var"
-import { Coordinate } from "common/common-math"
+import { select as d3Select, type Selection } from "d3-selection"
 
 import {
     addDes,
@@ -18,11 +14,12 @@ import {
     numTrades,
     startBlock,
 } from "./common"
-
-import { Trade } from "common/gen-json"
-import { HtmlString } from "common/interface"
-
 import TradeData from "./trade-data"
+import { minMapScale } from "common/na-map-data/constants"
+import { formatInt, formatSiCurrency, formatSiInt } from "common/format"
+import type { Trade } from "../../../@types/na-map-data/trade"
+import type { HtmlString } from "../../../@types/common"
+import type { Coordinate } from "common/na-map-data/coordinates"
 
 export default class Graphs {
     #arrowX = 18
@@ -83,14 +80,14 @@ export default class Graphs {
         h +=
             addInfo(
                 `${this.#tradeData.getPortName(trade.source.id)} <span class="flag-icon-${this.#tradeData.getPortNation(
-                    trade.source.id
-                )} flag-icon-small me-1" role="img"></span>`
+                    trade.source.id,
+                )} flag-icon-small me-1" role="img"></span>`,
             ) + addDes(`from ${this.#tradeData.getPortDepth(trade.source.id)}`)
         h +=
             addInfo(
                 `${this.#tradeData.getPortName(trade.target.id)} <span class="flag-icon-${this.#tradeData.getPortNation(
-                    trade.target.id
-                )} flag-icon-small me-1" role="img"></span>`
+                    trade.target.id,
+                )} flag-icon-small me-1" role="img"></span>`,
             ) + addDes(`to ${this.#tradeData.getPortDepth(trade.source.id)}`)
         h += addInfo(`${formatSiInt(trade.distance)}`) + addDes("distance")
         h += endBlock()
@@ -103,7 +100,7 @@ export default class Graphs {
             .filter(
                 (link) =>
                     (link.source.id === sourceId && link.target.id === targetId) ||
-                    (link.source.id === targetId && link.target.id === sourceId)
+                    (link.source.id === targetId && link.target.id === sourceId),
             )
             .map((link) => link.profit ?? 0)
     }
@@ -191,7 +188,7 @@ export default class Graphs {
                     })
                     .on("mouseleave", (event: Event) => {
                         this.#hideDetails(event)
-                    })
+                    }),
             )
             .attr("d", (d) => this.#arcPath(this.#isPortWest(d), d))
             .attr("stroke-width", (d) => `${linkWidthScale(d.profit ?? 0) ?? 0}px`)

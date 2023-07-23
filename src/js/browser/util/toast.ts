@@ -1,18 +1,8 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Toast.
- * @module    util/toast
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
 import { default as BSToast } from "bootstrap/js/dist/toast"
 
-import { select as d3Select, Selection } from "d3-selection"
+import { select as d3Select, type Selection } from "d3-selection"
+import { iconSmallSrc } from "common/constants"
 
-import { iconSmallSrc } from "common/common-browser"
 
 /**
  * Toast

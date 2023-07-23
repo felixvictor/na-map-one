@@ -1,10 +1,9 @@
 import { sum as d3Sum } from "d3-array"
-import { select as d3Select, Selection } from "d3-selection"
+import { select as d3Select, type Selection } from "d3-selection"
 
-import { formatSiInt } from "common/common-format"
-
-import { DivDatum } from "common/interface"
-import { PortWithTrades } from "common/gen-json"
+import { formatSiInt } from "common/format"
+import type { PortWithTrades } from "../../../@types/na-map-data/ports"
+import type { DivDatum } from "../../../@types/common"
 
 export default class Summary {
     #divPortSummary = {} as Selection<HTMLDivElement, DivDatum, HTMLElement, unknown>

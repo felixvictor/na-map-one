@@ -1,42 +1,33 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Compare ships base file.
- * @module    game-tools/compare-ships/ship-base
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
-import { drag as d3Drag, DragBehavior, DragContainerElement, SubjectPosition } from "d3-drag"
-import { ScaleLinear, scaleLinear as d3ScaleLinear } from "d3-scale"
+import { drag as d3Drag } from "d3-drag"
+import { scaleLinear as d3ScaleLinear } from "d3-scale"
 import {
     arc as d3Arc,
     curveCatmullRomClosed as d3CurveCatmullRomClosed,
     pie as d3Pie,
     lineRadial as d3LineRadial,
-    PieArcDatum,
+    type PieArcDatum,
 } from "d3-shape"
 import "d3-transition"
+import type { ScaleLinear } from "d3-scale"
+import type { Selection } from "d3-selection"
+import type { DragBehavior, DragContainerElement, SubjectPosition } from "d3-drag"
 
-import { pluralise, segmentRadians } from "common/common-browser"
-import { formatFloat, formatInt, formatSignFloat, formatSignInt } from "common/common-format"
-import { degreesToCompass, getOrdinal } from "common/common-math"
 import { drawSvgCircle, drawSvgVLine, rotationAngleInDegrees } from "../../util"
-
-import { Selection } from "d3-selection"
 
 import { Column } from "./column"
 import { CompareShips } from "./compare-ships"
 import { ColumnCompare } from "./column-compare"
 
-import { hullRepairsVolume, repairsSetSize, rigRepairsVolume, rumRepairsFactor } from "common/common-game-tools"
 import { default as shipIcon } from "icons/icon-ship.svg"
-
-import { maxShallowWaterBR } from "common/common"
-import { ShipData } from "common/gen-json"
-import { DragData, ShipDisplayData } from "compare-ships"
-import { HtmlString } from "common/interface"
+import { formatFloat, formatInt, formatSignFloat, formatSignInt, pluralise } from "common/format"
+import { degreesToCompass } from "common/na-map-data/coordinates"
+import { segmentRadians } from "common/constants"
+import { getOrdinal } from "common/na-map-data/format"
+import { maxShallowWaterBR } from "common/na-map-data/constants"
+import { hullRepairsVolume, repairsSetSize, rigRepairsVolume, rumRepairsFactor } from "common/game-tools"
+import type { DragData, ShipDisplayData } from "compare-ships"
+import type { ShipData } from "../../../@types/na-map-data/ships"
+import type { HtmlString } from "../../../@types/common"
 
 /**
  * Base ship for comparison (displayed on the left side)
@@ -81,7 +72,7 @@ export class ColumnBase extends Column {
                 enter
                     .append("path")
                     .attr("d", speedArc)
-                    .attr("id", (d, i) => `tick${i}`)
+                    .attr("id", (d, i) => `tick${i}`),
             )
 
         // And add the text
@@ -96,7 +87,7 @@ export class ColumnBase extends Column {
                     .append("textPath")
                     .attr("href", (d, i) => `#tick${i}`)
                     .text((d, i) => this.ticksSpeedLabels[i])
-                    .attr("startOffset", "10%")
+                    .attr("startOffset", "10%"),
             )
     }
 
@@ -155,7 +146,7 @@ export class ColumnBase extends Column {
             const { x: xMouse, y: yMouse } = event as MouseEvent
             d.rotate = this._getHeadingInDegrees(
                 rotationAngleInDegrees({ x: d.initX, y: d.initY }, { x: xMouse, y: yMouse }),
-                d.correctionValueDegrees
+                d.correctionValueDegrees,
             )
             update()
             if (d.type === "windProfile") {
@@ -243,7 +234,6 @@ export class ColumnBase extends Column {
      * Draw profile
      */
     _drawWindProfile(): void {
-        // eslint-disable-next-line unicorn/no-null
         const pie = d3Pie().sort(null).value(1)
 
         const arcsBase = pie(this.shipData.speedDegrees) as Array<PieArcDatum<number>>
@@ -277,7 +267,7 @@ export class ColumnBase extends Column {
                 "d",
                 (d) =>
                     String(drawSvgCircle(d.compassTextX, d.compassTextY, circleSize)) +
-                    drawSvgVLine(d.compassTextX, d.compassTextY, -d.compassTextY / 2)
+                    drawSvgVLine(d.compassTextX, d.compassTextY, -d.compassTextY / 2),
             )
 
             .attr("class", "wind-profile-arrow")
@@ -312,16 +302,16 @@ export class ColumnBase extends Column {
                     .attr("r", 5)
                     .attr(
                         "cy",
-                        (d, i) => Math.cos(i * segmentRadians) * -(this._shipCompare.radiusSpeedScale(d.data) ?? 0)
+                        (d, i) => Math.cos(i * segmentRadians) * -(this._shipCompare.radiusSpeedScale(d.data) ?? 0),
                     )
                     .attr(
                         "cx",
-                        (d, i) => Math.sin(i * segmentRadians) * (this._shipCompare.radiusSpeedScale(d.data) ?? 0)
+                        (d, i) => Math.sin(i * segmentRadians) * (this._shipCompare.radiusSpeedScale(d.data) ?? 0),
                     )
                     .attr("fill", (d) => this._shipCompare.colorScale(d.data) ?? 0)
                     .attr("fill", (d) => this._shipCompare.colorScale(d.data) ?? 0)
                     .append("title")
-                    .text((d) => `${Math.round(d.data * 10) / 10} knots`)
+                    .text((d) => `${Math.round(d.data * 10) / 10} knots`),
             )
 
         datum.this = gWindProfile
@@ -342,10 +332,10 @@ export class ColumnBase extends Column {
     _printText(): void {
         const cannonsPerDeck = Column.getCannonsPerDeck(this.shipData.guns)
         const hullRepairsNeeded = Math.round(
-            (this.shipData.sides.armour * this.shipData.repairAmount!.armour) / hullRepairsVolume
+            (this.shipData.sides.armour * this.shipData.repairAmount!.armour) / hullRepairsVolume,
         )
         const rigRepairsNeeded = Math.round(
-            (this.shipData.sails.armour * this.shipData.repairAmount!.sails) / rigRepairsVolume
+            (this.shipData.sails.armour * this.shipData.repairAmount!.sails) / rigRepairsVolume,
         )
         const rumRepairsNeeded = Math.round(this.shipData.crew.max * rumRepairsFactor)
 
@@ -372,7 +362,7 @@ export class ColumnBase extends Column {
             acceleration: formatFloat(this.shipData.ship.acceleration),
             additionalRow: `${this.shipData.guns.decks < 4 ? "<br>\u00A0" : ""}`,
             backArmor: `${formatInt(this.shipData.stern.armour)}</br><span class="badge badge-highlight">${formatInt(
-                this.shipData.stern.thickness
+                this.shipData.stern.thickness,
             )}</span>`,
             battleRating: String(this.shipData.battleRating),
             bowRepair: `${formatInt(this.shipData.repairTime.bow)}`,
@@ -383,7 +373,7 @@ export class ColumnBase extends Column {
             decks: pluralise(this.shipData.guns.decks, "deck"),
             firezoneHorizontalWidth: String(this.shipData.ship.firezoneHorizontalWidth),
             frontArmor: `${formatInt(this.shipData.bow.armour)}</br><span class="badge badge-highlight">${formatInt(
-                this.shipData.bow.thickness
+                this.shipData.bow.thickness,
             )}</span>`,
             guns: String(this.shipData.guns.total),
             gunsBack: this.shipData.guns.gunsPerDeck[5].amount,
@@ -391,22 +381,22 @@ export class ColumnBase extends Column {
             halfturnTime: formatFloat(this.shipData.rudder.halfturnTime, 4),
             holdSize: formatInt(this.shipData.holdSize),
             hullRepairAmount: `${formatInt(
-                (this.shipData.repairAmount!.armour + this.shipData.repairAmount!.armourPerk) * 100
+                (this.shipData.repairAmount!.armour + this.shipData.repairAmount!.armourPerk) * 100,
             )}`,
             hullRepairsNeeded: `${formatInt(hullRepairsNeeded)}\u00A0<span class="badge badge-highlight">${formatInt(
-                hullRepairsNeeded * repairsSetSize
+                hullRepairsNeeded * repairsSetSize,
             )}</span>`,
             leakResistance: formatSignInt(this.shipData.resistance!.leaks * 100),
             limitBack: this.shipData.guns.gunsPerDeck[5],
             limitFront: this.shipData.guns.gunsPerDeck[4],
             mastBottomArmor: `${formatInt(
-                this.shipData.mast.bottomArmour
+                this.shipData.mast.bottomArmour,
             )}</br><span class="badge badge-highlight">${formatInt(this.shipData.mast.bottomThickness)}</span>`,
             mastMiddleArmor: `${formatInt(
-                this.shipData.mast.middleArmour
+                this.shipData.mast.middleArmour,
             )}</br><span class="badge badge-highlight">${formatInt(this.shipData.mast.middleThickness)}</span>`,
             mastTopArmor: `${formatInt(
-                this.shipData.mast.topArmour
+                this.shipData.mast.topArmour,
             )}</br><span class="badge badge-highlight">${formatInt(this.shipData.mast.topThickness)}</span>`,
             maxCrew: formatInt(this.shipData.crew.max),
             maxSpeed: formatFloat(this.shipData.speed.max, 3),
@@ -417,17 +407,17 @@ export class ColumnBase extends Column {
             pump: formatInt(this.shipData.pump.armour),
             repairTime: `${formatInt(this.shipData.repairTime.sides)}`,
             rigRepairAmount: `${formatInt(
-                (this.shipData.repairAmount!.sails + this.shipData.repairAmount!.sailsPerk) * 100
+                (this.shipData.repairAmount!.sails + this.shipData.repairAmount!.sailsPerk) * 100,
             )}`,
             rigRepairsNeeded: `${formatInt(rigRepairsNeeded)}\u00A0<span class="badge badge-highlight">${formatInt(
-                rigRepairsNeeded * repairsSetSize
+                rigRepairsNeeded * repairsSetSize,
             )}</span>`,
             rollAngle: formatInt(this.shipData.ship.rollAngle),
             rudder: `${formatInt(this.shipData.rudder.armour)}\u00A0<span class="badge badge-highlight">${formatInt(
-                this.shipData.rudder.thickness
+                this.shipData.rudder.thickness,
             )}</span>`,
             rumRepairsNeeded: `${formatInt(rumRepairsNeeded)}\u00A0<span class="badge badge-highlight">${formatInt(
-                rumRepairsNeeded * repairsSetSize
+                rumRepairsNeeded * repairsSetSize,
             )}</span>`,
             sailingCrew: formatInt(this.shipData.crew.sailing ?? 0),
             sails: formatInt(this.shipData.sails.armour),
@@ -437,7 +427,7 @@ export class ColumnBase extends Column {
                     : '<i class="mt-2 icon icon-small icon-light icon-deep" role="img" aria-label="Deep"></i>'
             }`,
             sideArmor: `${formatInt(this.shipData.sides.armour)}</br><span class="badge badge-highlight">${formatInt(
-                this.shipData.sides.thickness
+                this.shipData.sides.thickness,
             )}</span>`,
             splinterResistance: formatSignInt(this.shipData.resistance!.splinter * 100),
             sternRepair: `${formatInt(this.shipData.repairTime.stern)}`,

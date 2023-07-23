@@ -1,20 +1,8 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Wind input per slider.
- * @module    util/wind-input
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
 import "round-slider/src/roundslider"
-
+import type { Selection } from "d3-selection"
 import { displayCompass } from "../util"
-import { compassDirections, compassToDegrees, degreesToCompass } from "common/common-math"
-
-import { Selection } from "d3-selection"
-import { HtmlString } from "common/interface"
+import { compassDirections, compassToDegrees, degreesToCompass } from "common/na-map-data/coordinates"
+import type { HtmlString } from "../../@types/common"
 
 export default class WindInput {
     readonly #baseId: string

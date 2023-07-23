@@ -1,27 +1,16 @@
-/*!
- * This file is part of na-map.
- *
- * @file      List recipes.
- * @module    game-tools/list-recipes
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
 import { select as d3Select } from "d3-selection"
 import { registerEvent } from "../../analytics"
-import { getIdFromBaseName } from "common/common-browser"
-import { formatInt, formatSignPercentOldstyle } from "common/common-format"
-import { getCurrencyAmount } from "common/common-game-tools"
-import { getServerType, ServerId, ServerType } from "common/servers"
-
-import { Module, RecipeEntity, RecipeGroup } from "common/gen-json"
-import { HtmlString } from "common/interface"
-
 import Modal from "util/modal"
-import Select, { SelectOptions } from "util/select"
-import { sortBy } from "common/common"
-import { getOrdinal } from "common/common-math"
+import Select, { type SelectOptions } from "util/select"
+import { getOrdinal } from "common/na-map-data/format"
+import { getServerType, type ServerId, type ServerType } from "common/na-map-data/servers"
+import type { HtmlString } from "../../../@types/common"
+import type { Module } from "../../../@types/na-map-data/modules"
+import type { RecipeEntity, RecipeGroup } from "../../../@types/na-map-data/recipes"
+import { getIdFromBaseName } from "common/DOM"
+import { sortBy } from "common/na-map-data/sort"
+import { getCurrencyAmount } from "common/game-tools"
+import { formatInt, formatSignPercentOldstyle } from "common/format"
 
 const replacer = (match: string, p1: number, p2: number): string =>
     `${getOrdinal(p1)}\u202F\u2013\u202F${getOrdinal(p2)}`
@@ -53,7 +42,7 @@ export default class ListRecipes {
             await import(/* webpackChunkName: "data-recipes" */ "../../../../../lib/gen-generic/recipes.json")
         ).default.recipe as RecipeGroup[]
         this.#recipes = new Map<number, RecipeEntity>(
-            this.#recipeData.flatMap((group) => group.recipes.map((recipe: RecipeEntity) => [recipe.id, recipe]))
+            this.#recipeData.flatMap((group) => group.recipes.map((recipe: RecipeEntity) => [recipe.id, recipe])),
         )
     }
 
@@ -87,10 +76,10 @@ export default class ListRecipes {
                             (recipe: RecipeEntity) =>
                                 `<option value="${recipe.id}">${recipe.name.replace(
                                     /(\d)-(\d)(st|rd|th)/,
-                                    replacer
-                                )}</option>`
+                                    replacer,
+                                )}</option>`,
                         )
-                        .join("")}</optgroup>`
+                        .join("")}</optgroup>`,
             )
             .join("")
     }

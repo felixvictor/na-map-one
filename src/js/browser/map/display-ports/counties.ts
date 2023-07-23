@@ -1,7 +1,7 @@
+import { select as d3Select, type Selection } from "d3-selection"
 import { Area, colourScaleCounty, countyPolygon } from "./map-data"
-import { SVGGDatum, ZoomLevel } from "common/interface"
-import { select as d3Select, Selection } from "d3-selection"
-import { Point } from "common/common-math"
+import type { SVGGDatum, ZoomLevel } from "../../../@types/common"
+import type { Point } from "common/na-map-data/coordinates"
 
 export default class Counties {
     #countyPolygon = countyPolygon
@@ -24,7 +24,7 @@ export default class Counties {
                 county.centroid[0] >= lowerBound[0] &&
                 county.centroid[0] <= upperBound[0] &&
                 county.centroid[1] >= lowerBound[1] &&
-                county.centroid[1] <= upperBound[1]
+                county.centroid[1] <= upperBound[1],
         )
 
         this.#gCounty
@@ -38,7 +38,9 @@ export default class Counties {
                         .attr("transform", (d) => `translate(${d.centroid[0]},${d.centroid[1]})rotate(${d.angle})`)
                         .text((d) => d.name),
                 (update) =>
-                    update.attr("fill", (d: Area): string => (showRadius === "county" ? colourScaleCounty(d.name) : ""))
+                    update.attr("fill", (d: Area): string =>
+                        showRadius === "county" ? colourScaleCounty(d.name) : "",
+                    ),
             )
 
         /*

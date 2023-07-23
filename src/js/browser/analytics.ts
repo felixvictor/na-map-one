@@ -1,19 +1,8 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Google analytics.
- * @module    analytics
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
 /* global ga */
 
-import { appName, appVersion } from "common/common-browser"
-import { GA_TRACKING_ID } from "common/common-var"
+import { appName, appVersion, GA_TRACKING_ID } from "common/constants"
 
-// @ts-expect-error
+// @ts-expect-error lala
 window.ga = function (): void {
     // eslint-disable-next-line prefer-rest-params
     ga.q.push(arguments)

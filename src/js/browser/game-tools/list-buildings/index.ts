@@ -1,25 +1,14 @@
-/*!
- * This file is part of na-map.
- *
- * @file      List buildings.
- * @module    game-tools/list-buildings
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
+import type { Selection } from "d3-selection"
 
 import { registerEvent } from "../../analytics"
-import { sortBy } from "common/common"
-import { getIdFromBaseName } from "common/common-browser"
-import { formatInt } from "common/common-format"
-import { getCurrencyAmount } from "common/common-game-tools"
-
-import { Selection } from "d3-selection"
-import { Building, BuildingResult } from "common/gen-json"
-import { HtmlString } from "common/interface"
-
 import Modal from "util/modal"
-import Select, { SelectOptions } from "util/select"
+import Select, { type SelectOptions } from "util/select"
+import { sortBy } from "common/na-map-data/sort"
+import { getCurrencyAmount } from "common/game-tools"
+import { formatInt } from "common/format"
+import { getIdFromBaseName } from "common/DOM"
+import type { Building, BuildingResult } from "../../../@types/na-map-data/buildings"
+import type { HtmlString } from "../../../@types/common"
 
 export default class ListBuildings {
     readonly #baseId: HtmlString
@@ -140,7 +129,7 @@ export default class ListBuildings {
             for (const level of currentBuilding.levels) {
                 const i = currentBuilding.levels.indexOf(level)
                 text += `<tr><td>${i + 1}</td><td>${formatInt(level.production)}</td><td>${formatInt(
-                    level.labourDiscount * -100
+                    level.labourDiscount * -100,
                 )}</td><td>${formatInt(level.maxStorage)}</td><td>${formatInt(level.price)}</td></tr>`
             }
         }

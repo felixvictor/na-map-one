@@ -1,13 +1,3 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Make journey modal.
- * @module    map-tools/make-journey/modal
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
 import Modal from "util/modal"
 import WindInput from "util/wind-input"
 
