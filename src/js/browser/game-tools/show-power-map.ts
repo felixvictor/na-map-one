@@ -237,7 +237,9 @@ export default class PowerMap {
             343, // Tumbado
             366, // Shroud Cay
         ])
-        const points = this.#portData.filter((port) => !freeTowns.has(port.id)).map((port) => port.coordinates)
+        const points = this.#portData
+            .filter((port) => !freeTowns.has(port.id))
+            .map((port) => port.coordinates) as Iterable<Delaunay.Point>
 
         const delaunay = d3Delaunay.from(points)
 

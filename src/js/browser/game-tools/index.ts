@@ -1,14 +1,4 @@
-/*!
- * This file is part of na-map.
- *
- * @file      Game tools main file.
- * @module    game-tools/index
- * @author    iB aka Felix Victor
- * @copyright Felix Victor 2017 to 2022
- * @license   http://www.gnu.org/licenses/gpl.html
- */
-
-import { ServerId } from "common/servers"
+import type { ServerId } from "common/na-map-data/servers"
 
 import { checkShipCompareData } from "./compare-ships"
 import ListBuildings from "./list-buildings"

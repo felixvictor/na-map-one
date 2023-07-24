@@ -86,7 +86,7 @@ export default class ShowIncomeMap {
      */
     static getHeight(): number {
         const factor = 0.75
-        return Math.floor(top.innerHeight * factor)
+        return top ? Math.floor(top.innerHeight * factor) : 0
     }
 
     /**

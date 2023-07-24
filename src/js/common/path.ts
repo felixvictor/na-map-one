@@ -15,6 +15,7 @@ const buildPath = (...args: string[]) => {
 // https://stackoverflow.com/a/50052194
 
 interface DirList {
+    dirAPI: string
     dirOutput: string
     dirSrc: string
     dirWebpack: string
@@ -24,11 +25,14 @@ interface DirList {
  * Build common paths and file names
  */
 export function getCommonPaths(appRoot = process.env.PWD ?? ""): DirList {
+    const dirBuild = buildPath(appRoot, "build")
+    const dirAPI = buildPath(dirBuild, "API")
     const dirOutput = buildPath(appRoot, "public")
     const dirSrc = buildPath(appRoot, "src")
     const dirWebpack = buildPath(appRoot, "webpack")
 
     return {
+        dirAPI,
         dirOutput,
         dirSrc,
         dirWebpack,
