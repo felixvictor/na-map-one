@@ -22,14 +22,21 @@ import { registerEvent } from "../analytics"
 import Modal from "util/modal"
 import Select, { type SelectOptions } from "util/select"
 import { getIdFromBaseName, showCursorDefault, showCursorWait } from "common/DOM"
-import type { ServerId } from "common/na-map-data/servers"
-import type { NationShortName, NationShortNameList, OwnershipNation } from "../../@types/na-map-data/nations"
-import type { HtmlString } from "../../@types/common"
-import type { Ownership } from "../../@types/na-map-data/ownership"
 import { nations } from "../../@types/na-map-data/constants"
-import { primary300 } from "../../../../webpack/colours"
 import { getContrastColour } from "common/game-tools"
 import { findNationByNationShortName } from "common/nation"
+import { colourList } from "common/colours"
+import { loadJsonFile } from "common/json"
+import { colourPrimary300 } from "common/constants"
+import type { HtmlString } from "../../@types/common"
+import type { Ownership } from "../../@types/na-map-data/ownership"
+import type {
+    NationFullName,
+    NationShortName,
+    NationShortNameList,
+    OwnershipNation,
+} from "../../@types/na-map-data/nations"
+import type { ServerId } from "common/na-map-data/servers"
 
 /**
  *
@@ -79,8 +86,8 @@ export default class ShowPortOwnerships {
 
     async _loadAndSetupData(): Promise<void> {
         showCursorWait()
-        this._nationData = await loadJsonFile<Array<OwnershipNation<number>>>(`${this.#serverId}-nation.json`)
-        this._ownershipData = await loadJsonFile<Ownership[]>(`${this.#serverId}-ownership.json`)
+        this._nationData = await loadJsonFile<Array<OwnershipNation<number>>>(`${this.#serverId}-nation`)
+        this._ownershipData = await loadJsonFile<Ownership[]>(`${this.#serverId}-ownership`)
         showCursorDefault()
     }
 
@@ -254,7 +261,7 @@ export default class ShowPortOwnerships {
                         .append("path")
                         .attr("class", "nation")
                         .attr("fill", (d) => this.#textures[d.key].url())
-                        .attr("stroke", primary300)
+                        .attr("stroke", colourPrimary300)
                         .attr("stroke-width", "3px")
                         // @ts-expect-error lala
                         .attr("d", area),

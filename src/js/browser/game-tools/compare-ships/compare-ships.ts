@@ -19,6 +19,7 @@ import { colourGreenDark, colourRedDark, colourWhite } from "common/constants"
 import { formatPP, formatSignFloat, formatSignPercentOldstyle } from "common/format"
 import { hullRepairsPercent, isImported, repairTime, rigRepairsPercent, stripShipName } from "common/game-tools"
 import { getElementWidth } from "common/DOM"
+import { loadJsonFile } from "common/json"
 import { getOrdinal } from "common/na-map-data/format"
 import { woodType } from "../../../@types/na-map-data/constants"
 import type { Module, ModuleEntity, ModulePropertiesEntity } from "../../../@types/na-map-data/modules"
@@ -370,13 +371,13 @@ export class CompareShips {
         await this._setupWoodData()
     }
 
+    async _loadData() {
+        this.#moduleDataDefault = await loadJsonFile<Module[]>("modules")
+        this.#shipData = await loadJsonFile<ShipData[]>("ships")
+    }
+
     async loadAndSetupData(): Promise<void> {
-        this.#moduleDataDefault = (
-            await import(/* webpackChunkName: "data-setModules" */ "../../../../../lib/gen-generic/modules.json")
-        ).default as Module[]
-        this.#shipData = (
-            await import(/* webpackChunkName: "data-ships" */ "../../../../../lib/gen-generic/ships.json")
-        ).default as ShipData[]
+        await this._loadData()
         await this._setupData()
     }
 

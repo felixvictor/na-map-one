@@ -11,3 +11,5 @@
 .netlify
 .env
 /node_modules/
+
+public/

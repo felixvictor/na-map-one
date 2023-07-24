@@ -23,6 +23,7 @@ import { simpleStringSort } from "common/na-map-data/sort"
 import { formatPercentHtml, formatSiIntHtml } from "common/format"
 import { findNationByNationShortName } from "common/nation"
 import { displayClanLitHtml } from "common/game-tools"
+import { loadJsonFile } from "common/json"
 
 dayjs.extend(customParseFormat)
 dayjs.extend(relativeTime)
@@ -114,7 +115,7 @@ export default class PortIcons {
     }
 
     async loadData() {
-        const tradeItems = await loadJsonFile<TradeItem[]>(`${this.#serverName}-items.json`)
+        const tradeItems = await loadJsonFile<TradeItem[]>(`${this.#serverName}-items`)
         this.#tradeItem = new Map(tradeItems.map((item) => [item.id, item]))
     }
 

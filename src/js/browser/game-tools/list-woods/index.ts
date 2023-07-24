@@ -8,6 +8,7 @@ import { simpleStringSort } from "common/na-map-data/sort"
 import { woodFamily, woodType } from "../../../@types/na-map-data/constants"
 import { capitalizeFirstLetter } from "common/na-map-data/format"
 import { formatFloatFixed, formatPP } from "common/format"
+import { loadJsonFile } from "common/json"
 import type { HtmlString } from "../../../@types/common"
 import type {
     WoodFamily,
@@ -83,9 +84,7 @@ export default class ListWoods {
     }
 
     async _loadData(): Promise<void> {
-        this._woodDataDefault = (
-            await import(/* webpackChunkName: "data-woods" */ "../../../../../lib/gen-generic/woods.json")
-        ).default as WoodJsonData
+        this._woodDataDefault = await loadJsonFile<WoodJsonData>("woods")
     }
 
     _setupData(): void {

@@ -6,6 +6,7 @@ import { getIdFromBaseName } from "common/DOM"
 import { getOrdinal } from "common/na-map-data/format"
 import { sortBy } from "common/na-map-data/sort"
 import { formatPP, formatSignInt, formatSignPercentOldstyle } from "common/format"
+import { loadJsonFile } from "common/json"
 import type { Module, ModuleEntity } from "../../../@types/na-map-data/modules"
 import type { HtmlString } from "../../../@types/common"
 
@@ -25,9 +26,7 @@ export default class ListModules {
     }
 
     async _loadAndSetupData(): Promise<void> {
-        this.#moduleData = (
-            await import(/* webpackChunkName: "data-modules" */ "../../../../../lib/gen-generic/modules.json")
-        ).default as Module[]
+        this.#moduleData = await loadJsonFile<Module[]>("modules")
     }
 
     async _menuClicked(): Promise<void> {

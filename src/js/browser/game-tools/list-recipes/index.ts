@@ -4,13 +4,14 @@ import Modal from "util/modal"
 import Select, { type SelectOptions } from "util/select"
 import { getOrdinal } from "common/na-map-data/format"
 import { getServerType, type ServerId, type ServerType } from "common/na-map-data/servers"
-import type { HtmlString } from "../../../@types/common"
-import type { Module } from "../../../@types/na-map-data/modules"
-import type { RecipeEntity, RecipeGroup } from "../../../@types/na-map-data/recipes"
 import { getIdFromBaseName } from "common/DOM"
 import { sortBy } from "common/na-map-data/sort"
 import { getCurrencyAmount } from "common/game-tools"
 import { formatInt, formatSignPercentOldstyle } from "common/format"
+import { loadJsonFile } from "common/json"
+import type { HtmlString } from "../../../@types/common"
+import type { Module } from "../../../@types/na-map-data/modules"
+import type { RecipeEntity, RecipeGroup } from "../../../@types/na-map-data/recipes"
 
 const replacer = (match: string, p1: number, p2: number): string =>
     `${getOrdinal(p1)}\u202F\u2013\u202F${getOrdinal(p2)}`
@@ -35,12 +36,8 @@ export default class ListRecipes {
     }
 
     async _loadAndSetupData(): Promise<void> {
-        this.#moduleData = (
-            await import(/* webpackChunkName: "data-modules" */ "../../../../../lib/gen-generic/modules.json")
-        ).default as Module[]
-        this.#recipeData = (
-            await import(/* webpackChunkName: "data-recipes" */ "../../../../../lib/gen-generic/recipes.json")
-        ).default.recipe as RecipeGroup[]
+        this.#moduleData = await loadJsonFile<Module[]>("modules")
+        this.#recipeData = await loadJsonFile<RecipeGroup[]>("recipes")
         this.#recipes = new Map<number, RecipeEntity>(
             this.#recipeData.flatMap((group) => group.recipes.map((recipe: RecipeEntity) => [recipe.id, recipe])),
         )

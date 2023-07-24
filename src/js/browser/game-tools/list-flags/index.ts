@@ -16,6 +16,7 @@ import type { HtmlString } from "../../../@types/common"
 import type { ServerId } from "common/na-map-data/servers"
 import type { FlagsPerNation } from "../../../@types/flag"
 import { nations } from "../../../@types/na-map-data/constants"
+import { loadJsonFile } from "common/json"
 
 type TableRow = [string, number, string, string, string, number]
 type TableRowDisplay = [string, string, string, number]
@@ -59,7 +60,7 @@ export default class ListFlags {
     }
 
     async _loadData(): Promise<void> {
-        this.#flagData = await loadJsonFile<FlagsPerNation[]>(`${this.#serverId}-flags.json`)
+        this.#flagData = await loadJsonFile<FlagsPerNation[]>(`${this.#serverId}-flags`)
     }
 
     _setupData(): void {

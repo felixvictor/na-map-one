@@ -7,6 +7,7 @@ import { sortBy } from "common/na-map-data/sort"
 import { beautifyShipName } from "common/game-tools"
 import { maxShallowWaterBR } from "common/na-map-data/constants"
 import { formatFloatFixed, formatInt } from "common/format"
+import { loadJsonFile } from "common/json"
 import type { HeaderMap, HtmlString } from "../../../@types/common"
 import type { ShipData } from "../../../@types/na-map-data/ships"
 
@@ -34,12 +35,7 @@ export default class ShipList {
     }
 
     async _loadAndSetupData(): Promise<void> {
-        const shipData = (
-            await import(/* webpackChunkName: "data-ships" */ "../../../../../lib/gen-generic/ships.json")
-        ).default.sort(
-            // @ts-expect-error lala
-            sortBy(["class", "-battleRating", "name"]),
-        ) as ShipData[]
+        const shipData = (await loadJsonFile<ShipData[]>("ships")).sort(sortBy(["class", "-battleRating", "name"]))
 
         this.#shipListData = shipData.map(
             (ship: ShipData): ShipListData => [

@@ -23,7 +23,7 @@ import {
 import { nations } from "../../@types/na-map-data/constants"
 import type { PowerMapList } from "../../@types/na-map-data/power-map"
 import type { ServerId } from "common/na-map-data/servers"
-import type { DataSource, HtmlString, MinMaxCoord } from "../../@types/common"
+import type { HtmlString, MinMaxCoord } from "../../@types/common"
 import type { PortBasic } from "../../@types/na-map-data/ports"
 import { nationFlags } from "common/flags"
 import { findNationById } from "common/na-map-data/nation"
@@ -32,10 +32,7 @@ import { formatSiInt } from "common/format"
 import { colourWhite } from "common/constants"
 import { sleep } from "common/common"
 import { ϕ } from "common/na-map-data/constants"
-
-interface JsonData {
-    power: PowerMapList
-}
+import { loadJsonFile} from "common/json"
 
 interface ImagePromiseError {
     loaded: string[]
@@ -110,32 +107,20 @@ export default class PowerMap {
         this._setupListener()
     }
 
-    _setupData(data: JsonData): void {
-        this.#powerData = data.power
+    _setupData(): void {
         this.#lastIndex = this.#powerData.length - 1
 
         this.#map = d3Select("g#map")
     }
 
-    async _loadData(): Promise<JsonData> {
-        const dataSources: DataSource[] = [
-            {
-                fileName: `${this.serverId}-power.json`,
-                name: "power",
-            },
-        ]
-        const readData = {} as JsonData
-
-        this.#portData = (await import(/* webpackChunkName: "data-ports" */ "../../../../lib/gen-generic/ports.json"))
-            .default as PortBasic[]
-        await loadJsonFiles<JsonData>(dataSources, readData)
-
-        return readData
+    async _loadData() {
+        this.#portData = await loadJsonFile<PortBasic[]>("ports")
+        this.#powerData = await loadJsonFile<PowerMapList>(`${this.serverId}-power`)
     }
 
     async _loadAndSetupData(): Promise<void> {
-        const readData = await this._loadData()
-        this._setupData(readData)
+        await this._loadData()
+        this._setupData()
     }
 
     async _menuClicked(): Promise<void> {
@@ -257,7 +242,7 @@ export default class PowerMap {
         const delaunay = d3Delaunay.from(points)
 
         this.#maxY = d3Max(points, (point) => point[1]) ?? this.#coord.max
-        const bounds = [this.#coord.min, this.#coord.min, this.#coord.max, this.#maxY]
+        const bounds = [this.#coord.min, this.#coord.min, this.#coord.max, this.#maxY] as Delaunay.Bounds
 
         this.#voronoi = delaunay.voronoi(bounds)
     }

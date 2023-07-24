@@ -4,12 +4,14 @@ import Cookie from "util/cookie"
 import RadioButton from "util/radio-button"
 import Select, { type SelectOptions } from "util/select"
 import { getProfitPerDistance, getProfitPerWeight, headId, type NodeData } from "./common"
+import { loadJsonFile } from "common/json"
 import { mapSize } from "common/na-map-data/constants"
 import { nations } from "../../../@types/na-map-data/constants"
-import type { PortWithTrades } from "../../../@types/na-map-data/ports"
-import type { Trade } from "../../../@types/na-map-data/trade"
-import type { Point } from "common/na-map-data/coordinates"
+import type { PortBasic, PortBattlePerServer, PortWithTrades } from "../../../@types/na-map-data/ports"
+import type { Trade, TradeItem } from "../../../@types/na-map-data/trade"
+import type { Extent, Point } from "common/na-map-data/coordinates"
 import type { HtmlString } from "../../../@types/common"
+import type { PortBattleNationShortName } from "../../../@types/na-map-data/nations"
 
 export default class TradeData {
     #dataDefault = [] as Trade[]
@@ -171,19 +173,17 @@ export default class TradeData {
     }
 
     async #loadData(): Promise<void> {
-        const pbData = await loadJsonFile<PortBattlePerServer[]>(`${this.#serverName}-pb.json`)
-        const portData = (
-            await import(/* webpackChunkName: "data-ports" */ "../../../../../lib/gen-generic/ports.json")
-        ).default as PortBasic[]
+        const pbData = await loadJsonFile<PortBattlePerServer[]>(`${this.#serverName}-pb`)
+        const portData = await loadJsonFile<PortBasic[]>("ports")
         // Combine port data with port battle data
         this.#portData = portData.map((port) => {
             const pbPortData = pbData.find((d) => d.id === port.id)
             return { ...port, ...pbPortData } as PortWithTrades
         })
 
-        this.#dataDefault = await loadJsonFile<Trade[]>(`${this.#serverName}-trades.json`)
+        this.#dataDefault = await loadJsonFile<Trade[]>(`${this.#serverName}-trades`)
 
-        const tradeItems = await loadJsonFile<TradeItem[]>(`${this.#serverName}-items.json`)
+        const tradeItems = await loadJsonFile<TradeItem[]>(`${this.#serverName}-items`)
         this.#tradeItemNames = new Map(tradeItems.map((item) => [item.id, item.name]))
     }
 

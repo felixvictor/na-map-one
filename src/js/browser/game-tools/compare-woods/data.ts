@@ -4,6 +4,7 @@ import { simpleStringSort, sortBy } from "common/na-map-data/sort"
 import type { MinMax, WoodDataMap, WoodTypeList } from "compare-woods"
 import type { HtmlString } from "../../../@types/common"
 import type { WoodJsonData, WoodTrimOrFrame, WoodType } from "../../../@types/na-map-data/woods"
+import { loadJsonFile } from "common/json"
 
 export class WoodData {
     #baseId: HtmlString
@@ -132,9 +133,7 @@ export class WoodData {
     }
 
     async _loadAndSetupData(): Promise<void> {
-        const woodJsonData = (
-            await import(/* webpackChunkName: "data-woods" */ "../../../../../lib/gen-generic/woods.json")
-        ).default as WoodJsonData
+        const woodJsonData = await loadJsonFile<WoodJsonData>("woods")
         this._setupData(woodJsonData)
         this._setupSelectData(woodJsonData)
     }

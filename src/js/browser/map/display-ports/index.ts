@@ -15,8 +15,9 @@ import Regions from "./regions"
 import Summary from "./summary"
 import { minMapScale } from "common/na-map-data/constants"
 import type { PortBasic, PortBattlePerServer, PortPerServer, PortWithTrades } from "../../../@types/na-map-data/ports"
-import type { DataSource, PortJsonData, SVGGDatum, ZoomLevel } from "../../../@types/common"
+import type { SVGGDatum, ZoomLevel } from "../../../@types/common"
 import type { Extent, Point } from "common/na-map-data/coordinates"
+import { loadJsonFile } from "common/json"
 
 interface ReadData {
     [index: string]: PortBasic[] | PortPerServer[] | PortBattlePerServer[]
@@ -106,23 +107,10 @@ export default class DisplayPorts {
     }
 
     async _loadData(): Promise<ReadData> {
-        const dataSources: DataSource[] = [
-            {
-                fileName: `${this.#serverName}-ports.json`,
-                name: "server",
-            },
-            {
-                fileName: `${this.#serverName}-pb.json`,
-                name: "pb",
-            },
-        ]
-
         const readData = {} as ReadData
-        readData.ports = (
-            await import(/* webpackChunkName: "data-ports" */ "../../../../../lib/gen-generic/ports.json")
-        ).default as PortBasic[]
-        await loadJsonFiles<PortJsonData>(dataSources, readData)
-
+        readData.ports = await loadJsonFile<PortBasic[]>("ports")
+        readData.server = await loadJsonFile<PortPerServer[]>(`${this.#serverName}-ports`)
+        readData.pb = await loadJsonFile<PortBattlePerServer[]>(`${this.#serverName}-pb`)
         return readData
     }
 

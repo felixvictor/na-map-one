@@ -8,7 +8,8 @@ import { sortBy } from "common/na-map-data/sort"
 import { formatSignInt, formatSignPercentOldstyle } from "common/format"
 import type { HtmlString } from "../../../@types/common"
 import type { Module } from "../../../@types/na-map-data/modules"
-import type { RecipeIngredientEntity } from "../../../@types/na-map-data/recipes"
+import type { Recipe, RecipeIngredientEntity } from "../../../@types/na-map-data/recipes"
+import { loadJsonFile } from "common/json"
 
 export default class ListIngredients {
     #ingredientData = [] as RecipeIngredientEntity[]
@@ -26,12 +27,8 @@ export default class ListIngredients {
     }
 
     async _loadAndSetupData(): Promise<void> {
-        this.#moduleData = (
-            await import(/* webpackChunkName: "data-modules" */ "../../../../../lib/gen-generic/modules.json")
-        ).default as Module[]
-        this.#ingredientData = (
-            await import(/* webpackChunkName: "data-recipes" */ "../../../../../lib/gen-generic/recipes.json")
-        ).default.ingredient as RecipeIngredientEntity[]
+        this.#moduleData = await loadJsonFile<Module[]>("modules")
+        this.#ingredientData = (await loadJsonFile<Recipe>("recipes")).ingredient as RecipeIngredientEntity[]
     }
 
     async _menuClicked(): Promise<void> {

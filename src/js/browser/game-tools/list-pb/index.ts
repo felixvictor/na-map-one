@@ -14,11 +14,12 @@ import { registerEvent } from "../../analytics"
 import { displayClan } from "../../util"
 import Modal from "util/modal"
 import { getIdFromBaseName } from "common/DOM"
-import type { HtmlString } from "../../../@types/common"
-import type { ServerId } from "common/na-map-data/servers"
-import { PortBattlePerServer } from "../../../@types/na-map-data/ports"
 import { capitalizeFirstLetter } from "common/na-map-data/format"
 import { findNationByNationShortName } from "common/nation"
+import { loadJsonFile } from "common/json"
+import type { HtmlString } from "../../../@types/common"
+import type { ServerId } from "common/na-map-data/servers"
+import type { PortBattlePerServer } from "../../../@types/na-map-data/ports"
 
 type RowData = string[]
 interface RowSortData {
@@ -53,7 +54,7 @@ export default class ListPortBattles {
     }
 
     async _loadAndSetupData(): Promise<void> {
-        const data = await loadJsonFile<PortBattlePerServer[]>(`${this.#serverId}-pb.json`)
+        const data = await loadJsonFile<PortBattlePerServer[]>(`${this.#serverId}-pb`)
         this.#data = data
             .filter((port) => port.attackHostility === 1)
             .map((port) => {

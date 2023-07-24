@@ -5,6 +5,7 @@ import Cookie from "util/cookie"
 import RadioButton from "util/radio-button"
 import DisplayPorts from "./display-ports"
 import { getServerType, type ServerId, type ServerType } from "common/na-map-data/servers"
+import { loadJsonFile } from "common/json"
 import type { Extent, Point } from "common/na-map-data/coordinates"
 import type { PbZone, PbZoneBasic, PbZoneDefence, PbZoneRaid } from "../../@types/na-map-data/ports"
 
@@ -64,9 +65,7 @@ export default class DisplayPbZones {
     }
 
     async _loadData(): Promise<void> {
-        this._pbZonesDefault = (
-            await import(/* webpackChunkName: "data-pb-zones" */ "../../../../lib/gen-generic/pb-zones.json")
-        ).default as PbZone[]
+        this._pbZonesDefault = await loadJsonFile<PbZone[]>("pb-zones")
     }
 
     _setupListener(): void {

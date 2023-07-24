@@ -1,12 +1,15 @@
-// eslint-disable no-irregular-whitespace
-
 import { h, render } from "preact"
 import htm from "htm"
 
 import { registerEvent } from "../../analytics"
-import type { LootItemMap, SourceDetail } from "list-loot"
 import Select, { type SelectOptions } from "util/select"
 import Modal from "util/modal"
+import { lootType } from "../../../@types/na-map-data/constants"
+import { getIdFromBaseName } from "common/DOM"
+import { formatInt } from "common/format"
+import { sortBy } from "common/na-map-data/sort"
+import { loadJsonFile } from "common/json"
+import type { LootItemMap, SourceDetail } from "list-loot"
 import type {
     Loot,
     LootAmount,
@@ -18,10 +21,6 @@ import type {
     LootTypeList,
 } from "../../../@types/na-map-data/loot"
 import type { HtmlResult, HtmlString } from "../../../@types/common"
-import { lootType } from "../../../@types/na-map-data/constants"
-import { getIdFromBaseName } from "common/DOM"
-import { formatInt } from "common/format"
-import { sortBy } from "common/na-map-data/sort"
 
 const html = htm.bind(h)
 
@@ -57,9 +56,7 @@ export default class ListLoot {
     }
 
     async _loadAndSetupData(): Promise<void> {
-        const sourceData = (
-            await import(/* webpackChunkName: "data-loot" */ "../../../../../lib/gen-generic/loot.json")
-        ).default as Loot
+        const sourceData = await loadJsonFile<Loot>("loot")
 
         for (const type of this.#types) {
             this.#data[type] = sourceData[type]

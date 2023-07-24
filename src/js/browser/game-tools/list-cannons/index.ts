@@ -6,6 +6,7 @@ import { getIdFromBaseName } from "common/DOM"
 import { capitalizeFirstLetter } from "common/na-map-data/format"
 import { cannonFamilyList, cannonType } from "../../../@types/na-map-data/constants"
 import { formatFloatFixed } from "common/format"
+import { loadJsonFile } from "common/json"
 import type { HeaderMap, HtmlResult, HtmlString, Key } from "../../../@types/common"
 import type {
     Cannon,
@@ -55,9 +56,7 @@ export default class ListCannons {
     }
 
     async _loadAndSetupData(): Promise<void> {
-        const cannonData = (
-            await import(/* webpackChunkName: "data-cannons" */ "../../../../../lib/gen-generic/cannons.json")
-        ).default as Cannon
+        const cannonData = await loadJsonFile<Cannon>("cannons")
         this._setupData(cannonData)
     }
 

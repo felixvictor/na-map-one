@@ -7,6 +7,7 @@ import { sortBy } from "common/na-map-data/sort"
 import { getCurrencyAmount } from "common/game-tools"
 import { formatInt } from "common/format"
 import { getIdFromBaseName } from "common/DOM"
+import { loadJsonFile } from "common/json"
 import type { Building, BuildingResult } from "../../../@types/na-map-data/buildings"
 import type { HtmlString } from "../../../@types/common"
 
@@ -27,9 +28,7 @@ export default class ListBuildings {
     }
 
     async _loadAndSetupData(): Promise<void> {
-        this.#buildingData = (
-            await import(/* webpackChunkName: "data-buildings" */ "../../../../../lib/gen-generic/buildings.json")
-        ).default as Building[]
+        this.#buildingData = await loadJsonFile<Building[]>("buildings")
     }
 
     async _menuClicked(): Promise<void> {

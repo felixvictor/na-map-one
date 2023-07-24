@@ -39,11 +39,6 @@ export interface BaseModalHtml extends BaseModal {
     footer: () => HtmlResult
 }
 
-export interface DataSource {
-    fileName: string
-    name: string
-}
-
 type ZoomLevel = "initial" | "portLabel" | "pbZone"
 
 type Key = string

@@ -21,9 +21,12 @@ import seedrandom from "seedrandom"
 import { registerEvent } from "../analytics"
 import Modal from "util/modal"
 import { getIdFromBaseName, showCursorDefault, showCursorWait } from "common/DOM"
-import { formatPercentSig, formatSiInt } from "common/format"
+import { formatPercentSig, formatSiCurrency, formatSiInt } from "common/format"
+import { loadJsonFile } from "common/json"
+import { getContrastColour } from "common/game-tools"
+import { ϕ } from "common/na-map-data/constants"
 import { nations } from "../../@types/na-map-data/constants"
-import type { DataSource, HtmlString, PortIncome, PortJsonData } from "../../@types/common"
+import type { HtmlString, PortIncome, PortJsonData } from "../../@types/common"
 import type { ServerId } from "common/na-map-data/servers"
 import type { PortBasic, PortBattlePerServer, PortPerServer } from "../../@types/na-map-data/ports"
 
@@ -144,21 +147,11 @@ export default class ShowIncomeMap {
     }
 
     async _loadData(): Promise<PortJsonData> {
-        const dataSources: DataSource[] = [
-            {
-                fileName: `${this.#serverId}-ports.json`,
-                name: "server",
-            },
-            {
-                fileName: `${this.#serverId}-pb.json`,
-                name: "pb",
-            },
-        ]
         const readData = {} as PortJsonData
 
-        readData.ports = (await import(/* webpackChunkName: "data-ports" */ "../../../../lib/gen-generic/ports.json"))
-            .default as PortBasic[]
-        await loadJsonFiles<PortJsonData>(dataSources, readData)
+        readData.ports = await loadJsonFile<PortBasic[]>("ports")
+        readData.server = await loadJsonFile<PortPerServer[]>(`${this.#serverId}-ports`)
+        readData.pb = await loadJsonFile<PortBattlePerServer[]>(`${this.#serverId}-pb`)
 
         return readData
     }

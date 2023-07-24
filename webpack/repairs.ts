@@ -1,4 +1,4 @@
-import { naMapData } from "../src/js/common/url"
+import { loadJsonFile } from "../src/js/common/json"
 
 interface Repair {
     percent: number
@@ -7,11 +7,6 @@ interface Repair {
 }
 export type RepairList = Record<string, Repair>
 
-export const getRepairList = async (): Promise<RepairList | undefined> => {
-    const res = await fetch(`${naMapData.href}/repairs.json`)
-
-    if (res.ok) {
-        return await res.json()
-    }
-    return undefined
+export const getRepairList = async () => {
+    return loadJsonFile<RepairList>("repairs")
 }

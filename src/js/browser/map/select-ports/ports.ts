@@ -15,6 +15,7 @@ import type {
 import type { Coordinate, Distance, Point } from "common/na-map-data/coordinates"
 import type { NationShortName } from "../../../@types/na-map-data/nations"
 import type { HtmlString } from "../../../@types/common"
+import { loadJsonFile } from "common/json"
 
 interface SelectPort {
     [index: string]: PortIntersection
@@ -88,9 +89,7 @@ export default class SelectPortsSelectPorts {
     }
 
     async _loadData(): Promise<void> {
-        const distances = (
-            await import(/* webpackChunkName: "data-distances" */ "../../../../../lib/gen-generic/distances.json")
-        ).default as Distance[]
+        const distances = await loadJsonFile<Distance[]>("distances")
         this.#distances = new Map(
             distances.map(([fromPortId, toPortId, distance]) => [fromPortId * this.#numberPorts + toPortId, distance]),
         )

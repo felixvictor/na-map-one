@@ -12,6 +12,7 @@ import type { WoodColumnTypeList, WoodTypeList } from "compare-woods"
 import type { HtmlString } from "../../../@types/common"
 import type { ShipBlueprint } from "../../../@types/na-map-data/ships"
 import type { Price } from "../../../@types/na-map-data/prices"
+import { loadJsonFile } from "common/json"
 
 interface ItemNeeded {
     // item
@@ -61,20 +62,14 @@ export default class ListShipBlueprints {
     }
 
     async _loadAndSetupData(): Promise<void> {
-        this.#blueprintData = (
-            await import(
-                /* webpackChunkName: "data-ship-blueprints" */ "../../../../../lib/gen-generic/ship-blueprints.json"
-            )
-        ).default as ShipBlueprint[]
+        this.#blueprintData = await loadJsonFile<ShipBlueprint[]>("ship-blueprints")
 
         /**
          * Extraction prices
          * - key: resource name
          * - values: extractionCost
          */
-        const costs = (
-            await import(/* webpackChunkName: "data-ship-blueprints" */ "../../../../../lib/gen-generic/prices.json")
-        ).default as Price
+        const costs = await loadJsonFile<Price>("prices")
         this.#extractionCosts = new Map<string, StandardCost>(
             costs.standard.map((cost) => [cost.name, { reales: cost.reales, labour: cost?.labour ?? 0 }]),
         )
