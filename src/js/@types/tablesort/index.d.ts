@@ -9,6 +9,6 @@ declare module "tablesort" {
     export function extend(
         name: string,
         pattern: (item: string) => RegExpMatchArray | null,
-        sort: (a: string, b: string) => number
+        sort: (a: string, b: string) => number,
     ): void
 }

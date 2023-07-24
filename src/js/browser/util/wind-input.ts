@@ -40,7 +40,7 @@ export default class WindInput {
             editableTooltip: false,
             tooltipFormat: "sliderTooltip",
             create() {
-                // @ts-expect-error
+                // @ts-expect-error lala
                 this.control.css("display", "block")
             },
         })
@@ -68,7 +68,6 @@ export default class WindInput {
         const currentUserWind = degreesToCompass(this._getInputValue())
         let windDegrees: number
 
-        // eslint-disable-next-line unicorn/prefer-ternary
         if (Number.isNaN(Number(currentUserWind))) {
             windDegrees = compassToDegrees(currentUserWind)
         } else {

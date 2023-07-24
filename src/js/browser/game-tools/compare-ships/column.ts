@@ -50,7 +50,7 @@ export class Column {
      */
     static pd(gunsPerDeck: ShipGunDeck): HtmlString {
         let s = `<span class="badge badge-highlight">${gunsPerDeck.maxCannonLb}\u202F/\u202F`
-        // eslint-disable-next-line unicorn/prefer-ternary
+
         if (gunsPerDeck.maxCarroLb) {
             s += `${gunsPerDeck.maxCarroLb}`
         } else {
@@ -281,7 +281,6 @@ export class Column {
     _setCompass(): void {
         // Compass
         const data = Array.from({ length: numberSegments / 2 }, () => 1)
-        // eslint-disable-next-line unicorn/no-null
         const pie = d3Pie().sort(null).value(1)(data)
 
         const arc = d3Arc<number, number>()
@@ -294,7 +293,7 @@ export class Column {
             .attr("class", "compass-arc")
             .selectAll("path")
             .data(pie)
-            // @ts-expect-error
+            // @ts-expect-error lala
             .join((enter) => enter.append("path").attr("d", arc))
 
         // Add the circles for each speed tick

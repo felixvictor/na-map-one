@@ -82,7 +82,7 @@ export const trilaterate = (
     p1: Circle,
     p2: Circle,
     p3: Circle,
-    returnMiddle = false
+    returnMiddle = false,
 ): Vector | Vector[] | undefined => {
     // based on: https://en.wikipedia.org/wiki/Trilateration
 

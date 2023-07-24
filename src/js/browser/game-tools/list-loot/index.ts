@@ -1,3 +1,5 @@
+/* eslint-disable no-irregular-whitespace */
+
 import { h, render } from "preact"
 import htm from "htm"
 

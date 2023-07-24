@@ -93,7 +93,6 @@ export default class ListModules {
          * Test if current module and module at index position has same properties
          * @returns True if same
          */
-        // eslint-disable-next-line unicorn/consistent-function-scoping
         const hasSameProperties = (module: ModuleEntity, nextModule: ModuleEntity | undefined): boolean =>
             nextModule !== undefined &&
             module.name === nextModule.name &&

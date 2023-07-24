@@ -20,19 +20,19 @@ import {
     showCursorDefault,
     showCursorWait,
 } from "common/DOM"
+import { findNationById } from "common/na-map-data/nation"
+import { getContrastColour } from "common/game-tools"
+import { formatSiInt } from "common/format"
+import { sleep } from "common/common"
+import { loadJsonFile } from "common/json"
 import { nations } from "../../@types/na-map-data/constants"
+import { nationFlags } from "common/flags"
+import { colourWhite } from "common/constants"
+import { ϕ } from "common/na-map-data/constants"
 import type { PowerMapList } from "../../@types/na-map-data/power-map"
 import type { ServerId } from "common/na-map-data/servers"
 import type { HtmlString, MinMaxCoord } from "../../@types/common"
 import type { PortBasic } from "../../@types/na-map-data/ports"
-import { nationFlags } from "common/flags"
-import { findNationById } from "common/na-map-data/nation"
-import { getContrastColour } from "common/game-tools"
-import { formatSiInt } from "common/format"
-import { colourWhite } from "common/constants"
-import { sleep } from "common/common"
-import { ϕ } from "common/na-map-data/constants"
-import { loadJsonFile} from "common/json"
 
 interface ImagePromiseError {
     loaded: string[]

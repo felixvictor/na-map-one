@@ -1,3 +1,5 @@
+/* eslint-disable no-irregular-whitespace */
+
 import { default as BSTooltip } from "bootstrap/js/dist/tooltip"
 
 import { select as d3Select, type Selection } from "d3-selection"
@@ -13,17 +15,19 @@ import "dayjs/locale/en-gb"
 import customParseFormat from "dayjs/plugin/customParseFormat"
 import relativeTime from "dayjs/plugin/relativeTime"
 import utc from "dayjs/plugin/utc"
-import type { HtmlResult, SVGGDatum } from "../../../@types/common"
+import type { HtmlResult, HtmlString, SVGGDatum } from "../../../@types/common"
 import type { NationShortName } from "../../../@types/na-map-data/nations"
 import type { TradeItem } from "../../../@types/na-map-data/trade"
 import type { GoodList, PortWithTrades, TradeGoodProfit } from "../../../@types/na-map-data/ports"
 import { defaultCircleSize } from "common/na-map-data/constants"
 import { maxScale, maxTileScale, minScale } from "common/constants"
 import { simpleStringSort } from "common/na-map-data/sort"
-import { formatPercentHtml, formatSiIntHtml } from "common/format"
+import { formatInt, formatPercentHtml, formatSiCurrency, formatSiIntHtml } from "common/format"
 import { findNationByNationShortName } from "common/nation"
 import { displayClanLitHtml } from "common/game-tools"
 import { loadJsonFile } from "common/json"
+import { getPortBattleTimeHtml } from "common/time"
+import { capitalizeFirstLetter } from "common/na-map-data/format"
 
 dayjs.extend(customParseFormat)
 dayjs.extend(relativeTime)

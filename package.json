@@ -15,7 +15,7 @@
         "lint": "run-s 'lint:*'",
         "lint:css": "stylelint --config .stylelintrc \"src/scss/*.scss\"",
         "lint:ejs": "ejslint src/ejs",
-        "lint:js": "eslint -c .eslintrc.json --ext .ts,.tsx src/js",
+        "lint:js": "eslint -c .eslintrc.cjs --ext .ts,.tsx src/js",
         "main:release": "run-s build:load build:data:convert release deploy:netlify",
         "prod": "TS_NODE_PROJECT='webpack/tsconfig-for-webpack-config.json' webpack --config webpack/webpack.config.ts --mode=production --color",
         "release": "standard-version",

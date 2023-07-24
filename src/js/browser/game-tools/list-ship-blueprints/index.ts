@@ -185,11 +185,11 @@ export default class ListShipBlueprints {
 
             // Data join cells
             rows.selectAll("td")
-                // @ts-expect-error
+                // @ts-expect-error lala
                 .data((d) => d)
                 .join((enter) => enter.append("td"))
                 .classed("text-start", (d, i) => i === 0)
-                // @ts-expect-error
+                // @ts-expect-error lala
                 .html((d) => d)
         }
 

@@ -1,4 +1,4 @@
-import type { Point } from "../common/coordinates.js"
+import { Point } from "common/na-map-data/coordinates"
 
 export interface GeoJson {
     type: "FeatureCollection"

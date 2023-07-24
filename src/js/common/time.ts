@@ -11,6 +11,7 @@ const html = htm.bind(h)
 const getLocalHour = (hour: number): number => Number(dayjs.utc().hour(hour).local().format("H"))
 
 const formatFromToTimeHtml = (from: number, to: number): HtmlResult =>
+    // eslint-disable-next-line no-irregular-whitespace
     html`<span style="white-space: nowrap;">${String(from)} ‒ ${String(to)}</span>`
 
 const formatTimeHtml = (from: number, to: number): HtmlResult => {
