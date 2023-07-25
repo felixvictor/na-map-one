@@ -11,7 +11,7 @@ import { formatInt, formatSignPercentOldstyle } from "common/format"
 import { loadJsonFile } from "common/json"
 import type { HtmlString } from "../../../@types/common"
 import type { Module } from "../../../@types/na-map-data/modules"
-import type { RecipeEntity, RecipeGroup } from "../../../@types/na-map-data/recipes"
+import type { Recipe, RecipeEntity, RecipeGroup } from "../../../@types/na-map-data/recipes"
 
 const replacer = (match: string, p1: number, p2: number): string =>
     `${getOrdinal(p1)}\u202F\u2013\u202F${getOrdinal(p2)}`
@@ -37,7 +37,7 @@ export default class ListRecipes {
 
     async _loadAndSetupData(): Promise<void> {
         this.#moduleData = await loadJsonFile<Module[]>("modules")
-        this.#recipeData = await loadJsonFile<RecipeGroup[]>("recipes")
+        this.#recipeData = (await loadJsonFile<Recipe>("recipes")).recipe
         this.#recipes = new Map<number, RecipeEntity>(
             this.#recipeData.flatMap((group) => group.recipes.map((recipe: RecipeEntity) => [recipe.id, recipe])),
         )
