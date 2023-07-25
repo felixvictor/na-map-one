@@ -30,7 +30,7 @@
     "dependencies": {
         "@d3fc/d3fc-label-layout": "^7.0.3",
         "@popperjs/core": "^2.11.8",
-        "bootstrap": "^5.2.3",
+        "bootstrap": "^5.3.0",
         "bootstrap-select": "https://github.com/felixvictor/bootstrap-select#dev",
         "d3-area-label": "^1.5.0",
         "d3-array": "^3.2.4",
