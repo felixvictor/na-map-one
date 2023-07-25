@@ -1,7 +1,7 @@
 {
     "name": "na-map-one",
     "packageManager": "yarn@3.6.1",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Naval Action map",
     "scripts": {
         "clean:src:js": "find ./src/js -name \"*.ts\" -type f -regextype posix-egrep -regex \".*/(browser|common|node)/.+\" -exec bash -c 'for file in \"${1%.ts}\".js \"${1%.ts}\".js.map; do [ -e \"$file\" ] && rm -f \"$file\"; done' - '{}' ';'",
