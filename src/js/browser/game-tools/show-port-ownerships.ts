@@ -163,7 +163,7 @@ export default class ShowPortOwnerships {
     }
 
     _setupSelect(): void {
-        const selectOptions: Partial<SelectOptions> = { noneSelectedText: "Select region" }
+        const selectOptions: Partial<SelectOptions> = { placeholder: "Select region" }
 
         this.#select = new Select(this.#baseId, this.#modal!.baseIdSelects, selectOptions, this._getOptions())
     }

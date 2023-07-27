@@ -54,7 +54,7 @@ export default class ListModules {
 
     _setupSelect(): void {
         const selectOptions: Partial<SelectOptions> = {
-            noneSelectedText: "Select module category",
+            placeholder: "Select module category",
             width: "fit",
         }
 

@@ -111,14 +111,14 @@ export default class ListShipBlueprints {
     }
 
     _setupShipSelect(): void {
-        const selectOptions: Partial<SelectOptions> = { noneSelectedText: "Select blueprint" }
+        const selectOptions: Partial<SelectOptions> = { placeholder: "Select blueprint" }
 
         this.#selectShip = new Select(this.#baseId, this.#modal!.baseIdSelects, selectOptions, this._getOptions())
     }
 
     _setupWoodSelects(): void {
         for (const type of woodType) {
-            const selectOptions: Partial<SelectOptions> = { noneSelectedText: `Select ${type}` }
+            const selectOptions: Partial<SelectOptions> = { placeholder: `Select ${type}` }
             this.#selectWood[type] = new Select(
                 `${this.#baseId}-wood-${type}`,
                 this.#modal!.baseIdSelects,
