@@ -19,7 +19,7 @@ import type { Vertex } from "d3-weighted-voronoi"
 import seedrandom from "seedrandom"
 
 import { registerEvent } from "../analytics"
-import Modal from "util/modal"
+import Modal from "../components/modal"
 import { getIdFromBaseName, showCursorDefault, showCursorWait } from "common/DOM"
 import { formatPercentSig, formatSiCurrency, formatSiInt } from "common/format"
 import { loadJsonFile } from "common/json"

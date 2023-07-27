@@ -1,4 +1,4 @@
-import Select, { SelectOptions } from "util/select"
+import Select, { SelectOptions } from "../../components/select"
 import CompareShipsModal from "./modal"
 import { WoodData } from "../compare-woods/data"
 import { woodType } from "../../../@types/na-map-data/constants"

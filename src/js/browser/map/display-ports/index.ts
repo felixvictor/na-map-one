@@ -1,7 +1,7 @@
 import { select as d3Select, type Selection } from "d3-selection"
 
-import Cookie from "util/cookie"
-import RadioButton from "util/radio-button"
+import Cookie from "../../components/cookie"
+import RadioButton from "../../components/radio-button"
 import { NAMap } from "../na-map"
 import ShowF11 from "../show-f11"
 

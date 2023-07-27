@@ -1,4 +1,4 @@
-import Modal from "util/modal"
+import Modal from "../../components/modal"
 import { displayClan } from "../../util"
 import { appDescription, appTitle, appVersion } from "common/constants"
 

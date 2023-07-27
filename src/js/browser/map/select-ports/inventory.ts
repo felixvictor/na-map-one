@@ -1,6 +1,6 @@
 import { registerEvent } from "../../analytics"
 
-import Select, { type SelectOptions } from "util/select"
+import Select, { type SelectOptions } from "../../components/select"
 import DisplayPorts from "../display-ports"
 import ShowTrades from "../show-trades"
 import { getIdFromBaseName } from "common/DOM"

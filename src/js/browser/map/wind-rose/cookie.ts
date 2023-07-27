@@ -2,7 +2,7 @@ import dayjs from "dayjs"
 import utc from "dayjs/plugin/utc"
 dayjs.extend(utc)
 
-import Cookie from "util/cookie"
+import Cookie from "../../components/cookie"
 import { getNextServerStart } from "common/na-map-data/time"
 import { degreesPerSecond } from "common/constants"
 import type { HtmlString } from "../../../@types/common"

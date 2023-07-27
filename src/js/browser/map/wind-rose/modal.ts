@@ -1,5 +1,5 @@
-import Modal from "util/modal"
-import WindInput from "util/wind-input"
+import Modal from "../../components/modal"
+import WindInput from "../../components/wind-input"
 import { HtmlString } from "../../../@types/common"
 
 export default class WindRoseModal extends Modal {

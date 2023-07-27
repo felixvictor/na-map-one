@@ -1,5 +1,5 @@
 import { registerEvent } from "../../analytics"
-import Select from "util/select"
+import Select from "../../components/select"
 import DisplayPorts from "../display-ports"
 import { getIdFromBaseName } from "common/DOM"
 import { TupleKeyMap } from "common/common"

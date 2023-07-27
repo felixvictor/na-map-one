@@ -1,6 +1,6 @@
 import { registerEvent } from "../../analytics"
 import DisplayPorts from "../display-ports"
-import Select from "util/select"
+import Select from "../../components/select"
 import { getIdFromBaseName } from "common/DOM"
 import type { HtmlString } from "../../../@types/common"
 import type { GoodList, PortPerServer, PortWithTrades } from "../../../@types/na-map-data/ports"

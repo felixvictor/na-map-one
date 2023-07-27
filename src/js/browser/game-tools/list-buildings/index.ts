@@ -1,8 +1,8 @@
 import type { Selection } from "d3-selection"
 
 import { registerEvent } from "../../analytics"
-import Modal from "util/modal"
-import Select, { type SelectOptions } from "util/select"
+import Modal from "../../components/modal"
+import Select, { type SelectOptions } from "../../components/select"
 import { sortBy } from "common/na-map-data/sort"
 import { getCurrencyAmount } from "common/game-tools"
 import { formatInt } from "common/format"

@@ -1,8 +1,8 @@
-import Modal from "util/modal"
-import WindInput from "util/wind-input"
+import Modal from "../../components/modal"
+import WindInput from "../../components/wind-input"
 
 import { initFromJourney } from "../../game-tools/compare-ships"
-import Select from "util/select"
+import Select from "../../components/select"
 
 export default class MakeJourneyModal extends Modal {
     readonly #shipId = "ship-journey"

@@ -1,4 +1,4 @@
-import Modal from "util/modal"
+import Modal from "../../components/modal"
 import type { WoodColumnType } from "./index"
 import type { HtmlString } from "../../../@types/common"
 

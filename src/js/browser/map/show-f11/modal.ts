@@ -1,7 +1,7 @@
 import { copyF11ToClipboard } from "../../util"
 import { registerEvent } from "../../analytics"
 
-import Modal from "util/modal"
+import Modal from "../../components/modal"
 import type { HtmlString } from "../../../@types/common"
 
 export default class F11Modal extends Modal {

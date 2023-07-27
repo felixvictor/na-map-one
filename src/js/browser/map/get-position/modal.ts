@@ -1,4 +1,4 @@
-import Modal from "util/modal"
+import Modal from "../../components/modal"
 import { sortBy } from "common/na-map-data/sort"
 import type { PortWithTrades } from "../../../@types/na-map-data/ports"
 import type { HtmlString } from "../../../@types/common"

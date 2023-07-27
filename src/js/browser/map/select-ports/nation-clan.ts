@@ -1,6 +1,6 @@
 import { registerEvent } from "../../analytics"
 import DisplayPorts from "../display-ports"
-import Select, { type SelectOptions } from "util/select"
+import Select, { type SelectOptions } from "../../components/select"
 import { simpleStringSort, sortBy } from "common/na-map-data/sort"
 import { validNationShortName } from "common/nation"
 import { nations } from "../../../@types/na-map-data/constants"

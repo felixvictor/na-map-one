@@ -1,8 +1,8 @@
 import { select as d3Select } from "d3-selection"
 
-import Cookie from "util/cookie"
-import RadioButton from "util/radio-button"
-import Select, { type SelectOptions } from "util/select"
+import Cookie from "../../components/cookie"
+import RadioButton from "../../components/radio-button"
+import Select, { type SelectOptions } from "../../components/select"
 import { getProfitPerDistance, getProfitPerWeight, headId, type NodeData } from "./common"
 import { loadJsonFile } from "common/json"
 import { mapSize } from "common/na-map-data/constants"

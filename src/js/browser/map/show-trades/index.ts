@@ -2,8 +2,8 @@ import { ZoomTransform } from "d3-zoom"
 
 import { hideElem, showElem } from "./common"
 
-import Cookie from "util/cookie"
-import Checkbox from "util/checkbox"
+import Cookie from "../../components/cookie"
+import Checkbox from "../../components/checkbox"
 import DisplayPorts from "../display-ports"
 import SelectPortsSelectInventory from "../select-ports/inventory"
 

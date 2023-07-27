@@ -10,9 +10,9 @@ import {
 
 import { registerEvent } from "../../analytics"
 
-import Cookie from "util/cookie"
-import RadioButton from "util/radio-button"
-import Select from "util/select"
+import Cookie from "../../components/cookie"
+import RadioButton from "../../components/radio-button"
+import Select from "../../components/select"
 
 import DisplayPbZones from "../display-pb-zones"
 import DisplayPorts from "../display-ports"

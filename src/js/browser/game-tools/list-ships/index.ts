@@ -1,7 +1,7 @@
 import type { Selection } from "d3-selection"
 
 import { registerEvent } from "../../analytics"
-import Modal from "util/modal"
+import Modal from "../../components/modal"
 import { getIdFromBaseName } from "common/DOM"
 import { sortBy } from "common/na-map-data/sort"
 import { beautifyShipName } from "common/game-tools"

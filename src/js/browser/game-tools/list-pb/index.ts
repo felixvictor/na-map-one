@@ -12,7 +12,7 @@ dayjs.locale("en-gb")
 
 import { registerEvent } from "../../analytics"
 import { displayClan } from "../../util"
-import Modal from "util/modal"
+import Modal from "../../components/modal"
 import { getIdFromBaseName } from "common/DOM"
 import { capitalizeFirstLetter } from "common/na-map-data/format"
 import { findNationByNationShortName } from "common/nation"

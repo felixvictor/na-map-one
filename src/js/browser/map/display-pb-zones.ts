@@ -1,8 +1,8 @@
 import { select as d3Select, type Selection } from "d3-selection"
 
 import { drawSvgCircle, drawSvgRect } from "../util"
-import Cookie from "util/cookie"
-import RadioButton from "util/radio-button"
+import Cookie from "../components/cookie"
+import RadioButton from "../components/radio-button"
 import DisplayPorts from "./display-ports"
 import { getServerType, type ServerId, type ServerType } from "common/na-map-data/servers"
 import { loadJsonFile } from "common/json"

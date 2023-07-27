@@ -8,9 +8,9 @@ dayjs.extend(utc)
 dayjs.locale("en-gb")
 
 import { registerEvent } from "../../analytics"
-import Modal from "util/modal"
-import RadioButton from "util/radio-button"
-import Cookie from "util/cookie"
+import Modal from "../../components/modal"
+import RadioButton from "../../components/radio-button"
+import Cookie from "../../components/cookie"
 import { getIdFromBaseName } from "common/DOM"
 import type { HtmlString } from "../../../@types/common"
 import type { ServerId } from "common/na-map-data/servers"

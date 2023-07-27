@@ -2,7 +2,7 @@ import { default as BSTooltip } from "bootstrap/js/dist/tooltip"
 
 import { registerEvent } from "../../analytics"
 import { chunkify } from "../../util"
-import Modal from "util/modal"
+import Modal from "../../components/modal"
 import { getIdFromBaseName } from "common/DOM"
 import { sortBy } from "common/na-map-data/sort"
 import { formatSignInt, formatSignPercentOldstyle } from "common/format"

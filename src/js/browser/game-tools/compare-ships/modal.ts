@@ -10,7 +10,7 @@
 
 import type { Selection } from "d3-selection"
 
-import Modal from "util/modal"
+import Modal from "../../components/modal"
 import type { ShipColumnType } from "./index"
 import type { HtmlString } from "../../../@types/common"
 

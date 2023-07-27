@@ -1,7 +1,7 @@
 import { default as BSTab } from "bootstrap/js/dist/tab"
 import type { Selection } from "d3-selection"
 import { registerEvent } from "../../analytics"
-import Modal from "util/modal"
+import Modal from "../../components/modal"
 import { getIdFromBaseName } from "common/DOM"
 import { capitalizeFirstLetter } from "common/na-map-data/format"
 import { cannonFamilyList, cannonType } from "../../../@types/na-map-data/constants"
