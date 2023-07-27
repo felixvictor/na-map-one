@@ -3,7 +3,6 @@ import type { ServerId } from "common/na-map-data/servers"
 import { checkShipCompareData } from "./compare-ships"
 import ListBuildings from "./list-buildings"
 import ListCannons from "./list-cannons"
-import ListFlags from "./list-flags"
 import ListIngredients from "./list-ingredients"
 import ListLoot from "./list-loot"
 import ListModules from "./list-modules"
@@ -28,7 +27,6 @@ const init = (serverId: ServerId, readParams?: ShipCompareSearchParamsRead): voi
     void new ListWoods()
     void new ListBuildings()
     void new ListCannons()
-    void new ListFlags(serverId)
     void new ListIngredients()
     void new ListLoot()
     void new ListModules()
