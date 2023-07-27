@@ -67,7 +67,12 @@ export default class ListRecipes {
             .map(
                 (group) =>
                     `<optgroup label="${group.group}">${group.recipes
-                        .filter((recipe) => recipe.serverType === "Any" || recipe.serverType === this.#serverType)
+                        .filter(
+                            (recipe) =>
+                                recipe.serverType === -1 ||
+                                recipe.serverType === "Any" ||
+                                recipe.serverType === this.#serverType,
+                        )
                         .sort(sortBy(["name"]))
                         .map(
                             (recipe: RecipeEntity) =>
