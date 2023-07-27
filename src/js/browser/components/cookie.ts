@@ -1,4 +1,4 @@
-import Cookies from "js-cookie"
+import Cookies, { type CookieAttributes } from "js-cookie"
 import dayjs from "dayjs"
 import { appName } from "common/constants"
 
@@ -18,6 +18,12 @@ export default class Cookie {
     readonly #values: readonly string[]
     // Default cookie value
     readonly #default: string
+    readonly #tokenOptions: CookieAttributes = {
+        httpOnly: true,
+        path: "/",
+        sameSite: "strict",
+        secure: true,
+    }
 
     constructor({ id: baseId, values = [], expire }: { id: string; values?: readonly string[]; expire?: dayjs.Dayjs }) {
         this.#baseId = baseId
@@ -38,8 +44,8 @@ export default class Cookie {
             this.remove()
         } else {
             Cookies.set(this.#name, cookieValue, {
+                ...this.#tokenOptions,
                 expires: this.#expire,
-                sameSite: "strict",
             })
         }
     }
