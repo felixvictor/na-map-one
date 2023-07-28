@@ -155,10 +155,7 @@ export default class ListLoot {
                 liveSearch: true,
                 placeholder: `Select ${title}`,
                 virtualScroll: true,
-            }
-
-            if (type === "item") {
-                selectOptions.width = "440px" // 2 * 220
+                width: "440px",
             }
 
             this.#select[type] = new Select(

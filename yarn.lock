@@ -5755,11 +5755,11 @@ __metadata:
 
 "bootstrap-select@https://github.com/felixvictor/bootstrap-select#dev":
   version: 1.14.0-beta3
-  resolution: "bootstrap-select@https://github.com/felixvictor/bootstrap-select.git#commit=2966180de093ea9db0ed11ce9106250fd65d5ba7"
+  resolution: "bootstrap-select@https://github.com/felixvictor/bootstrap-select.git#commit=cb086f0403957b37f43f5be528a596c1186f4c8e"
   peerDependencies:
     bootstrap: ">=3.0.0"
     jquery: 1.9.1 - 3
-  checksum: 68884a7a092a2d05d7f35cf2079ef297e0ec105a494fb15e757905e814e55aad970c53c3e4cc97ac9e8230f1f64fefe6109d57e661c5d1177ef6b4076632ec24
+  checksum: 0c336c6e2c944988c245604009af3d221617927302dd97ab555eb1b79ebfdbe69306f584d5bb910a92d47ad555c103b46e5020219345f50c15f825b76b76a46e
   languageName: node
   linkType: hard
 

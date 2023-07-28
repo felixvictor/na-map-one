@@ -22,7 +22,6 @@ export interface SelectOptions {
     //     mobile: boolean
     //     multipleSeparator: string
     //     noneResultsText: string
-    placeholder: string
     //     sanitize: boolean
     //     sanitizeFn: null | ((unsafeElements: Array<HTMLElement | ChildNode | Node>) => void)
     //     selectAllText: string
