@@ -117,7 +117,6 @@ export default class ListWoods {
     }
 
     _sortRows(type: WoodType, index: number, changeOrder = true): void {
-        console.log("sort", type, index, this._sortIndex[type], this._rows[type].size())
         if (changeOrder && this._sortIndex[type] === index) {
             this._sortAscending[type] = !this._sortAscending[type]
         }
