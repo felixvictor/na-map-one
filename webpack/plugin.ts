@@ -10,6 +10,7 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin"
 import SitemapWebpackPlugin from "sitemap-webpack-plugin"
 import { SubresourceIntegrityPlugin } from "webpack-subresource-integrity"
 
+import { sortBy } from "../src/js/common/na-map-data/sort"
 import { servers } from "../src/js/common/na-map-data/servers"
 import PACKAGE from "../package.json"
 import {
@@ -64,7 +65,7 @@ const htmlOpt: HtmlPlugin.Options = {
     meta: { viewport: "width=device-width, initial-scale=1, shrink-to-fit=no" },
     minify: htmlMinifyOpt,
     scriptLoading: "defer",
-    servers,
+    servers: servers.sort(sortBy(["order"])),
     template: path.resolve(dirEjs, "index.ejs"),
     title: PACKAGE.description,
 }
