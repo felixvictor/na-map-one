@@ -361,7 +361,7 @@ export class ColumnBase extends Column {
 
             acceleration: formatFloat(this.shipData.ship.acceleration),
             additionalRow: `${this.shipData.guns.decks < 4 ? "<br>\u00A0" : ""}`,
-            backArmor: `${formatInt(this.shipData.stern.armour)}</br><span class="badge badge-highlight">${formatInt(
+            backArmour: `${formatInt(this.shipData.stern.armour)}</br><span class="badge badge-highlight">${formatInt(
                 this.shipData.stern.thickness,
             )}</span>`,
             battleRating: String(this.shipData.battleRating),
@@ -372,7 +372,7 @@ export class ColumnBase extends Column {
             deceleration: formatFloat(this.shipData.ship.deceleration),
             decks: pluralise(this.shipData.guns.decks, "deck"),
             firezoneHorizontalWidth: String(this.shipData.ship.firezoneHorizontalWidth),
-            frontArmor: `${formatInt(this.shipData.bow.armour)}</br><span class="badge badge-highlight">${formatInt(
+            frontArmour: `${formatInt(this.shipData.bow.armour)}</br><span class="badge badge-highlight">${formatInt(
                 this.shipData.bow.thickness,
             )}</span>`,
             guns: String(this.shipData.guns.total),
@@ -389,13 +389,13 @@ export class ColumnBase extends Column {
             leakResistance: formatSignInt(this.shipData.resistance!.leaks * 100),
             limitBack: this.shipData.guns.gunsPerDeck[5],
             limitFront: this.shipData.guns.gunsPerDeck[4],
-            mastBottomArmor: `${formatInt(
+            mastBottomArmour: `${formatInt(
                 this.shipData.mast.bottomArmour,
             )}</br><span class="badge badge-highlight">${formatInt(this.shipData.mast.bottomThickness)}</span>`,
-            mastMiddleArmor: `${formatInt(
+            mastMiddleArmour: `${formatInt(
                 this.shipData.mast.middleArmour,
             )}</br><span class="badge badge-highlight">${formatInt(this.shipData.mast.middleThickness)}</span>`,
-            mastTopArmor: `${formatInt(
+            mastTopArmour: `${formatInt(
                 this.shipData.mast.topArmour,
             )}</br><span class="badge badge-highlight">${formatInt(this.shipData.mast.topThickness)}</span>`,
             maxCrew: formatInt(this.shipData.crew.max),
@@ -426,7 +426,7 @@ export class ColumnBase extends Column {
                     ? '<i class="mt-2 icon icon-small icon-light icon-shallow" role="img" aria-label="Shallow"></i>'
                     : '<i class="mt-2 icon icon-small icon-light icon-deep" role="img" aria-label="Deep"></i>'
             }`,
-            sideArmor: `${formatInt(this.shipData.sides.armour)}</br><span class="badge badge-highlight">${formatInt(
+            sideArmour: `${formatInt(this.shipData.sides.armour)}</br><span class="badge badge-highlight">${formatInt(
                 this.shipData.sides.thickness,
             )}</span>`,
             splinterResistance: formatSignInt(this.shipData.resistance!.splinter * 100),

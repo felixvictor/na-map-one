@@ -10,7 +10,7 @@ declare module "compare-ships" {
 
         acceleration: string
         additionalRow: string
-        backArmor: string
+        backArmour: string
         battleRating: string
         bowRepair?: string
         cannonBroadsideDamage: string
@@ -24,7 +24,7 @@ declare module "compare-ships" {
         decks: string
         dispersionHorizontal: string
         dispersionVertical: string
-        frontArmor: string
+        frontArmour: string
         guns: string
         gunsBack: number | string
         gunsFront: number | string
@@ -34,9 +34,9 @@ declare module "compare-ships" {
         leakResistance: string
         limitBack: ShipGunDeck
         limitFront: ShipGunDeck
-        mastBottomArmor: string
-        mastMiddleArmor: string
-        mastTopArmor: string
+        mastBottomArmour: string
+        mastMiddleArmour: string
+        mastTopArmour: string
         maxCrew: string
         maxSpeed: string
         maxWeight: string
@@ -52,7 +52,7 @@ declare module "compare-ships" {
         sailingCrew: string
         sails: string
         shipRating: string
-        sideArmor: string
+        sideArmour: string
         splinterResistance: string
         sternRepair?: string
         structure: string

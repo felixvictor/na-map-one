@@ -424,7 +424,7 @@ export class ColumnCompare extends Column {
                 2,
             )}`,
             additionalRow: `${this.shipCompareData.guns.decks < 4 ? "<br>\u00A0" : ""}`,
-            backArmor: `${formatInt(this.shipCompareData.stern.armour)}\u00A0${getDiff(
+            backArmour: `${formatInt(this.shipCompareData.stern.armour)}\u00A0${getDiff(
                 this.shipCompareData.stern.armour,
                 this._shipBaseData.stern.armour,
             )}</br><span class="badge badge-highlight">${formatInt(
@@ -467,7 +467,7 @@ export class ColumnCompare extends Column {
                 this.shipCompareData.ship.firezoneHorizontalWidth,
                 this._shipBaseData.ship.firezoneHorizontalWidth,
             )}`,
-            frontArmor: `${formatInt(this.shipCompareData.bow.armour)}\u00A0${getDiff(
+            frontArmour: `${formatInt(this.shipCompareData.bow.armour)}\u00A0${getDiff(
                 this.shipCompareData.bow.armour,
                 this._shipBaseData.bow.armour,
             )}</br><span class="badge badge-highlight">${formatInt(this.shipCompareData.bow.thickness)}</span>${getDiff(
@@ -508,19 +508,19 @@ export class ColumnCompare extends Column {
             )}`,
             limitBack: this.shipCompareData.guns.gunsPerDeck[5],
             limitFront: this.shipCompareData.guns.gunsPerDeck[4],
-            mastBottomArmor: `${formatInt(this.shipCompareData.mast.bottomArmour)} ${getDiff(
+            mastBottomArmour: `${formatInt(this.shipCompareData.mast.bottomArmour)} ${getDiff(
                 this.shipCompareData.mast.bottomArmour,
                 this._shipBaseData.mast.bottomArmour,
             )}</br><span class="badge badge-highlight">${formatInt(
                 this.shipCompareData.mast.bottomThickness,
             )}</span>${getDiff(this.shipCompareData.mast.bottomThickness, this._shipBaseData.mast.bottomThickness)}`,
-            mastMiddleArmor: `${formatInt(this.shipCompareData.mast.middleArmour)} ${getDiff(
+            mastMiddleArmour: `${formatInt(this.shipCompareData.mast.middleArmour)} ${getDiff(
                 this.shipCompareData.mast.middleArmour,
                 this._shipBaseData.mast.middleArmour,
             )}</br><span class="badge badge-highlight">${formatInt(
                 this.shipCompareData.mast.middleThickness,
             )}</span>${getDiff(this.shipCompareData.mast.middleThickness, this._shipBaseData.mast.middleThickness)}`,
-            mastTopArmor: `${formatInt(this.shipCompareData.mast.topArmour)} ${getDiff(
+            mastTopArmour: `${formatInt(this.shipCompareData.mast.topArmour)} ${getDiff(
                 this.shipCompareData.mast.topArmour,
                 this._shipBaseData.mast.topArmour,
             )}</br><span class="badge badge-highlight">${formatInt(
@@ -581,7 +581,7 @@ export class ColumnCompare extends Column {
                     ? '<i class="mt-2 icon icon-small icon-light icon-shallow" role="img" aria-label="Shallow"></i>'
                     : '<i class="mt-2 icon icon-small icon-light icon-deep" role="img" aria-label="Deep"></i>'
             }`,
-            sideArmor: `${formatInt(this.shipCompareData.sides.armour)}\u00A0${getDiff(
+            sideArmour: `${formatInt(this.shipCompareData.sides.armour)}\u00A0${getDiff(
                 this.shipCompareData.sides.armour,
                 this._shipBaseData.sides.armour,
             )}</br><span class="badge badge-highlight">${formatInt(

@@ -21,7 +21,7 @@ export const moduleAndWoodChanges = new Map<ModifierName, Property>([
 
     ["Acceleration", { properties: ["ship.acceleration"], isBaseValueAbsolute: true }],
     [
-        "Armor thickness",
+        "Armour thickness",
         { properties: ["sides.thickness", "bow.thickness", "stern.thickness"], isBaseValueAbsolute: true },
     ],
     ["Armour hit points", { properties: ["bow.armour", "sides.armour", "stern.armour"], isBaseValueAbsolute: true }],
@@ -70,7 +70,7 @@ export const moduleAndWoodChanges = new Map<ModifierName, Property>([
 
 export const moduleAndWoodCaps = new Map<ModifierName, PropertyWithCap>([
     [
-        "Armor thickness",
+        "Armour thickness",
         {
             properties: ["sides.thickness"],
             cap: { amount: 1, isPercentage: true },

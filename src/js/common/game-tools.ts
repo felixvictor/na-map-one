@@ -10,17 +10,17 @@ import type { BaseModalHtml, HtmlResult, HtmlString } from "../@types/common"
 const html = htm.bind(h)
 
 // eslint-disable-next-line one-var
-declare const REPAIR_ARMOR_PERCENT: string,
-    REPAIR_ARMOR_TIME: string,
-    REPAIR_ARMOR_VOLUME: string,
+declare const REPAIR_ARMOUR_PERCENT: string,
+    REPAIR_ARMOUR_TIME: string,
+    REPAIR_ARMOUR_VOLUME: string,
     REPAIR_CREW_PERCENT: string,
     REPAIR_CREW_VOLUME: string,
     REPAIR_SAIL_PERCENT: string,
     REPAIR_SAIL_VOLUME: string
 
-export const hullRepairsPercent = Number(REPAIR_ARMOR_PERCENT)
-export const hullRepairsVolume = Number(REPAIR_ARMOR_VOLUME)
-export const repairTime = Number(REPAIR_ARMOR_TIME)
+export const hullRepairsPercent = Number(REPAIR_ARMOUR_PERCENT)
+export const hullRepairsVolume = Number(REPAIR_ARMOUR_VOLUME)
+export const repairTime = Number(REPAIR_ARMOUR_TIME)
 export const rigRepairsPercent = Number(REPAIR_SAIL_PERCENT)
 export const rigRepairsVolume = Number(REPAIR_SAIL_VOLUME)
 export const rumRepairsPercent = Number(REPAIR_CREW_PERCENT)

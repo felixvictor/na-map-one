@@ -171,18 +171,18 @@ export class Column {
 
         text += displayFirstColumn('Hit points <span class="badge badge-highlight">Thickness</span>')
         text += Column.displaySecondBlock()
-        text += displayColumn("sideArmor", "Sides")
+        text += displayColumn("sideArmour", "Sides")
         text += displayColumn("structure", "Hull")
-        text += displayColumn("frontArmor", "Bow")
-        text += displayColumn("backArmor", "Stern")
+        text += displayColumn("frontArmour", "Bow")
+        text += displayColumn("backArmour", "Stern")
         text += "</div></div></div>"
 
         text += displayFirstColumn('Masts <span class="badge badge-highlight">Thickness</span>')
         text += Column.displaySecondBlock()
         text += displayColumn("sails", "Sails")
-        text += displayColumn("mastBottomArmor", "Bottom")
-        text += displayColumn("mastMiddleArmor", "Middle")
-        text += displayColumn("mastTopArmor", "Top")
+        text += displayColumn("mastBottomArmour", "Bottom")
+        text += displayColumn("mastMiddleArmour", "Middle")
+        text += displayColumn("mastTopArmour", "Top")
         text += "</div></div></div>"
 
         text += displayFirstColumn("Crew")
