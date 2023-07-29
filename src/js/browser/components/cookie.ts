@@ -18,12 +18,17 @@ export default class Cookie {
     readonly #values: readonly string[]
     // Default cookie value
     readonly #default: string
-    readonly #tokenOptions: CookieAttributes = {
-        httpOnly: true,
+    readonly #tokenOptionsLocal: CookieAttributes = {
         path: "/",
         sameSite: "strict",
+        httpOnly: false,
+    }
+    readonly #tokenOptionsSecure: CookieAttributes = {
+        ...this.#tokenOptionsLocal,
         secure: true,
     }
+    readonly #tokenOptions: CookieAttributes =
+        window.location.hostname === "localhost" ? this.#tokenOptionsLocal : this.#tokenOptionsSecure
 
     constructor({ id: baseId, values = [], expire }: { id: string; values?: readonly string[]; expire?: dayjs.Dayjs }) {
         this.#baseId = baseId
@@ -38,6 +43,7 @@ export default class Cookie {
      * Set cookie
      */
     set(cookieValue: string): void {
+        console.log("cookie", this.#name, cookieValue, this.#default)
         // Set cookie if not default value
         if (cookieValue === this.#default) {
             // Else remove cookie

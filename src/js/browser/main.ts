@@ -21,7 +21,7 @@ SVGAnimatedString.prototype.indexOf = function (this: SVGAnimatedString): number
 }
 
 /**
- * Base Id
+ * Base id
  */
 const baseId = "server-name"
 
