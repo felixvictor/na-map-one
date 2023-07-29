@@ -43,7 +43,6 @@ export default class Cookie {
      * Set cookie
      */
     set(cookieValue: string): void {
-        console.log("cookie", this.#name, cookieValue, this.#default)
         // Set cookie if not default value
         if (cookieValue === this.#default) {
             // Else remove cookie
