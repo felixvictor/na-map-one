@@ -117,18 +117,28 @@ export default class ListWoods {
     }
 
     _sortRows(type: WoodType, index: number, changeOrder = true): void {
+        console.log("sort", type, index, this._sortIndex[type], this._rows[type].size())
         if (changeOrder && this._sortIndex[type] === index) {
             this._sortAscending[type] = !this._sortAscending[type]
         }
 
         this._sortIndex[type] = index
         const sign = this._sortAscending[type] ? 1 : -1
+
         this._rows[type].sort((a, b): number => {
+            // Sort by wood name asc/desc
             if (index === 0) {
                 return a.name.localeCompare(b.name) * sign
             }
 
-            return (a.properties[index - 1].amount - b.properties[index - 1].amount) * sign
+            const aa = a.properties[index - 1].amount
+            const bb = b.properties[index - 1].amount
+            if (aa === bb) {
+                // sort by wood name asc
+                return a.name.localeCompare(b.name)
+            }
+            // Sort by value asc/desc
+            return (aa - bb) * sign
         })
     }
 
@@ -212,12 +222,7 @@ export default class ListWoods {
         this._rows[type]
             .selectAll<HTMLTableCellElement, string>("td")
             .data((row): string[] => {
-                return [
-                    row.name,
-                    ...row.properties
-                        .filter((property) => !this._modifiersNotUsed.has(property.modifier))
-                        .map((property) => this._getFormattedAmount(property)),
-                ]
+                return [row.name, ...row.properties.map((property) => this._getFormattedAmount(property))]
             })
             .join((enter) =>
                 enter
