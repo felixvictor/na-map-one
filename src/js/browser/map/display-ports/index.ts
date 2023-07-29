@@ -60,7 +60,7 @@ export default class DisplayPorts {
         /**
          * Possible values for show radius (first is default value)
          */
-        this.#radioButtonValues = ["attack", "county", "points", "position", "tax", "net", "off"]
+        this.#radioButtonValues = ["off", "county", "points", "position", "tax", "net"]
 
         /**
          * Show radius cookie
