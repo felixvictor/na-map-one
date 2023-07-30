@@ -82,6 +82,7 @@ export default class ListBuildings {
                 this.#labelSel.text("")
                 text += '<table class="table table-sm table-hover text-table"><tbody>'
                 text += `${currentBuilding.result
+                    .sort(sortBy(["name"]))
                     .map((result: BuildingResult) => `<tr><td>${result.name}</td></tr>`)
                     .join("")}`
                 text += "</tbody></table>"
