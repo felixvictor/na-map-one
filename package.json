@@ -4,6 +4,7 @@
     "version": "1.0.1",
     "description": "Naval Action map",
     "scripts": {
+        "build:push": "git push",
         "clean:src:js": "find ./src/js -name \"*.ts\" -type f -regextype posix-egrep -regex \".*/(browser|common|node)/.+\" -exec bash -c 'for file in \"${1%.ts}\".js \"${1%.ts}\".js.map; do [ -e \"$file\" ] && rm -f \"$file\"; done' - '{}' ';'",
         "deploy:regular": "src/helper/deploy.sh --site regular",
         "deploy:test": "src/helper/deploy.sh --site test1",
@@ -18,8 +19,8 @@
         "lint:css": "stylelint --config .stylelintrc \"src/scss/*.scss\"",
         "lint:ejs": "ejslint src/ejs",
         "lint:js": "eslint -c .eslintrc.cjs --ext .ts,.tsx src/js",
-        "main:develop-test": "TARGET=na-map-test run-s prod         deploy:test",
-        "noetyet:main:release": "     TARGET=na-map      run-s prod release deploy:regular",
+        "main:develop-test": "TARGET=na-map-test    run-s prod         deploy:test build:push",
+        "noetyet:main:release": "     TARGET=na-map run-s prod release deploy:regular build:push",
         "prod": "TS_NODE_PROJECT='webpack/tsconfig-for-webpack-config.json' webpack --config webpack/webpack.config.ts --mode=production --color",
         "release": "standard-version",
         "start": "TS_NODE_PROJECT='webpack/tsconfig-for-webpack-config.json' webpack serve --config webpack/webpack.config.ts --mode=development --color --hot --open",
