@@ -1,5 +1,4 @@
 import Cookies, { type CookieAttributes } from "js-cookie"
-import dayjs from "dayjs"
 import { appName } from "common/constants"
 
 const yearInDays = 365
@@ -30,9 +29,9 @@ export default class Cookie {
     readonly #tokenOptions: CookieAttributes =
         window.location.hostname === "localhost" ? this.#tokenOptionsLocal : this.#tokenOptionsSecure
 
-    constructor({ id: baseId, values = [], expire }: { id: string; values?: readonly string[]; expire?: dayjs.Dayjs }) {
+    constructor({ id: baseId, values = [], expire }: { id: string; values?: readonly string[]; expire?: Date }) {
         this.#baseId = baseId
-        this.#expire = expire ? dayjs(expire).toDate() : yearInDays
+        this.#expire = expire ? expire : yearInDays
         this.#name = `${appName}--${this.#baseId}`
 
         this.#values = values

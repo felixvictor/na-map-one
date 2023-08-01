@@ -29,8 +29,8 @@ export default class WindRoseCookie {
         this.#cookieTime = new Cookie({ id: `${this.#baseId}-time` })
     }
 
-    _getExpire(): dayjs.Dayjs {
-        return getNextServerStart()
+    _getExpire() {
+        return getNextServerStart().toDate()
     }
 
     _getNow(): number {
