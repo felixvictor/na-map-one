@@ -32,7 +32,7 @@ import type { RepairList } from "./repairs"
 
 const libraryName = PACKAGE.name
 const descriptionLong =
-    "Yet another map with in-game map, resources, ship and wood comparisons. Port battle data is updated constantly from twitter and all data daily after maintenance."
+    "Yet another map with in-game map, resources, ship and wood comparisons. Data is updated daily after maintenance."
 const targetUrl = TARGET ? `https://${TARGET}.netlify.app/` : `http://localhost/na/`
 const sitemapPaths = ["/fonts/", "/icons", "/images"]
 
