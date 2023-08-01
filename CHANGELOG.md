@@ -1,3 +1,31 @@
+
+
+## [15.0.0](///compare/v1.0.1...v15.0.0) (2023-08-01)
+
+
+### Features
+
+* F2P server is default server 6faccc8
+
+
+### Bug Fixes
+
+* **bootstrap:** downgrade to 5.2.x (striped tables work differently) 196c896
+* **cookie:** attributes cf499ea
+* **cookie:** options for localhost 237e45c
+* **cookie:** options for localhost 7e799a5
+* **display per port:** attack button remove d4f0f62
+* **list building:** sort 4095020
+* **list flags:** removed as no data from twitter available 0cc46d4
+* **list items:** select refresh 9ea4ca3
+* **list port battles:** removed c7cce9f
+* **list woods:** show all data 73aa019
+* **list woods:** show all data 4fe2ff2
+* **pb sheets:** url f217832
+* **recipes:** serverType: -1 0ed4adf
+* **select:** noneSelectedText -> placeholder 6f654fe
+* **spelling:** armor -> armour f62598c
+
 # Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
