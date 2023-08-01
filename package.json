@@ -22,7 +22,7 @@
         "main:develop-test": "TARGET=na-map-test    run-s prod         deploy:test    build:push",
         "main:release": "     TARGET=na-map         run-s prod release deploy:regular build:push",
         "prod": "TS_NODE_PROJECT='webpack/tsconfig-for-webpack-config.json' webpack --config webpack/webpack.config.ts --mode=production --color",
-        "release": "standard-version",
+        "release": "release-it --ci",
         "start": "TS_NODE_PROJECT='webpack/tsconfig-for-webpack-config.json' webpack serve --config webpack/webpack.config.ts --mode=development --color --hot --open",
         "typecheck": "tsc --noEmit",
         "update": "yarn set version stable && yarn upgrade-interactive"
