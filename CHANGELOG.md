@@ -1,5 +1,12 @@
 
 
+## [15.1.3](///compare/v15.1.2...v15.1.3) (2023-08-02)
+
+
+### Bug Fixes
+
+* **list woods:** wood properties ced20cd
+
 ## [15.1.2](///compare/v15.1.1...v15.1.2) (2023-08-01)
 
 
