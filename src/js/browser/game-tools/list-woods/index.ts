@@ -4,7 +4,7 @@ import { registerEvent } from "../../analytics"
 import type { WoodTypeList } from "compare-woods"
 import Modal from "../../components/modal"
 import { getIdFromBaseName } from "common/DOM"
-import { simpleStringSort } from "common/na-map-data/sort"
+import { simpleStringSort, sortBy } from "common/na-map-data/sort"
 import { woodFamily, woodType } from "../../../@types/na-map-data/constants"
 import { capitalizeFirstLetter } from "common/na-map-data/format"
 import { formatFloatFixed, formatPP } from "common/format"
@@ -90,21 +90,24 @@ export default class ListWoods {
     _setupData(): void {
         for (const type of woodType) {
             this._modifiers[type] = new Set(this._getModifiers(type))
-
-            // Add missing properties to each wood
             for (const wood of this._woodDataDefault[type]) {
-                const currentWoodProperties = new Set(wood.properties.map((property) => property.modifier))
+                const properties: WoodProperty[] = wood.properties
+                    .filter((property) => !this._modifiersNotUsed.has(property.modifier))
+                    .map((property) => property)
+                const currentWoodModifiers = new Set(wood.properties.map((property) => property.modifier))
                 for (const modifier of this._modifiers[type]) {
-                    if (!currentWoodProperties.has(modifier)) {
-                        wood.properties.push({
+                    // Add missing properties to each wood
+                    if (!currentWoodModifiers.has(modifier)) {
+                        properties.push({
                             modifier,
                             amount: 0,
                             isPercentage: false,
-                        })
+                        } as WoodProperty)
                     }
                 }
 
-                wood.properties.sort((a, b) => a.modifier.localeCompare(b.modifier))
+                properties.sort(sortBy(["modifier"]))
+                wood.properties = [...properties]
             }
         }
 
