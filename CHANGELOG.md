@@ -1,5 +1,12 @@
 
 
+## [15.1.4](///compare/v15.1.3...v15.1.4) (2023-08-06)
+
+
+### Bug Fixes
+
+* **patrol zone:** main/eu3 has same zones as peace/eu2 22557f7
+
 ## [15.1.3](///compare/v15.1.2...v15.1.3) (2023-08-02)
 
 
