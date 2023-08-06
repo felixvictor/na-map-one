@@ -40,7 +40,7 @@ export default class PatrolZones {
         const start = dayjs.utc("2021-01-17").hour(serverMaintenanceHour)
 
         let index = dayjs.utc().diff(start, "day")
-        if (this.#serverName === "eu2") {
+        if (this.#serverName === "eu2" || this.#serverName === "eu3") {
             index += 4
         }
 
