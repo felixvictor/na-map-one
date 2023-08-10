@@ -1,4 +1,4 @@
-import { simpleStringSort, sortBy } from "./sort.js"
+import { simpleStringSort, sortBy } from "common/na-map-data/sort"
 import type { Nation, NationShortName } from "../../@types/na-map-data/nations"
 
 export const nations: Nation[] = [
