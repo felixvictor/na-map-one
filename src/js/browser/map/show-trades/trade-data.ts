@@ -6,12 +6,12 @@ import Select, { type SelectOptions } from "../../components/select"
 import { getProfitPerDistance, getProfitPerWeight, headId, type NodeData } from "./common"
 import { loadJsonFile } from "common/json"
 import { mapSize } from "common/na-map-data/constants"
-import { nations } from "../../../@types/na-map-data/constants"
 import type { PortBasic, PortBattlePerServer, PortWithTrades } from "../../../@types/na-map-data/ports"
 import type { Trade, TradeItem } from "../../../@types/na-map-data/trade"
 import type { Extent, Point } from "common/na-map-data/coordinates"
 import type { HtmlString } from "../../../@types/common"
 import type { PortBattleNationShortName } from "../../../@types/na-map-data/nations"
+import { nations } from "common/na-map-data/nation"
 
 export default class TradeData {
     #dataDefault = [] as Trade[]

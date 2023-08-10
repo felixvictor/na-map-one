@@ -22,7 +22,6 @@ import { registerEvent } from "../analytics"
 import Modal from "../components/modal"
 import Select, { type SelectOptions } from "../components/select"
 import { getIdFromBaseName, showCursorDefault, showCursorWait } from "common/DOM"
-import { nations } from "../../@types/na-map-data/constants"
 import { getContrastColour } from "common/game-tools"
 import { findNationByNationShortName } from "common/nation"
 import { colourList } from "common/colours"
@@ -37,6 +36,7 @@ import type {
     OwnershipNation,
 } from "../../@types/na-map-data/nations"
 import type { ServerId } from "common/na-map-data/servers"
+import { nations } from "common/na-map-data/nation"
 
 /**
  *

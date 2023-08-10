@@ -1,5 +1,5 @@
-import { nations } from "../@types/na-map-data/constants"
 import type { Nation } from "../@types/na-map-data/nations"
+import { nations } from "common/na-map-data/nation"
 
 /**
  * Find Nation object based on nation short name

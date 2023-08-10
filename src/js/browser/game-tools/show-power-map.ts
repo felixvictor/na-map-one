@@ -20,12 +20,11 @@ import {
     showCursorDefault,
     showCursorWait,
 } from "common/DOM"
-import { findNationById } from "common/na-map-data/nation"
+import { findNationById, nations } from "common/na-map-data/nation"
 import { getContrastColour } from "common/game-tools"
 import { formatSiInt } from "common/format"
 import { sleep } from "common/common"
 import { loadJsonFile } from "common/json"
-import { nations } from "../../@types/na-map-data/constants"
 import { nationFlags } from "common/flags"
 import { colourWhite } from "common/constants"
 import { ϕ } from "common/na-map-data/constants"
