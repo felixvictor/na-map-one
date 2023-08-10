@@ -25,10 +25,10 @@ import { formatPercentSig, formatSiCurrency, formatSiInt } from "common/format"
 import { loadJsonFile } from "common/json"
 import { getContrastColour } from "common/game-tools"
 import { ϕ } from "common/na-map-data/constants"
+import { nations } from "common/na-map-data/nation"
 import type { HtmlString, PortIncome, PortJsonData } from "../../@types/common"
 import type { ServerId } from "common/na-map-data/servers"
 import type { PortBasic, PortBattlePerServer, PortPerServer } from "../../@types/na-map-data/ports"
-import { nations } from "common/na-map-data/nation"
 
 interface TreeMapPolygon extends Array<Point> {
     0: Point

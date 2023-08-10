@@ -24,9 +24,10 @@ import Select, { type SelectOptions } from "../components/select"
 import { getIdFromBaseName, showCursorDefault, showCursorWait } from "common/DOM"
 import { getContrastColour } from "common/game-tools"
 import { findNationByNationShortName } from "common/nation"
-import { colourList } from "common/colours"
 import { loadJsonFile } from "common/json"
+import { colourList } from "common/colours"
 import { colourPrimary300 } from "common/constants"
+import { nations, nationShortNamesPerServer } from "common/na-map-data/nation"
 import type { HtmlString } from "../../@types/common"
 import type { Ownership } from "../../@types/na-map-data/ownership"
 import type {
@@ -36,7 +37,6 @@ import type {
     OwnershipNation,
 } from "../../@types/na-map-data/nations"
 import type { ServerId } from "common/na-map-data/servers"
-import { nations } from "common/na-map-data/nation"
 
 /**
  *
@@ -187,7 +187,7 @@ export default class ShowPortOwnerships {
         const height = Math.min(maxHeight, ShowPortOwnerships.getHeight())
         const margin = { right: 0, bottom: 32, left: 0 }
 
-        const keys = nations.filter((nation) => nation.id !== 9).map((nation) => nation.short)
+        const keys = nationShortNamesPerServer.get(this.#serverId) ?? []
         const nationData = this._nationData
         // @ts-expect-error lala
         nationData.keys = keys
