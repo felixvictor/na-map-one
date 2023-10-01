@@ -1,6 +1,9 @@
+import path from "node:path"
+
 import sass from "sass"
-import parseCss, { Declaration, Rule } from "css"
-import path from "path"
+import { parse } from "@adobe/css-tools"
+import type { CssDeclarationAST, CssRuleAST } from "@adobe/css-tools"
+
 import { dirSrc } from "./dir"
 
 const fileScssPreCompile = path.resolve(dirSrc, "scss", "pre-compile.scss")
@@ -8,21 +11,23 @@ type ColourMap = Map<string, string>
 
 const getColours = (): ColourMap => {
     const compiledCss = sass.compile(fileScssPreCompile).css.toString()
-    const parsedCss = parseCss.parse(compiledCss)
+    const parsedCss = parse(compiledCss)
     return new Map(
         (
             parsedCss.stylesheet?.rules.filter(
-                (rule: Rule) => rule.selectors?.[0].startsWith(".colour-palette "),
-            ) as Rule[]
+                (rule) => (rule as CssRuleAST).selectors?.[0].startsWith(".colour-palette "),
+            ) as CssRuleAST[]
         )
             .filter(
-                (rule: Rule) =>
-                    rule?.declarations?.find((declaration: Declaration) => declaration.property === "background-color"),
+                (rule: CssRuleAST) =>
+                    rule?.declarations?.find(
+                        (declaration) => (declaration as CssDeclarationAST).property === "background-color",
+                    ),
             )
-            .map((rule: Rule) => {
+            .map((rule: CssRuleAST) => {
                 const d = rule?.declarations?.find(
-                    (declaration: Declaration) => declaration.property === "background-color",
-                ) as Declaration
+                    (declaration) => (declaration as CssDeclarationAST).property === "background-color",
+                ) as CssDeclarationAST
                 return [rule.selectors?.[0].replace(".colour-palette .", "") ?? "", d.value ?? ""]
             }),
     )
