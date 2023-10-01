@@ -1,5 +1,12 @@
 
 
+## [15.1.7](https://example.com///compare/v15.1.6...v15.1.7) (2023-10-01)
+
+
+### Bug Fixes
+
+* **Aquilla's guide:** link updated (v08) ([7438f92](https://example.com///commit/7438f922d7160ce86395f5a8d5760d412807d063))
+
 ## [15.1.6](///compare/v15.1.5...v15.1.6) (2023-08-10)
 
 ## [15.1.5](///compare/v15.1.4...v15.1.5) (2023-08-10)
