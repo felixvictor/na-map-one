@@ -86,7 +86,7 @@ export default class ListLoot {
 
     _getTypeOptions(type: LootType): HtmlString {
         return this.#data[type]
-            .sort(sortBy<LootLootEntity | LootChestsEntity, "id" | "name">(["name"]))
+            .sort(sortBy<LootLootEntity | LootChestsEntity>(["name"]))
             .map((item: LootLootEntity | LootChestsEntity) => `<option value="${item.id}">${item.name}</option>`)
             .join("")
     }
