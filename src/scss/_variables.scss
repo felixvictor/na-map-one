@@ -8,24 +8,26 @@
 /// license   http://www.gnu.org/licenses/gpl.html
 ////
 
-//$enable-caret: true !default;
-//$enable-rounded: true !default;
+@use "sass:map";
+
+// $enable-caret: true !default;
+// $enable-rounded: true !default;
 $enable-shadows: true;
-//$enable-gradients: false !default;
-//$enable-transitions: true !default;
-//$enable-reduced-motion: true !default;
-//$enable-smooth-scroll: true !default;
-//$enable-grid-classes: true !default;
-//$enable-button-pointers: true !default;
-//$enable-rfs: true !default;
-//$enable-validation-icons: true !default;
+
+// $enable-gradients: false !default;
+// $enable-transitions: true !default;
+// $enable-reduced-motion: true !default;
+// $enable-smooth-scroll: true !default;
+// $enable-grid-classes: true !default;
+// $enable-button-pointers: true !default;
+// $enable-rfs: true !default;
+// $enable-validation-icons: true !default;
 $enable-negative-margins: true;
-//$enable-deprecation-messages: true !default;
-//$enable-important-utilities: true !default;
+
+// $enable-deprecation-messages: true !default;
+// $enable-important-utilities: true !default;
 $enable-dark-mode: false;
-
 $min-contrast-ratio: 3;
-
 $body-bg: $paper-200;
 $body-color: $primary-800;
 $body-text-align: left;
@@ -45,8 +47,8 @@ $spacers: (
 
 // Font
 $font-size-base: 1.2rem;
-$font-size-lg: map-get($spacers, 4);
-$font-size-sm: map-get($spacers, 2) * 1.2;
+$font-size-lg: map.get($spacers, 4);
+$font-size-sm: map.get($spacers, 2) * 1.2;
 
 // Tooltip
 $tooltip-font-size: smaller;
@@ -56,13 +58,11 @@ $tooltip-bg: $paper-200;
 $tooltip-opacity: 1;
 $tooltip-padding-y: 1rem;
 $tooltip-padding-x: 1rem;
-
 $tooltip-arrow-width: 0;
 $tooltip-arrow-height: 0;
 
 // Toast
 $toast-font-size: $font-size-base;
-
 $dropdown-header-color: $secondary-600;
 $dropdown-header-padding: 1rem 1rem;
 $table-bg-scale: -85%; // -80% !default;
@@ -72,7 +72,6 @@ $navbar-light-hover-color: rgba($primary-800, 0.8);
 $navbar-light-active-color: rgba($primary-800, 1);
 $navbar-light-disabled-color: rgba($primary-800, 0.4);
 $navbar-light-toggler-border-color: rgba($primary-800, 0.2);
-
 $card-border-width: 0;
 $modal-header-border-width: 0;
 $modal-footer-border-width: 0;
@@ -87,9 +86,18 @@ $badge-padding-y: 0.05rem;
 $badge-padding-x: 0.3rem;
 
 // https://shadows.brumm.af/
-$box-shadow: 0 2.6px 2.7px rgba($black, 0.022), 0 6.6px 6.9px rgba($black, 0.031), 0 13.5px 14.2px rgba($black, 0.039),
-    0 27.7px 29.2px rgba($black, 0.048), 0 76px 80px rgba($black, 0.07);
-$box-shadow-sm: 0 1.6px 3.6px rgba($black, 0.024), 0 4.5px 10px rgba($black, 0.035), 0 10.9px 24.1px rgba($black, 0.046),
+$box-shadow: 0 2.6px 2.7px rgba($black, 0.022),
+    0 6.6px 6.9px rgba($black, 0.031),
+    0 13.5px 14.2px rgba($black, 0.039),
+    0 27.7px 29.2px rgba($black, 0.048),
+    0 76px 80px rgba($black, 0.07);
+$box-shadow-sm: 0 1.6px 3.6px rgba($black, 0.024),
+    0 4.5px 10px rgba($black, 0.035),
+    0 10.9px 24.1px rgba($black, 0.046),
     0 36px 80px rgba($black, 0.07);
-$box-shadow-lg: 0 2.8px 2.2px rgba($black, 0.02), 0 6.7px 5.3px rgba($black, 0.028), 0 12.5px 10px rgba($black, 0.035),
-    0 22.3px 17.9px rgba($black, 0.042), 0 41.8px 33.4px rgba($black, 0.05), 0 100px 80px rgba($black, 0.07);
+$box-shadow-lg: 0 2.8px 2.2px rgba($black, 0.02),
+    0 6.7px 5.3px rgba($black, 0.028),
+    0 12.5px 10px rgba($black, 0.035),
+    0 22.3px 17.9px rgba($black, 0.042),
+    0 41.8px 33.4px rgba($black, 0.05),
+    0 100px 80px rgba($black, 0.07);

@@ -8,5 +8,7 @@
 /// license   http://www.gnu.org/licenses/gpl.html
 ////
 
-$padding-half: map-get($spacers, 2);
-$padding-third: map-get($spacers, 1);
+@use "sass:map";
+
+$padding-half: map.get($spacers, 2);
+$padding-third: map.get($spacers, 1);

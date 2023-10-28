@@ -9,6 +9,7 @@
 ////
 
 @use "sass:color";
+@use "sass:map";
 
 @function colour-mixin($colour) {
     @return color.mix(hsl(color.hue($colour), $primary-sat, $primary-lit), $colour, $mix-weight);
@@ -22,13 +23,10 @@ $primary: $primary-colour;
 $secondary-colour: #666542;
 $secondary: $secondary-colour;
 $mix-weight: 40%;
-
 $primary-sat: color.saturation($primary-colour);
 $primary-lit: color.lightness($primary-colour);
 $primary-hue: color.hue($primary-colour);
-
 $paper: colour-mixin(#e0d3af);
-
 $primary-050: tint-color($primary, 85%);
 $primary-100: tint-color($primary, 80%);
 $primary-200: tint-color($primary, 60%);
@@ -39,7 +37,6 @@ $primary-600: shade-color($primary, 20%);
 $primary-700: shade-color($primary, 40%);
 $primary-800: shade-color($primary, 60%);
 $primary-900: shade-color($primary, 80%);
-
 $secondary-050: tint-color($secondary, 85%);
 $secondary-100: tint-color($secondary, 80%);
 $secondary-200: tint-color($secondary, 60%);
@@ -50,7 +47,6 @@ $secondary-600: shade-color($secondary, 20%);
 $secondary-700: shade-color($secondary, 40%);
 $secondary-800: shade-color($secondary, 60%);
 $secondary-900: shade-color($secondary, 80%);
-
 $paper-050: tint-color($paper, 85%);
 $paper-100: tint-color($paper, 80%);
 $paper-200: tint-color($paper, 60%);
@@ -94,7 +90,6 @@ $gray-700: shade-color($gray, 40%);
 $gray-800: shade-color($gray, 60%);
 $gray-900: shade-color($gray, 80%);
 $black: $paper-900;
-
 $blue-100: tint-color($blue, 80%);
 $blue-200: tint-color($blue, 60%);
 $blue-300: tint-color($blue, 40%);
@@ -104,7 +99,6 @@ $blue-600: shade-color($blue, 20%);
 $blue-700: shade-color($blue, 40%);
 $blue-800: shade-color($blue, 60%);
 $blue-900: shade-color($blue, 80%);
-
 $indigo-100: tint-color($indigo, 80%);
 $indigo-200: tint-color($indigo, 60%);
 $indigo-300: tint-color($indigo, 40%);
@@ -114,7 +108,6 @@ $indigo-600: shade-color($indigo, 20%);
 $indigo-700: shade-color($indigo, 40%);
 $indigo-800: shade-color($indigo, 60%);
 $indigo-900: shade-color($indigo, 80%);
-
 $purple-100: tint-color($purple, 80%);
 $purple-200: tint-color($purple, 60%);
 $purple-300: tint-color($purple, 40%);
@@ -124,7 +117,6 @@ $purple-600: shade-color($purple, 20%);
 $purple-700: shade-color($purple, 40%);
 $purple-800: shade-color($purple, 60%);
 $purple-900: shade-color($purple, 80%);
-
 $pink-100: tint-color($pink, 80%);
 $pink-200: tint-color($pink, 60%);
 $pink-300: tint-color($pink, 40%);
@@ -134,7 +126,6 @@ $pink-600: shade-color($pink, 20%);
 $pink-700: shade-color($pink, 40%);
 $pink-800: shade-color($pink, 60%);
 $pink-900: shade-color($pink, 80%);
-
 $red-100: tint-color($red, 80%);
 $red-200: tint-color($red, 60%);
 $red-300: tint-color($red, 40%);
@@ -144,7 +135,6 @@ $red-600: shade-color($red, 20%);
 $red-700: shade-color($red, 40%);
 $red-800: shade-color($red, 60%);
 $red-900: shade-color($red, 80%);
-
 $orange-100: tint-color($orange, 80%);
 $orange-200: tint-color($orange, 60%);
 $orange-300: tint-color($orange, 40%);
@@ -154,7 +144,6 @@ $orange-600: shade-color($orange, 20%);
 $orange-700: shade-color($orange, 40%);
 $orange-800: shade-color($orange, 60%);
 $orange-900: shade-color($orange, 80%);
-
 $yellow-100: tint-color($yellow, 80%);
 $yellow-200: tint-color($yellow, 60%);
 $yellow-300: tint-color($yellow, 40%);
@@ -164,7 +153,6 @@ $yellow-600: shade-color($yellow, 20%);
 $yellow-700: shade-color($yellow, 40%);
 $yellow-800: shade-color($yellow, 60%);
 $yellow-900: shade-color($yellow, 80%);
-
 $green-100: tint-color($green, 80%);
 $green-200: tint-color($green, 60%);
 $green-300: tint-color($green, 40%);
@@ -174,7 +162,6 @@ $green-600: shade-color($green, 20%);
 $green-700: shade-color($green, 40%);
 $green-800: shade-color($green, 60%);
 $green-900: shade-color($green, 80%);
-
 $teal-100: tint-color($teal, 80%);
 $teal-200: tint-color($teal, 60%);
 $teal-300: tint-color($teal, 40%);
@@ -184,7 +171,6 @@ $teal-600: shade-color($teal, 20%);
 $teal-700: shade-color($teal, 40%);
 $teal-800: shade-color($teal, 60%);
 $teal-900: shade-color($teal, 80%);
-
 $cyan-100: tint-color($cyan, 80%);
 $cyan-200: tint-color($cyan, 60%);
 $cyan-300: tint-color($cyan, 40%);
@@ -194,24 +180,20 @@ $cyan-600: shade-color($cyan, 20%);
 $cyan-700: shade-color($cyan, 40%);
 $cyan-800: shade-color($cyan, 60%);
 $cyan-900: shade-color($cyan, 80%);
-
 $paper-light: $paper-100;
 $red-light: $red-200;
 $red-dark: $red-800;
 $green-light: $green-200;
 $green-dark: $green-800;
 $yellow-dark: $yellow-900;
-
 $success: $green-dark;
 $info: $blue;
 $warning: $orange;
 $danger: $red-dark;
-
 $light: $primary-050;
 $dark: $primary-900;
 $color-contrast-light: $light;
 $color-contrast-dark: $dark;
-
 $theme-colors: (
     "primary": $primary,
     "secondary": $secondary,
@@ -223,7 +205,6 @@ $theme-colors: (
     "light": $light,
     "dark": $dark,
 );
-
 $colors: (
     "blue": $blue,
     "indigo": $indigo,
@@ -239,7 +220,6 @@ $colors: (
     "gray": $gray-600,
     "gray-dark": $gray-800,
 );
-
 $custom-colors: (
     "paper-light": $paper-light,
     "red-light": $red-light,
@@ -249,8 +229,7 @@ $custom-colors: (
     "black": $black,
     "yellow-dark": $yellow-dark,
 );
-$colors: map-merge($colors, $custom-colors);
-
+$colors: map.merge($colors, $custom-colors);
 $primarys: (
     "050": $primary-050,
     "100": $primary-100,
@@ -263,7 +242,6 @@ $primarys: (
     "800": $primary-800,
     "900": $primary-900,
 );
-
 $secondarys: (
     "050": $secondary-050,
     "100": $secondary-100,
@@ -276,7 +254,6 @@ $secondarys: (
     "800": $secondary-800,
     "900": $secondary-900,
 );
-
 $papers: (
     "050": $paper-050,
     "100": $paper-100,
@@ -289,7 +266,6 @@ $papers: (
     "800": $paper-800,
     "900": $paper-900,
 );
-
 $blues: (
     "100": $blue-100,
     "200": $blue-200,
@@ -301,7 +277,6 @@ $blues: (
     "800": $blue-800,
     "900": $blue-900,
 );
-
 $yellows: (
     "100": $yellow-100,
     "200": $yellow-200,

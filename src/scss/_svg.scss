@@ -18,6 +18,7 @@
 svg {
     overflow: auto;
     stroke-width: 0.05rem;
+
     text {
         pointer-events: none;
         user-select: none;
@@ -40,7 +41,7 @@ svg {
 }
 
 .svg-text-center {
-    @include text-center();
+    @include text-center;
 }
 
 .opacity-low {
@@ -145,7 +146,9 @@ svg {
 
     text {
         fill: $overlay-text-colour;
-        @include text-center();
+
+        @include text-center;
+
         .des {
             fill: $overlay-background-colour !important;
         }
@@ -174,6 +177,7 @@ svg {
 
     text {
         fill: $dark-overlay-text-colour;
+
         .des {
             fill: $dark-overlay-background-colour !important;
         }
@@ -186,6 +190,7 @@ svg {
 }
 
 $ship-outline-colour: $secondary-500;
+
 .ship-outline {
     fill: $ship-outline-colour;
     stroke: $ship-outline-colour;
@@ -197,11 +202,13 @@ $ship-outline-colour: $secondary-500;
 
     text {
         fill: color-contrast($ship-outline-colour);
-        @include text-center();
+
+        @include text-center;
     }
 }
 
 $wind-profile-colour: $paper-700;
+
 .wind-profile-arrow-head {
     fill: $wind-profile-colour;
 }
@@ -275,6 +282,7 @@ $wind-profile-colour: $paper-700;
 
 .axis {
     pointer-events: none;
+
     .domain {
         display: none;
     }
@@ -288,6 +296,11 @@ $wind-profile-colour: $paper-700;
         text-anchor: end;
         fill: $primary-100;
     }
+}
+
+.speed-text text {
+    dominant-baseline: auto;
+    fill: $paper-500;
 }
 
 .voronoi {
@@ -323,11 +336,6 @@ $wind-profile-colour: $paper-700;
 .compass-arc,
 .speed-circle {
     stroke: $paper-400;
-}
-
-.speed-text text {
-    dominant-baseline: auto;
-    fill: $paper-500;
 }
 
 .base-profile,

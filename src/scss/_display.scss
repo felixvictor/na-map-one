@@ -9,7 +9,6 @@
 ////
 
 @use "sass:math";
-
 @import "~bootstrap/scss/mixins";
 @import "mixins";
 
@@ -19,7 +18,6 @@ $dark-overlay-background: rgba($dark-overlay-background-colour, 0.8);
 $dark-overlay-background-contrast: rgba($dark-overlay-background-colour-contrast, 0.8);
 $dark-overlay-text-colour-contrast: $paper-200;
 $dark-overlay-text-colour: color-contrast($dark-overlay-background);
-
 $overlay-background-colour: $paper-200;
 $overlay-background-colour-contrast: $paper-050;
 $overlay-background: rgba($overlay-background-colour, 0.8);
@@ -38,12 +36,12 @@ text,
 }
 
 .des {
-    @include des();
+    @include des;
 }
 
 .caps,
 .des {
-    @include caps();
+    @include caps;
 }
 
 .condensed {
@@ -51,8 +49,9 @@ text,
 }
 
 .overlay-des {
-    @include caps();
-    @include des();
+    @include caps;
+    @include des;
+
     top: 0;
     color: $overlay-text-colour-contrast;
 }
@@ -78,7 +77,7 @@ text,
 }
 
 .tooltip-block {
-    //max-width: 30rem;
+    // max-width: 30rem;
     text-align: left;
 }
 
@@ -157,6 +156,7 @@ text,
     font-feature-settings: "c2sc", "smcp";
     font-stretch: condensed;
     text-anchor: middle;
+
     text {
         fill: $primary-900;
     }
@@ -192,46 +192,17 @@ text,
 }
 
 /////////////////////////////////////
-// tooltip
-
-.tooltip {
-    box-shadow: 0 14px 28px rgba($paper-900, 0.25), 0 10px 10px rgba($paper-900, 0.22);
-
-    table {
-        margin-bottom: 0;
-    }
-}
-
-.tooltip-inner {
-    min-width: 30rem;
-    text-align: left;
-}
-
-.tooltip-inner-small {
-    /* stylelint-disable-next-line declaration-no-important */
-    min-width: 20rem !important;
-}
-
-.tooltip-inner-smaller {
-    /* stylelint-disable-next-line declaration-no-important */
-    min-width: 10rem !important;
-    p {
-        margin: 0;
-    }
-}
-
-/////////////////////////////////////
 // table
+
+th {
+    font-style: italic;
+    font-weight: 400;
+}
 
 .table-sort {
     tr:not(.thead-group) th {
         cursor: s-resize;
     }
-}
-
-th {
-    font-style: italic;
-    font-weight: 400;
 }
 
 table thead {
@@ -252,6 +223,38 @@ table {
 
 .text-table {
     text-align: start;
+}
+
+/////////////////////////////////////
+// tooltip
+
+.tooltip {
+    box-shadow:
+        0 14px 28px rgba($paper-900, 0.25),
+        0 10px 10px rgba($paper-900, 0.22);
+
+    table {
+        margin-bottom: 0;
+    }
+}
+
+.tooltip-inner {
+    min-width: 30rem;
+    text-align: left;
+}
+
+.tooltip-inner-small {
+    /* stylelint-disable-next-line declaration-no-important */
+    min-width: 20rem !important;
+}
+
+.tooltip-inner-smaller {
+    /* stylelint-disable-next-line declaration-no-important */
+    min-width: 10rem !important;
+
+    p {
+        margin: 0;
+    }
 }
 
 /////////////////////////////////////
@@ -315,7 +318,7 @@ table {
     }
 }
 
-/////////////////////////////////////7
+/////////////////////////////////////
 // ship compare
 
 .column-comp:not(:first-child) {
@@ -327,6 +330,7 @@ $padding-large: $padding-third;
 
 .compress {
     line-height: 1;
+
     .row {
         --bs-gutter-x: 1rem;
     }
@@ -342,7 +346,7 @@ $padding-large: $padding-third;
     box-shadow: $box-shadow-sm;
 }
 
-/////////////////////////////////////7
+/////////////////////////////////////
 // toggle button
 
 .btn-toggle {

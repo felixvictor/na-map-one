@@ -8,6 +8,8 @@
 /// license   http://www.gnu.org/licenses/gpl.html
 ////
 
+@use "sass:map";
+
 .central {
     width: 0;
     height: 0;
@@ -19,17 +21,11 @@
 }
 
 .overlay-grid {
-    grid-template-areas:
-        "x-axis x-axis x-axis x-axis"
-        "y-axis wind-predict toasts summary";
-    grid-template-rows: 3rem 1fr;
-    grid-template-columns: 4rem 1fr 4fr 1fr;
+    grid-template: "x-axis x-axis x-axis x-axis" 3rem "y-axis wind-predict toasts summary" 1fr / 4rem 1fr 4fr 1fr;
 }
 
 .overlay-no-grid {
-    grid-template-areas: "wind-predict toasts summary";
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr 4fr 1fr;
+    grid-template: "wind-predict toasts summary" 1fr / 1fr 4fr 1fr;
 }
 
 .overlay-grid::before // acts as axis-rect-x
@@ -73,11 +69,11 @@
 }
 
 .port-summary {
-    //grid-template-columns: 1fr 1fr 1fr;
+    // grid-template-columns: 1fr 1fr 1fr;
 }
 
 .journey-summary {
-    //grid-template-columns: auto auto auto;
+    // grid-template-columns: auto auto auto;
 }
 
 .port-summary,
@@ -89,8 +85,9 @@
     color: $overlay-text-colour;
     pointer-events: all;
     background-color: $overlay-background;
+
     button {
-        margin-bottom: map-get($spacers, 2);
+        margin-bottom: map.get($spacers, 2);
     }
 }
 
@@ -117,6 +114,21 @@
     }
 }
 
+.tooltip-block,
+.trade-list .block {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: flex-start;
+    white-space: nowrap;
+
+    /* stylelint-disable-next-line scss/selector-no-redundant-nesting-selector */
+    & > div {
+        padding: 0 $padding-half;
+        line-height: 1.1;
+    }
+}
+
 .trade-list {
     display: flex;
     flex-wrap: wrap;
@@ -128,21 +140,6 @@
 
     .des {
         color: $dark-overlay-text-colour-contrast;
-    }
-}
-
-.trade-list .block,
-.tooltip-block {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: stretch;
-    justify-content: flex-start;
-    white-space: nowrap;
-
-    /* stylelint-disable-next-line scss/selector-no-redundant-nesting-selector */
-    & > div {
-        padding: 0 $padding-half;
-        line-height: 1.1;
     }
 }
 

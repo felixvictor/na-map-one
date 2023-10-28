@@ -1,8 +1,8 @@
 $font-name: "JunicodeTwoVF";
 $font-family: $font-name;
 $font-path: "../fonts/#{$font-name}/";
-
 $font-list: normal italic;
+
 @each $font-style in $font-list {
     @font-face {
         font-family: "#{$font-family}";
