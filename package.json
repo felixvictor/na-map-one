@@ -1,7 +1,7 @@
 {
     "name": "na-map-one",
     "packageManager": "yarn@4.0.0",
-    "version": "15.1.7",
+    "version": "15.1.8",
     "description": "Naval Action map",
     "scripts": {
         "build:push": "git push",
