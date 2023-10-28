@@ -156,7 +156,7 @@
         "readdirp": "^3.6.0"
     },
     "engines": {
-        "node": ">= 18"
+        "node": ">= 20"
     },
     "browserslist": [
         "defaults and supports es6-module and last 3 versions"
