@@ -1,5 +1,12 @@
 
 
+## [15.2.0](https://example.com///compare/v15.1.9...v15.2.0) (2023-12-19)
+
+
+### Features
+
+* junicode v2.204 ([5846d85](https://example.com///commit/5846d854793261f3e832c2c711225bc76193e847))
+
 ## [15.1.9](https://example.com///compare/v15.1.8...v15.1.9) (2023-11-25)
 
 ## [15.1.8](https://example.com///compare/v15.1.7...v15.1.8) (2023-10-28)
