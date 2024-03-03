@@ -428,11 +428,10 @@ export class CompareShips {
         new Map(
             this.#moduleDataDefault.flatMap((type) =>
                 type[1]
-                    .filter(
-                        (module) =>
-                            module.properties?.some((property) => {
-                                return this.#moduleAndWoodChanges.has(property.modifier)
-                            }),
+                    .filter((module) =>
+                        module.properties?.some((property) => {
+                            return this.#moduleAndWoodChanges.has(property.modifier)
+                        }),
                     )
                     .map((module) => [module.id, module]),
             ),

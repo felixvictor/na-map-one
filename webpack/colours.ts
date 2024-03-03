@@ -14,15 +14,14 @@ const getColours = (): ColourMap => {
     const parsedCss = parse(compiledCss)
     return new Map(
         (
-            parsedCss.stylesheet?.rules.filter(
-                (rule) => (rule as CssRuleAST).selectors?.[0].startsWith(".colour-palette "),
+            parsedCss.stylesheet?.rules.filter((rule) =>
+                (rule as CssRuleAST).selectors?.[0].startsWith(".colour-palette "),
             ) as CssRuleAST[]
         )
-            .filter(
-                (rule: CssRuleAST) =>
-                    rule?.declarations?.find(
-                        (declaration) => (declaration as CssDeclarationAST).property === "background-color",
-                    ),
+            .filter((rule: CssRuleAST) =>
+                rule?.declarations?.find(
+                    (declaration) => (declaration as CssDeclarationAST).property === "background-color",
+                ),
             )
             .map((rule: CssRuleAST) => {
                 const d = rule?.declarations?.find(
