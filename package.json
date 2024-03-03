@@ -1,33 +1,38 @@
 {
     "name": "na-map-one",
-    "packageManager": "yarn@4.1.0",
     "version": "15.2.0",
     "description": "Naval Action map",
     "scripts": {
         "build:push": "git push",
+        "clean:cache": "yarn cache clean --all && rm -rf node_modules yarn.lock .pnp/ .pnp.cjs .pnp.loader.mjs .yarn/{install-state.gz,unplugged,cache} && yarn",
         "clean:src:js": "find ./src/js -name \"*.ts\" -type f -regextype posix-egrep -regex \".*/(browser|common|node)/.+\" -exec bash -c 'for file in \"${1%.ts}\".js \"${1%.ts}\".js.map; do [ -e \"$file\" ] && rm -f \"$file\"; done' - '{}' ';'",
         "deploy:regular": "src/helper/deploy.sh --site regular",
         "deploy:test": "src/helper/deploy.sh --site test1",
         "docs": "run-p 'docs:*'",
         "docs:js": "documentation build src/js/**.js build/**.mjs -f html -o ./doc-js",
         "docs:sass": "sassdoc src/scss -d ./doc-sass",
+        "git:chore": "git add package.json yarn.lock .yarn .yarnrc.yml && git commit -m 'chore(deps): bump'",
         "helper:loc": "npx cloc --by-file --not-match-f='.d.ts' --quiet ./src/js",
         "helper:size:css": "find public/ -iname '*.css' -exec du -bc {} + | sort -k 2 | sed 's|public/||'",
         "helper:size:js": "find public/ -iname '*.js' -not -iname 'data-*.js' -exec du -bc {} + | sort -k 2 | sed 's|public/||'",
         "helper:size:largest": "du -a ~/ -BM | sort -n -r | head -n 15",
-        "lint": "run-s 'lint:*'",
+        "lint": "run-s lint:js pretty-print pretty-print-package",
         "lint:css": "stylelint --fix --config .stylelintrc \"src/scss/*.scss\"",
         "lint:ejs": "ejslint src/ejs",
-        "lint:js": "eslint -c .eslintrc.cjs --ext .ts,.tsx src/js",
+        "lint:js": "eslint . --ext .js,.cjs,.mjs,.ts,.cts,.mts,.jsx,.tsx,.vue --fix",
         "main:develop-test": "TARGET=na-map-test    run-s         prod deploy:test    build:push",
         "main:release": "     TARGET=na-map         run-s release prod deploy:regular build:push",
+        "pretty-print": "yarn prettier --log-level error . --write",
+        "pretty-print-package": "yarn prettier-package-json --write ./package.json",
         "prod": "TS_NODE_PROJECT='webpack/tsconfig-for-webpack-config.json' webpack --config webpack/webpack.config.ts --mode=production --color",
         "release": "release-it --ci",
         "start": "TS_NODE_PROJECT='webpack/tsconfig-for-webpack-config.json' webpack serve --config webpack/webpack.config.ts --mode=development --color --hot --open",
         "typecheck": "tsc --noEmit",
         "update": "yarn set version stable && yarn upgrade-interactive"
     },
-    "sass": "src/scss/main.scss",
+    "resolutions": {
+        "readdirp": "^3.6.0"
+    },
     "dependencies": {
         "@d3fc/d3fc-label-layout": "^7.0.3",
         "@popperjs/core": "^2.11.8",
@@ -73,8 +78,8 @@
         "@babel/plugin-transform-private-methods": "^7.23.3",
         "@babel/preset-env": "^7.24.0",
         "@babel/preset-typescript": "^7.23.3",
-        "@commitlint/cli": "^18.4.3",
-        "@commitlint/config-conventional": "^18.4.3",
+        "@commitlint/cli": "^19.0.3",
+        "@commitlint/config-conventional": "^19.0.3",
         "@fullhuman/postcss-purgecss": "^5.0.0",
         "@release-it/conventional-changelog": "^8.0.1",
         "@types/bootstrap": "^5.2.10",
@@ -123,7 +128,7 @@
         "favicons": "^7.1.5",
         "favicons-webpack-plugin": "^6.0.1",
         "html-webpack-plugin": "^5.6.0",
-        "husky": "^8.0.3",
+        "husky": "^9.0.11",
         "mini-css-extract-plugin": "^2.8.1",
         "mini-svg-data-uri": "^1.4.4",
         "netlify-cli": "^17.17.1",
@@ -153,23 +158,12 @@
         "webpack-subresource-integrity": "^5.2.0-rc.1",
         "yargs": "^17.7.2"
     },
-    "resolutions": {
-        "readdirp": "^3.6.0"
-    },
     "engines": {
         "node": ">= 20"
     },
     "browserslist": [
         "defaults and supports es6-module and last 3 versions"
     ],
-    "prettier": {
-        "printWidth": 120,
-        "semi": false,
-        "tabWidth": 4
-    },
-    "prettier-package-json": {
-        "tabWidth": 4
-    },
     "commitlint": {
         "extends": [
             "@commitlint/config-conventional"
@@ -203,6 +197,15 @@
             ]
         }
     },
+    "packageManager": "yarn@4.1.0",
+    "prettier": {
+        "printWidth": 120,
+        "semi": false,
+        "tabWidth": 4
+    },
+    "prettier-package-json": {
+        "tabWidth": 4
+    },
     "release-it": {
         "git": {
             "commitMessage": "chore: release v${version}",
@@ -223,5 +226,6 @@
                 "preset": "conventionalcommits"
             }
         }
-    }
+    },
+    "sass": "src/scss/main.scss"
 }

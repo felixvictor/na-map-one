@@ -13,8 +13,8 @@ export const dirJs = path.resolve(dirSrc, "js")
 export const dirMap = path.resolve(dirSrc, "images", "map")
 export const dirPrefixIcons = path.join("images", "icons")
 export const fileLogo = path.resolve(dirSrc, dirPrefixIcons, "logo.png")
-export const filePostcssProdConfig = path.resolve(dirWebpack, "postcss.prod.config.js")
-export const filePostcssDevConfig = path.resolve(dirWebpack, "postcss.dev.config.js")
+export const filePostcssProdConfig = path.resolve(dirWebpack, "postcss.prod.config.cjs")
+export const filePostcssDevConfig = path.resolve(dirWebpack, "postcss.dev.config.cjs")
 
 type AliasPaths = Record<string, string>
 export const aliasPaths: AliasPaths = {}

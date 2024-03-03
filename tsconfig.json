@@ -1,4 +1,5 @@
 {
+    "$schema": "https://json.schemastore.org/tsconfig",
     "compilerOptions": {
         "allowSyntheticDefaultImports": true,
         "allowUmdGlobalAccess": true,
@@ -7,7 +8,7 @@
         "forceConsistentCasingInFileNames": true,
         "lib": ["DOM", "DOM.Iterable", "ESNext"],
         "module": "ESNext",
-        "moduleResolution": "Node",
+        "moduleResolution": "bundler",
         "noEmit": true,
         "removeComments": true,
         "resolveJsonModule": true,

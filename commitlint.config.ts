@@ -1,4 +1,6 @@
-module.exports = {
+import type { UserConfig } from "@commitlint/types"
+
+const config: UserConfig = {
     extends: ["@commitlint/config-conventional"],
     ignores: [(message) => message.includes("WIP")],
     rules: {
@@ -10,3 +12,5 @@ module.exports = {
         ],
     },
 }
+
+export default config
