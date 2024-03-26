@@ -12,6 +12,7 @@
         "noEmit": true,
         "removeComments": true,
         "resolveJsonModule": true,
+        "resolvePackageJsonExports": false,
         "sourceMap": true,
         "strict": true,
         "target": "ESNext",

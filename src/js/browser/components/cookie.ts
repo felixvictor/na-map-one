@@ -1,5 +1,5 @@
-import Cookies, { type CookieAttributes } from "js-cookie"
 import { appName } from "common/constants"
+import Cookies from "js-cookie"
 
 const yearInDays = 365
 
@@ -17,16 +17,16 @@ export default class Cookie {
     readonly #values: readonly string[]
     // Default cookie value
     readonly #default: string
-    readonly #tokenOptionsLocal: CookieAttributes = {
+    readonly #tokenOptionsLocal: Cookies.CookieAttributes = {
         path: "/",
         sameSite: "strict",
         httpOnly: false,
     }
-    readonly #tokenOptionsSecure: CookieAttributes = {
+    readonly #tokenOptionsSecure: Cookies.CookieAttributes = {
         ...this.#tokenOptionsLocal,
         secure: true,
     }
-    readonly #tokenOptions: CookieAttributes =
+    readonly #tokenOptions: Cookies.CookieAttributes =
         window.location.hostname === "localhost" ? this.#tokenOptionsLocal : this.#tokenOptionsSecure
 
     constructor({ id: baseId, values = [], expire }: { id: string; values?: readonly string[]; expire?: Date }) {

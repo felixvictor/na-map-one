@@ -2,41 +2,41 @@ import { areaLabel as d3AreaLabel } from "d3-area-label"
 import { extent as d3Extent, max as d3Max, min as d3Min } from "d3-array"
 import { axisBottom as d3AxisBottom } from "d3-axis"
 import {
-    scaleLinear as d3ScaleLinear,
     ScaleOrdinal,
+    scaleLinear as d3ScaleLinear,
     scaleOrdinal as d3ScaleOrdinal,
     scaleTime as d3ScaleTime,
 } from "d3-scale"
+import type { Selection } from "d3-selection"
 import {
-    type Area,
     area as d3Area,
     curveBasis as d3CurveBasis,
     stack as d3Stack,
     stackOffsetNone as d3StackOffsetNone,
+    type Area,
 } from "d3-shape"
-import type { Selection } from "d3-selection"
 import textures, { Textures } from "textures"
 import type { Group } from "timelines-chart"
 
-import { registerEvent } from "../analytics"
-import Modal from "../components/modal"
-import Select, { type SelectOptions } from "../components/select"
 import { getIdFromBaseName, showCursorDefault, showCursorWait } from "common/DOM"
-import { getContrastColour } from "common/game-tools"
-import { findNationByNationShortName } from "common/nation"
-import { loadJsonFile } from "common/json"
 import { colourList } from "common/colours"
 import { colourPrimary300 } from "common/constants"
-import { nations, nationShortNamesPerServer } from "common/na-map-data/nation"
+import { getContrastColour } from "common/game-tools"
+import { loadJsonFile } from "common/json"
+import { nationShortNamesPerServer, nations } from "common/na-map-data/nation"
+import type { ServerId } from "common/na-map-data/servers"
+import { findNationByNationShortName } from "common/nation"
 import type { HtmlString } from "../../@types/common"
-import type { Ownership } from "../../@types/na-map-data/ownership"
 import type {
     NationFullName,
     NationShortName,
     NationShortNameList,
     OwnershipNation,
 } from "../../@types/na-map-data/nations"
-import type { ServerId } from "common/na-map-data/servers"
+import type { Ownership } from "../../@types/na-map-data/ownership"
+import { registerEvent } from "../analytics"
+import Modal from "../components/modal"
+import Select, { type SelectOptions } from "../components/select"
 
 /**
  *

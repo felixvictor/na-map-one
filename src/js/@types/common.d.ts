@@ -21,7 +21,7 @@ export type Index<T> = Record<string, T>
 
 export type NestedIndex<T> = Record<string, Index<T>>
 
-export type HtmlResult = VNode<Attributes | null> | VNode<Attributes | null>[]
+export type HtmlResult = VNode<Attributes> | VNode<Attributes>[]
 
 export type SVGString = string
 export type HtmlString = string
