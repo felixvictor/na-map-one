@@ -1,5 +1,12 @@
 
 
+## [15.2.2](https://example.com///compare/v15.2.1...v15.2.2) (2024-03-26)
+
+
+### Bug Fixes
+
+* **labour:** removed ([63b2bcf](https://example.com///commit/63b2bcf2b12ea263c431c619040a37a029a7344c))
+
 ## [15.2.1](https://example.com///compare/v15.2.0...v15.2.1) (2024-03-03)
 
 ## [15.2.0](https://example.com///compare/v15.1.9...v15.2.0) (2023-12-19)
