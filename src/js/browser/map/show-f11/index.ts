@@ -5,9 +5,6 @@ import utc from "dayjs/plugin/utc"
 dayjs.extend(customParseFormat)
 dayjs.extend(utc)
 
-import { registerEvent } from "../../analytics"
-import F11Modal from "./modal"
-import { NAMap } from "../na-map"
 import { getIdFromBaseName } from "common/DOM"
 import { formatF11 } from "common/format"
 import {
@@ -18,6 +15,9 @@ import {
     convertInvCoordY,
 } from "common/na-map-data/coordinates"
 import type { HtmlString, MinMaxCoord } from "../../../@types/common"
+import { registerEvent } from "../../analytics"
+import { NAMap } from "../na-map"
+import F11Modal from "./modal"
 
 /**
  * ShowF11

@@ -1,5 +1,5 @@
-import { CompareShips } from "./compare-ships"
 import Select from "../../components/select"
+import { CompareShips } from "./compare-ships"
 
 export const initFromJourney = async (): Promise<{
     select: Select

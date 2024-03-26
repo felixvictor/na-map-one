@@ -2,15 +2,20 @@
 module.exports = {
     env: {
         browser: true,
+        node: true,
     },
-    extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
+    extends: [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/stylistic",
+        "prettier",
+    ],
     ignorePatterns: [".eslintrc.cjs", ".gitignore", "public/"],
     parser: "@typescript-eslint/parser",
     plugins: ["@typescript-eslint"],
     root: true,
     rules: {
         "prefer-template": "error",
-        "prettier/prettier": "error",
     },
     overrides: [
         {

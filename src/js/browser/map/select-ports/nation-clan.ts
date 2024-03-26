@@ -1,11 +1,11 @@
-import { registerEvent } from "../../analytics"
-import DisplayPorts from "../display-ports"
-import Select, { type SelectOptions } from "../../components/select"
+import { nations } from "common/na-map-data/nation"
 import { simpleStringSort, sortBy } from "common/na-map-data/sort"
 import { validNationShortName } from "common/nation"
 import type { HtmlString } from "../../../@types/common"
 import type { Nation } from "../../../@types/na-map-data/nations"
-import { nations } from "common/na-map-data/nation"
+import { registerEvent } from "../../analytics"
+import Select, { type SelectOptions } from "../../components/select"
+import DisplayPorts from "../display-ports"
 
 export default class SelectPortsNationClan {
     #selectClan = {} as Select

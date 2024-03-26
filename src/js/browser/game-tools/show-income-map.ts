@@ -11,24 +11,24 @@
 import { default as BSTooltip } from "bootstrap/js/dist/tooltip"
 
 import { max as d3Max, min as d3Min } from "d3-array"
-import { hierarchy as d3Hierarchy, type HierarchyNode, stratify as d3Stratify } from "d3-hierarchy"
-import { ScaleLinear, scaleLinear as d3ScaleLinear, type ScaleOrdinal, scaleOrdinal as d3ScaleOrdinal } from "d3-scale"
-import { type Point, voronoiTreemap as d3VoronoiTreemap } from "d3-voronoi-treemap"
+import { hierarchy as d3Hierarchy, stratify as d3Stratify, type HierarchyNode } from "d3-hierarchy"
+import { ScaleLinear, scaleLinear as d3ScaleLinear, scaleOrdinal as d3ScaleOrdinal, type ScaleOrdinal } from "d3-scale"
 import type { Selection } from "d3-selection"
+import { voronoiTreemap as d3VoronoiTreemap, type Point } from "d3-voronoi-treemap"
 import type { Vertex } from "d3-weighted-voronoi"
 import seedrandom from "seedrandom"
 
-import { registerEvent } from "../analytics"
-import Modal from "../components/modal"
 import { getIdFromBaseName, showCursorDefault, showCursorWait } from "common/DOM"
 import { formatPercentSig, formatSiCurrency, formatSiInt } from "common/format"
-import { loadJsonFile } from "common/json"
 import { getContrastColour } from "common/game-tools"
+import { loadJsonFile } from "common/json"
 import { ϕ } from "common/na-map-data/constants"
 import { nations } from "common/na-map-data/nation"
-import type { HtmlString, PortIncome, PortJsonData } from "../../@types/common"
 import type { ServerId } from "common/na-map-data/servers"
+import type { HtmlString, PortIncome, PortJsonData } from "../../@types/common"
 import type { PortBasic, PortBattlePerServer, PortPerServer } from "../../@types/na-map-data/ports"
+import { registerEvent } from "../analytics"
+import Modal from "../components/modal"
 
 interface TreeMapPolygon extends Array<Point> {
     0: Point
@@ -301,7 +301,7 @@ export default class ShowIncomeMap {
         this.#tooltip.show()
     }
 
-    _drawCells(leaves: Array<TreeMapHierarchyNode<HierarchyNode<PortHierarchy>>>): void {
+    _drawCells(leaves: TreeMapHierarchyNode<HierarchyNode<PortHierarchy>>[]): void {
         this.#mainG
             .append("g")
             .attr("class", "cells")
@@ -316,7 +316,7 @@ export default class ShowIncomeMap {
             )
     }
 
-    _drawLabels(leaves: Array<TreeMapHierarchyNode<HierarchyNode<PortHierarchy>>>): void {
+    _drawLabels(leaves: TreeMapHierarchyNode<HierarchyNode<PortHierarchy>>[]): void {
         const labels = this.#mainG
             .append("g")
             .attr("class", "labels")
@@ -340,7 +340,7 @@ export default class ShowIncomeMap {
             .html((d) => formatSiCurrency(d.data.data.value, true))
     }
 
-    _drawHover(leaves: Array<TreeMapHierarchyNode<HierarchyNode<PortHierarchy>>>): void {
+    _drawHover(leaves: TreeMapHierarchyNode<HierarchyNode<PortHierarchy>>[]): void {
         this.#mainG
             .append("g")
             .selectAll(".hoverer")

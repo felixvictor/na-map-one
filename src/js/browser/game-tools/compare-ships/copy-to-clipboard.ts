@@ -1,6 +1,6 @@
+import { ModuleType, SelectedId, ShipColumnTypeList } from "compare-ships"
 import { registerEvent } from "../../analytics"
 import { copyToClipboard } from "../../util"
-import { ModuleType, SelectedId, ShipColumnTypeList } from "compare-ships"
 import { ShipCompareSearchParamsWrite } from "./search-params-write"
 
 export const copyDataClicked = (

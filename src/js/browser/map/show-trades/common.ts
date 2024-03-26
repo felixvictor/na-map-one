@@ -1,6 +1,6 @@
 import type { Selection } from "d3-selection"
-import type { NationShortName } from "../../../@types/na-map-data/nations"
 import type { HtmlString } from "../../../@types/common"
+import type { NationShortName } from "../../../@types/na-map-data/nations"
 import type { Trade } from "../../../@types/na-map-data/trade"
 
 export interface NodeData {

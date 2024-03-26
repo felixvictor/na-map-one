@@ -1,14 +1,14 @@
 import { registerEvent } from "../../analytics"
 
-import Select, { type SelectOptions } from "../../components/select"
-import DisplayPorts from "../display-ports"
-import ShowTrades from "../show-trades"
 import { getIdFromBaseName } from "common/DOM"
 import { formatInt, formatSiCurrency } from "common/format"
 import { sortBy } from "common/na-map-data/sort"
+import type { HtmlString } from "../../../@types/common"
 import type { NationShortName } from "../../../@types/na-map-data/nations"
 import type { InventoryEntity } from "../../../@types/na-map-data/ports"
-import type { HtmlString } from "../../../@types/common"
+import Select, { type SelectOptions } from "../../components/select"
+import DisplayPorts from "../display-ports"
+import ShowTrades from "../show-trades"
 
 type GoodMap = Map<string, { name: string; nation: NationShortName; good: InventoryEntity }>
 

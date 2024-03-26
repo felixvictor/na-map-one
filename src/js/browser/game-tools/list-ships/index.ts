@@ -1,17 +1,17 @@
 import type { Selection } from "d3-selection"
 
-import { registerEvent } from "../../analytics"
-import Modal from "../../components/modal"
 import { getIdFromBaseName } from "common/DOM"
-import { sortBy } from "common/na-map-data/sort"
-import { beautifyShipName } from "common/game-tools"
-import { maxShallowWaterBR } from "common/na-map-data/constants"
 import { formatFloatFixed, formatInt } from "common/format"
+import { beautifyShipName } from "common/game-tools"
 import { loadJsonFile } from "common/json"
+import { maxShallowWaterBR } from "common/na-map-data/constants"
+import { sortBy } from "common/na-map-data/sort"
 import type { HeaderMap, HtmlString } from "../../../@types/common"
 import type { ShipData } from "../../../@types/na-map-data/ships"
+import { registerEvent } from "../../analytics"
+import Modal from "../../components/modal"
 
-type ShipListData = Array<[number | string, string]>
+type ShipListData = [number | string, string][]
 
 /**
  *

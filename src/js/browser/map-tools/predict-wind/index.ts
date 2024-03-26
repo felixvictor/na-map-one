@@ -8,13 +8,13 @@ dayjs.extend(customParseFormat)
 dayjs.extend(utc)
 dayjs.locale("en-gb")
 
+import { getIdFromBaseName } from "common/DOM"
+import { degreesPerSecond } from "common/constants"
+import { compassToDegrees, degreesToCompass, degreesToRadians } from "common/na-map-data/coordinates"
+import type { HtmlString } from "../../../@types/common"
 import { registerEvent } from "../../analytics"
 import { displayCompassAndDegrees, printCompassRose } from "../../util"
 import PredictWindModal from "./modal"
-import { getIdFromBaseName } from "common/DOM"
-import { compassToDegrees, degreesToCompass, degreesToRadians } from "common/na-map-data/coordinates"
-import { degreesPerSecond } from "common/constants"
-import type { HtmlString } from "../../../@types/common"
 
 export default class PredictWind {
     #modal: PredictWindModal | undefined = undefined
@@ -110,7 +110,7 @@ export default class PredictWind {
         const lineData = [
             [Math.round(xCompass + dx), Math.round(yCompass + dy)],
             [Math.round(xCompass - dx), Math.round(yCompass - dy)],
-        ] as Array<[number, number]>
+        ] as [number, number][]
 
         this.#svg.attr("height", this.#height).attr("width", this.#width)
 

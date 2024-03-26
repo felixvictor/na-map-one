@@ -1,11 +1,11 @@
-import { moduleAndWoodCaps, moduleAndWoodChanges } from "./module-modifier"
-import type { ShipColumnType } from "./index"
 import type { AbsoluteAndPercentageAmount, Amount } from "compare-ships"
 import type { WoodTypeList } from "compare-woods"
-import type { ShipData } from "../../../@types/na-map-data/ships"
 import type { HtmlString } from "../../../@types/common"
 import type { ModifierName, ModuleEntity, ModulePropertiesEntity } from "../../../@types/na-map-data/modules"
+import type { ShipData } from "../../../@types/na-map-data/ships"
 import type { WoodTrimOrFrame } from "../../../@types/na-map-data/woods"
+import type { ShipColumnType } from "./index"
+import { moduleAndWoodCaps, moduleAndWoodChanges } from "./module-modifier"
 
 export default class ModulesAndWoodData {
     #baseData = {} as ShipData

@@ -1,6 +1,6 @@
 import { default as BSModal } from "bootstrap/js/dist/modal"
-import { select as d3Select, type Selection } from "d3-selection"
 import { getIdFromBaseName } from "common/DOM"
+import { select as d3Select, type Selection } from "d3-selection"
 import type { HtmlString } from "../../@types/common"
 
 export default class Modal {

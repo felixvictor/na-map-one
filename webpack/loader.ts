@@ -1,10 +1,10 @@
 import MiniCssExtractPlugin from "mini-css-extract-plugin"
 import svgToMiniDataURI from "mini-svg-data-uri"
-import { type Config, optimize } from "svgo"
+import { optimize, type Config } from "svgo"
 
 import PACKAGE from "../package.json"
-import { dirFlags, dirFonts, dirIcons, dirJs, filePostcssDevConfig, filePostcssProdConfig } from "./dir"
 import { colourYellowDark, themeColour } from "./colours"
+import { dirFlags, dirFonts, dirIcons, dirJs, filePostcssDevConfig, filePostcssProdConfig } from "./dir"
 import { isProduction } from "./env"
 
 const babelOpt = {

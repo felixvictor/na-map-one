@@ -1,7 +1,7 @@
+import { SelectedId, ShipColumnTypeList } from "compare-ships"
 import { registerEvent } from "../../analytics"
 import { CompareShips } from "./compare-ships"
 import { ShipCompareSearchParamsRead } from "./search-params-read"
-import { SelectedId, ShipColumnTypeList } from "compare-ships"
 
 let shipCompare: CompareShips
 

@@ -1,10 +1,11 @@
-import { registerEvent } from "../../analytics"
-import Select from "../../components/select"
-import DisplayPorts from "../display-ports"
 import { getIdFromBaseName } from "common/DOM"
 import { TupleKeyMap } from "common/common"
-import { sortBy } from "common/na-map-data/sort"
+import { loadJsonFile } from "common/json"
+import type { Coordinate, Distance, Point } from "common/na-map-data/coordinates"
 import { getDistance } from "common/na-map-data/coordinates"
+import { sortBy } from "common/na-map-data/sort"
+import type { HtmlString } from "../../../@types/common"
+import type { NationShortName } from "../../../@types/na-map-data/nations"
 import type {
     Port,
     PortIntersection,
@@ -12,10 +13,9 @@ import type {
     TradeGoodProfit,
     TradeProfit,
 } from "../../../@types/na-map-data/ports"
-import type { Coordinate, Distance, Point } from "common/na-map-data/coordinates"
-import type { NationShortName } from "../../../@types/na-map-data/nations"
-import type { HtmlString } from "../../../@types/common"
-import { loadJsonFile } from "common/json"
+import { registerEvent } from "../../analytics"
+import Select from "../../components/select"
+import DisplayPorts from "../display-ports"
 
 interface SelectPort {
     [index: string]: PortIntersection

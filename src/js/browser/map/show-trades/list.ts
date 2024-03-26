@@ -1,11 +1,11 @@
 import "bootstrap/js/dist/collapse"
 import { select as d3Select, type Selection } from "d3-selection"
 
-import { addDes, addInfo, baseId, getId, headId, hideElem, numTrades, showElem } from "./common"
 import { formatInt, formatSiCurrency, formatSiInt } from "common/format"
-import TradeData from "./trade-data"
 import type { HtmlString } from "../../../@types/common"
 import type { Trade } from "../../../@types/na-map-data/trade"
+import { addDes, addInfo, baseId, getId, headId, hideElem, numTrades, showElem } from "./common"
+import TradeData from "./trade-data"
 
 export default class List {
     #cardId = `${baseId}-card`

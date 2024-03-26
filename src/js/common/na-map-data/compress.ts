@@ -2,8 +2,8 @@ import { exec, execSync } from "node:child_process"
 import { default as fs } from "node:fs"
 import { promisify } from "node:util"
 
-import { serverIds } from "./servers.js"
 import { apiBaseFiles, getAPIFilename } from "./file.js"
+import { serverIds } from "./servers.js"
 import { currentServerStartDate } from "./time.js"
 
 const execP = promisify(exec)

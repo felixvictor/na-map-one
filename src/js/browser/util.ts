@@ -8,11 +8,11 @@
  * @license   http://www.gnu.org/licenses/gpl.html
  */
 
+import { numberSegments } from "common/constants"
+import { degreesFullCircle, degreesQuarterCircle } from "common/na-map-data/constants"
+import { compassToDegrees, degreesToCompass, radiansToDegrees, type Coordinate } from "common/na-map-data/coordinates"
 import { scaleBand as d3ScaleBand, type ScaleLinear } from "d3-scale"
 import type { Selection } from "d3-selection"
-import { compassToDegrees, type Coordinate, degreesToCompass, radiansToDegrees } from "common/na-map-data/coordinates"
-import { degreesFullCircle, degreesQuarterCircle } from "common/na-map-data/constants"
-import { numberSegments } from "common/constants"
 
 /**
  * Display formatted compass
@@ -97,7 +97,7 @@ export const rotationAngleInDegrees = (centerPt: Coordinate, targetPt: Coordinat
  * @param   balanced - True if splits' lengths differ as less as possible
  * @returns Split arrays
  */
-export const chunkify = (array: Array<number | string>, n: number, balanced = true): Array<Array<number | string>> => {
+export const chunkify = (array: (number | string)[], n: number, balanced = true): (number | string)[][] => {
     if (n < 2) {
         return [array]
     }

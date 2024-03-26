@@ -1,5 +1,5 @@
 type Id = string
-type Ids = Array<Id>
+type Ids = Id[]
 
 /**
  * RadioButton

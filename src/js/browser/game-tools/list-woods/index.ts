@@ -1,15 +1,13 @@
 import type { Selection } from "d3-selection"
 
-import { registerEvent } from "../../analytics"
-import type { WoodTypeList } from "compare-woods"
-import Modal from "../../components/modal"
 import { getIdFromBaseName } from "common/DOM"
-import { simpleStringSort, sortBy } from "common/na-map-data/sort"
-import { woodFamily, woodType } from "../../../@types/na-map-data/constants"
-import { capitalizeFirstLetter } from "common/na-map-data/format"
 import { formatFloatFixed, formatPP } from "common/format"
 import { loadJsonFile } from "common/json"
+import { capitalizeFirstLetter } from "common/na-map-data/format"
+import { simpleStringSort, sortBy } from "common/na-map-data/sort"
+import type { WoodTypeList } from "compare-woods"
 import type { HtmlString } from "../../../@types/common"
+import { woodFamily, woodType } from "../../../@types/na-map-data/constants"
 import type {
     WoodFamily,
     WoodJsonData,
@@ -17,6 +15,8 @@ import type {
     WoodTrimOrFrame,
     WoodType,
 } from "../../../@types/na-map-data/woods"
+import { registerEvent } from "../../analytics"
+import Modal from "../../components/modal"
 
 /**
  *

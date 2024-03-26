@@ -1,8 +1,8 @@
 import path from "node:path"
 
-import sass from "sass"
-import { parse } from "@adobe/css-tools"
 import type { CssDeclarationAST, CssRuleAST } from "@adobe/css-tools"
+import { parse } from "@adobe/css-tools"
+import sass from "sass"
 
 import { dirSrc } from "./dir"
 

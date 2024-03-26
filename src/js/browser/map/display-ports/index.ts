@@ -5,6 +5,11 @@ import RadioButton from "../../components/radio-button"
 import { NAMap } from "../na-map"
 import ShowF11 from "../show-f11"
 
+import { loadJsonFile } from "common/json"
+import { minMapScale } from "common/na-map-data/constants"
+import type { Extent, Point } from "common/na-map-data/coordinates"
+import type { SVGGDatum, ZoomLevel } from "../../../@types/common"
+import type { PortBasic, PortBattlePerServer, PortPerServer, PortWithTrades } from "../../../@types/na-map-data/ports"
 import PortCircles from "./circles"
 import Counties from "./counties"
 import Flags from "./flags"
@@ -13,11 +18,6 @@ import PortIcons from "./port-icons"
 import PortNames, { CurrentPort } from "./port-names"
 import Regions from "./regions"
 import Summary from "./summary"
-import { minMapScale } from "common/na-map-data/constants"
-import type { PortBasic, PortBattlePerServer, PortPerServer, PortWithTrades } from "../../../@types/na-map-data/ports"
-import type { SVGGDatum, ZoomLevel } from "../../../@types/common"
-import type { Extent, Point } from "common/na-map-data/coordinates"
-import { loadJsonFile } from "common/json"
 
 interface ReadData {
     [index: string]: PortBasic[] | PortPerServer[] | PortBattlePerServer[]

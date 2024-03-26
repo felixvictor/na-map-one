@@ -1,8 +1,8 @@
-import { registerEvent } from "../../analytics"
-import DisplayPorts from "../display-ports"
-import Select, { type SelectOptions } from "../../components/select"
 import { getPortBattleTime } from "common/time"
 import type { HtmlString } from "../../../@types/common"
+import { registerEvent } from "../../analytics"
+import Select, { type SelectOptions } from "../../components/select"
+import DisplayPorts from "../display-ports"
 
 export default class SelectPBTimeWindow {
     #select = {} as Select

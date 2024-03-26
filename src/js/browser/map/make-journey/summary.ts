@@ -1,8 +1,8 @@
 import { select as d3Select, Selection } from "d3-selection"
 import { displayCompassAndDegrees } from "../../util"
 
-import type { Journey } from "./index"
 import type { HtmlString } from "../../../@types/common"
+import type { Journey } from "./index"
 
 export default class MakeJourneySummary {
     #divJourneySummary = {} as Selection<HTMLDivElement, unknown, HTMLElement, unknown>

@@ -1,17 +1,15 @@
 /* eslint-disable no-irregular-whitespace */
 
-import { h, render } from "preact"
 import htm from "htm"
+import { h, render } from "preact"
 
-import { registerEvent } from "../../analytics"
-import Select, { type SelectOptions } from "../../components/select"
-import Modal from "../../components/modal"
-import { lootType } from "../../../@types/na-map-data/constants"
 import { getIdFromBaseName } from "common/DOM"
 import { formatInt } from "common/format"
-import { sortBy } from "common/na-map-data/sort"
 import { loadJsonFile } from "common/json"
+import { sortBy } from "common/na-map-data/sort"
 import type { LootItemMap, SourceDetail } from "list-loot"
+import type { HtmlResult, HtmlString } from "../../../@types/common"
+import { lootType } from "../../../@types/na-map-data/constants"
 import type {
     Loot,
     LootAmount,
@@ -22,7 +20,9 @@ import type {
     LootType,
     LootTypeList,
 } from "../../../@types/na-map-data/loot"
-import type { HtmlResult, HtmlString } from "../../../@types/common"
+import { registerEvent } from "../../analytics"
+import Modal from "../../components/modal"
+import Select, { type SelectOptions } from "../../components/select"
 
 const html = htm.bind(h)
 
@@ -177,7 +177,7 @@ export default class ListLoot {
     }
 
     _getLootItemsText(
-        items: Array<LootLootItemsEntity | LootChestItemsEntity>,
+        items: (LootLootItemsEntity | LootChestItemsEntity)[],
         title: string,
         chance = true,
     ): HtmlResult {

@@ -122,6 +122,7 @@
         "css-loader": "^6.10.0",
         "css-minimizer-webpack-plugin": "^6.0.0",
         "csso": "^5.0.5",
+        "ejs-lint": "^2.0.0",
         "eslint": "^8.57.0",
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-prettier": "^5.1.3",

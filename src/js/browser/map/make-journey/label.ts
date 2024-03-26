@@ -1,9 +1,9 @@
 import { layoutAnnealing, layoutLabel, layoutTextLabel } from "@d3fc/d3fc-label-layout"
+import { Selection, select as d3Select } from "d3-selection"
 import { zoomIdentity as d3ZoomIdentity } from "d3-zoom"
-import { select as d3Select, Selection } from "d3-selection"
 
-import type { Segment } from "./index"
 import type { Point } from "common/na-map-data/coordinates"
+import type { Segment } from "./index"
 
 export default class MakeJourneyLabel {
     #numberSegments = 0
@@ -106,7 +106,7 @@ export default class MakeJourneyLabel {
                 (
                     d: Segment,
                     i: number,
-                    nodes: Array<SVGSVGElement | SVGGElement> | ArrayLike<SVGSVGElement | SVGGElement>,
+                    nodes: (SVGSVGElement | SVGGElement)[] | ArrayLike<SVGSVGElement | SVGGElement>,
                 ): Point => {
                     // measure the label and add the required padding
                     const numberLines = d.label.split("|").length

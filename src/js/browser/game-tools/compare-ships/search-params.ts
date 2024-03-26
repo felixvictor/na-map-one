@@ -1,5 +1,5 @@
-import { hashids } from "common/game-tools"
 import { appVersion } from "common/constants"
+import { hashids } from "common/game-tools"
 import type { ModuleType } from "compare-ships"
 
 export class ShipCompareSearchParams {

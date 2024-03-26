@@ -1,27 +1,27 @@
 import { range as d3Range } from "d3-array"
 import { drag as d3Drag, type DragBehavior, type SubjectPosition } from "d3-drag"
-import { type ScaleLinear, scaleLinear as d3ScaleLinear } from "d3-scale"
+import { scaleLinear as d3ScaleLinear, type ScaleLinear } from "d3-scale"
 import { select as d3Select, type Selection } from "d3-selection"
-import { type Line, line as d3Line } from "d3-shape"
+import { line as d3Line, type Line } from "d3-shape"
 
-import { registerEvent } from "../../analytics"
-import { displayCompassAndDegrees, printCompassRose, rotationAngleInDegrees } from "../../util"
-import MakeJourneyModal from "./modal"
-import MakeJourneySummary from "./summary"
-import MakeJourneyLabelPrinter from "./label"
+import { getIdFromBaseName } from "common/DOM"
+import { degreesPerSecond } from "common/constants"
+import { formatF11, pluralise } from "common/format"
+import { degreesFullCircle, speedFactor } from "common/na-map-data/constants"
 import {
     convertInvCoordX,
     convertInvCoordY,
-    type Coordinate,
     degreesToCompass,
     getDistance,
+    type Coordinate,
     type Point,
 } from "common/na-map-data/coordinates"
-import { degreesPerSecond } from "common/constants"
-import { getIdFromBaseName } from "common/DOM"
-import { degreesFullCircle, speedFactor } from "common/na-map-data/constants"
-import { formatF11, pluralise } from "common/format"
 import type { HtmlString } from "../../../@types/common"
+import { registerEvent } from "../../analytics"
+import { displayCompassAndDegrees, printCompassRose, rotationAngleInDegrees } from "../../util"
+import MakeJourneyLabelPrinter from "./label"
+import MakeJourneyModal from "./modal"
+import MakeJourneySummary from "./summary"
 
 export interface Journey {
     shipName: string

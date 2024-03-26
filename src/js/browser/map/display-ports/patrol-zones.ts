@@ -9,12 +9,12 @@ dayjs.extend(relativeTime)
 dayjs.extend(utc)
 dayjs.locale("en-gb")
 
-import { getOrdinalSVG } from "common/na-map-data/format"
-import { type PatrolZone, patrolZones } from "./map-data"
-import { default as swordsIcon } from "icons/icon-swords.svg"
 import { defaultFontSize } from "common/na-map-data/constants"
+import { getOrdinalSVG } from "common/na-map-data/format"
 import { serverMaintenanceHour } from "common/na-map-data/time"
+import { default as swordsIcon } from "icons/icon-swords.svg"
 import type { SVGGDatum, ZoomLevel } from "../../../@types/common"
+import { patrolZones, type PatrolZone } from "./map-data"
 
 export default class PatrolZones {
     #gPZ = {} as Selection<SVGGElement, SVGGDatum, HTMLElement, unknown>

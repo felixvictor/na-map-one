@@ -1,6 +1,6 @@
+import { HtmlString } from "../../../@types/common"
 import Modal from "../../components/modal"
 import WindInput from "../../components/wind-input"
-import { HtmlString } from "../../../@types/common"
 
 export default class WindRoseModal extends Modal {
     #timeGroupId: HtmlString

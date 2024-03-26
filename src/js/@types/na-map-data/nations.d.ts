@@ -1,4 +1,3 @@
-import type { ArrayIndex } from "./index.js"
 import {
     attackerNationShortName,
     nationFullName,
@@ -6,6 +5,7 @@ import {
     nationShortNameAlternative,
     portBattleNationShortName,
 } from "common/na-map-data/nation"
+import type { ArrayIndex } from "./index.js"
 
 export interface Nation {
     id: number

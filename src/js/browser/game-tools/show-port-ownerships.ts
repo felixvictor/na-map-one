@@ -54,7 +54,7 @@ export default class ShowPortOwnerships {
 
     readonly #menuId: HtmlString
     private _ownershipData = {} as Ownership[]
-    private _nationData = {} as Array<OwnershipNation<number>>
+    private _nationData = {} as OwnershipNation<number>[]
 
     private readonly _colourScale: ScaleOrdinal<string, string>
 
@@ -86,7 +86,7 @@ export default class ShowPortOwnerships {
 
     async _loadAndSetupData(): Promise<void> {
         showCursorWait()
-        this._nationData = await loadJsonFile<Array<OwnershipNation<number>>>(`${this.#serverId}-nation`)
+        this._nationData = await loadJsonFile<OwnershipNation<number>[]>(`${this.#serverId}-nation`)
         this._ownershipData = await loadJsonFile<Ownership[]>(`${this.#serverId}-ownership`)
         showCursorDefault()
     }
@@ -193,7 +193,7 @@ export default class ShowPortOwnerships {
         nationData.keys = keys
 
         const stacked = d3Stack<
-            Array<OwnershipNation<number>> & KeyData,
+            OwnershipNation<number>[] & KeyData,
             { [K in NationShortName]: number },
             NationShortName
         >()
@@ -217,7 +217,7 @@ export default class ShowPortOwnerships {
             g.attr("font-size", ".8rem").attr("font-family", "")
         }
 
-        type NationArea = { 0: number; 1: number; data: OwnershipNation<number> }
+        interface NationArea { 0: number; 1: number; data: OwnershipNation<number> }
 
         /**
          * Get area

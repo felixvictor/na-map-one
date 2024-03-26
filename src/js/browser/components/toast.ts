@@ -1,7 +1,7 @@
 import { default as BSToast } from "bootstrap/js/dist/toast"
 
-import { select as d3Select, type Selection } from "d3-selection"
 import { iconSmallSrc } from "common/constants"
+import { select as d3Select, type Selection } from "d3-selection"
 
 /**
  * Toast

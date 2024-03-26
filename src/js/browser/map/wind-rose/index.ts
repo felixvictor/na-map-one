@@ -1,14 +1,14 @@
 import { select as d3Select, type Selection } from "d3-selection"
-import { type Line, line as d3Line } from "d3-shape"
+import { line as d3Line, type Line } from "d3-shape"
 
-import { registerEvent } from "../../analytics"
-import { printSmallCompassRose } from "../../util"
-import WindRoseModal from "./modal"
-import WindRoseCookie from "./cookie"
 import { getIdFromBaseName } from "common/DOM"
 import { degreesPerSecond } from "common/constants"
 import { degreesToRadians } from "common/na-map-data/coordinates"
 import type { HtmlString } from "../../../@types/common"
+import { registerEvent } from "../../analytics"
+import { printSmallCompassRose } from "../../util"
+import WindRoseCookie from "./cookie"
+import WindRoseModal from "./modal"
 
 export default class WindRose {
     #div!: Selection<HTMLDivElement, unknown, HTMLElement, unknown>
@@ -149,7 +149,7 @@ export default class WindRose {
         const lineData = [
             [Math.round(this.#xCompass + dx), Math.round(this.#yCompass + dy)],
             [Math.round(this.#xCompass - dx), Math.round(this.#yCompass - dy)],
-        ] as Array<[number, number]>
+        ] as [number, number][]
         if (this.#windPath) {
             this.#windPath.datum(lineData).attr("d", this.#line)
             this.#cookie.set(this.#currentWindDegrees)

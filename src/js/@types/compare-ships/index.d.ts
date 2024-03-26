@@ -1,9 +1,9 @@
 declare module "compare-ships" {
     import type { Selection } from "d3-selection"
-    import type { ValuesType } from "utility-types"
-    import type { ShipGunDeck } from "js/@types/na-map-data/ships.js"
     import type { ArrayIndex } from "js/@types/na-map-data/index.js"
+    import type { ShipGunDeck } from "js/@types/na-map-data/ships.js"
     import type { ShipColumnType } from "js/browser/game-tools/compare-ships/index.js"
+    import type { ValuesType } from "utility-types"
 
     interface ShipDisplayData {
         [index: string]: ValuesType<ShipDisplayData>

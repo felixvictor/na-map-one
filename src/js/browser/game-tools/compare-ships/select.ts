@@ -1,13 +1,13 @@
-import Select, { SelectOptions } from "../../components/select"
-import CompareShipsModal from "./modal"
-import { WoodData } from "../compare-woods/data"
-import { woodType } from "../../../@types/na-map-data/constants"
 import { isEmpty } from "common/na-map-data/common"
-import type { ShipColumnTypeList, ModuleType, ModuleTypeList } from "compare-ships"
-import type { ShipColumnType } from "./index"
+import type { ModuleType, ModuleTypeList, ShipColumnTypeList } from "compare-ships"
 import type { WoodColumnTypeList, WoodTypeList } from "compare-woods"
 import type { HtmlString } from "../../../@types/common"
+import { woodType } from "../../../@types/na-map-data/constants"
 import type { WoodType } from "../../../@types/na-map-data/woods"
+import Select, { SelectOptions } from "../../components/select"
+import { WoodData } from "../compare-woods/data"
+import type { ShipColumnType } from "./index"
+import CompareShipsModal from "./modal"
 
 export class CompareShipsSelect {
     #columnsCompare: ShipColumnType[]

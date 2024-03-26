@@ -1,14 +1,14 @@
-import { registerEvent } from "../../analytics"
-import { chunkify } from "../../util"
-import Modal from "../../components/modal"
-import Select, { type SelectOptions } from "../../components/select"
 import { getIdFromBaseName } from "common/DOM"
-import { getOrdinal } from "common/na-map-data/format"
-import { sortBy } from "common/na-map-data/sort"
 import { formatPP, formatSignInt, formatSignPercentOldstyle } from "common/format"
 import { loadJsonFile } from "common/json"
-import type { Module, ModuleEntity } from "../../../@types/na-map-data/modules"
+import { getOrdinal } from "common/na-map-data/format"
+import { sortBy } from "common/na-map-data/sort"
 import type { HtmlString } from "../../../@types/common"
+import type { Module, ModuleEntity } from "../../../@types/na-map-data/modules"
+import { registerEvent } from "../../analytics"
+import Modal from "../../components/modal"
+import Select, { type SelectOptions } from "../../components/select"
+import { chunkify } from "../../util"
 
 export default class ListModules {
     readonly #baseId: HtmlString

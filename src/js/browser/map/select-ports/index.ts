@@ -8,13 +8,13 @@ dayjs.extend(isBetween)
 dayjs.extend(utc)
 dayjs.locale("en-gb")
 
+import { initMultiDropdownNavbar } from "common/DOM"
+import { serverMaintenanceHour } from "common/na-map-data/time"
+import Select from "../../components/select"
 import DisplayPorts from "../display-ports"
 import SelectPortsSelectGoods from "./goods"
-import SelectPortsSelectPorts from "./ports"
 import SelectPortsNationClan from "./nation-clan"
-import Select from "../../components/select"
-import { serverMaintenanceHour } from "common/na-map-data/time"
-import { initMultiDropdownNavbar } from "common/DOM"
+import SelectPortsSelectPorts from "./ports"
 
 type PortDepth = "deep" | "shallow"
 

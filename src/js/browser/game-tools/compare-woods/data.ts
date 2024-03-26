@@ -1,15 +1,15 @@
 import { max as d3Max, min as d3Min } from "d3-array"
 
+import { loadJsonFile } from "common/json"
 import { simpleStringSort, sortBy } from "common/na-map-data/sort"
 import type { MinMax, WoodDataMap, WoodTypeList } from "compare-woods"
 import type { HtmlString } from "../../../@types/common"
 import type { WoodJsonData, WoodTrimOrFrame, WoodType } from "../../../@types/na-map-data/woods"
-import { loadJsonFile } from "common/json"
 
 export class WoodData {
     #baseId: HtmlString
     #defaultWoodId = {} as WoodTypeList<number>
-    #minMaxProperty: Map<string, MinMax> = new Map()
+    #minMaxProperty = new Map<string, MinMax>()
     #options = {} as WoodTypeList<HtmlString>
     #modifierNames = {} as Set<string>
     #woods = {} as WoodDataMap

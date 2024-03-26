@@ -1,9 +1,9 @@
-import { registerEvent } from "../../analytics"
-import DisplayPorts from "../display-ports"
-import Select from "../../components/select"
 import { getIdFromBaseName } from "common/DOM"
 import type { HtmlString } from "../../../@types/common"
 import type { GoodList, PortPerServer, PortWithTrades } from "../../../@types/na-map-data/ports"
+import { registerEvent } from "../../analytics"
+import Select from "../../components/select"
+import DisplayPorts from "../display-ports"
 
 export default class SelectPortsSelectGoods {
     #baseName = "Show goods’ relations"
@@ -22,9 +22,7 @@ export default class SelectPortsSelectGoods {
 
     _getOptions(): HtmlString {
         const selectGoods = new Map<number, string>()
-        const types = ["consumesTrading", "dropsTrading", "dropsNonTrading", "producesNonTrading"] as Array<
-            keyof PortPerServer
-        >
+        const types = ["consumesTrading", "dropsTrading", "dropsNonTrading", "producesNonTrading"] as (keyof PortPerServer)[]
 
         for (const port of this.#ports.portDataDefault) {
             for (const type of types) {

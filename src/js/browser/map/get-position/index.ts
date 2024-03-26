@@ -1,13 +1,13 @@
-import { registerEvent } from "../../analytics"
-import { copyF11ToClipboard } from "../../util"
-import { trilaterate, type Vector } from "../../components/transliterate"
-import GetPositionModal from "./modal"
-import DisplayPorts from "../display-ports"
-import Toast from "../../components/toast"
 import { getIdFromBaseName } from "common/DOM"
-import { convertInvCoordX, convertInvCoordY } from "common/na-map-data/coordinates"
 import { circleRadiusFactor } from "common/constants"
+import { convertInvCoordX, convertInvCoordY } from "common/na-map-data/coordinates"
 import type { HtmlString } from "../../../@types/common"
+import { registerEvent } from "../../analytics"
+import Toast from "../../components/toast"
+import { trilaterate, type Vector } from "../../components/transliterate"
+import { copyF11ToClipboard } from "../../util"
+import DisplayPorts from "../display-ports"
+import GetPositionModal from "./modal"
 
 /**
  * Get position

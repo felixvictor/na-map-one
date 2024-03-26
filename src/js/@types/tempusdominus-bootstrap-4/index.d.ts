@@ -66,12 +66,12 @@ interface DatetimepickerOption {
     dayViewHeaderFormat?: string
     debug?: boolean
     defaultDate?: boolean | Dayjs | Date | string
-    disabledDates?: boolean | Array<Dayjs | Date | string> | any
+    disabledDates?: boolean | (Dayjs | Date | string)[] | any
     disabledHours?: boolean | number[] | any
     disabledTimeIntervals?: boolean | Dayjs[][]
-    enabledDates?: boolean | Array<Dayjs | Date | string> | any
+    enabledDates?: boolean | (Dayjs | Date | string)[] | any
     enabledHours?: boolean | number[]
-    extraFormats?: boolean | Array<string | Dayjs>
+    extraFormats?: boolean | (string | Dayjs)[]
     focusOnShow?: boolean
     format?: boolean | string | Dayjs
     icons?: Icon

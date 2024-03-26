@@ -1,8 +1,8 @@
-import "round-slider/src/roundslider"
-import type { Selection } from "d3-selection"
-import { displayCompass } from "../util"
 import { compassDirections, compassToDegrees, degreesToCompass } from "common/na-map-data/coordinates"
+import type { Selection } from "d3-selection"
+import "round-slider/src/roundslider"
 import type { HtmlString } from "../../@types/common"
+import { displayCompass } from "../util"
 
 export default class WindInput {
     readonly #baseId: string

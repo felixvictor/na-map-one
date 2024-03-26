@@ -3,8 +3,8 @@ import Hashids from "hashids"
 import htm from "htm"
 import { h } from "preact"
 
-import { formatInt, formatLocale } from "common/format"
 import { colourWhite } from "common/constants"
+import { formatInt, formatLocale } from "common/format"
 import type { BaseModalHtml, HtmlResult, HtmlString } from "../@types/common"
 
 const html = htm.bind(h)

@@ -1,6 +1,6 @@
+import type { HtmlString } from "../../../@types/common"
 import Modal from "../../components/modal"
 import type { WoodColumnType } from "./index"
-import type { HtmlString } from "../../../@types/common"
 
 export default class CompareWoodsModal extends Modal {
     readonly #columnIds: WoodColumnType[]

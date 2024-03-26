@@ -1,17 +1,15 @@
 import { max as d3Max, rollups as d3Rollups } from "d3-array"
-import { Delaunay, Delaunay as d3Delaunay, Voronoi } from "d3-delaunay"
+import { Delaunay, Voronoi, Delaunay as d3Delaunay } from "d3-delaunay"
 import { ScaleOrdinal, scaleOrdinal as d3ScaleOrdinal } from "d3-scale"
-import { select as d3Select, Selection } from "d3-selection"
+import { Selection, select as d3Select } from "d3-selection"
 import { timer as d3Timer } from "d3-timer"
-import { zoomIdentity as d3ZoomIdentity, ZoomTransform } from "d3-zoom"
+import { ZoomTransform, zoomIdentity as d3ZoomIdentity } from "d3-zoom"
 
-import loadImage from "image-promise"
 import dayjs from "dayjs"
 import customParseFormat from "dayjs/plugin/customParseFormat"
+import loadImage from "image-promise"
 dayjs.extend(customParseFormat)
 
-import { registerEvent } from "../analytics"
-import { NAMap } from "../map/na-map"
 import {
     getCanvasRenderingContext2D,
     getElementHeight,
@@ -20,18 +18,20 @@ import {
     showCursorDefault,
     showCursorWait,
 } from "common/DOM"
-import { findNationById, nations } from "common/na-map-data/nation"
-import { getContrastColour } from "common/game-tools"
-import { formatSiInt } from "common/format"
 import { sleep } from "common/common"
-import { loadJsonFile } from "common/json"
-import { nationFlags } from "common/flags"
 import { colourWhite } from "common/constants"
+import { nationFlags } from "common/flags"
+import { formatSiInt } from "common/format"
+import { getContrastColour } from "common/game-tools"
+import { loadJsonFile } from "common/json"
 import { ϕ } from "common/na-map-data/constants"
-import type { PowerMapList } from "../../@types/na-map-data/power-map"
+import { findNationById, nations } from "common/na-map-data/nation"
 import type { ServerId } from "common/na-map-data/servers"
 import type { HtmlString, MinMaxCoord } from "../../@types/common"
 import type { PortBasic } from "../../@types/na-map-data/ports"
+import type { PowerMapList } from "../../@types/na-map-data/power-map"
+import { registerEvent } from "../analytics"
+import { NAMap } from "../map/na-map"
 
 interface ImagePromiseError {
     loaded: string[]
@@ -71,7 +71,7 @@ export default class PowerMap {
     #map = {} as Selection<SVGGElement, unknown, HTMLElement, unknown>
     #maxY = 0
     #nationOldIndex = new Map<number, number>()
-    #pattern = [] as Array<null | CanvasPattern>
+    #pattern = [] as (null | CanvasPattern)[]
     #playButton = {} as Selection<HTMLElement, unknown, HTMLElement, unknown>
     #portData = {} as PortBasic[]
     #powerData = {} as PowerMapList

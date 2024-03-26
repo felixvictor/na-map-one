@@ -1,9 +1,9 @@
-import { type ScaleLinear, scaleLinear as d3ScaleLinear } from "d3-scale"
+import { scaleLinear as d3ScaleLinear, type ScaleLinear } from "d3-scale"
 import { select as d3Select, type Selection } from "d3-selection"
 
-import { defaultCircleSize, degreesHalfCircle } from "common/na-map-data/constants"
 import { maxScale, maxTileScale, minScale } from "common/constants"
-import { type Coordinate, degreesToRadians } from "common/na-map-data/coordinates"
+import { defaultCircleSize, degreesHalfCircle } from "common/na-map-data/constants"
+import { degreesToRadians, type Coordinate } from "common/na-map-data/coordinates"
 import type { SVGGDatum, ZoomLevel } from "../../../@types/common"
 import type { PortWithTrades } from "../../../@types/na-map-data/ports"
 

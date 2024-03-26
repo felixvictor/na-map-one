@@ -4,6 +4,11 @@ import { extent as d3Extent } from "d3-array"
 import { scaleLinear as d3ScaleLinear, scalePoint as d3ScalePoint } from "d3-scale"
 import { select as d3Select, type Selection } from "d3-selection"
 
+import { formatInt, formatSiCurrency, formatSiInt } from "common/format"
+import { minMapScale } from "common/na-map-data/constants"
+import type { Coordinate } from "common/na-map-data/coordinates"
+import type { HtmlString } from "../../../@types/common"
+import type { Trade } from "../../../@types/na-map-data/trade"
 import {
     addDes,
     addInfo,
@@ -15,11 +20,6 @@ import {
     startBlock,
 } from "./common"
 import TradeData from "./trade-data"
-import { minMapScale } from "common/na-map-data/constants"
-import { formatInt, formatSiCurrency, formatSiInt } from "common/format"
-import type { Trade } from "../../../@types/na-map-data/trade"
-import type { HtmlString } from "../../../@types/common"
-import type { Coordinate } from "common/na-map-data/coordinates"
 
 export default class Graphs {
     #arrowX = 18

@@ -13,7 +13,7 @@ import { getPluginConfig } from "./plugin"
 import { getRepairList } from "./repairs"
 
 import { aliasPaths, dirJs, dirOutput } from "./dir"
-import { isProduction, TARGET } from "./env"
+import { TARGET, isProduction } from "./env"
 
 const publicPath = TARGET || !isProduction ? "/" : `http://localhost/na/`
 

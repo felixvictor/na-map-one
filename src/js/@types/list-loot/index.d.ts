@@ -8,12 +8,12 @@ declare module "list-loot" {
         amount: LootAmount
     }
 
-    type LootData = {
+    interface LootData {
         chest: LootChestsEntity[]
         fish: LootLootEntity[]
         loot: LootLootEntity[]
     }
 
-    type LootItem = { name: string; sources: Map<number, SourceDetail> }
+    interface LootItem { name: string; sources: Map<number, SourceDetail> }
     type LootItemMap = Map<number, LootItem>
 }

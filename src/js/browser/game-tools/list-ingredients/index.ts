@@ -1,15 +1,15 @@
 import { default as BSTooltip } from "bootstrap/js/dist/tooltip"
 
-import { registerEvent } from "../../analytics"
-import { chunkify } from "../../util"
-import Modal from "../../components/modal"
 import { getIdFromBaseName } from "common/DOM"
-import { sortBy } from "common/na-map-data/sort"
 import { formatSignInt, formatSignPercentOldstyle } from "common/format"
+import { loadJsonFile } from "common/json"
+import { sortBy } from "common/na-map-data/sort"
 import type { HtmlString } from "../../../@types/common"
 import type { Module } from "../../../@types/na-map-data/modules"
 import type { Recipe, RecipeIngredientEntity } from "../../../@types/na-map-data/recipes"
-import { loadJsonFile } from "common/json"
+import { registerEvent } from "../../analytics"
+import Modal from "../../components/modal"
+import { chunkify } from "../../util"
 
 export default class ListIngredients {
     #ingredientData = [] as RecipeIngredientEntity[]

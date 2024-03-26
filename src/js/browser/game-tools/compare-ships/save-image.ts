@@ -6,11 +6,11 @@ import dayjs from "dayjs"
 import utc from "dayjs/plugin/utc"
 dayjs.extend(utc)
 
-import CompareShipsModal from "./modal"
 import { showCursorDefault, showCursorWait } from "common/DOM"
-import type { ShipColumnType } from "./index"
-import type { ShipColumnTypeList, SelectedData } from "compare-ships"
+import type { SelectedData, ShipColumnTypeList } from "compare-ships"
 import type { HtmlString } from "../../../@types/common"
+import type { ShipColumnType } from "./index"
+import CompareShipsModal from "./modal"
 
 export default class SaveImage {
     #baseId: HtmlString

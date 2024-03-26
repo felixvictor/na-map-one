@@ -2,15 +2,15 @@ import { ZoomTransform } from "d3-zoom"
 
 import { hideElem, showElem } from "./common"
 
-import Cookie from "../../components/cookie"
 import Checkbox from "../../components/checkbox"
+import Cookie from "../../components/cookie"
 import DisplayPorts from "../display-ports"
 import SelectPortsSelectInventory from "../select-ports/inventory"
 
+import type { Extent } from "common/na-map-data/coordinates"
 import Graphs from "./graphs"
 import List from "./list"
 import TradeData from "./trade-data"
-import type { Extent } from "common/na-map-data/coordinates"
 
 /**
  * Show trades

@@ -1,29 +1,29 @@
 import { max as d3Max, min as d3Min } from "d3-array"
 import { drag as d3Drag, type DragBehavior, type DragContainerElement, type SubjectPosition } from "d3-drag"
-import { type ScaleLinear, scaleLinear as d3ScaleLinear } from "d3-scale"
+import { scaleLinear as d3ScaleLinear, type ScaleLinear } from "d3-scale"
 import type { Selection } from "d3-selection"
 import {
     curveCatmullRomClosed as d3CurveCatmullRomClosed,
+    lineRadial as d3LineRadial,
     pie as d3Pie,
     type PieArcDatum,
-    lineRadial as d3LineRadial,
 } from "d3-shape"
 
-import { rotationAngleInDegrees } from "../../util"
 import { default as shipIcon } from "icons/icon-ship.svg"
+import { rotationAngleInDegrees } from "../../util"
 
 import { Column } from "./column"
 import { CompareShips } from "./compare-ships"
 
-import { formatFloat, formatInt, formatPercentOldstyle, formatSignFloat, formatSignInt, pluralise } from "common/format"
-import { degreesToCompass } from "common/na-map-data/coordinates"
-import { getOrdinal, roundToThousands } from "common/na-map-data/format"
 import { colourWhite, segmentRadians } from "common/constants"
+import { formatFloat, formatInt, formatPercentOldstyle, formatSignFloat, formatSignInt, pluralise } from "common/format"
 import { hullRepairsVolume, repairsSetSize, rigRepairsVolume, rumRepairsFactor } from "common/game-tools"
 import { maxShallowWaterBR } from "common/na-map-data/constants"
+import { degreesToCompass } from "common/na-map-data/coordinates"
+import { getOrdinal, roundToThousands } from "common/na-map-data/format"
 import type { DragData, ShipDisplayData } from "compare-ships"
-import type { ShipData } from "../../../@types/na-map-data/ships"
 import type { HtmlString } from "../../../@types/common"
+import type { ShipData } from "../../../@types/na-map-data/ships"
 
 export class ColumnCompare extends Column {
     // Ship data of the ship to be compared to
@@ -39,7 +39,7 @@ export class ColumnCompare extends Column {
     private _drag!: DragBehavior<SVGCircleElement | SVGPathElement, DragData, DragData | SubjectPosition>
     private _windProfile!: DragData
     private _gWindProfile!: Selection<SVGGElement, unknown, HTMLElement, unknown>
-    private _arcsComp!: Array<PieArcDatum<number>>
+    private _arcsComp!: PieArcDatum<number>[]
 
     constructor(outputDivId: HtmlString, shipBaseData: ShipData, shipCompareData: ShipData, shipCompare: CompareShips) {
         super(outputDivId, shipCompare)
@@ -195,8 +195,8 @@ export class ColumnCompare extends Column {
     _drawDifferenceProfile(): void {
         const pie = d3Pie().sort(null).value(1)
 
-        const arcsBase = pie(this._shipBaseData.speedDegrees) as Array<PieArcDatum<number>>
-        this._arcsComp = pie(this.shipCompareData.speedDegrees) as Array<PieArcDatum<number>>
+        const arcsBase = pie(this._shipBaseData.speedDegrees) as PieArcDatum<number>[]
+        this._arcsComp = pie(this.shipCompareData.speedDegrees) as PieArcDatum<number>[]
 
         this._speedDiff = this.shipCompareData.speedDegrees.map((speedShipCompare, i) =>
             roundToThousands(speedShipCompare - this._shipBaseData.speedDegrees[i]),

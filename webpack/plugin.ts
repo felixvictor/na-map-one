@@ -1,8 +1,8 @@
 import path from "path"
 import webpack from "webpack"
 
-import CopyPlugin from "copy-webpack-plugin"
 import { CleanWebpackPlugin } from "clean-webpack-plugin"
+import CopyPlugin from "copy-webpack-plugin"
 import FaviconsPlugin from "favicons-webpack-plugin"
 import type { FaviconWebpackPlugionOptions } from "favicons-webpack-plugin/src/options.js"
 import HtmlPlugin from "html-webpack-plugin"
@@ -10,9 +10,9 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin"
 import SitemapWebpackPlugin from "sitemap-webpack-plugin"
 import { SubresourceIntegrityPlugin } from "webpack-subresource-integrity"
 
-import { sortBy } from "../src/js/common/na-map-data/sort"
-import { servers } from "../src/js/common/na-map-data/servers"
 import PACKAGE from "../package.json"
+import { servers } from "../src/js/common/na-map-data/servers"
+import { sortBy } from "../src/js/common/na-map-data/sort"
 import {
     backgroundColour,
     colourGreen,
@@ -27,7 +27,7 @@ import {
     themeColour,
 } from "./colours"
 import { dirEjs, dirMap, dirOutput, dirPrefixIcons, dirSrc, fileLogo } from "./dir"
-import { isProduction, TARGET } from "./env"
+import { TARGET, isProduction } from "./env"
 import type { RepairList } from "./repairs"
 
 const libraryName = PACKAGE.name

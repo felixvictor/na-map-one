@@ -2,10 +2,10 @@ import dayjs from "dayjs"
 import utc from "dayjs/plugin/utc"
 dayjs.extend(utc)
 
-import Cookie from "../../components/cookie"
-import { getNextServerStart } from "common/na-map-data/time"
 import { degreesPerSecond } from "common/constants"
+import { getNextServerStart } from "common/na-map-data/time"
 import type { HtmlString } from "../../../@types/common"
+import Cookie from "../../components/cookie"
 
 export default class WindRoseCookie {
     readonly #baseId: HtmlString

@@ -1,14 +1,14 @@
 import { max as d3Max, min as d3Min } from "d3-array"
 import { interpolateHcl as d3InterpolateHcl } from "d3-interpolate"
-import { type ScaleLinear, scaleLinear as d3ScaleLinear } from "d3-scale"
+import { scaleLinear as d3ScaleLinear, type ScaleLinear } from "d3-scale"
 import { select as d3Select, type Selection } from "d3-selection"
 
-import { colourScaleCounty } from "./map-data"
 import { colourGreenDark, colourLight, colourRedDark, maxScale, maxTileScale, minScale } from "common/constants"
 import { defaultCircleSize, ϕ } from "common/na-map-data/constants"
 import { roundToThousands } from "common/na-map-data/format"
 import type { SVGGDatum } from "../../../@types/common"
 import type { PortWithTrades } from "../../../@types/na-map-data/ports"
+import { colourScaleCounty } from "./map-data"
 
 type PortCircleStringF = (d: PortWithTrades) => string
 type PortCircleNumberF = (d: PortWithTrades) => number

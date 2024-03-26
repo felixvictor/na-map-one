@@ -1,8 +1,8 @@
 import { select as d3Select, type Selection } from "d3-selection"
 
-import { type Area, regionPolygon } from "./map-data"
-import type { SVGGDatum, ZoomLevel } from "../../../@types/common"
 import type { Point } from "common/na-map-data/coordinates"
+import type { SVGGDatum, ZoomLevel } from "../../../@types/common"
+import { regionPolygon, type Area } from "./map-data"
 
 export default class Regions {
     #gRegion = {} as Selection<SVGGElement, SVGGDatum, HTMLElement, unknown>

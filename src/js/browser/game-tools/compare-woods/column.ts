@@ -1,9 +1,9 @@
 import { select as d3Select, type Selection } from "d3-selection"
 
-import { WoodData } from "./data"
 import type { Amount } from "compare-woods"
 import type { HtmlString } from "../../../@types/common"
 import type { WoodProperty, WoodTrimOrFrame } from "../../../@types/na-map-data/woods"
+import { WoodData } from "./data"
 
 export class Column {
     #div: Selection<HTMLDivElement, unknown, HTMLElement, unknown>

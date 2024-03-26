@@ -1,12 +1,9 @@
 import { default as BSTab } from "bootstrap/js/dist/tab"
-import type { Selection } from "d3-selection"
-import { registerEvent } from "../../analytics"
-import Modal from "../../components/modal"
 import { getIdFromBaseName } from "common/DOM"
-import { capitalizeFirstLetter } from "common/na-map-data/format"
-import { cannonFamilyList, cannonType } from "../../../@types/na-map-data/constants"
 import { formatFloatFixed } from "common/format"
 import { loadJsonFile } from "common/json"
+import { capitalizeFirstLetter } from "common/na-map-data/format"
+import type { Selection } from "d3-selection"
 import type { HeaderMap, HtmlResult, HtmlString, Key } from "../../../@types/common"
 import type {
     Cannon,
@@ -18,6 +15,9 @@ import type {
     CannonType,
     CannonTypeList,
 } from "../../../@types/na-map-data/cannons"
+import { cannonFamilyList, cannonType } from "../../../@types/na-map-data/constants"
+import { registerEvent } from "../../analytics"
+import Modal from "../../components/modal"
 
 interface FamilyRowData {
     family: CannonFamily

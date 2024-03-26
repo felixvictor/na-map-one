@@ -1,18 +1,18 @@
 import type { Selection } from "d3-selection"
 
-import { registerEvent } from "../../analytics"
-import { WoodData } from "../compare-woods/data"
-import Modal from "../../components/modal"
-import Select, { type SelectOptions } from "../../components/select"
 import { getIdFromBaseName } from "common/DOM"
-import { sortBy } from "common/na-map-data/sort"
-import { woodType } from "../../../@types/na-map-data/constants"
 import { formatInt } from "common/format"
+import { loadJsonFile } from "common/json"
+import { sortBy } from "common/na-map-data/sort"
 import type { WoodColumnTypeList, WoodTypeList } from "compare-woods"
 import type { HtmlString } from "../../../@types/common"
-import type { ShipBlueprint } from "../../../@types/na-map-data/ships"
+import { woodType } from "../../../@types/na-map-data/constants"
 import type { Price } from "../../../@types/na-map-data/prices"
-import { loadJsonFile } from "common/json"
+import type { ShipBlueprint } from "../../../@types/na-map-data/ships"
+import { registerEvent } from "../../analytics"
+import Modal from "../../components/modal"
+import Select, { type SelectOptions } from "../../components/select"
+import { WoodData } from "../compare-woods/data"
 
 interface ItemNeeded {
     // item

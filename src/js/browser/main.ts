@@ -1,8 +1,8 @@
+import { serverIds, type ServerId } from "common/na-map-data/servers"
 import { initAnalytics, registerPage } from "./analytics"
 import Cookie from "./components/cookie"
 import RadioButton from "./components/radio-button"
 import { ShipCompareSearchParamsRead } from "./game-tools/compare-ships/search-params-read"
-import { type ServerId, serverIds } from "common/na-map-data/servers"
 
 import "scss/main.scss"
 

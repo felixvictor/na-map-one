@@ -1,7 +1,7 @@
-import Modal from "../../components/modal"
 import { sortBy } from "common/na-map-data/sort"
-import type { PortWithTrades } from "../../../@types/na-map-data/ports"
 import type { HtmlString } from "../../../@types/common"
+import type { PortWithTrades } from "../../../@types/na-map-data/ports"
+import Modal from "../../components/modal"
 
 export default class GetPositionModal extends Modal {
     readonly #ids: number[]

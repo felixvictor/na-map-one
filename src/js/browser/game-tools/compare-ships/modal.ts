@@ -10,9 +10,9 @@
 
 import type { Selection } from "d3-selection"
 
+import type { HtmlString } from "../../../@types/common"
 import Modal from "../../components/modal"
 import type { ShipColumnType } from "./index"
-import type { HtmlString } from "../../../@types/common"
 
 export default class CompareShipsModal extends Modal {
     #buttonMakeImage = {} as Selection<HTMLButtonElement, unknown, HTMLElement, unknown>

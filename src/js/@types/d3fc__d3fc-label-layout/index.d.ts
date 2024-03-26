@@ -6,7 +6,7 @@ declare module "@d3fc/d3fc-label-layout" {
     type Segment = import("js/browser/map/make-journey/index.js").Segment
     type ArrayLike = import("d3-selection").ArrayLike<SVGSVGElement | SVGGElement>
 
-    type SizeF = (d: Segment, i: number, nodes: Array<SVGSVGElement | SVGGElement> | ArrayLike) => Point
+    type SizeF = (d: Segment, i: number, nodes: (SVGSVGElement | SVGGElement)[] | ArrayLike) => Point
     type PositionF = (d: Segment) => Point
     type ValueF = (d: Segment) => string
 

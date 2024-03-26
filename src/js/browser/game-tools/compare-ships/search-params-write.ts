@@ -1,6 +1,6 @@
+import type { ModuleType, SelectedId, ShipColumnTypeList } from "compare-ships"
 import { shipColumnType } from "./index"
 import { ShipCompareSearchParams } from "./search-params"
-import type { ModuleType, SelectedId, ShipColumnTypeList } from "compare-ships"
 
 export class ShipCompareSearchParamsWrite extends ShipCompareSearchParams {
     #selectedIds: ShipColumnTypeList<SelectedId>

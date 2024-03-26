@@ -5,9 +5,9 @@ dayjs.extend(customParseFormat)
 dayjs.extend(utc)
 dayjs.locale("en-gb")
 
+import type { HtmlString } from "../../../@types/common"
 import Modal from "../../components/modal"
 import WindInput from "../../components/wind-input"
-import type { HtmlString } from "../../../@types/common"
 
 export default class PredictWindModal extends Modal {
     #timeGroupId: HtmlString

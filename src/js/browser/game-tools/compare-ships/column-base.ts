@@ -1,33 +1,33 @@
+import type { DragBehavior, DragContainerElement, SubjectPosition } from "d3-drag"
 import { drag as d3Drag } from "d3-drag"
+import type { ScaleLinear } from "d3-scale"
 import { scaleLinear as d3ScaleLinear } from "d3-scale"
+import type { Selection } from "d3-selection"
 import {
     arc as d3Arc,
     curveCatmullRomClosed as d3CurveCatmullRomClosed,
-    pie as d3Pie,
     lineRadial as d3LineRadial,
+    pie as d3Pie,
     type PieArcDatum,
 } from "d3-shape"
 import "d3-transition"
-import type { ScaleLinear } from "d3-scale"
-import type { Selection } from "d3-selection"
-import type { DragBehavior, DragContainerElement, SubjectPosition } from "d3-drag"
 
 import { drawSvgCircle, drawSvgVLine, rotationAngleInDegrees } from "../../util"
 
 import { Column } from "./column"
-import { CompareShips } from "./compare-ships"
 import { ColumnCompare } from "./column-compare"
+import { CompareShips } from "./compare-ships"
 
-import { default as shipIcon } from "icons/icon-ship.svg"
-import { formatFloat, formatInt, formatSignFloat, formatSignInt, pluralise } from "common/format"
-import { degreesToCompass } from "common/na-map-data/coordinates"
 import { segmentRadians } from "common/constants"
-import { getOrdinal } from "common/na-map-data/format"
-import { maxShallowWaterBR } from "common/na-map-data/constants"
+import { formatFloat, formatInt, formatSignFloat, formatSignInt, pluralise } from "common/format"
 import { hullRepairsVolume, repairsSetSize, rigRepairsVolume, rumRepairsFactor } from "common/game-tools"
+import { maxShallowWaterBR } from "common/na-map-data/constants"
+import { degreesToCompass } from "common/na-map-data/coordinates"
+import { getOrdinal } from "common/na-map-data/format"
 import type { DragData, ShipDisplayData } from "compare-ships"
-import type { ShipData } from "../../../@types/na-map-data/ships"
+import { default as shipIcon } from "icons/icon-ship.svg"
 import type { HtmlString } from "../../../@types/common"
+import type { ShipData } from "../../../@types/na-map-data/ships"
 
 /**
  * Base ship for comparison (displayed on the left side)
@@ -236,7 +236,7 @@ export class ColumnBase extends Column {
     _drawWindProfile(): void {
         const pie = d3Pie().sort(null).value(1)
 
-        const arcsBase = pie(this.shipData.speedDegrees) as Array<PieArcDatum<number>>
+        const arcsBase = pie(this.shipData.speedDegrees) as PieArcDatum<number>[]
 
         const curve = d3CurveCatmullRomClosed
         const line = d3LineRadial<PieArcDatum<number>>()

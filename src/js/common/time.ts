@@ -1,11 +1,11 @@
 import dayjs from "dayjs"
 import "dayjs/locale/en-gb"
 import utc from "dayjs/plugin/utc.js"
-dayjs.extend(utc)
-dayjs.locale("en-gb")
-import type { HtmlResult, HtmlString } from "../@types/common"
 import htm from "htm"
 import { h } from "preact"
+import type { HtmlResult, HtmlString } from "../@types/common"
+dayjs.extend(utc)
+dayjs.locale("en-gb")
 const html = htm.bind(h)
 
 const getLocalHour = (hour: number): number => Number(dayjs.utc().hour(hour).local().format("H"))

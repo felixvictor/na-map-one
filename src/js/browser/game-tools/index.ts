@@ -7,14 +7,14 @@ import ListIngredients from "./list-ingredients"
 import ListLoot from "./list-loot"
 import ListModules from "./list-modules"
 import ListRecipes from "./list-recipes"
-import ListShips from "./list-ships"
 import ListShipBlueprints from "./list-ship-blueprints"
+import ListShips from "./list-ships"
 import ListWoods from "./list-woods"
 
+import { ShipCompareSearchParamsRead } from "./compare-ships/search-params-read"
+import { CompareWoods } from "./compare-woods"
 import ShowIncomeMap from "./show-income-map"
 import ShowPortOwnerships from "./show-port-ownerships"
-import { CompareWoods } from "./compare-woods"
-import { ShipCompareSearchParamsRead } from "./compare-ships/search-params-read"
 
 /**
  * Init

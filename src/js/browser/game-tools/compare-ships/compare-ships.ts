@@ -2,33 +2,33 @@ import { default as BSTooltip } from "bootstrap/js/dist/tooltip"
 
 import { group as d3Group, max as d3Max, min as d3Min } from "d3-array"
 import { interpolateHcl as d3InterpolateHcl } from "d3-interpolate"
-import { type ScaleLinear, scaleLinear as d3ScaleLinear } from "d3-scale"
+import { scaleLinear as d3ScaleLinear, type ScaleLinear } from "d3-scale"
 
-import { registerEvent } from "../../analytics"
-import { moduleAndWoodCaps, moduleAndWoodChanges } from "./module-modifier"
-import CompareShipsModal from "./modal"
-import ModulesAndWoodData from "./module-wood-data"
-import SaveImage from "./save-image"
-import { copyDataClicked } from "./copy-to-clipboard"
-import { WoodData } from "../compare-woods/data"
-import { CompareShipsSelect } from "./select"
-import { ColumnBase } from "./column-base"
-import { ColumnCompare } from "./column-compare"
-import { sortBy } from "common/na-map-data/sort"
+import { getElementWidth } from "common/DOM"
 import { colourGreenDark, colourRedDark, colourWhite } from "common/constants"
 import { formatPP, formatSignFloat, formatSignPercentOldstyle } from "common/format"
 import { hullRepairsPercent, isImported, repairTime, rigRepairsPercent, stripShipName } from "common/game-tools"
-import { getElementWidth } from "common/DOM"
 import { loadJsonFile } from "common/json"
 import { getOrdinal } from "common/na-map-data/format"
+import { sortBy } from "common/na-map-data/sort"
+import type { ModuleType, SelectedData, SelectedId, ShipColumnTypeList, ShipSelectData } from "compare-ships"
+import type { HtmlString } from "../../../@types/common"
 import { woodType } from "../../../@types/na-map-data/constants"
 import type { Module, ModuleEntity, ModulePropertiesEntity } from "../../../@types/na-map-data/modules"
 import type { ShipData, ShipRepairTime } from "../../../@types/na-map-data/ships"
-import type { HtmlString } from "../../../@types/common"
 import type { WoodType } from "../../../@types/na-map-data/woods"
-import type { ShipColumnTypeList, ModuleType, SelectedData, SelectedId, ShipSelectData } from "compare-ships"
-import type { ShipColumnType } from "./index"
+import { registerEvent } from "../../analytics"
 import type { WoodColumnType } from "../compare-woods"
+import { WoodData } from "../compare-woods/data"
+import { ColumnBase } from "./column-base"
+import { ColumnCompare } from "./column-compare"
+import { copyDataClicked } from "./copy-to-clipboard"
+import type { ShipColumnType } from "./index"
+import CompareShipsModal from "./modal"
+import { moduleAndWoodCaps, moduleAndWoodChanges } from "./module-modifier"
+import ModulesAndWoodData from "./module-wood-data"
+import SaveImage from "./save-image"
+import { CompareShipsSelect } from "./select"
 
 type CompareShipsBaseId = "compare-ship" | "ship-journey"
 type ModuleOptionType = [number, ModuleEntity]
@@ -272,7 +272,7 @@ export class CompareShips {
         )
     }
 
-    _getModulesGrouped(moduleType: string, shipClass: number): Array<{ key: string; values: ModuleOptionType[] }> {
+    _getModulesGrouped(moduleType: string, shipClass: number): { key: string; values: ModuleOptionType[] }[] {
         const moduleData = this._getModuleDataForShipClass(moduleType, shipClass)
         return [...d3Group(moduleData, (module) => module[1].type.replace(/[\sA-Za-z]+\s–\s/, ""))]
             .map(([key, value]) => ({

@@ -1,8 +1,8 @@
-import { Column } from "./column"
-import { WoodData } from "./data"
 import { formatFloat, formatPercentOldstyle, formatSignFloat } from "common/format"
 import type { Amount, SelectedWood, WoodCompareAmount } from "compare-woods"
 import type { HtmlString } from "../../../@types/common"
+import { Column } from "./column"
+import { WoodData } from "./data"
 
 type PropertyMap = Map<string, WoodCompareAmount>
 

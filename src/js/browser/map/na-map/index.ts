@@ -1,11 +1,11 @@
-import { pointer as d3Pointer, select as d3Select, type Selection } from "d3-selection"
 import { scaleLinear as d3ScaleLinear } from "d3-scale"
+import { pointer as d3Pointer, select as d3Select, type Selection } from "d3-selection"
 import {
-    type D3ZoomEvent,
-    zoom as d3Zoom,
-    type ZoomBehavior,
-    zoomIdentity as d3ZoomIdentity,
     ZoomTransform,
+    zoom as d3Zoom,
+    zoomIdentity as d3ZoomIdentity,
+    type D3ZoomEvent,
+    type ZoomBehavior,
 } from "d3-zoom"
 
 import { registerEvent } from "../../analytics"
@@ -14,20 +14,16 @@ import Cookie from "../../components/cookie"
 import RadioButton from "../../components/radio-button"
 import Select from "../../components/select"
 
+import PowerMap from "../../game-tools/show-power-map"
 import DisplayPbZones from "../display-pb-zones"
 import DisplayPorts from "../display-ports"
+import TrilateratePosition from "../get-position"
 import MakeJourney from "../make-journey"
-import PowerMap from "../../game-tools/show-power-map"
 import SelectPorts from "../select-ports"
 import ShowF11 from "../show-f11"
 import ShowTrades from "../show-trades"
-import TrilateratePosition from "../get-position"
 import WindRose from "../wind-rose"
 
-import About from "./about"
-import TileMap from "./tile-map"
-import { defaultFontSize, mapSize } from "common/na-map-data/constants"
-import { type Extent, nearestPow2, type Point } from "common/na-map-data/coordinates"
 import {
     initScale,
     labelScaleThreshold,
@@ -36,8 +32,12 @@ import {
     pbZoneScaleThreshold,
     zoomAndPanScale,
 } from "common/constants"
-import type { MinMaxCoord, ZoomLevel } from "../../../@types/common"
+import { defaultFontSize, mapSize } from "common/na-map-data/constants"
+import { nearestPow2, type Extent, type Point } from "common/na-map-data/coordinates"
 import type { ServerId } from "common/na-map-data/servers"
+import type { MinMaxCoord, ZoomLevel } from "../../../@types/common"
+import About from "./about"
+import TileMap from "./tile-map"
 
 /**
  * Display naval action map

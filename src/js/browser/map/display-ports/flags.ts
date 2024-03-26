@@ -1,7 +1,7 @@
-import { nationFlags } from "common/flags"
-import type { NationShortName } from "../../../@types/na-map-data/nations"
 import { colourPrimary300 } from "common/constants"
+import { nationFlags } from "common/flags"
 import { nations } from "common/na-map-data/nation"
+import type { NationShortName } from "../../../@types/na-map-data/nations"
 
 export default class Flags {
     readonly #iconSize = 48
