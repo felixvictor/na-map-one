@@ -92,12 +92,6 @@ export default class ListBuildings {
                 if (currentBuilding.result[0].price) {
                     text += '<table class="table table-sm table-hover text-table"><tbody>'
                     text += `<tr><td>${getCurrencyAmount(currentBuilding.result[0].price)} per unit</td></tr>`
-                    if (currentBuilding.batch) {
-                        text += `<tr><td>${currentBuilding.batch.labour} labour hour${
-                            currentBuilding.batch.labour > 1 ? "s" : ""
-                        } per unit</td></tr>`
-                    }
-
                     text += "</tbody></table>"
                 }
             }
@@ -123,14 +117,11 @@ export default class ListBuildings {
                 text += "</tr>"
             }
         } else {
-            text +=
-                "<tr><th>Level</th><th>Production</th><th>Labour<br>cost (%)</th><th>Storage</th><th>Build price<br>(reales)</th></tr>"
+            text += "<tr><th>Level</th><th>Production</th><th>Storage</th><th>Build price<br>(reales)</th></tr>"
             text += "</thead><tbody>"
             for (const level of currentBuilding.levels) {
                 const i = currentBuilding.levels.indexOf(level)
-                text += `<tr><td>${i + 1}</td><td>${formatInt(level.production)}</td><td>${formatInt(
-                    level.labourDiscount * -100,
-                )}</td><td>${formatInt(level.maxStorage)}</td><td>${formatInt(level.price)}</td></tr>`
+                text += `<tr><td>${i + 1}</td><td>${formatInt(level.production)}</td><td>${formatInt(level.maxStorage)}</td><td>${formatInt(level.price)}</td></tr>`
             }
         }
 

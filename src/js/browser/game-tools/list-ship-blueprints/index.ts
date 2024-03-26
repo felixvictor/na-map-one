@@ -22,7 +22,6 @@ interface ItemNeeded {
 }
 interface StandardCost {
     reales: number
-    labour: number
 }
 interface SeasonedCost extends StandardCost {
     doubloon: number
@@ -71,12 +70,12 @@ export default class ListShipBlueprints {
          */
         const costs = await loadJsonFile<Price>("prices")
         this.#extractionCosts = new Map<string, StandardCost>(
-            costs.standard.map((cost) => [cost.name, { reales: cost.reales, labour: cost?.labour ?? 0 }]),
+            costs.standard.map((cost) => [cost.name, { reales: cost.reales }]),
         )
         this.#craftingCosts = new Map<string, SeasonedCost>(
             costs.seasoned.map((cost) => [
                 cost.name,
-                { reales: cost.reales, labour: cost.labour, doubloon: cost.doubloon, tool: cost.tool },
+                { reales: cost.reales, doubloon: cost.doubloon, tool: cost.tool },
             ]),
         )
 
@@ -283,11 +282,10 @@ export default class ListShipBlueprints {
         extraResources.push(
             ["Craft level", this.#currentBlueprint.craftLevel],
             ["Shipyard level", this.#currentBlueprint.shipyardLevel],
-            ["Labour hours", this.#currentBlueprint.labourHours],
             ["Craft experience", this.#currentBlueprint.craftXP],
         )
 
-        // Add extraction price and labour
+        // Add extraction price
         /**
          * Extra resources
          */
@@ -299,11 +297,6 @@ export default class ListShipBlueprints {
         let extractionPrice = 0
 
         /**
-         * Total extraction labour hours
-         */
-        let extractionLabour = 0
-
-        /**
          * Total price per item
          * @param item - Needed item
          * @returns Amount times price
@@ -312,21 +305,12 @@ export default class ListShipBlueprints {
             (this.#extractionCosts.get(item[0])?.reales ?? 0) * (item[1] as number)
 
         /**
-         * Total labour hours per item
-         * @param item - Needed item
-         * @returns Amount times labour hours
-         */
-        const getTotalExtractionLabour = (item: ItemNeeded): number =>
-            (this.#extractionCosts.get(item[0])?.labour ?? 0) * (item[1] as number)
-
-        /**
          * Calculate total extraction costs
          * @param data - Needed item
          */
         const addExtractionCosts = (data: ItemNeeded[]): void => {
             for (const cost of data.filter((data) => this.#extractionCosts.has(data[0]))) {
                 extractionPrice += getTotalExtractionPrice(cost)
-                extractionLabour += getTotalExtractionLabour(cost)
             }
         }
 
@@ -334,18 +318,13 @@ export default class ListShipBlueprints {
         addExtractionCosts(extraResources)
 
         if (extractionPrice) {
-            materials.push(["Reales", formatInt(extractionPrice)], ["Labour hours", formatInt(extractionLabour)])
+            materials.push(["Reales", formatInt(extractionPrice)])
         }
 
         /**
          * Total (S) log price
          */
         let sLogPrice = 0
-
-        /**
-         * Total (S) log labour hours
-         */
-        let sLogLabour = 0
 
         /**
          * Total (S) log doubloons
@@ -361,7 +340,6 @@ export default class ListShipBlueprints {
             const craftingCosts = this.#craftingCosts.get(String(this.#selectWood[type].getValues()))
             if (craftingCosts) {
                 sLogPrice += (craftingCosts.reales ?? 0) * frameAmount
-                sLogLabour += (craftingCosts.labour ?? 0) * frameAmount
                 sLogDoubloons += (craftingCosts.doubloon ?? 0) * frameAmount
                 sLogTools += (craftingCosts.tool ?? 0) * frameAmount
             }
@@ -369,10 +347,6 @@ export default class ListShipBlueprints {
 
         if (sLogPrice) {
             materials.push(["(S) reales", formatInt(sLogPrice)])
-        }
-
-        if (sLogLabour) {
-            materials.push(["(S) labour hours", formatInt(sLogLabour)])
         }
 
         if (sLogDoubloons) {

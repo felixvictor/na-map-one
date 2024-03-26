@@ -217,7 +217,11 @@ export default class ShowPortOwnerships {
             g.attr("font-size", ".8rem").attr("font-family", "")
         }
 
-        interface NationArea { 0: number; 1: number; data: OwnershipNation<number> }
+        interface NationArea {
+            0: number
+            1: number
+            data: OwnershipNation<number>
+        }
 
         /**
          * Get area

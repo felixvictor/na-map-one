@@ -22,7 +22,12 @@ export default class SelectPortsSelectGoods {
 
     _getOptions(): HtmlString {
         const selectGoods = new Map<number, string>()
-        const types = ["consumesTrading", "dropsTrading", "dropsNonTrading", "producesNonTrading"] as (keyof PortPerServer)[]
+        const types = [
+            "consumesTrading",
+            "dropsTrading",
+            "dropsNonTrading",
+            "producesNonTrading",
+        ] as (keyof PortPerServer)[]
 
         for (const port of this.#ports.portDataDefault) {
             for (const type of types) {

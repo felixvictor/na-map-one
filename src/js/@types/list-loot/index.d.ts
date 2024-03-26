@@ -14,6 +14,9 @@ declare module "list-loot" {
         loot: LootLootEntity[]
     }
 
-    interface LootItem { name: string; sources: Map<number, SourceDetail> }
+    interface LootItem {
+        name: string
+        sources: Map<number, SourceDetail>
+    }
     type LootItemMap = Map<number, LootItem>
 }

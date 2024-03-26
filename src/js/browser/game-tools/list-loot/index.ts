@@ -176,11 +176,7 @@ export default class ListLoot {
         }
     }
 
-    _getLootItemsText(
-        items: (LootLootItemsEntity | LootChestItemsEntity)[],
-        title: string,
-        chance = true,
-    ): HtmlResult {
+    _getLootItemsText(items: (LootLootItemsEntity | LootChestItemsEntity)[], title: string, chance = true): HtmlResult {
         return html`
             <table class="table table-sm table-striped table-hover">
                 <thead>

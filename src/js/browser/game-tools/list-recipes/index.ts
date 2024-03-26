@@ -118,9 +118,6 @@ export default class ListRecipes {
 
     _getRequirementText(currentRecipe: RecipeEntity): HtmlString {
         let text = '<table class="table table-sm table-hover text-table"><tbody>'
-        if (currentRecipe.labourPrice) {
-            text += `<tr><td>${currentRecipe.labourPrice} labour hours</td></tr>`
-        }
 
         if (currentRecipe.goldPrice) {
             text += `<tr><td>${getCurrencyAmount(currentRecipe.goldPrice)}</td></tr>`
