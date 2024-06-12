@@ -1,6 +1,6 @@
 {
     "name": "na-map-one",
-    "version": "15.2.3",
+    "version": "15.2.4",
     "description": "Naval Action map",
     "scripts": {
         "build:push": "git push",

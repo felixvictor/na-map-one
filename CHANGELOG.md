@@ -1,5 +1,12 @@
 
 
+## [15.2.4](https://example.com///compare/v15.2.3...v15.2.4) (2024-06-12)
+
+
+### Bug Fixes
+
+* **ship list:** turnSpeed ([17d12ab](https://example.com///commit/17d12ab877239cb1c393841858b670c9cb5e8a17))
+
 ## [15.2.3](https://example.com///compare/v15.2.2...v15.2.3) (2024-06-12)
 
 
