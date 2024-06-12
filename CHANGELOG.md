@@ -1,5 +1,12 @@
 
 
+## [15.2.3](https://example.com///compare/v15.2.2...v15.2.3) (2024-06-12)
+
+
+### Bug Fixes
+
+* **commitlint:** husky ([2031963](https://example.com///commit/203196324b2c45c10b69dc0188ad288a59c91fb5))
+
 ## [15.2.2](https://example.com///compare/v15.2.1...v15.2.2) (2024-03-26)
 
 
