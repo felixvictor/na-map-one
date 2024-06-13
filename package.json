@@ -12,6 +12,7 @@
         "docs:js": "documentation build src/js/**.js build/**.mjs -f html -o ./doc-js",
         "docs:sass": "sassdoc src/scss -d ./doc-sass",
         "git:chore": "git add package.json yarn.lock .yarn .yarnrc.yml && git commit -m 'chore(deps): bump'",
+        "helper:build:tiles": "vips dzsave /mnt/na-map.tif src/images/map --depth onetile --layout google --tile-size 256 --overlap 0 --suffix .webp[Q=100,reduction-effort=6]",
         "helper:loc": "npx cloc --by-file --not-match-f='.d.ts' --quiet ./src/js",
         "helper:size:css": "find public/ -iname '*.css' -exec du -bc {} + | sort -k 2 | sed 's|public/||'",
         "helper:size:js": "find public/ -iname '*.js' -not -iname 'data-*.js' -exec du -bc {} + | sort -k 2 | sed 's|public/||'",
