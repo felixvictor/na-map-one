@@ -1,5 +1,12 @@
 
 
+## [15.2.7](https://example.com///compare/v15.2.5...v15.2.7) (2024-07-28)
+
+
+### Bug Fixes
+
+* **scripts:** build tiles re-added ([d6c44af](https://example.com///commit/d6c44af26874e4249d07e9330e061c57681846dc))
+
 ## [15.2.6](https://example.com///compare/v15.2.5...v15.2.6) (2024-07-28)
 
 
