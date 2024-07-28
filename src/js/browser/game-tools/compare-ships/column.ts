@@ -1,11 +1,12 @@
-import { select as d3Select, Selection } from "d3-selection"
+import type { Selection } from "d3-selection"
+import { select as d3Select } from "d3-selection"
 import { arc as d3Arc, pie as d3Pie } from "d3-shape"
 
 import { numberSegments } from "common/constants"
 import type { ShipDisplayData } from "compare-ships"
 import type { HtmlString } from "../../../@types/common"
 import type { ShipGunDeck, ShipGuns } from "../../../@types/na-map-data/ships"
-import { CompareShips } from "./compare-ships"
+import type { CompareShips } from "./compare-ships"
 
 type TextColumnSize = 4 | 6
 

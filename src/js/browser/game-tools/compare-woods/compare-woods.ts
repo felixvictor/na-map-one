@@ -89,7 +89,7 @@ export class CompareWoods {
     }
 
     _setupMenuListener(): void {
-        ;(document.querySelector(`#${this.#menuId}`) as HTMLElement).addEventListener("click", () => {
+        document.querySelector(`#${this.#menuId}`)!.addEventListener("click", () => {
             void this._menuClicked()
         })
     }

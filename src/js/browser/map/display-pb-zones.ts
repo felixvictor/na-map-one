@@ -7,7 +7,7 @@ import type { PbZone, PbZoneBasic, PbZoneDefence, PbZoneRaid } from "../../@type
 import Cookie from "../components/cookie"
 import RadioButton from "../components/radio-button"
 import { drawSvgCircle, drawSvgRect } from "../util"
-import DisplayPorts from "./display-ports"
+import type DisplayPorts from "./display-ports"
 
 export default class DisplayPbZones {
     readonly #fortRangeRadius = 12

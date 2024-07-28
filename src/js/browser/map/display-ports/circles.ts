@@ -172,7 +172,7 @@ export default class PortCircles {
                 this.#attackRadius.range([rMin, rMax / 1.5])
                 cssClass = (d): string => `bubble ${PortCircles.#getAttackMarker(d)}`
                 fill = (d): string =>
-                    d.attackerNation === "NT" ? "" : this.#colourScaleHostility(d.attackHostility ?? 0) ?? ""
+                    d.attackerNation === "NT" ? "" : (this.#colourScaleHostility(d.attackHostility ?? 0) ?? "")
                 r = (d): number => this.#attackRadius(d.attackHostility ?? (d.cooldownTime ? 0.2 : 0)) ?? 0
 
                 break

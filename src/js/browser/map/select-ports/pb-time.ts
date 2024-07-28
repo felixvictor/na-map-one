@@ -2,7 +2,7 @@ import { getPortBattleTime } from "common/time"
 import type { HtmlString } from "../../../@types/common"
 import { registerEvent } from "../../analytics"
 import Select, { type SelectOptions } from "../../components/select"
-import DisplayPorts from "../display-ports"
+import type DisplayPorts from "../display-ports"
 
 export default class SelectPBTimeWindow {
     #select = {} as Select
@@ -24,9 +24,7 @@ export default class SelectPBTimeWindow {
                 .sort((a, b) => a - b),
         )
 
-        return `${[...data]
-            .map((time): string => `<option value="${time}">${getPortBattleTime(time)}</option>`)
-            .join("")}`
+        return [...data].map((time): string => `<option value="${time}">${getPortBattleTime(time)}</option>`).join("")
     }
 
     _setupSelect(): void {
@@ -50,7 +48,7 @@ export default class SelectPBTimeWindow {
     }
 
     _setupListener(): void {
-        this.#select.select$.on("change", async () => {
+        this.#select.select$.on("change", () => {
             registerEvent("Menu", this.#baseId)
 
             this._selected()

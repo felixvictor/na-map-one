@@ -5,7 +5,7 @@ import type { HtmlString } from "../../../@types/common"
 import type { Nation } from "../../../@types/na-map-data/nations"
 import { registerEvent } from "../../analytics"
 import Select, { type SelectOptions } from "../../components/select"
-import DisplayPorts from "../display-ports"
+import type DisplayPorts from "../display-ports"
 
 export default class SelectPortsNationClan {
     #selectClan = {} as Select
@@ -31,7 +31,7 @@ export default class SelectPortsNationClan {
     }
 
     _getNationOptions = (neutralPortsIncluded = true): HtmlString =>
-        `${nations
+        nations
             // Exclude neutral nation and free towns when neutralPortsIncluded is set
             .filter((nation) => !(!neutralPortsIncluded && (nation.short === "FT" || nation.short === "NT")))
             .sort(sortBy(["name"]))
@@ -39,7 +39,7 @@ export default class SelectPortsNationClan {
                 (nation: Nation): string =>
                     `<option data-icon="flag-icon-${nation.short} flag-icon-small" value="${nation.short}">${nation.name}</option>`,
             )
-            .join("")}`
+            .join("")
 
     _setupNationSelect(): void {
         const selectOptions: Partial<SelectOptions> = {
@@ -58,10 +58,10 @@ export default class SelectPortsNationClan {
         }
 
         if (clanList.size > 0) {
-            return `${[...clanList]
+            return [...clanList]
                 .sort(simpleStringSort)
                 .map((clan) => `<option value="${clan}" class="caps">${clan}</option>`)
-                .join("")}`
+                .join("")
         }
 
         return ""
@@ -123,13 +123,13 @@ export default class SelectPortsNationClan {
     }
 
     _setupListener(): void {
-        this.#selectClan.select$.on("change", async () => {
+        this.#selectClan.select$.on("change", () => {
             registerEvent("Menu", this.#baseIdNation)
 
             Select.resetAllExcept([this.#selectClan.select$, this.#selectNation.select$])
             this._clanSelected()
         })
-        this.#selectNation.select$.on("change", async () => {
+        this.#selectNation.select$.on("change", () => {
             registerEvent("Menu", this.#baseIdClan)
 
             Select.resetAllExcept([this.#selectClan.select$, this.#selectNation.select$])

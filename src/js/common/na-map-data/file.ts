@@ -23,7 +23,6 @@ export const makeDirAsync = async (dir: string): Promise<void> => {
     await fsPromises.mkdir(dir, { recursive: true })
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 export const saveJsonAsync = async (fileName: string, data: object): Promise<void> => {
     await makeDirAsync(path.dirname(fileName))
     await fsPromises.writeFile(fileName, JSON.stringify(data), { encoding: "utf8" })

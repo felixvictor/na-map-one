@@ -1,4 +1,4 @@
-export const serverIds = ["eu3", "eu1", "eu2"]!
+export const serverIds = ["eu3", "eu1", "eu2"]
 export type ServerId = (typeof serverIds)[number]
 export type ServerType = "PVE" | "PVP"
 

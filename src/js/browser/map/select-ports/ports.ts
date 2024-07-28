@@ -15,7 +15,7 @@ import type {
 } from "../../../@types/na-map-data/ports"
 import { registerEvent } from "../../analytics"
 import Select from "../../components/select"
-import DisplayPorts from "../display-ports"
+import type DisplayPorts from "../display-ports"
 
 interface SelectPort {
     [index: string]: PortIntersection
@@ -58,14 +58,14 @@ export default class SelectPortsSelectPorts {
             )
             .sort(sortBy(["name"]))
 
-        return `${selectPorts
+        return selectPorts
             .map(
                 (port: SelectPort): HtmlString =>
                     `<option data-icon="flag-icon-${port.nation} flag-icon-small" value="${port.coord.toString()}/${
                         port.id
                     }">${port.name}</option>`,
             )
-            .join("")}`
+            .join("")
     }
 
     _setupSelect(): void {
@@ -106,8 +106,8 @@ export default class SelectPortsSelectPorts {
 
     _getSailingDistance(fromPortId: number, toPortId: number): number {
         return fromPortId < toPortId
-            ? this.#distances.get(fromPortId * this.#numberPorts + toPortId) ?? 0
-            : this.#distances.get(toPortId * this.#numberPorts + fromPortId) ?? 0
+            ? (this.#distances.get(fromPortId * this.#numberPorts + toPortId) ?? 0)
+            : (this.#distances.get(toPortId * this.#numberPorts + fromPortId) ?? 0)
     }
 
     _getBuyPrice(itemId: number): number {
@@ -200,7 +200,7 @@ export default class SelectPortsSelectPorts {
     }
 
     _getGoodsToBuyInTradePort(sellPort: PortWithTrades): TradeGoodProfit[] {
-        const tradePortProducedGoods = new Set(this.#tradePort.dropsTrading?.map((good) => good)) ?? []
+        const tradePortProducedGoods = new Set(this.#tradePort.dropsTrading?.map((good) => good))
 
         return (sellPort.consumesTrading
             ?.filter((good) => tradePortProducedGoods.has(good))
@@ -211,7 +211,7 @@ export default class SelectPortsSelectPorts {
     }
 
     _getGoodsToSellInTradePort(buyPort: PortWithTrades): TradeGoodProfit[] {
-        const tradePortConsumedGoods = new Set(this.#tradePort.consumesTrading?.map((good) => good)) ?? []
+        const tradePortConsumedGoods = new Set(this.#tradePort.consumesTrading?.map((good) => good))
 
         return (buyPort.dropsTrading
             ?.filter((good) => tradePortConsumedGoods.has(good))

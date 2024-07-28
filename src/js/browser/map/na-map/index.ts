@@ -1,12 +1,7 @@
 import { scaleLinear as d3ScaleLinear } from "d3-scale"
 import { pointer as d3Pointer, select as d3Select, type Selection } from "d3-selection"
-import {
-    ZoomTransform,
-    zoom as d3Zoom,
-    zoomIdentity as d3ZoomIdentity,
-    type D3ZoomEvent,
-    type ZoomBehavior,
-} from "d3-zoom"
+import type { ZoomTransform } from "d3-zoom"
+import { zoom as d3Zoom, zoomIdentity as d3ZoomIdentity, type D3ZoomEvent, type ZoomBehavior } from "d3-zoom"
 
 import { registerEvent } from "../../analytics"
 
@@ -281,7 +276,7 @@ class NAMap {
     }
 
     #getDOMPoint(x: number, y: number, screen = true): DOMPoint {
-        const node = this.#mainG.node() as SVGGElement
+        const node = this.#mainG.node()!
         const point = node.ownerSVGElement?.createSVGPoint()
 
         if (point) {
@@ -301,11 +296,13 @@ class NAMap {
         } as DOMPoint
     }
 
+    /*
     #getScreenCoordinate(x: number, y: number): Point {
         const { x: wx, y: wy } = this.#getDOMPoint(x, y, true)
 
         return [wx, wy]
     }
+    */
 
     #getWorldCoordinate(x: number, y: number): Point {
         const { x: wx, y: wy } = this.#getDOMPoint(x, y, false)
@@ -427,6 +424,7 @@ class NAMap {
     #transform(tx: number, ty: number, tk: number): void {
         const transform = d3ZoomIdentity.translate(tx, ty).scale(tk)
 
+        // eslint-disable-next-line @typescript-eslint/unbound-method
         this.#svg.call(this.#zoom.transform, transform)
     }
 

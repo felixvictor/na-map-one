@@ -12,7 +12,8 @@ import { default as BSTooltip } from "bootstrap/js/dist/tooltip"
 
 import { max as d3Max, min as d3Min } from "d3-array"
 import { hierarchy as d3Hierarchy, stratify as d3Stratify, type HierarchyNode } from "d3-hierarchy"
-import { ScaleLinear, scaleLinear as d3ScaleLinear, scaleOrdinal as d3ScaleOrdinal, type ScaleOrdinal } from "d3-scale"
+import type { ScaleLinear } from "d3-scale"
+import { scaleLinear as d3ScaleLinear, scaleOrdinal as d3ScaleOrdinal, type ScaleOrdinal } from "d3-scale"
 import type { Selection } from "d3-selection"
 import { voronoiTreemap as d3VoronoiTreemap, type Point } from "d3-voronoi-treemap"
 import type { Vertex } from "d3-weighted-voronoi"
@@ -257,7 +258,7 @@ export default class ShowIncomeMap {
             <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex flex-column text-start mt-1 me-3 p-0">
                 <div><i class="flag-icon-${
-                    d.parent?.data?.id as string
+                    d.parent?.data.id
                 } flag-icon-small me-2" role="img"></i><span class="x-large">${d.data.id ?? ""}</span></div>
             </div>
             <div class="d-flex flex-column text-start mt-1 p-0">

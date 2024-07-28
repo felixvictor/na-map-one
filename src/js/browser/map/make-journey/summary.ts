@@ -1,4 +1,5 @@
-import { select as d3Select, Selection } from "d3-selection"
+import type { Selection } from "d3-selection"
+import { select as d3Select } from "d3-selection"
 import { displayCompassAndDegrees } from "../../util"
 
 import type { HtmlString } from "../../../@types/common"

@@ -7,8 +7,8 @@ import type { HtmlString } from "../../../@types/common"
 import type { NationShortName } from "../../../@types/na-map-data/nations"
 import type { InventoryEntity } from "../../../@types/na-map-data/ports"
 import Select, { type SelectOptions } from "../../components/select"
-import DisplayPorts from "../display-ports"
-import ShowTrades from "../show-trades"
+import type DisplayPorts from "../display-ports"
+import type ShowTrades from "../show-trades"
 
 type GoodMap = Map<string, { name: string; nation: NationShortName; good: InventoryEntity }>
 
@@ -55,10 +55,10 @@ export default class SelectPortsSelectInventory {
             }
         }
 
-        return `${[...selectGoods]
+        return [...selectGoods]
             .sort((a, b) => a[1].localeCompare(b[1]))
             .map((good) => `<option value="${good[0]}">${good[1]}</option>`)
-            .join("")}`
+            .join("")
     }
 
     _setupSelect(): void {

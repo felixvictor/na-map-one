@@ -3,18 +3,18 @@
  */
 
 declare module "excel4node" {
-    import { Stats } from "fs"
+    import type { Stats } from "fs"
 
     /**
      * https://github.com/natergj/excel4node/blob/master/source/lib/worksheet/classes/dataValidation.js
      */
-    // eslint-disable-next-line @typescript-eslint/no-extraneous-class
+
     class DataValidation {}
 
     /**
      * https://github.com/natergj/excel4node/blob/master/source/lib/drawing/drawing.js
      */
-    // eslint-disable-next-line @typescript-eslint/no-extraneous-class
+
     class Drawing {}
 
     /**
@@ -541,6 +541,7 @@ declare module "excel4node" {
         image?: Buffer
         name?: string
         path?: string
+        // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
         type?: string | "picture"
         /**
          * absoluteAnchor takes two position elements in either EMUs or measurements in cm, mm, or in

@@ -34,8 +34,8 @@ export default class CompareWoodsModal extends Modal {
                 .append("div")
                 .attr("class", `col-md-3 ms-auto pt-2 ${columnId === "base" ? "column-base" : "column-comp bg-paper"}`)
 
-            columnDiv.append("div").attr("id", `${this.getBaseIdSelects(columnId)}`)
-            columnDiv.append("div").attr("id", `${this.getBaseIdOutput(columnId)}`)
+            columnDiv.append("div").attr("id", this.getBaseIdSelects(columnId))
+            columnDiv.append("div").attr("id", this.getBaseIdOutput(columnId))
         }
     }
 }

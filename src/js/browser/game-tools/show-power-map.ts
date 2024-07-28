@@ -1,9 +1,13 @@
 import { max as d3Max, rollups as d3Rollups } from "d3-array"
-import { Delaunay, Voronoi, Delaunay as d3Delaunay } from "d3-delaunay"
-import { ScaleOrdinal, scaleOrdinal as d3ScaleOrdinal } from "d3-scale"
-import { Selection, select as d3Select } from "d3-selection"
+import type { Delaunay, Voronoi } from "d3-delaunay"
+import { Delaunay as d3Delaunay } from "d3-delaunay"
+import type { ScaleOrdinal } from "d3-scale"
+import { scaleOrdinal as d3ScaleOrdinal } from "d3-scale"
+import type { Selection } from "d3-selection"
+import { select as d3Select } from "d3-selection"
 import { timer as d3Timer } from "d3-timer"
-import { ZoomTransform, zoomIdentity as d3ZoomIdentity } from "d3-zoom"
+import type { ZoomTransform } from "d3-zoom"
+import { zoomIdentity as d3ZoomIdentity } from "d3-zoom"
 
 import dayjs from "dayjs"
 import customParseFormat from "dayjs/plugin/customParseFormat"
@@ -31,7 +35,7 @@ import type { HtmlString, MinMaxCoord } from "../../@types/common"
 import type { PortBasic } from "../../@types/na-map-data/ports"
 import type { PowerMapList } from "../../@types/na-map-data/power-map"
 import { registerEvent } from "../analytics"
-import { NAMap } from "../map/na-map"
+import type { NAMap } from "../map/na-map"
 
 interface ImagePromiseError {
     loaded: string[]
@@ -48,7 +52,6 @@ interface DivDimension {
  *
  */
 export default class PowerMap {
-    #serverId: ServerId
     readonly #baseId: HtmlString
     readonly #baseName = "Power map"
     readonly #menuId: HtmlString
@@ -92,7 +95,6 @@ export default class PowerMap {
         readonly serverId: ServerId,
         readonly coord: MinMaxCoord,
     ) {
-        this.#serverId = serverId
         this.#NAMap = map
 
         this.#baseId = `show-${getIdFromBaseName(this.#baseName)}`
@@ -203,7 +205,6 @@ export default class PowerMap {
             date = this.#powerData[this.#index][0]
             ports = this.#powerData[this.#index][1]
 
-            // eslint-disable-next-line @typescript-eslint/no-loop-func
             const t = d3Timer((elapsed) => {
                 this._drawMap(this.#index, date, ports)
 
@@ -212,7 +213,7 @@ export default class PowerMap {
                 }
             })
             this._drawNationLegend(ports)
-            // eslint-disable-next-line no-await-in-loop
+
             await sleep(this.#delay * 1.1)
         }
 
@@ -429,7 +430,7 @@ export default class PowerMap {
     }
 
     _getRangeValue(): string {
-        return this.#rangeInput.property("value")
+        return this.#rangeInput.property("value") as string
     }
 
     _setRangeValue(): void {
@@ -633,7 +634,7 @@ export default class PowerMap {
             .append("div")
             .style("background-color", colourWhite)
             .attr("class", "p-2")
-        this.#legendControllerElement = legendController.node() as HTMLDivElement
+        this.#legendControllerElement = legendController.node()!
 
         const formRow = legendController
             .append("form")
@@ -652,7 +653,7 @@ export default class PowerMap {
     }
 
     _getTopAlignedTransform(element: SVGGElement): ZoomTransform {
-        const { a: scale, e: tx } = element.transform.baseVal.consolidate()?.matrix || {}
+        const { a: scale, e: tx } = element.transform.baseVal.consolidate()?.matrix ?? {}
         return scale && tx ? d3ZoomIdentity.scale(scale).translate(tx / scale, 0) : ({} as ZoomTransform)
     }
 
@@ -661,7 +662,7 @@ export default class PowerMap {
 
         // Move map to top
         const gMapTiles = d3Select("#na-map svg g.map-tiles")
-        const mapTransform = this._getTopAlignedTransform(this.#map.node() as SVGGElement)
+        const mapTransform = this._getTopAlignedTransform(this.#map.node()!)
         const mapTilesTransform = this._getTopAlignedTransform(gMapTiles.node() as SVGGElement)
         this.#map.attr("transform", mapTransform.toString())
         gMapTiles.attr("transform", mapTilesTransform.toString())
@@ -681,7 +682,7 @@ export default class PowerMap {
 
         // Add canvas
         const canvas = this.#mainDiv.append("canvas")
-        const canvasNode = canvas.node() as HTMLCanvasElement
+        const canvasNode = canvas.node()!
 
         // Set display size (css pixels)
         canvasNode.style.height = heightCss

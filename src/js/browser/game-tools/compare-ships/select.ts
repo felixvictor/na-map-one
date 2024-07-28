@@ -4,22 +4,21 @@ import type { WoodColumnTypeList, WoodTypeList } from "compare-woods"
 import type { HtmlString } from "../../../@types/common"
 import { woodType } from "../../../@types/na-map-data/constants"
 import type { WoodType } from "../../../@types/na-map-data/woods"
-import Select, { SelectOptions } from "../../components/select"
-import { WoodData } from "../compare-woods/data"
+import type { SelectOptions } from "../../components/select"
+import Select from "../../components/select"
+import type { WoodData } from "../compare-woods/data"
 import type { ShipColumnType } from "./index"
-import CompareShipsModal from "./modal"
+import type CompareShipsModal from "./modal"
 
 export class CompareShipsSelect {
     #columnsCompare: ShipColumnType[]
     #selectModule = {} as ShipColumnTypeList<ModuleTypeList<Select>>
     #selectShip = {} as ShipColumnTypeList<Select>
     #selectWood = {} as ShipColumnTypeList<WoodTypeList<Select>>
-    readonly #baseId: HtmlString
     readonly #columnIds: ShipColumnType[]
     readonly #modal: CompareShipsModal
 
     constructor(baseId: HtmlString, columnIds: ShipColumnType[], modal: CompareShipsModal) {
-        this.#baseId = baseId
         this.#columnIds = columnIds
         this.#modal = modal
 
@@ -68,11 +67,10 @@ export class CompareShipsSelect {
         }
     }
 
-    getSelectedShipId = (columnId: ShipColumnType): number | undefined =>
-        Number(this.#selectShip[columnId].getValues()) ?? undefined
+    getSelectedShipId = (columnId: ShipColumnType): number => Number(this.#selectShip[columnId].getValues())
 
     getSelectedWoodId = (columnId: ShipColumnType, woodType: WoodType): number =>
-        Number(this.#selectWood[columnId][woodType].getValues()) ?? 0
+        Number(this.#selectWood[columnId][woodType].getValues())
 
     getSelectedWoodIds(columnId: ShipColumnType): Map<string, number> {
         const woodIds = new Map<string, number>()
@@ -131,7 +129,7 @@ export class CompareShipsSelect {
             liveSearch: true,
             maxOptions: moduleType.startsWith("Ship trim") ? 6 : 5,
             selectedTextFormat: "count > 1",
-            placeholder: `${moduleType}`,
+            placeholder: moduleType,
             width: "170px",
         }
 

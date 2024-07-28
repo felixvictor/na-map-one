@@ -28,7 +28,7 @@ export default class ListIngredients {
 
     async _loadAndSetupData(): Promise<void> {
         this.#moduleData = await loadJsonFile<Module[]>("modules")
-        this.#ingredientData = (await loadJsonFile<Recipe>("recipes")).ingredient as RecipeIngredientEntity[]
+        this.#ingredientData = (await loadJsonFile<Recipe>("recipes")).ingredient
     }
 
     async _menuClicked(): Promise<void> {

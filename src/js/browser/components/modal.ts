@@ -8,7 +8,6 @@ export default class Modal {
     readonly #baseIdOutput: HtmlString
     readonly #baseIdSelects: HtmlString
     readonly #baseName: string
-    readonly #buttonId: HtmlString
     readonly #buttonText: string
     readonly #modal: BSModal
     readonly #modalId: HtmlString
@@ -25,7 +24,6 @@ export default class Modal {
         this.#baseId = getIdFromBaseName(this.#baseName)
         this.#baseIdSelects = `${this.#baseId}-selects`
         this.#baseIdOutput = `${this.#baseId}-output`
-        this.#buttonId = `menu-${this.baseId}`
         this.#buttonText = buttonText
         this.#modalId = `modal-${this.baseId}`
         this.#size = `modal-${size}`
@@ -78,7 +76,7 @@ export default class Modal {
     }
 
     getModalNode(): HTMLDivElement {
-        return this.#modalSel.node() as HTMLDivElement
+        return this.#modalSel.node()!
     }
 
     get baseIdSelects(): HtmlString {

@@ -204,10 +204,10 @@ export default class MakeJourney {
      * Setup menu item listener
      */
     _setupListener(): void {
-        ;(document.querySelector(`#${this.#menuId}`) as HTMLElement).addEventListener("click", () => {
+        document.querySelector(`#${this.#menuId}`)!.addEventListener("click", () => {
             void this._menuClicked()
         })
-        ;(document.querySelector(`#${this.#deleteLastLegButtonId}`) as HTMLElement).addEventListener("click", () => {
+        document.querySelector(`#${this.#deleteLastLegButtonId}`)!.addEventListener("click", () => {
             this._deleteLastLeg()
         })
     }

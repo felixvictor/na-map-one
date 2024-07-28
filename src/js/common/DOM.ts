@@ -62,7 +62,7 @@ export const getIdFromBaseName = (baseName: string): HtmlString =>
  */
 export const initMultiDropdownNavbar = (id: string): void => {
     const CLASS_NAME = "has-child-dropdown-show"
-    const mainElement = document.querySelector(`#${id}`) as HTMLElement
+    const mainElement = document.querySelector(`#${id}`)!
 
     BSDropdown.prototype.toggle = (function (_original) {
         return function () {
@@ -71,6 +71,7 @@ export const initMultiDropdownNavbar = (id: string): void => {
             }
 
             // @ts-expect-error lala
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-call
             let dd = this._element.closest(".dropdown").parentNode.closest(".dropdown") as Element | Document | null
             for (; dd && dd !== document; dd = (dd.parentNode as Element).closest(".dropdown")) {
                 ;(dd as Element).classList.add(CLASS_NAME)
@@ -79,6 +80,7 @@ export const initMultiDropdownNavbar = (id: string): void => {
             // @ts-expect-error lala
             _original.call(this)
         }
+        // eslint-disable-next-line @typescript-eslint/unbound-method
     })(BSDropdown.prototype.toggle)
 
     for (const dd of mainElement.querySelectorAll(".dropdown")) {
@@ -89,6 +91,7 @@ export const initMultiDropdownNavbar = (id: string): void => {
             }
 
             // @ts-expect-error lala
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-return
             if (e.clickEvent?.composedPath().some((el) => el.classList?.contains("dropdown-toggle"))) {
                 e.preventDefault()
             }

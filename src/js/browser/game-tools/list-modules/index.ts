@@ -49,7 +49,7 @@ export default class ListModules {
     }
 
     _getOptions(): HtmlString {
-        return `${this.#moduleData.map((type) => `<option value="${type[0]}">${type[0]}</option>`).join("")}`
+        return this.#moduleData.map((type) => `<option value="${type[0]}">${type[0]}</option>`).join("")
     }
 
     _setupSelect(): void {
@@ -87,7 +87,7 @@ export default class ListModules {
          * @param moduleLevel - Module level
          * @returns Ship rate
          */
-        const getRate = (moduleLevel: string): string => (moduleLevel === "U" ? "" : `${rates.get(moduleLevel) ?? ""}`)
+        const getRate = (moduleLevel: string): string => (moduleLevel === "U" ? "" : (rates.get(moduleLevel) ?? ""))
 
         /**
          * Test if current module and module at index position has same properties

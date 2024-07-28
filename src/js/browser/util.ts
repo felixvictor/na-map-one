@@ -193,8 +193,8 @@ export const printCompassRose = ({
             let translate: string
 
             dummy.text(d)
-            const textHeight = (dummy.node() as SVGTextElement).getBBox().height ?? 0
-            const textWidth = (dummy.node() as SVGTextElement).getBBox().width ?? 0
+            const textHeight = dummy.node()!.getBBox().height ?? 0
+            const textWidth = dummy.node()!.getBBox().width ?? 0
 
             if ((rotate >= 0 && rotate <= 45) || rotate === 315) {
                 rotate = 90
@@ -285,7 +285,7 @@ export const displayClan = (clan: string): string => `<span class="caps">${clan}
  */
 const copyToClipboardFallback = (text: string, modalSel: HTMLDivElement): boolean => {
     // console.log("copyToClipboardFallback");
-    if (document.queryCommandSupported?.("copy")) {
+    if (document.queryCommandSupported("copy")) {
         const input = document.createElement("input")
 
         input.type = "text"

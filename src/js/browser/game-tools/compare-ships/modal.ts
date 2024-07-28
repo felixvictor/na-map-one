@@ -128,7 +128,7 @@ export default class CompareShipsModal extends Modal {
             columnDiv
                 .append("div")
                 .attr("id", this.getBaseIdOutput(columnId))
-                .attr("class", `${columnId === "base" ? "ship-base" : "ship-compare"}`)
+                .attr("class", columnId === "base" ? "ship-base" : "ship-compare")
         }
 
         const footer = super.footer

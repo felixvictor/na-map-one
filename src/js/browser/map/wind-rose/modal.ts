@@ -1,16 +1,14 @@
-import { HtmlString } from "../../../@types/common"
+import type { HtmlString } from "../../../@types/common"
 import Modal from "../../components/modal"
 import WindInput from "../../components/wind-input"
 
 export default class WindRoseModal extends Modal {
-    #timeGroupId: HtmlString
     #timeInputId: HtmlString
     #windInput = {} as WindInput
 
     constructor(title: string) {
         super(title, "sm", "Set")
 
-        this.#timeGroupId = `input-group-${this.baseId}`
         this.#timeInputId = `input-${this.baseId}`
 
         this._init()

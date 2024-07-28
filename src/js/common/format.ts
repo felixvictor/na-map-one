@@ -1,7 +1,7 @@
 import { formatLocale as d3FormatLocale, type FormatLocaleDefinition } from "d3-format"
 import htm from "htm"
 import { h } from "preact"
-import type { HtmlResult, HtmlString, SVGString } from "../@types/common"
+import type { HtmlResult, HtmlString } from "../@types/common"
 
 const html = htm.bind(h)
 
@@ -101,7 +101,7 @@ export const formatPP = (x: number, f = 0): string => formatLocale.format(`,.${f
  * @param svg - True when tspan for SVG needed
  * @returns Formatted Integer
  */
-export const formatSiInt = (x: number, svg = false): HtmlString | SVGString =>
+export const formatSiInt = (x: number, svg = false): HtmlString =>
     formatLocale
         .format(",.2s")(x)
         .replace(".0", "")
@@ -130,7 +130,7 @@ export const formatSiIntHtml = (x: number): HtmlResult => {
  * @param svg - True when tspan for SVG needed
  * @returns Formatted Integer
  */
-export const formatSiCurrency = (x: number, svg = false): HtmlString | SVGString =>
+export const formatSiCurrency = (x: number, svg = false): HtmlString =>
     formatLocale
         .format("$,.2s")(x)
         .replace(".0", "")
@@ -152,11 +152,11 @@ export const formatPercent = (x: number, f = 1): string => formatLocale.format(`
  * @param svg - True when tspan for SVG needed
  * @returns Formatted percent value
  */
-export const formatPercentOldstyle = (x: number, f = 1, svg = false): HtmlString | SVGString =>
+export const formatPercentOldstyle = (x: number, f = 1, svg = false): HtmlString =>
     formatLocale
         .format(`.${f}%`)(x)
         .replace(".0", "")
-        .replace("%", `${svg ? pTSpan : pSpan}`)
+        .replace("%", svg ? pTSpan : pSpan)
 
 /**
  * Format percent value (% sign in small caps)
@@ -195,10 +195,10 @@ export const formatSignPercent = (x: number): string => formatLocale.format("+.1
  * @param svg - True when tspan for SVG needed
  * @returns Formatted percent value
  */
-export const formatSignPercentOldstyle = (x: number, svg = false): HtmlString | SVGString =>
+export const formatSignPercentOldstyle = (x: number, svg = false): HtmlString =>
     formatLocale
         .format("+.1%")(x)
         .replace(".0", "")
-        .replace("%", `${svg ? pTSpan : pSpan}`)
+        .replace("%", svg ? pTSpan : pSpan)
 
 export const pluralise = (number: number, word: string): string => `${number} ${word + (number === 1 ? "" : "s")}`

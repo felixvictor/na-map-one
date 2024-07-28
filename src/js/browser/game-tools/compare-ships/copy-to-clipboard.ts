@@ -1,4 +1,4 @@
-import { ModuleType, SelectedId, ShipColumnTypeList } from "compare-ships"
+import type { ModuleType, SelectedId, ShipColumnTypeList } from "compare-ships"
 import { registerEvent } from "../../analytics"
 import { copyToClipboard } from "../../util"
 import { ShipCompareSearchParamsWrite } from "./search-params-write"

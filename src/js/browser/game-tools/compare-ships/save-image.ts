@@ -10,15 +10,13 @@ import { showCursorDefault, showCursorWait } from "common/DOM"
 import type { SelectedData, ShipColumnTypeList } from "compare-ships"
 import type { HtmlString } from "../../../@types/common"
 import type { ShipColumnType } from "./index"
-import CompareShipsModal from "./modal"
+import type CompareShipsModal from "./modal"
 
 export default class SaveImage {
-    #baseId: HtmlString
     #data: ShipColumnTypeList<SelectedData>
     #modal: CompareShipsModal
 
     constructor(id: HtmlString, data: ShipColumnTypeList<SelectedData>, modal: CompareShipsModal) {
-        this.#baseId = id
         this.#data = data
         this.#modal = modal
     }
@@ -44,7 +42,7 @@ export default class SaveImage {
     _printSelectedData(clonedDocument: Document, selectedData: SelectedData, columnId: ShipColumnType): void {
         const selectShip = clonedDocument.querySelector<HTMLElement>(`#${this.#modal.getBaseIdSelectsShip(columnId)}`)
         const selectShipParent = selectShip?.parentNode as HTMLElement
-        const mainDivElem = selectShipParent?.parentNode as HTMLElement
+        const mainDivElem = selectShipParent.parentNode as HTMLElement
 
         selectShipParent.remove()
         clonedDocument.querySelector<HTMLElement>(`#${this.#modal.getBaseIdSelects(columnId)}`)?.remove()

@@ -11,7 +11,7 @@ import ListShipBlueprints from "./list-ship-blueprints"
 import ListShips from "./list-ships"
 import ListWoods from "./list-woods"
 
-import { ShipCompareSearchParamsRead } from "./compare-ships/search-params-read"
+import type { ShipCompareSearchParamsRead } from "./compare-ships/search-params-read"
 import { CompareWoods } from "./compare-woods"
 import ShowIncomeMap from "./show-income-map"
 import ShowPortOwnerships from "./show-port-ownerships"

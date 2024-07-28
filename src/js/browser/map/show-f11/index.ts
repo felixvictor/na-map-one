@@ -16,7 +16,7 @@ import {
 } from "common/na-map-data/coordinates"
 import type { HtmlString, MinMaxCoord } from "../../../@types/common"
 import { registerEvent } from "../../analytics"
-import { NAMap } from "../na-map"
+import type { NAMap } from "../na-map"
 import F11Modal from "./modal"
 
 /**
@@ -124,8 +124,8 @@ export default class ShowF11 {
             .attr("dy", `${circleSize / 2 + 2}px`)
             .attr("class", "f11-time")
             .text(`(${timeStampLocal.format("H.mm")} local)`)
-        const timeStampDim = (timeStampText.node() as SVGTextElement).getBBox() ?? {}
-        const timeStampLocalDim = (timeStampLocalText.node() as SVGTextElement).getBBox() ?? {}
+        const timeStampDim = timeStampText.node()!.getBBox() ?? {}
+        const timeStampLocalDim = timeStampLocalText.node()!.getBBox() ?? {}
 
         const coordHeight = F11XDim && F11YDim ? Math.round(F11XDim.height + F11YDim.height) * 1.2 : 0
         const coordWidth = F11XDim && F11YDim ? Math.round(Math.max(F11XDim.width, F11YDim.width) + 5) : 0

@@ -126,8 +126,9 @@ export const loaders = [
         include: dirFlags,
         type: "asset/inline",
         generator: {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any,@typescript-eslint/explicit-module-boundary-types
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             dataUrl: (content: any): string => {
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
                 let svg: string = content.toString() as string
 
                 // svgo
@@ -143,8 +144,9 @@ export const loaders = [
         include: dirIcons,
         type: "asset/inline",
         generator: {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any,@typescript-eslint/explicit-module-boundary-types
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             dataUrl: (content: any): string => {
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
                 let svg: string = content.toString() as string
 
                 // Replace with custom colours

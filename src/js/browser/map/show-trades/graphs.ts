@@ -19,7 +19,7 @@ import {
     numTrades,
     startBlock,
 } from "./common"
-import TradeData from "./trade-data"
+import type TradeData from "./trade-data"
 
 export default class Graphs {
     #arrowX = 18
@@ -64,16 +64,16 @@ export default class Graphs {
 
         h += startBlock("Trade")
         h += addInfo(`${formatInt(trade.quantity)} ${this.#tradeData.getItemName(trade.good)}`) + addDes("good")
-        h += addInfo(`${formatSiCurrency(trade.source.grossPrice)}`) + addDes("gross buy price")
-        h += addInfo(`${formatSiCurrency(trade.target.grossPrice)}`) + addDes("gross sell price")
+        h += addInfo(formatSiCurrency(trade.source.grossPrice)) + addDes("gross buy price")
+        h += addInfo(formatSiCurrency(trade.target.grossPrice)) + addDes("gross sell price")
         h += addInfo(`${formatSiInt(weight)} ${weight === 1 ? "ton" : "tons"}`) + addDes("weight")
         h += endBlock()
 
         h += startBlock("Profit")
-        h += addInfo(`${formatSiCurrency(trade.profitTotal)}`) + addDes("total")
-        h += addInfo(`${formatSiCurrency(profitPerItem)}`) + addDes("profit/item")
-        h += addInfo(`${formatSiCurrency(profitPerDistance)}`) + addDes("profit/distance")
-        h += addInfo(`${formatSiCurrency(profitPerWeight)}`) + addDes("profit/weight")
+        h += addInfo(formatSiCurrency(trade.profitTotal)) + addDes("total")
+        h += addInfo(formatSiCurrency(profitPerItem)) + addDes("profit/item")
+        h += addInfo(formatSiCurrency(profitPerDistance)) + addDes("profit/distance")
+        h += addInfo(formatSiCurrency(profitPerWeight)) + addDes("profit/weight")
         h += endBlock()
 
         h += startBlock("Route")
@@ -89,7 +89,7 @@ export default class Graphs {
                     trade.target.id,
                 )} flag-icon-small me-1" role="img"></span>`,
             ) + addDes(`to ${this.#tradeData.getPortDepth(trade.source.id)}`)
-        h += addInfo(`${formatSiInt(trade.distance)}`) + addDes("distance")
+        h += addInfo(formatSiInt(trade.distance)) + addDes("distance")
         h += endBlock()
 
         return h

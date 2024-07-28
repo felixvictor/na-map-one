@@ -68,7 +68,7 @@ export default class GetPositionModal extends Modal {
                 .attr("max", 1000)
             formGroup.append("label").attr("for", this.#inputId[id]).attr("class", "ps-4").text("Distance in k")
 
-            this.#inputSel[id] = input.node() as HTMLInputElement
+            this.#inputSel[id] = input.node()!
         }
 
         body.append("div").attr("class", "form-text mt-3").text("Distances from in-game trader tool.")
@@ -83,11 +83,11 @@ export default class GetPositionModal extends Modal {
             }))
             .sort(sortBy(["name"]))
 
-        const options = `${selectPorts
+        const options = selectPorts
             .map((port) => `<option data-subtext="${port.nation}">${port.name}</option>`)
-            .join("")}`
+            .join("")
         for (const inputId of this.#ids) {
-            this.#selectSel[inputId] = document.querySelector(`#${this.#selectId[inputId]}`) as HTMLSelectElement
+            this.#selectSel[inputId] = document.querySelector(`#${this.#selectId[inputId]}`)!
             if (this.#selectSel[inputId]) {
                 this.#selectSel[inputId].insertAdjacentHTML("beforeend", options)
                 $(this.#selectSel[inputId]).selectpicker({

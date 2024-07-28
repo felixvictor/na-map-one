@@ -27,7 +27,7 @@ interface SeasonedCost extends StandardCost {
     doubloon: number
     tool: number
 }
-const tableType = ["Resources", "Extra", "Materials"]!
+const tableType = ["Resources", "Extra", "Materials"]
 type TableType = (typeof tableType)[number]
 type TableTypeList<T> = {
     [K in TableType]: T
@@ -103,10 +103,10 @@ export default class ListShipBlueprints {
     }
 
     _getOptions(): HtmlString {
-        return `${this.#blueprintData
+        return this.#blueprintData
             .sort(sortBy(["name"]))
             .map((blueprint) => `<option value="${blueprint.name}">${blueprint.name}</option>;`)
-            .join("")}`
+            .join("")
     }
 
     _setupShipSelect(): void {

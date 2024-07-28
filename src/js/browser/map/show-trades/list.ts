@@ -5,7 +5,7 @@ import { formatInt, formatSiCurrency, formatSiInt } from "common/format"
 import type { HtmlString } from "../../../@types/common"
 import type { Trade } from "../../../@types/na-map-data/trade"
 import { addDes, addInfo, baseId, getId, headId, hideElem, numTrades, showElem } from "./common"
-import TradeData from "./trade-data"
+import type TradeData from "./trade-data"
 
 export default class List {
     #cardId = `${baseId}-card`
@@ -102,7 +102,7 @@ export default class List {
 
         let h = "" as HtmlString
         h += addInfo(`${formatInt(trade.quantity)} ${this.#tradeData.getItemName(trade.good)}`) + addDes("trade")
-        h += addInfo(`${formatSiCurrency(trade.profit ?? 0)}`) + addDes(this.#tradeData.profitText)
+        h += addInfo(formatSiCurrency(trade.profit ?? 0)) + addDes(this.#tradeData.profitText)
         h += addInfo(`${formatSiInt(weight)} ${weight === 1 ? "ton" : "tons"}`) + addDes("weight")
         h +=
             addInfo(
@@ -116,7 +116,7 @@ export default class List {
                     trade.target.id,
                 )} flag-icon-small me-1" role="img"></span>`,
             ) + addDes(`to ${this.#tradeData.getPortDepth(trade.target.id)}`)
-        h += addInfo(`${formatSiInt(trade.distance)}`) + addDes("sail distance")
+        h += addInfo(formatSiInt(trade.distance)) + addDes("sail distance")
 
         return h
     }

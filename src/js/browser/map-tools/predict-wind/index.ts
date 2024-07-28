@@ -53,7 +53,7 @@ export default class PredictWind {
     }
 
     _setupListener(): void {
-        ;(document.querySelector(`#${this.#menuId}`) as HTMLElement).addEventListener("click", () => {
+        document.querySelector(`#${this.#menuId}`)!.addEventListener("click", () => {
             this._menuClicked()
         })
     }

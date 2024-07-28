@@ -157,6 +157,7 @@ export class CompareShips {
     }
 
     _initTooltip(select$: JQuery<HTMLSelectElement>): void {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         for (const element of select$.data("selectpicker").selectpicker.current.elements as HTMLLIElement[]) {
             if (!(element.classList.contains("dropdown-divider") || element.classList.contains("dropdown-header"))) {
                 const module = this._getModuleFromName(element.textContent)
@@ -309,7 +310,7 @@ export class CompareShips {
                 .join("")
         } else {
             // Get options without optgroups
-            options = modulesGrouped.map((group) => `${this._getOption(group.values)}`).join("")
+            options = modulesGrouped.map((group) => this._getOption(group.values)).join("")
         }
 
         return options
@@ -402,21 +403,21 @@ export class CompareShips {
             // Clone left
             if (columnId !== this.#columnIds[0]) {
                 // Add listener except for first column
-                ;(
-                    document.querySelector(`#${this.#modal!.getCloneLeftButtonId(columnId)}`) as HTMLButtonElement
-                ).addEventListener("click", () => {
-                    this._cloneToLeft(columnId)
-                })
+                document
+                    .querySelector(`#${this.#modal!.getCloneLeftButtonId(columnId)}`)!
+                    .addEventListener("click", () => {
+                        this._cloneToLeft(columnId)
+                    })
             }
 
             // Clone right
             if (columnId !== this.columnsCompare[this.columnsCompare.length - 1]) {
                 // Add listener except for last right column
-                ;(
-                    document.querySelector(`#${this.#modal!.getCloneRightButtonId(columnId)}`) as HTMLButtonElement
-                ).addEventListener("click", () => {
-                    this._cloneToRight(columnId)
-                })
+                document
+                    .querySelector(`#${this.#modal!.getCloneRightButtonId(columnId)}`)!
+                    .addEventListener("click", () => {
+                        this._cloneToRight(columnId)
+                    })
             }
         }
     }
@@ -683,10 +684,11 @@ export class CompareShips {
                 copyDataClicked(this._getSelectedIds(), this.#moduleTypes, this.#modal!.getModalNode())
             })
             // Make image
+            // eslint-disable-next-line @typescript-eslint/no-misused-promises
             document.querySelector(`#${this.#modal.imageButtonId}`)?.addEventListener("click", async (event) => {
                 registerEvent("Menu", "Ship compare image")
                 event.preventDefault()
-                const saveImage = new SaveImage(this.#baseId, this._getSelectedData(), this.#modal as CompareShipsModal)
+                const saveImage = new SaveImage(this.#baseId, this._getSelectedData(), this.#modal!)
                 await saveImage.init()
             })
         }

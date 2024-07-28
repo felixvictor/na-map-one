@@ -2,8 +2,7 @@ import { select as d3Select, type Selection } from "d3-selection"
 
 import Cookie from "../../components/cookie"
 import RadioButton from "../../components/radio-button"
-import { NAMap } from "../na-map"
-import ShowF11 from "../show-f11"
+import type { NAMap } from "../na-map"
 
 import { loadJsonFile } from "common/json"
 import { minMapScale } from "common/na-map-data/constants"
@@ -15,7 +14,8 @@ import Counties from "./counties"
 import Flags from "./flags"
 import PatrolZones from "./patrol-zones"
 import PortIcons from "./port-icons"
-import PortNames, { CurrentPort } from "./port-names"
+import type { CurrentPort } from "./port-names"
+import PortNames from "./port-names"
 import Regions from "./regions"
 import Summary from "./summary"
 
@@ -28,6 +28,7 @@ interface ReadData {
 
 export default class DisplayPorts {
     #counties!: Counties
+    // eslint-disable-next-line no-unused-private-class-members
     #gPort = {} as Selection<SVGGElement, SVGGDatum, HTMLElement, unknown>
     #lowerBound = {} as Point
     #patrolZones!: PatrolZones
@@ -40,14 +41,12 @@ export default class DisplayPorts {
     #scale = 0
     #showCurrentGood = false
     #showRadius = ""
-    #showTradePortPartners = false
     #summary!: Summary
     #upperBound = {} as Point
     #zoomLevel: ZoomLevel = "initial"
     portIcons!: PortIcons
     readonly #baseId = "show-radius"
     readonly #cookie: Cookie
-    readonly #f11: ShowF11
     readonly #radioButtonValues: string[]
     readonly #radios: RadioButton
     readonly #serverName: string
@@ -55,7 +54,6 @@ export default class DisplayPorts {
     constructor(readonly map: NAMap) {
         this.#serverName = this.map.serverName
         this.#scale = minMapScale
-        this.#f11 = this.map.f11
 
         /**
          * Possible values for show radius (first is default value)
@@ -239,10 +237,6 @@ export default class DisplayPorts {
 
     get showTradePortPartners(): boolean {
         return this.#showCurrentGood
-    }
-
-    set showTradePortPartners(newShowTradePortPartners: boolean) {
-        this.#showTradePortPartners = newShowTradePortPartners
     }
 
     get zoomLevel(): ZoomLevel {

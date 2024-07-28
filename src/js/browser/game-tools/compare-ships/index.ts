@@ -1,6 +1,6 @@
 import { initDefault } from "./init-default"
 import { initFromClipboard } from "./init-from-clipboard"
-import { ShipCompareSearchParamsRead } from "./search-params-read"
+import type { ShipCompareSearchParamsRead } from "./search-params-read"
 
 export const shipColumnType = ["base", "c1", "c2"]
 export type ShipColumnType = (typeof shipColumnType)[number]

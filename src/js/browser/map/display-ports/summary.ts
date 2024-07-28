@@ -52,8 +52,8 @@ export default class Summary {
         }
 
         this.#portSummaryTextNumPorts.text(`${numberPorts}`)
-        this.#portSummaryTextTaxIncome.html(`${formatSiInt(taxTotal)}`)
-        this.#portSummaryTextNetIncome.html(`${formatSiInt(netTotal)}`)
+        this.#portSummaryTextTaxIncome.html(formatSiInt(taxTotal))
+        this.#portSummaryTextNetIncome.html(formatSiInt(netTotal))
     }
 
     show(): void {

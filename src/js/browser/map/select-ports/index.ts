@@ -11,7 +11,7 @@ dayjs.locale("en-gb")
 import { initMultiDropdownNavbar } from "common/DOM"
 import { serverMaintenanceHour } from "common/na-map-data/time"
 import Select from "../../components/select"
-import DisplayPorts from "../display-ports"
+import type DisplayPorts from "../display-ports"
 import SelectPortsSelectGoods from "./goods"
 import SelectPortsNationClan from "./nation-clan"
 import SelectPortsSelectPorts from "./ports"

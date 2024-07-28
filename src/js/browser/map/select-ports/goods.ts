@@ -3,7 +3,7 @@ import type { HtmlString } from "../../../@types/common"
 import type { GoodList, PortPerServer, PortWithTrades } from "../../../@types/na-map-data/ports"
 import { registerEvent } from "../../analytics"
 import Select from "../../components/select"
-import DisplayPorts from "../display-ports"
+import type DisplayPorts from "../display-ports"
 
 export default class SelectPortsSelectGoods {
     #baseName = "Show goods’ relations"
@@ -42,7 +42,7 @@ export default class SelectPortsSelectGoods {
 
         const sortedGoods = [...selectGoods].sort((a, b) => a[1].localeCompare(b[1]))
 
-        return `${sortedGoods.map((good) => `<option value="${good[0]}">${good[1]}</option>`).join("")}`
+        return sortedGoods.map((good) => `<option value="${good[0]}">${good[1]}</option>`).join("")
     }
 
     _setupSelect(): void {

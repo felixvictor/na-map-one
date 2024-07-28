@@ -1,12 +1,8 @@
 import { areaLabel as d3AreaLabel } from "d3-area-label"
 import { extent as d3Extent, max as d3Max, min as d3Min } from "d3-array"
 import { axisBottom as d3AxisBottom } from "d3-axis"
-import {
-    ScaleOrdinal,
-    scaleLinear as d3ScaleLinear,
-    scaleOrdinal as d3ScaleOrdinal,
-    scaleTime as d3ScaleTime,
-} from "d3-scale"
+import type { ScaleOrdinal } from "d3-scale"
+import { scaleLinear as d3ScaleLinear, scaleOrdinal as d3ScaleOrdinal, scaleTime as d3ScaleTime } from "d3-scale"
 import type { Selection } from "d3-selection"
 import {
     area as d3Area,
@@ -15,7 +11,8 @@ import {
     stackOffsetNone as d3StackOffsetNone,
     type Area,
 } from "d3-shape"
-import textures, { Textures } from "textures"
+import type { Textures } from "textures"
+import textures from "textures"
 import type { Group } from "timelines-chart"
 
 import { getIdFromBaseName, showCursorDefault, showCursorWait } from "common/DOM"
@@ -157,9 +154,9 @@ export default class ShowPortOwnerships {
     }
 
     _getOptions(): HtmlString {
-        return `${this._ownershipData
+        return this._ownershipData
             .map((region) => `<option value="${region.region}">${region.region}</option>;`)
-            .join("")}`
+            .join("")
     }
 
     _setupSelect(): void {

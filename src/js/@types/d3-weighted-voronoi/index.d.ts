@@ -1,5 +1,6 @@
 declare module "d3-weighted-voronoi" {
-    import { ClippingPolygon } from "d3-voronoi-treemap"
+    import type { ClippingPolygon } from "d3-voronoi-treemap"
+    // eslint-disable-next-line @typescript-eslint/consistent-type-imports
     type Point = import("common/na-map-data/coordinates.js").Point
     type ConflictList = undefined
 

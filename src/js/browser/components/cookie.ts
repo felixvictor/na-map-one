@@ -35,7 +35,7 @@ export default class Cookie {
         this.#name = `${appName}--${this.#baseId}`
 
         this.#values = values
-        this.#default = values?.[0]
+        this.#default = values[0]
     }
 
     /**

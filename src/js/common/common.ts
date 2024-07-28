@@ -1,5 +1,4 @@
 export const sleep = async (ms: number): Promise<NodeJS.Timeout> => {
-    // eslint-disable-next-line no-promise-executor-return
     return new Promise((resolve) => setTimeout(resolve, ms))
 }
 

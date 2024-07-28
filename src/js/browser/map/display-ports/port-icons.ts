@@ -8,7 +8,7 @@ import htm from "htm"
 import { h, type VNode } from "preact"
 import render from "preact-render-to-string"
 
-import ShowTrades from "../show-trades"
+import type ShowTrades from "../show-trades"
 
 import { maxScale, maxTileScale, minScale } from "common/constants"
 import { formatInt, formatPercentHtml, formatSiCurrency, formatSiIntHtml } from "common/format"
@@ -155,8 +155,9 @@ export default class PortIcons {
 
     #formatProfits(profits: TradeGoodProfit[]): HtmlResult {
         return html`${profits
-            ?.sort(PortIcons.#sortByProfit)
-            ?.map(
+            // eslint-disable-next-line @typescript-eslint/unbound-method
+            .sort(PortIcons.#sortByProfit)
+            .map(
                 (good, index) =>
                     html`<span style="white-space: nowrap;">${good.name} (${formatSiIntHtml(good.profit.profit)})</span
                         >${index === profits.length - 1 ? html`` : html`, `}`,
@@ -165,8 +166,9 @@ export default class PortIcons {
 
     #formatProfitsPerTon(profits: TradeGoodProfit[]): HtmlResult {
         return html`${profits
-            ?.sort(PortIcons.#sortByProfitPerTon)
-            ?.map(
+            // eslint-disable-next-line @typescript-eslint/unbound-method
+            .sort(PortIcons.#sortByProfitPerTon)
+            .map(
                 (good, index) =>
                     html`<span style="white-space: nowrap;"
                             >${good.name} (${formatSiIntHtml(good.profit.profitPerTon)})</span
@@ -174,7 +176,6 @@ export default class PortIcons {
             )}`
     }
 
-    // eslint-disable-next-line complexity
     #getText(portProperties: PortWithTrades): PortForDisplay {
         /*
         const getCoord = (portId: number): Coordinate => {
@@ -202,7 +203,7 @@ export default class PortIcons {
             ? html`<span
                       class="flag-icon-${portProperties.attackerNation} flag-icon-small me-1"
                       role="img"
-                      title="${findNationByNationShortName(portProperties?.attackerNation ?? "")?.sortName ?? ""}"
+                      title="${findNationByNationShortName(portProperties.attackerNation ?? "")?.sortName ?? ""}"
                   ></span
                   >${displayClanLitHtml(portProperties.attackerClan)} attack${portProperties.portBattle
                       ? html`${endSyllable} ${portBattleST.fromNow()} at ${portBattleST.format("H.mm")}${localTime}`
@@ -220,7 +221,7 @@ export default class PortIcons {
             capital: !portProperties.capturable && portProperties.nation !== "FT",
             capturer: portProperties.capturer ? displayClanLitHtml(portProperties.capturer) : html``,
             captureTime: portProperties.captured
-                ? `${capitalizeFirstLetter(dayjs.utc(portProperties.captured).fromNow())}`
+                ? capitalizeFirstLetter(dayjs.utc(portProperties.captured).fromNow())
                 : "",
             attack: portProperties.attackHostility ? attackHostility : html``,
             isNPCAttacker: portProperties.attackerNation === "NT",
@@ -265,7 +266,7 @@ export default class PortIcons {
         const instruction =
             tradeDirection === "buy" ? `Buy here and sell in ${tradePort}` : `Buy in ${tradePort} and sell here`
 
-        return goods.profit?.[0] === undefined
+        return goods.profit[0] === undefined
             ? html``
             : html`<div class="alert ${colour} mt-2 mb-2 text-start" role="alert">
                   <div class="alert-heading"><span class="caps">${instruction}</span> (net value in reales)</div>
@@ -274,7 +275,6 @@ export default class PortIcons {
               </div>`
     }
 
-    // eslint-disable-next-line complexity
     #tooltipData(port: PortForDisplay): VNode {
         const iconBorder = port.capital ? "flag-icon-border-middle" : port.countyCapital ? "flag-icon-border-light" : ""
 

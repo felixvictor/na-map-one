@@ -1,7 +1,8 @@
 import type { Point } from "common/na-map-data/coordinates"
 import { select as d3Select, type Selection } from "d3-selection"
 import type { SVGGDatum, ZoomLevel } from "../../../@types/common"
-import { Area, colourScaleCounty, countyPolygon } from "./map-data"
+import type { Area } from "./map-data"
+import { colourScaleCounty, countyPolygon } from "./map-data"
 
 export default class Counties {
     #countyPolygon = countyPolygon

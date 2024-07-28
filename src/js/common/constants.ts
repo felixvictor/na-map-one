@@ -19,7 +19,6 @@ export const labelScaleThreshold = minScale << 4
 export const zoomAndPanScale = labelScaleThreshold
 export const pbZoneScaleThreshold = minScale << 6
 
-// eslint-disable-next-line one-var
 declare const CGREEN: string,
     CGREENDARK: string,
     CGREENLIGHT: string,

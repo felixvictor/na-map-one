@@ -171,7 +171,7 @@ export default class ListWoods {
             divSwitch
                 .append("input")
                 .attr("id", `${this.#checkboxId}-${family}`)
-                .attr("name", `${this.#checkboxId}`)
+                .attr("name", this.#checkboxId)
                 .attr("class", "form-check-input")
                 .attr("type", "checkbox")
                 .property("checked", true)
@@ -240,7 +240,7 @@ export default class ListWoods {
         const activeFamilies = new Set<WoodFamily>()
         for (const input of this._switchesSel) {
             if (input.checked) {
-                const family = input.id.replace(`${this.#checkboxId}-`, "")!
+                const family = input.id.replace(`${this.#checkboxId}-`, "")
                 activeFamilies.add(family)
             }
         }

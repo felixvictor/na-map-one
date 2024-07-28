@@ -110,7 +110,7 @@ export default class ModulesAndWoodData {
     _setModifierAmountWoods(woodData: WoodTypeList<WoodTrimOrFrame>): void {
         // Add modifier amount for both frame and trim
         for (const [, woodProperties] of Object.entries(woodData)) {
-            for (const property of woodProperties?.properties ?? []) {
+            for (const property of woodProperties.properties ?? []) {
                 // console.log("_setModifierAmountWoods", property)
                 if (this.#moduleAndWoodChanges.has(property.modifier)) {
                     this._setModifier(property)
@@ -121,7 +121,7 @@ export default class ModulesAndWoodData {
 
     _setModifierAmountModules(moduleData: ModuleEntity[]): void {
         for (const module of moduleData) {
-            for (const property of module?.properties ?? []) {
+            for (const property of module.properties ?? []) {
                 // console.log("_setModifierAmountModules", property)
                 if (this.#moduleAndWoodChanges.has(property.modifier)) {
                     this._setModifier(property)
@@ -146,12 +146,15 @@ export default class ModulesAndWoodData {
                             this._adjustValue(this.#data[index[0]][index[1]], key, isBaseValueAbsolute)
                         )
                         */
+                        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
                         this.#data[index[0]][index[1]] = this._adjustValue(
+                            // eslint-disable-next-line @typescript-eslint/no-unsafe-argument,@typescript-eslint/no-unsafe-member-access
                             this.#data[index[0]][index[1]],
                             key,
                             isBaseValueAbsolute,
                         )
                     } else {
+                        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
                         this.#data[index[0]] = this._adjustValue(this.#data[index[0]], key, isBaseValueAbsolute)
                     }
                 }
@@ -180,13 +183,14 @@ export default class ModulesAndWoodData {
             return valueRespectingCap
         }
 
+        /* eslint-disable @typescript-eslint/no-unsafe-argument,@typescript-eslint/no-unsafe-member-access */
+
         for (const [modifier] of this.#modifierAmount.entries()) {
             if (this.#moduleAndWoodCaps.has(modifier)) {
                 const { cap } = this.#moduleAndWoodCaps.get(modifier)!
                 for (const property of this.#moduleAndWoodCaps.get(modifier)!.properties) {
                     const index = property.split(".")
                     if (index.length > 1) {
-                        // eslint-disable-next-line max-depth
                         if (this.#data[index[0]][index[1]]) {
                             this.#data[index[0]][index[1]] = adjustValue(
                                 modifier,
@@ -207,6 +211,8 @@ export default class ModulesAndWoodData {
             }
         }
 
+        /* eslint-enable @typescript-eslint/no-unsafe-argument,@typescript-eslint/no-unsafe-member-access */
+
         if (valueCapped.isCapped) {
             this._showCappingAdvice(columnId, valueCapped.modifiers)
         } else {
@@ -224,7 +230,7 @@ export default class ModulesAndWoodData {
     }
 
     // Add upgrade changes to ship this.#data
-    // eslint-disable-next-line max-params
+
     addModulesAndWoodData(
         shipDataBase: ShipData,
         shipDataUpdated: ShipData,

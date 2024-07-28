@@ -9,7 +9,6 @@ import type { BaseModalHtml, HtmlResult, HtmlString } from "../@types/common"
 
 const html = htm.bind(h)
 
-// eslint-disable-next-line one-var
 declare const REPAIR_ARMOUR_PERCENT: string,
     REPAIR_ARMOUR_TIME: string,
     REPAIR_ARMOUR_VOLUME: string,
@@ -102,9 +101,9 @@ export const getYiq = (colour: string): number => {
 }
 
 export const getContrastColour = (colour: string): string =>
-    getYiq(colour) >= 128 ? d3Color(colourWhite)?.darker(5).toString() ?? "#111" : colourWhite
+    getYiq(colour) >= 128 ? (d3Color(colourWhite)?.darker(5).toString() ?? "#111") : colourWhite
 
 export const getContrastContrastColour = (colour: string): string =>
-    getYiq(colour) >= 128 ? colourWhite : d3Color(colourWhite)?.darker(5).toString() ?? "#111"
+    getYiq(colour) >= 128 ? colourWhite : (d3Color(colourWhite)?.darker(5).toString() ?? "#111")
 
 export const displayClanLitHtml = (clan: string | undefined): HtmlResult => html`<span class="caps">${clan}</span>`

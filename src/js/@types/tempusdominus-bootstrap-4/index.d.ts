@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { Dayjs } from "dayjs"
+import type { Dayjs } from "dayjs"
 
 interface Icon {
     time: string
@@ -66,10 +66,10 @@ interface DatetimepickerOption {
     dayViewHeaderFormat?: string
     debug?: boolean
     defaultDate?: boolean | Dayjs | Date | string
-    disabledDates?: boolean | (Dayjs | Date | string)[] | any
-    disabledHours?: boolean | number[] | any
+    disabledDates?: boolean | (Dayjs | Date | string)[]
+    disabledHours?: boolean | number[]
     disabledTimeIntervals?: boolean | Dayjs[][]
-    enabledDates?: boolean | (Dayjs | Date | string)[] | any
+    enabledDates?: boolean | (Dayjs | Date | string)[]
     enabledHours?: boolean | number[]
     extraFormats?: boolean | (string | Dayjs)[]
     focusOnShow?: boolean

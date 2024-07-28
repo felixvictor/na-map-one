@@ -2,7 +2,7 @@ import { formatFloat, formatPercentOldstyle, formatSignFloat } from "common/form
 import type { Amount, SelectedWood, WoodCompareAmount } from "compare-woods"
 import type { HtmlString } from "../../../@types/common"
 import { Column } from "./column"
-import { WoodData } from "./data"
+import type { WoodData } from "./data"
 
 type PropertyMap = Map<string, WoodCompareAmount>
 
@@ -61,7 +61,6 @@ export class ColumnCompare extends Column {
             if (value.compare >= 0) {
                 if (value.base >= 0) {
                     if (value.compare > value.base) {
-                        // eslint-disable-next-line prefer-destructuring
                         base = value.base
                         diff = value.compare - value.base
                         diffColour = "pos"
@@ -87,7 +86,6 @@ export class ColumnCompare extends Column {
                         neutral = -value.base
                         diffColour = "pos"
                     } else {
-                        // eslint-disable-next-line prefer-destructuring
                         base = value.base
                         diff = value.compare - value.base
                         neutral = -value.compare

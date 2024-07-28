@@ -51,10 +51,10 @@ export default class ListBuildings {
     }
 
     _getOptions(): HtmlString {
-        return `${this.#buildingData
+        return this.#buildingData
             .sort(sortBy(["name"]))
             .map((building: Building): string => `<option value="${building.name}">${building.name}</option>;`)
-            .join("")}`
+            .join("")
     }
 
     _setupSelect(): void {
@@ -81,10 +81,10 @@ export default class ListBuildings {
             if (currentBuilding.result.length > 1) {
                 this.#labelSel.text("")
                 text += '<table class="table table-sm table-hover text-table"><tbody>'
-                text += `${currentBuilding.result
+                text += currentBuilding.result
                     .sort(sortBy(["name"]))
                     .map((result: BuildingResult) => `<tr><td>${result.name}</td></tr>`)
-                    .join("")}`
+                    .join("")
                 text += "</tbody></table>"
             } else {
                 this.#labelSel.text(`produces ${currentBuilding.result[0].name}`)

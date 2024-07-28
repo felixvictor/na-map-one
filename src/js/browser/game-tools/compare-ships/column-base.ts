@@ -15,8 +15,8 @@ import "d3-transition"
 import { drawSvgCircle, drawSvgVLine, rotationAngleInDegrees } from "../../util"
 
 import { Column } from "./column"
-import { ColumnCompare } from "./column-compare"
-import { CompareShips } from "./compare-ships"
+import type { ColumnCompare } from "./column-compare"
+import type { CompareShips } from "./compare-ships"
 
 import { segmentRadians } from "common/constants"
 import { formatFloat, formatInt, formatSignFloat, formatSignInt, pluralise } from "common/format"
@@ -360,12 +360,12 @@ export class ColumnBase extends Column {
             traverseSide: formatSignInt(this.shipData.gunnery!.traverseSide * 100),
 
             acceleration: formatFloat(this.shipData.ship.acceleration),
-            additionalRow: `${this.shipData.guns.decks < 4 ? "<br>\u00A0" : ""}`,
+            additionalRow: this.shipData.guns.decks < 4 ? "<br>\u00A0" : "",
             backArmour: `${formatInt(this.shipData.stern.armour)}</br><span class="badge badge-highlight">${formatInt(
                 this.shipData.stern.thickness,
             )}</span>`,
             battleRating: String(this.shipData.battleRating),
-            bowRepair: `${formatInt(this.shipData.repairTime.bow)}`,
+            bowRepair: formatInt(this.shipData.repairTime.bow),
             cannonBroadsideDamage: formatInt(this.shipData.guns.damage.cannons),
             cannonsPerDeck,
             carroBroadsideDamage: formatInt(this.shipData.guns.damage.carronades),
@@ -380,9 +380,9 @@ export class ColumnBase extends Column {
             gunsFront: this.shipData.guns.gunsPerDeck[4].amount,
             halfturnTime: formatFloat(this.shipData.rudder.halfturnTime, 4),
             holdSize: formatInt(this.shipData.holdSize),
-            hullRepairAmount: `${formatInt(
+            hullRepairAmount: formatInt(
                 (this.shipData.repairAmount!.armour + this.shipData.repairAmount!.armourPerk) * 100,
-            )}`,
+            ),
             hullRepairsNeeded: `${formatInt(hullRepairsNeeded)}\u00A0<span class="badge badge-highlight">${formatInt(
                 hullRepairsNeeded * repairsSetSize,
             )}</span>`,
@@ -405,10 +405,10 @@ export class ColumnBase extends Column {
             cannonCrew: formatInt(this.shipData.crew.cannons),
             carroCrew: formatInt(this.shipData.crew.carronades),
             pump: formatInt(this.shipData.pump.armour),
-            repairTime: `${formatInt(this.shipData.repairTime.sides)}`,
-            rigRepairAmount: `${formatInt(
+            repairTime: formatInt(this.shipData.repairTime.sides),
+            rigRepairAmount: formatInt(
                 (this.shipData.repairAmount!.sails + this.shipData.repairAmount!.sailsPerk) * 100,
-            )}`,
+            ),
             rigRepairsNeeded: `${formatInt(rigRepairsNeeded)}\u00A0<span class="badge badge-highlight">${formatInt(
                 rigRepairsNeeded * repairsSetSize,
             )}</span>`,
@@ -430,7 +430,7 @@ export class ColumnBase extends Column {
                 this.shipData.sides.thickness,
             )}</span>`,
             splinterResistance: formatSignInt(this.shipData.resistance!.splinter * 100),
-            sternRepair: `${formatInt(this.shipData.repairTime.stern)}`,
+            sternRepair: formatInt(this.shipData.repairTime.stern),
             structure: formatInt(this.shipData.structure.armour),
             turnAcceleration: formatFloat(this.shipData.ship.turnAcceleration, 4),
             turnSpeed: formatFloat(this.shipData.ship.turnSpeed, 3),

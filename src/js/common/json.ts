@@ -13,7 +13,7 @@ export const loadJsonFile = async <T>(fileName: string): Promise<T> => {
     const response = await fetch(`${naMapData.href}/${fileName}.json`)
 
     if (response.ok) {
-        return response.json()
+        return (await response.json()) as T
     }
     throw new FetchError(response)
 }

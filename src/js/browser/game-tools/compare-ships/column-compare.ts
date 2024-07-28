@@ -13,7 +13,7 @@ import { default as shipIcon } from "icons/icon-ship.svg"
 import { rotationAngleInDegrees } from "../../util"
 
 import { Column } from "./column"
-import { CompareShips } from "./compare-ships"
+import type { CompareShips } from "./compare-ships"
 
 import { colourWhite, segmentRadians } from "common/constants"
 import { formatFloat, formatInt, formatPercentOldstyle, formatSignFloat, formatSignInt, pluralise } from "common/format"
@@ -423,7 +423,7 @@ export class ColumnCompare extends Column {
                 this._shipBaseData.ship.acceleration,
                 2,
             )}`,
-            additionalRow: `${this.shipCompareData.guns.decks < 4 ? "<br>\u00A0" : ""}`,
+            additionalRow: this.shipCompareData.guns.decks < 4 ? "<br>\u00A0" : "",
             backArmour: `${formatInt(this.shipCompareData.stern.armour)}\u00A0${getDiff(
                 this.shipCompareData.stern.armour,
                 this._shipBaseData.stern.armour,
@@ -571,7 +571,7 @@ export class ColumnCompare extends Column {
             rumRepairsNeeded: `${formatInt(rumRepairsNeededCompare)} <span class="badge badge-highlight">${formatInt(
                 rumRepairsNeededCompare * repairsSetSize,
             )}</span>`,
-            sailingCrew: `${formatInt(this.shipCompareData.crew.sailing)}`,
+            sailingCrew: formatInt(this.shipCompareData.crew.sailing),
             sails: `${formatInt(this.shipCompareData.sails.armour)}\u00A0${getDiff(
                 this.shipCompareData.sails.armour,
                 this._shipBaseData.sails.armour,

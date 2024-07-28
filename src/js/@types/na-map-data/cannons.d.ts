@@ -1,4 +1,4 @@
-import { cannonEntityType, cannonType, peneDistance } from "./constants.js"
+import type { cannonEntityType, cannonType, peneDistance } from "./constants.js"
 import type { ObjectIndexer } from "./index.js"
 
 export type CannonType = (typeof cannonType)[number]
@@ -13,7 +13,7 @@ type Cannon = {
     [K in CannonType]: CannonEntity[]
 }
 export interface CannonEntity {
-    [index: string]: string | CannonDamage | CannonFamily | CannonGeneric | CannonPenetration
+    [index: string]: string | CannonDamage | CannonGeneric | CannonPenetration
     name: string
     family: CannonFamily
     damage: CannonDamage

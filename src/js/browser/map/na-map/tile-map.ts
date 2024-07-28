@@ -1,6 +1,7 @@
 import { select as d3Select, type Selection } from "d3-selection"
 import { tile as d3Tile, type TileFn, type Tiles } from "d3-tile"
-import { ZoomTransform, zoomIdentity as d3ZoomIdentity } from "d3-zoom"
+import type { ZoomTransform } from "d3-zoom"
+import { zoomIdentity as d3ZoomIdentity } from "d3-zoom"
 
 import { maxTileScale, tileSize } from "common/constants"
 import type { Point } from "common/na-map-data/coordinates"

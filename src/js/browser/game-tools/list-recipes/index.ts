@@ -124,9 +124,9 @@ export default class ListRecipes {
         }
 
         if (currentRecipe.itemRequirements.length > 0) {
-            text += `${currentRecipe.itemRequirements
+            text += currentRecipe.itemRequirements
                 .map((requirement) => `<tr><td>${requirement.amount} ${requirement.name}</td></tr>`)
-                .join("")}`
+                .join("")
         }
 
         text += "</tbody></table>"

@@ -1,5 +1,6 @@
 import { layoutAnnealing, layoutLabel, layoutTextLabel } from "@d3fc/d3fc-label-layout"
-import { Selection, select as d3Select } from "d3-selection"
+import type { Selection } from "d3-selection"
+import { select as d3Select } from "d3-selection"
 import { zoomIdentity as d3ZoomIdentity } from "d3-zoom"
 
 import type { Point } from "common/na-map-data/coordinates"

@@ -46,12 +46,12 @@ export default class TradeData {
     }
 
     static getOptions(): HtmlString {
-        return `${nations
+        return nations
             .map(
                 (nation) =>
                     `<option data-icon="flag-icon-${nation.short} flag-icon-small" value="${nation.short}" selected></option>`,
             )
-            .join("")}`
+            .join("")
     }
 
     get data(): Trade[] {

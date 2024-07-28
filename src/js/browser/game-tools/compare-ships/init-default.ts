@@ -2,7 +2,7 @@ import { CompareShips } from "./compare-ships"
 
 let shipCompare: CompareShips
 
-export const initDefault = async (): Promise<void> => {
+export const initDefault = (): void => {
     shipCompare = new CompareShips()
     setupArrow()
     setupMenuListener()
@@ -30,7 +30,7 @@ const setupArrow = (): void => {
 }
 
 const setupMenuListener = (): void => {
-    ;(document.querySelector(`#${shipCompare.menuId}`) as HTMLElement).addEventListener("click", () => {
+    document.querySelector(`#${shipCompare.menuId}`)!.addEventListener("click", () => {
         void shipCompare.menuClicked()
     })
 }

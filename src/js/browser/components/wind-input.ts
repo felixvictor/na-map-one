@@ -41,6 +41,7 @@ export default class WindInput {
             tooltipFormat: "sliderTooltip",
             create() {
                 // @ts-expect-error lala
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
                 this.control.css("display", "block")
             },
         })
@@ -57,7 +58,7 @@ export default class WindInput {
     }
 
     _getInputValue(): number {
-        return this.#slider$.roundSlider("getValue")
+        return this.#slider$.roundSlider("getValue") as number
     }
 
     /**

@@ -52,7 +52,6 @@ export default class Select {
     private readonly isMultiple: boolean
     private readonly selectsDiv: Selection<HTMLDivElement, unknown, HTMLElement, unknown> | undefined
 
-    // eslint-disable-next-line max-params
     constructor(
         id: HtmlString,
         selectsDivId: HtmlString | undefined,
@@ -87,7 +86,7 @@ export default class Select {
         return this.getSelectValueAsArray<string>(value, String)
     }
 
-    public static resetElement(element$ = $(".selectpicker") as JQuery<HTMLSelectElement>): void {
+    public static resetElement(element$ = $(".selectpicker")): void {
         element$.val("default").selectpicker("refresh")
     }
 

@@ -1,5 +1,5 @@
 declare module "d3-tile" {
-    import { ZoomTransform } from "d3-zoom"
+    import type { ZoomTransform } from "d3-zoom"
 
     export type Tile = [number, number, number]
 

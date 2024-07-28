@@ -29,8 +29,8 @@ export default class F11Modal extends Modal {
 
     _init(): void {
         this._injectModal()
-        this.#xInputSel = document.querySelector<HTMLInputElement>(`#${this.#xInputId}`) as HTMLInputElement
-        this.#zInputSel = document.querySelector<HTMLInputElement>(`#${this.#zInputId}`) as HTMLInputElement
+        this.#xInputSel = document.querySelector<HTMLInputElement>(`#${this.#xInputId}`)!
+        this.#zInputSel = document.querySelector<HTMLInputElement>(`#${this.#zInputId}`)!
 
         // Copy coordinates to clipboard (ctrl-c key event)
         document.querySelector(`#${this.id}`)?.addEventListener("keydown", (event: Event): void => {

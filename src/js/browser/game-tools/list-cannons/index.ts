@@ -110,7 +110,7 @@ export default class ListCannons {
                                     formattedValue:
                                         elementValue.value === 0
                                             ? ""
-                                            : formatFloatFixed(elementValue.value, elementValue?.digits ?? 0),
+                                            : formatFloatFixed(elementValue.value, elementValue.digits ?? 0),
                                 })
                             }
                         }
@@ -285,7 +285,7 @@ export default class ListCannons {
             this._cannonFamilySelected(type)
         }
 
-        const firstTabEl = document.querySelector(`#${this._getTabId()} li:first-child button`) as HTMLButtonElement
+        const firstTabEl = document.querySelector(`#${this._getTabId()} li:first-child button`)!
         const bsTab = new BSTab(firstTabEl)
         bsTab.show()
     }

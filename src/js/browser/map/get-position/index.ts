@@ -6,7 +6,7 @@ import { registerEvent } from "../../analytics"
 import Toast from "../../components/toast"
 import { trilaterate, type Vector } from "../../components/transliterate"
 import { copyF11ToClipboard } from "../../util"
-import DisplayPorts from "../display-ports"
+import type DisplayPorts from "../display-ports"
 import GetPositionModal from "./modal"
 
 /**

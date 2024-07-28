@@ -2,7 +2,7 @@ import { formatFloat, formatPercentOldstyle } from "common/format"
 import type { Amount, SelectedWood, WoodBaseAmount } from "compare-woods"
 import type { HtmlString } from "../../../@types/common"
 import { Column } from "./column"
-import { WoodData } from "./data"
+import type { WoodData } from "./data"
 
 type PropertyMap = Map<string, WoodBaseAmount>
 
