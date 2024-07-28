@@ -145,18 +145,11 @@ export default class PortIcons {
         )
     }
 
-    static #sortByProfit(a: TradeGoodProfit, b: TradeGoodProfit): number {
-        return b.profit.profit - a.profit.profit
-    }
-
-    static #sortByProfitPerTon(a: TradeGoodProfit, b: TradeGoodProfit): number {
-        return b.profit.profitPerTon - a.profit.profitPerTon
-    }
-
     #formatProfits(profits: TradeGoodProfit[]): HtmlResult {
+        const sortByProfit = (a: TradeGoodProfit, b: TradeGoodProfit): number => b.profit.profit - a.profit.profit
+
         return html`${profits
-            // eslint-disable-next-line @typescript-eslint/unbound-method
-            .sort(PortIcons.#sortByProfit)
+            .sort(sortByProfit)
             .map(
                 (good, index) =>
                     html`<span style="white-space: nowrap;">${good.name} (${formatSiIntHtml(good.profit.profit)})</span
@@ -165,9 +158,11 @@ export default class PortIcons {
     }
 
     #formatProfitsPerTon(profits: TradeGoodProfit[]): HtmlResult {
+        const sortByProfitPerTon = (a: TradeGoodProfit, b: TradeGoodProfit): number =>
+            b.profit.profitPerTon - a.profit.profitPerTon
+
         return html`${profits
-            // eslint-disable-next-line @typescript-eslint/unbound-method
-            .sort(PortIcons.#sortByProfitPerTon)
+            .sort(sortByProfitPerTon)
             .map(
                 (good, index) =>
                     html`<span style="white-space: nowrap;"
