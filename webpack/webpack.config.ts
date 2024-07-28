@@ -15,7 +15,7 @@ import { getRepairList } from "./repairs"
 import { aliasPaths, dirJs, dirOutput } from "./dir"
 import { TARGET, isProduction } from "./env"
 
-const publicPath = TARGET ?? (!isProduction ? "/" : `http://localhost/na/`)
+const publicPath = (TARGET ?? !isProduction) ? "/" : `http://localhost/na/`
 
 const config: webpack.Configuration = {
     devtool: isProduction ? false : "eval-source-map",
