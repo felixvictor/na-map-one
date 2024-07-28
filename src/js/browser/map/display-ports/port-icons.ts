@@ -146,10 +146,8 @@ export default class PortIcons {
     }
 
     #formatProfits(profits: TradeGoodProfit[]): HtmlResult {
-        const sortByProfit = (a: TradeGoodProfit, b: TradeGoodProfit): number => b.profit.profit - a.profit.profit
-
         return html`${profits
-            .sort(sortByProfit)
+            .sort((a: TradeGoodProfit, b: TradeGoodProfit): number => b.profit.profit - a.profit.profit)
             .map(
                 (good, index) =>
                     html`<span style="white-space: nowrap;">${good.name} (${formatSiIntHtml(good.profit.profit)})</span
@@ -158,11 +156,8 @@ export default class PortIcons {
     }
 
     #formatProfitsPerTon(profits: TradeGoodProfit[]): HtmlResult {
-        const sortByProfitPerTon = (a: TradeGoodProfit, b: TradeGoodProfit): number =>
-            b.profit.profitPerTon - a.profit.profitPerTon
-
         return html`${profits
-            .sort(sortByProfitPerTon)
+            .sort((a: TradeGoodProfit, b: TradeGoodProfit): number => b.profit.profitPerTon - a.profit.profitPerTon)
             .map(
                 (good, index) =>
                     html`<span style="white-space: nowrap;"
@@ -234,12 +229,20 @@ export default class PortIcons {
             dropsNonTrading: this.#formatItems(portProperties.dropsNonTrading),
             tradePortName: this.tradePort.name,
             goodsToSellInTradePort: {
-                profit: this.#formatProfits(portProperties.goodsToSellInTradePort),
-                profitPerTon: this.#formatProfitsPerTon(portProperties.goodsToSellInTradePort),
+                profit: portProperties.goodsToSellInTradePort
+                    ? this.#formatProfits(portProperties.goodsToSellInTradePort)
+                    : html``,
+                profitPerTon: portProperties.goodsToSellInTradePort
+                    ? this.#formatProfitsPerTon(portProperties.goodsToSellInTradePort)
+                    : html``,
             },
             goodsToBuyInTradePort: {
-                profit: this.#formatProfits(portProperties.goodsToBuyInTradePort),
-                profitPerTon: this.#formatProfitsPerTon(portProperties.goodsToBuyInTradePort),
+                profit: portProperties.goodsToBuyInTradePort
+                    ? this.#formatProfits(portProperties.goodsToBuyInTradePort)
+                    : html``,
+                profitPerTon: portProperties.goodsToBuyInTradePort
+                    ? this.#formatProfitsPerTon(portProperties.goodsToBuyInTradePort)
+                    : html``,
             },
         } as PortForDisplay
 
