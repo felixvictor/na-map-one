@@ -1,5 +1,12 @@
 
 
+## [15.2.8](https://example.com///compare/v15.2.7...v15.2.8) (2024-07-28)
+
+
+### Bug Fixes
+
+* **port icons:** sort ([1746392](https://example.com///commit/1746392a199a6cfc5cc5b90b78a0a4cfabd7ec16))
+
 ## [15.2.7](https://example.com///compare/v15.2.5...v15.2.7) (2024-07-28)
 
 
