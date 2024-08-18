@@ -163,7 +163,7 @@
         "yargs": "^17.7.2"
     },
     "engines": {
-        "node": ">= 20"
+        "node": ">= 22"
     },
     "browserslist": [
         "defaults and supports es6-module and last 3 versions"
